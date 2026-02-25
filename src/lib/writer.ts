@@ -21,9 +21,11 @@ export function specToYaml(spec: Record<string, unknown>): string {
 
 /**
  * Create a ZIP file containing all built specs as YAML files.
+ * Optionally includes the updated endpoints registry.
  * Returns a Blob that can be downloaded.
  */
-export async function createZip(specs: BuiltSpec[]): Promise<Blob> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function createZip(specs: BuiltSpec[], updatedRegistry?: any[]): Promise<Blob> {
   const zip = new JSZip();
 
   for (const built of specs) {
@@ -34,6 +36,10 @@ export async function createZip(specs: BuiltSpec[]): Promise<Blob> {
   // Add a manifest/index file
   const manifest = generateManifest(specs);
   zip.file("_index.yaml", manifest);
+
+  if (updatedRegistry) {
+    zip.file("endpoints-registry.json", JSON.stringify(updatedRegistry, null, 2));
+  }
 
   return zip.generateAsync({ type: "blob" });
 }

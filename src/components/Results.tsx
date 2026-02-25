@@ -58,6 +58,13 @@ export default function Results({ result }: ResultsProps) {
           value={result.stats.unclassified}
           color={result.stats.unclassified > 0 ? "yellow" : "gray"}
         />
+        {result.registryUpdates > 0 && (
+          <StatCard
+            label="Registry Matches"
+            value={result.registryUpdates}
+            color="green"
+          />
+        )}
       </div>
 
       {/* Download */}
@@ -107,11 +114,10 @@ export default function Results({ result }: ResultsProps) {
             <div key={spec.subsectionId}>
               <button
                 onClick={() => handlePreview(spec.subsectionId)}
-                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-left transition-colors text-sm ${
-                  selectedSpec === spec.subsectionId
+                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-left transition-colors text-sm ${selectedSpec === spec.subsectionId
                     ? "bg-blue-900/30 border border-blue-800/50"
                     : "bg-gray-900 hover:bg-gray-800/80"
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-3">
                   <span className="text-gray-400 font-mono text-xs">
