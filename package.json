@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@octokit/rest": "^22.0.1",
     "file-saver": "^2.0.5",
     "js-yaml": "^4.1.0",
     "jszip": "^3.10.1",

@@ -22,6 +22,8 @@ export interface ProcessingResult {
   zipBlob: Blob | null;
   /** Number of endpoints matched and updated in the registry */
   registryUpdates: number;
+  /** Result of pushing to GitHub */
+  githubPushStatus?: { success: boolean; url?: string; error?: string };
 }
 
 export interface ProgressCallback {
@@ -121,6 +123,33 @@ export async function processFiles(
   onProgress?.("Creating ZIP", 85, "Packaging files...");
   const zipBlob = await createZip(builtSpecs, registry);
 
+  // Step 5: Push to Github
+  let githubPushStatus: ProcessingResult["githubPushStatus"] = undefined;
+  onProgress?.("Pushing to GitHub", 90, "Uploading split specs to GitHub...");
+  try {
+    const specsToPush = builtSpecs.map(bs => ({
+      filename: bs.filename,
+      content: specToYaml(bs.spec)
+    }));
+    const pushRes = await fetch('/api/github', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ specs: specsToPush, registry })
+    });
+
+    if (pushRes.ok) {
+      const result = await pushRes.json();
+      githubPushStatus = { success: true, url: result.commitUrl };
+    } else {
+      const errorResult = await pushRes.json();
+      console.warn("Failed to push to GitHub", errorResult.error);
+      githubPushStatus = { success: false, error: errorResult.error };
+    }
+  } catch (e) {
+    console.warn("Error pushing to GitHub", e);
+    githubPushStatus = { success: false, error: e instanceof Error ? e.message : "Unknown error" };
+  }
+
   onProgress?.("Done", 100, `${builtSpecs.length} specs ready for download`);
 
   return {
@@ -133,6 +162,7 @@ export async function processFiles(
     failedFiles,
     zipBlob,
     registryUpdates,
+    githubPushStatus,
   };
 }
 
