@@ -41,7 +41,13 @@ export async function createZip(specs: BuiltSpec[], updatedRegistry?: any[]): Pr
     zip.file("endpoints-registry.json", JSON.stringify(updatedRegistry, null, 2));
   }
 
-  return zip.generateAsync({ type: "blob" });
+  return zip.generateAsync({
+    type: "blob",
+    compression: "DEFLATE",
+    compressionOptions: {
+      level: 6
+    }
+  });
 }
 
 /**
