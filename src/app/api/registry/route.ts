@@ -2,17 +2,18 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
     try {
-        // Fetch directly from the raw GitHub user content
-        // Alternatively, we could fetch via the GitHub REST API if auth is needed.
-        const url = 'https://raw.githubusercontent.com/naman-cap/yaml-fixer/main/endpoints-registry.json';
+        // Use the GitHub API directly to bypass aggressive CDN caching on raw.githubusercontent.com
+        const url = 'https://api.github.com/repos/naman-cap/yaml-fixer/contents/endpoints-registry.json';
 
-        // Add a cache buster parameter to ensure we get the latest
         const timestamp = new Date().getTime();
         const response = await fetch(`${url}?t=${timestamp}`, {
             headers: {
+                'Accept': 'application/vnd.github.v3.raw',
                 'Cache-Control': 'no-cache, no-store, must-revalidate',
                 'Pragma': 'no-cache',
-                'Expires': '0'
+                'Expires': '0',
+                // Always use token if available to prevent rate limits and force fresh data
+                ...(process.env.GITHUB_TOKEN ? { 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}` } : {})
             }
         });
 
