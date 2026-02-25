@@ -1,15 +1,23 @@
 import { NextResponse } from 'next/server';
 import { Octokit } from '@octokit/rest';
+import JSZip from 'jszip';
 
 export async function POST(request: Request) {
     try {
-        const { specs, registry } = await request.json();
-
         // Check for GITHUB_TOKEN
         const token = process.env.GITHUB_TOKEN;
         if (!token) {
             return NextResponse.json({ error: "GITHUB_TOKEN env variable is missing on server." }, { status: 500 });
         }
+
+        const formData = await request.formData();
+        const file = formData.get("file") as Blob;
+        if (!file) {
+            return NextResponse.json({ error: "Missing file in request payload." }, { status: 400 });
+        }
+
+        const arrayBuffer = await file.arrayBuffer();
+        const zip = await JSZip.loadAsync(arrayBuffer);
 
         const octokit = new Octokit({ auth: token });
         const owner = "naman-cap";
@@ -36,34 +44,38 @@ export async function POST(request: Request) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const tree: any[] = [];
 
-        if (registry) {
-            const { data: blob } = await octokit.git.createBlob({
-                owner,
-                repo,
-                content: JSON.stringify(registry, null, 2),
-                encoding: "utf-8",
-            });
-            tree.push({
-                path: "endpoints-registry.json",
-                mode: "100644",
-                type: "blob",
-                sha: blob.sha,
-            });
-        }
+        for (const [filename, fileObj] of Object.entries(zip.files)) {
+            if (fileObj.dir || filename === "_index.yaml") continue;
 
-        for (const spec of specs) {
-            const { data: blob } = await octokit.git.createBlob({
-                owner,
-                repo,
-                content: spec.content,
-                encoding: "utf-8",
-            });
-            tree.push({
-                path: `specs/${spec.filename}`, // Maintain split files under 'specs/' folder
-                mode: "100644",
-                type: "blob",
-                sha: blob.sha,
-            });
+            const content = await fileObj.async("string");
+
+            if (filename === "endpoints-registry.json") {
+                const { data: blob } = await octokit.git.createBlob({
+                    owner,
+                    repo,
+                    content,
+                    encoding: "utf-8",
+                });
+                tree.push({
+                    path: "endpoints-registry.json",
+                    mode: "100644",
+                    type: "blob",
+                    sha: blob.sha,
+                });
+            } else if (filename.endsWith(".yaml")) {
+                const { data: blob } = await octokit.git.createBlob({
+                    owner,
+                    repo,
+                    content,
+                    encoding: "utf-8",
+                });
+                tree.push({
+                    path: `specs/${filename}`, // Maintain split files under 'specs/' folder
+                    mode: "100644",
+                    type: "blob",
+                    sha: blob.sha,
+                });
+            }
         }
 
         // 4. Create a new tree

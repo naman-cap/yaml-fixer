@@ -125,25 +125,28 @@ export async function processFiles(
 
   // Step 5: Push to Github
   let githubPushStatus: ProcessingResult["githubPushStatus"] = undefined;
-  onProgress?.("Pushing to GitHub", 90, "Uploading split specs to GitHub...");
+  onProgress?.("Pushing to GitHub", 90, "Uploading split specs to GitHub (compressed)...");
   try {
-    const specsToPush = builtSpecs.map(bs => ({
-      filename: bs.filename,
-      content: specToYaml(bs.spec)
-    }));
+    const formData = new FormData();
+    formData.append("file", zipBlob, "specs.zip");
+
     const pushRes = await fetch('/api/github', {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ specs: specsToPush, registry })
+      body: formData
     });
 
     if (pushRes.ok) {
       const result = await pushRes.json();
       githubPushStatus = { success: true, url: result.commitUrl };
     } else {
-      const errorResult = await pushRes.json();
-      console.warn("Failed to push to GitHub", errorResult.error);
-      githubPushStatus = { success: false, error: errorResult.error };
+      const errText = await pushRes.text();
+      let errorMsg = errText;
+      try {
+        const errorResult = JSON.parse(errText);
+        errorMsg = errorResult.error || errText;
+      } catch (e) { }
+      console.warn("Failed to push to GitHub", errorMsg);
+      githubPushStatus = { success: false, error: errorMsg };
     }
   } catch (e) {
     console.warn("Error pushing to GitHub", e);
