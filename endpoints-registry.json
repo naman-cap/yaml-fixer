@@ -1,0 +1,4048 @@
+[
+  {
+    "category": "Getting Started",
+    "subcategory": "Authentication",
+    "title": "OAuth",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Authentication",
+    "title": "Basic authentication",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Authentication",
+    "title": "Auth for consumer or end-customer apps",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Authentication",
+    "title": "Authorisation",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Authentication",
+    "title": "Rate limits",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Authentication",
+    "title": "API status codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Timezone Management in APIs",
+    "title": "What Has Changed After Timezone Standardisation",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Timezone Management in APIs",
+    "title": "Date-Time Handling Standards in APIs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Timezone Management in APIs",
+    "title": "Timezone Handling in Behavioural Events",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Timezone Management in APIs",
+    "title": "Points Awarded Date-Time Behaviour",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Timezone Management in APIs",
+    "title": "Timezone in Rewards Catalog",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Timezone Management in APIs",
+    "title": "APIs updated with additional timezone fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Timezone Management in APIs",
+    "title": "archive",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Timezone Management in APIs",
+    "title": "Make Your First API Request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Getting Started",
+    "subcategory": "Timezone Management in APIs",
+    "title": "Idempotency",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Add Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Update customer details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "update-customer-identifiers",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Search Customers",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Get customer details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Get Customer Transactions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Get Customer Redemptions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Add/Update Customer Notes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Get Customer Notes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Get Customer Interactions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Get Referral Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Add/Update Customer Preferences",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Get Customer Preferences",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Update Subscription Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Get Subscription Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V1)",
+    "subcategory": null,
+    "title": "Change identifier on Auth engine",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Add Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Update Customer Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Link/Delink Card",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Associate Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Customer Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get customer hierarchy in a user group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Update association details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Search Customers",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Update Subscription Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Subscription Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Customer Tracker Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Loyalty Events",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Loyalty Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Customer Tier",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Detailed Customer Coupon Data",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Retro Requests",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Identifier Change Requests",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Goodwill Requests",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Add Customer Image",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Delete Customer Image",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Customer Status Log",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Customer Subscription Log",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Customer Image",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get user group customer tracker details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get customer transactions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Get Customer Interactions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Status codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2)",
+    "subcategory": null,
+    "title": "Manual Tier Adjustment",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Update Customer Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Customer Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Customer ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Update Customer Status",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Subscription Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Customer Loyalty Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Retro Requests",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Add Customer Image",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Referrals (Lookup)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Customer Recommendations",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Points Balance",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Customer Tier",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Get Points Conversion Schedule",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer (V2 Lookup)",
+    "subcategory": null,
+    "title": "Lookup Customer Transactions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Labels",
+    "subcategory": null,
+    "title": "Add Labels",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Labels",
+    "subcategory": null,
+    "title": "Get All Customer Labels for the Org",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Labels",
+    "subcategory": null,
+    "title": "Tag Customers (to Labels)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Labels",
+    "subcategory": null,
+    "title": "Get Customer Labels",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Labels",
+    "subcategory": null,
+    "title": "Search Customers by Label",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V1)",
+    "title": "Add Transaction",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V1)",
+    "title": "Add Transaction with Local Currency",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V1)",
+    "title": "Update Transaction Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V1)",
+    "title": "Cancel Transaction Lineitem",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V1)",
+    "title": "Get Transaction Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V1)",
+    "title": "Return Transaction",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V1)",
+    "title": "Retro Transaction",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V2)",
+    "title": "Add/Return transaction (single)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V2)",
+    "title": "Add/Return Transaction(bulk)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V2)",
+    "title": "Update Transaction",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V2)",
+    "title": "Update Transactions in Bulk",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V2)",
+    "title": "Get Transaction Details With ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V2)",
+    "title": "Get transaction details using bill number",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V2)",
+    "title": "Simulation transaction add",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V2)",
+    "title": "Expose Evaluation log for an event",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction (V2)",
+    "title": "Status codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction rejection",
+    "title": "getRejectedTransactions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction rejection",
+    "title": "getReTriggerStatus",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction rejection",
+    "title": "markFailed",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Transaction",
+    "subcategory": "Transaction rejection",
+    "title": "retriggerTransactionAdd",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V1.1 APIs)",
+    "title": "Resend Coupon",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V1.1 APIs)",
+    "title": "Redeem Coupon",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V1.1 APIs)",
+    "title": "Get Coupon details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V1.1 APIs)",
+    "title": "Get Customer Coupons",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V1.1 APIs)",
+    "title": "Is Coupon Redeemable",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V1.1 APIs)",
+    "title": "Get Coupon series details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Create coupon series",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Update coupon series",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Get coupon series details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Issue single coupon",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Issue bulk coupons",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Issue multiple coupons to a customer from a series",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Redeem single coupon",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Redeem bulk coupons",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Check if coupon is Redeemable",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Reactivate redeemed coupon",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Get coupon details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Get All Customer Coupons",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Update coupon redeem field",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Update coupon code expiry date",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon (V2 APIs)",
+    "title": "Revoke coupon",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon Upload (V1 APIs)",
+    "title": "Upload Redeemed Coupons",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon Upload (V1 APIs)",
+    "title": "Get Uploaded Coupons' Status",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon Upload (V1 APIs)",
+    "title": "Get Status of Redeemed Coupons",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Coupon",
+    "subcategory": "Coupon Upload (V1 APIs)",
+    "title": "Upload Coupons (Batch)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Add Card Series",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Generate Cards",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Get Card Generation Log",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Add Card Number to a Card Series",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Update Card Details (Single)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Update Card Details (Bulk)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Get Card Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Get Status Log",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Limit Active Cards per Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cards",
+    "subcategory": null,
+    "title": "Generate Card External ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": null,
+    "title": "Get Point Allocation Details by Event ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": null,
+    "title": "Get Custom Fields Associated with Coupon Redemption",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": null,
+    "title": "Get Allocated Points Details with Expiry in Specified Date Range",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Request Goodwill points (Group)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Get Points Conversion Schedule",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Get Points Balance",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Get Points Transfer Summary",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Get Points Expiry Schedule (Light API)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Get Points Expiry Schedule",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Check if Points Transferable",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Transfer Customer Points",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Get Points Transfer Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Reverse Redeemed Points",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Group Points Transferable",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Transfer Group Points",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Convert Promised Points",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Update redeem points",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Deduct points and alternate currencies from user",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Deduct points and alternate currencies from user using userId",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Update Currency Expiry",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Issue points or alternate currencies to customers",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Get Single Points Expiry Updates",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Get Historical Points",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Create Historical Points Custom Fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Get Custom Fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v2)",
+    "title": "Delete Custom Fields for Historical Points",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v1.1)",
+    "title": "Check If Points Redeemable",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v1.1)",
+    "title": "Issue Validation Code (to redeem points)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points (v1.1)",
+    "title": "Redeem Points",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points Ledger",
+    "title": "Get Customer Ledger Balance",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points Ledger",
+    "title": "Get Points Ledger",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Points Ledger",
+    "title": "Get Points Ledger Explode Info",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Connected Org APIs",
+    "title": "Get Points Ledger Information in Connected Orgs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Points",
+    "subcategory": "Connected Org APIs",
+    "title": "Get Points Ledger Explode Info in Connected Orgs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": null,
+    "title": "Create search filter",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": null,
+    "title": "Retrieve search criteria details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": null,
+    "title": "Enable search index of older data",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": null,
+    "title": "Perform search",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": null,
+    "title": "Deactivate search criteria",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": null,
+    "title": "Create Data Field",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": null,
+    "title": "Update Data Field",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": null,
+    "title": "Get Data Field Detail",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": null,
+    "title": "Perform Search (Cortex API)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": "Event Transformation for Cortex Search",
+    "title": "Use Case",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": "Event Transformation for Cortex Search",
+    "title": "Quick Start",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": "Event Transformation for Cortex Search",
+    "title": "Enable or Update Custom Event Tranformation",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": "Event Transformation for Cortex Search",
+    "title": "Retrieve Custom Event Config Details for an Entity",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": "Event Transformation for Cortex Search",
+    "title": "Retrieve Custom Event Config Details of Org",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": "Event Transformation for Cortex Search",
+    "title": "FAQs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Search APIs",
+    "subcategory": "Event Transformation for Cortex Search",
+    "title": "Best Practices",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Create badges",
+    "title": "Fixed Window Restriction in Badges",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Create badges",
+    "title": "Update badges",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Create badges",
+    "title": "Get badge by ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Create badges",
+    "title": "Get all badges",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Create badges",
+    "title": "Get fixed window details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Create badges",
+    "title": "Claim badge",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Create badges",
+    "title": "Unclaim badge",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Create badges",
+    "title": "Update activation status of badge",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Create badges",
+    "title": "Enrol customers for badges",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Multiple Badge Issuances",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Issue badge to multiple customers",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Import earned (issued) badges of customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Revoke enrolled badges",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Revoke issued badge",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Get badges for customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Get all customer badges",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Get individual badge details of a customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Create badges group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Update badges group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Get badge group by ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Get all groups",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Create custom field for badges",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Update badge custom field",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Get badge custom field by ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Badges",
+    "subcategory": "Issue badge (earn)",
+    "title": "Get all badge custom fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Management",
+    "title": "Create Reward",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Management",
+    "title": "Update Reward",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Management",
+    "title": "Get reward details by ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Management",
+    "title": "Adding revenue metadata against a reward",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Categories",
+    "title": "Create Reward Category",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Categories",
+    "title": "Enable or Disable Reward Categories",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Categories",
+    "title": "Get Reward Category",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Rich Text Content for Rewards",
+    "title": "Create Rich Text Content Metadata for Rewards",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Rich Text Content for Rewards",
+    "title": "Update Rich Text Content Metadata for Rewards",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Rich Text Content for Rewards",
+    "title": "Get all Rich Text Content Metadata for specific brand",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Rich Text Content for Rewards",
+    "title": "Adding Rich Text Content field for Reward",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Issuance",
+    "title": "Issue single reward",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Issuance",
+    "title": "Reward Issuance with Quantity and Redemption Value Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Issuance",
+    "title": "Issue bulk reward",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Issuance",
+    "title": "Idempotency Check for Issuing Reward",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "User-Centric Reward Queries",
+    "title": "Get rewards for user",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "User-Centric Reward Queries",
+    "title": "Get customer reward transactions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "User-Centric Reward Queries",
+    "title": "Get Reward Transaction Details using Reward Transaction ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "User-Centric Reward Queries",
+    "title": "Get Purchased Rewards for User (New API)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "User-Centric Reward Queries",
+    "title": "Get available reward details for user by id",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Brand-Level Reward Queries",
+    "title": "Get all brand rewards using Brand ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Brand-Level Reward Queries",
+    "title": "Get Brand Rewards",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Brand-Level Reward Queries",
+    "title": "Get available brand rewards",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Brand-Level Reward Queries",
+    "title": "Get Transaction Details by Customer ID and Reward Transaction ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Promotions",
+    "title": "Create catalog promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Promotions",
+    "title": "Update catalog promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Promotions",
+    "title": "Get catalog promotion details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Promotions",
+    "title": "Get list of Catalog promotions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Promotions",
+    "title": "Disable Catalog promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Custom Fields",
+    "title": "Create custom field for reward",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Custom Fields",
+    "title": "Update reward custom field",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Custom Fields",
+    "title": "Get all custom fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Groups",
+    "title": "Groups - Create reward group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Groups",
+    "title": "Groups - Update rewards group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Groups",
+    "title": "Groups - Get all rewards group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Catalog Groups",
+    "title": "Groups - Get rewards group by ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Points Restrictions",
+    "title": "Points Restrictions - Create points restriction",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Points Restrictions",
+    "title": "Points - Update points restriction",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Points Restrictions",
+    "title": "Points - Get points constraints",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Organization-Level Configuration",
+    "title": "Organisation Level Configuration for Rewards Catalog",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Organization-Level Configuration",
+    "title": "Get Organisation Level Configuration",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Create a Vendor",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Update Vendor Metadata",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Enable or Disable a Vendor",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Get Vendor Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Vendor List for Specific Brand",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Create Vendor Redemption",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Update Vendor Redemption",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Get all vendor redemptions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Vendor Redemption Details by Redemption & Vendor ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Vendor Management & Redemption",
+    "title": "Vendor Redemption Details by Brand ID and Vendor ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "File Service",
+    "title": "Upload images to file service",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Fulfillment Status",
+    "title": "Create fulfillment status",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Fulfillment Status",
+    "title": "Update fulfillment status",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Fulfillment Status",
+    "title": "Get fulfillment status",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Fulfillment Status",
+    "title": "Update fulfillment status and transaction custom fields for issued rewards",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Expiry Reminders",
+    "title": "Create Reward Expiry Reminder",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Expiry Reminders",
+    "title": "Update Reward Expiry Reminder",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Reward Expiry Reminders",
+    "title": "Get Reward Expiry Reminder",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Connected-Org APIs",
+    "title": "Issue Reward in connected orgs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Connected-Org APIs",
+    "title": "Get all available rewards for user in connected orgs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Connected-Org APIs",
+    "title": "Get all reward transactions for a user in connected orgs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Connected-Org APIs",
+    "title": "Get Transaction Details by Reward Transaction ID in Connected orgs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Connected-Org APIs",
+    "title": "Get Purchased Rewards for User in Connected Orgs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Connected-Org APIs",
+    "title": "Get reward details by ID in connected orgs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Language",
+    "title": "Create Language Metadata for Rewards",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Language",
+    "title": "Get All Language Metadata",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Language",
+    "title": "Enable Language for Rewards",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Rewards Catalog",
+    "subcategory": "Language",
+    "title": "Disable Language for Rewards",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Create target group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Update target group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Get target groups based on ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Get Associated Target Groups of a User",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Get active targets",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Get all target groups",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Get target periods",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Get target communication template",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Upsert target communication",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Get target channels",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Delete target group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Create target period",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Update target period",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Create targets (milestone)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Modify targets",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Deactivate target",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Update unified target",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Edit streak",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Create target based on Behavioural event",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Create target based on EMF event",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Get all milestones (target)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Enrol/Re-enrol a customer to a milestone/streak",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Unenrol users from a milestone and streak",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Check the Validity of Milestone / Target Name",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Get target events",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Create streaks",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Create unified target group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "Create target group based on alternate currencies",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Milestone & Streaks APIs",
+    "title": "User-Created Challenges",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Connected Org APIs",
+    "title": "Enroll/Re-Enroll a Customer to a Milestone or Streak",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Connected Org APIs",
+    "title": "Unenroll a Customer to from Milestone or Streak",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Connected Org APIs",
+    "title": "Get Associated Target Groups of a User",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Connected Org APIs",
+    "title": "Data Scopes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Leaderboards",
+    "title": "Get top ranked users",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Target/Milestone",
+    "subcategory": "Leaderboards",
+    "title": "Get user rank across target groups",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Loyalty Promotion",
+    "subcategory": null,
+    "title": "Enrol/Issue Loyalty Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Loyalty Promotion",
+    "subcategory": null,
+    "title": "Revoke Loyalty Promotions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Loyalty Promotion",
+    "subcategory": "Connected Org APIs",
+    "title": "Get Loyalty Promotion List of a Customer (Connected Org)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Loyalty Promotion",
+    "subcategory": "User Created Challenge",
+    "title": "Create Loyalty Promotion for UCC",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Loyalty Promotion",
+    "subcategory": "User Created Challenge",
+    "title": "Get Details of all Loyalty Promotions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Loyalty Promotion",
+    "subcategory": "User Created Challenge",
+    "title": "Get Loyalty Promotion Benefits for Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Loyalty Promotion",
+    "subcategory": "Get Promotion Details",
+    "title": "Get Loyalty Promotion List for a Program",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Loyalty Promotion",
+    "subcategory": "Get Promotion Details",
+    "title": "Get Loyalty Promotion by ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Loyalty Promotion",
+    "subcategory": "Get Promotion Details",
+    "title": "Get Loyalty Promotions List for a Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Unified Loyalty Promotions",
+    "subcategory": null,
+    "title": "Create a Loyalty Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Unified Loyalty Promotions",
+    "subcategory": null,
+    "title": "Review a Loyalty Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Unified Loyalty Promotions",
+    "subcategory": null,
+    "title": "Enrol Members to a Loyalty Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Unified Loyalty Promotions",
+    "subcategory": null,
+    "title": "Update a Loyalty Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Unified Loyalty Promotions",
+    "subcategory": null,
+    "title": "Get Details of Loyalty Promotion using ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Unified Loyalty Promotions",
+    "subcategory": null,
+    "title": "Get Details of all Loyalty Promotions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Create Cart Promotions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Update Cart Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Get Cart Promotion Redemptions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Activate Promotion for Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Activate Cart Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Get Cart Promotion Details using Code & Promotion mode",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Deactivate Cart Promotion for Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Deactivate Cart Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Get Cart Promotions for a particular till",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Get Pending Carts Details (Cart Promotion)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Get/Search Product SKUs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Get Cart Promotions Configurations Using Promotion ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Get Cart Promotions available for a Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Earn Cart Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Revoke Earned Cart Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Earn Cart Promotions in Bulk",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Evaluate Promotions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Cancel Cart Evaluation - Cart Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Link Cart Promotion Code to the Customer ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Issue Cart Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Redeem Cart Promotion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Cart Promotions",
+    "subcategory": null,
+    "title": "Get Cart Promotions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Add Group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Update User Group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Search user groups by name, ID, and mobile number",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Delete User Group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Join Member to Group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Remove group member",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Transfer Group Member",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Get group transactions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Retrieve user group members list",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Retrieve user group members list with cards & status details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Retrieve Primary & Secondary Member Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Retrieve group slab/tier log history",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Retrieve points expiry schedule of a group",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Retrieve points conversion schedule",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Status codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Update permissions",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Group",
+    "subcategory": null,
+    "title": "Search for groups using the extended fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V1)",
+    "title": "Get Org Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V1)",
+    "title": "Get Org Entities",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V1)",
+    "title": "Get Org Configurations",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V1)",
+    "title": "Get Org Statistics",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V1)",
+    "title": "Get Org Custom Fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V1)",
+    "title": "Retrieve Brand ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V1)",
+    "title": "Get Org Payment Modes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Add Till",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Update Till with Custom Fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Get Custom Fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Get Config Key Values",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Get org till details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Get Active Tills",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Get Loyalty Programs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Add Store",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Retrieve org hierarchy details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Add Store in bulk",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Organization",
+    "subcategory": "Organization (V2)",
+    "title": "Get Till ID Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Communications (v2)",
+    "subcategory": null,
+    "title": "Send communication message",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Communications (v2)",
+    "subcategory": null,
+    "title": "Resend a communication message",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Communications (v2)",
+    "subcategory": null,
+    "title": "Error code",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Communications (v1)",
+    "subcategory": null,
+    "title": "Send communication message",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Communications (v1)",
+    "subcategory": null,
+    "title": "Error code",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Custom Fields",
+    "subcategory": null,
+    "title": "Create a Custom Field",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Custom Fields",
+    "subcategory": null,
+    "title": "Get Custom Fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Custom Fields",
+    "subcategory": null,
+    "title": "Tag Custom Field to an Entity",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Audit logs",
+    "subcategory": null,
+    "title": "Get audit logs of entities",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Audit logs",
+    "subcategory": null,
+    "title": "Get Audit Logs by Event Name",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "PII deletion",
+    "subcategory": null,
+    "title": "Add a PII deletion request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "PII deletion",
+    "subcategory": null,
+    "title": "Update PII deletion status",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "PII deletion",
+    "subcategory": null,
+    "title": "Retrieve request status of PII deletion",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "PII deletion",
+    "subcategory": null,
+    "title": "Retrieve Request Details using Type and Subtype",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "PII deletion",
+    "subcategory": null,
+    "title": "Error codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Add Lead",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Add Lead Substatus",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Update Lead Status",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Update Lead Followups",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Update Lead",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Configure lead reasons",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Get Lead Status Log",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Get Lead follow-ups",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Get Lead Reasons",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Get Lead Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Get Lead Substatus",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Search lead",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Leads",
+    "subcategory": null,
+    "title": "Assign Lead",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Add Staff Account",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Get Access Token",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Edit Staff Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Get Staff Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Change Account Password",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Send OTP",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Validate OTP",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Change Identifier (Send OTP)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Change Identifier (Validate OTP)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Transfer Staff User",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Get Staff of Store/Zone",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Logout Staff Account",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Staff",
+    "subcategory": null,
+    "title": "Remove Staff Account",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Create Event (Custom)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Update Event (Custom)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Get Org Events",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Get Running Events Status",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Get Customer Events",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Disable Event",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Add Webhook",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Get Org Webhooks",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Get Events Logs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Get Events Meta",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Get event data using request ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Search events",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Behavioral Events",
+    "subcategory": null,
+    "title": "Post Event",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Add Webhook",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Get Webhook",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Update Webhook",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Delete Webhook",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Get Event Log (by Request ID)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Get Event Log (by Reference ID)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Get Event Log (by Event ID)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Get Event Logs by Webhook ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Get Event Matrix by Webhook ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Event notification logs",
+    "subcategory": null,
+    "title": "Response code",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Company",
+    "subcategory": null,
+    "title": "Add Company",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Company",
+    "subcategory": null,
+    "title": "Update Company",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Company",
+    "subcategory": null,
+    "title": "Get Company Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Company",
+    "subcategory": null,
+    "title": "Remove Company",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Company",
+    "subcategory": null,
+    "title": "Get Org Companies",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Company",
+    "subcategory": null,
+    "title": "Get Companies by Extended Field Values",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request (V1)",
+    "subcategory": null,
+    "title": "Add Request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request (V1)",
+    "subcategory": null,
+    "title": "Approve Requests",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request (V1)",
+    "subcategory": null,
+    "title": "Reject Requests",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request (V1)",
+    "subcategory": null,
+    "title": "Get Request Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request (V1)",
+    "subcategory": null,
+    "title": "Get Request Logs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Requests (V2)",
+    "subcategory": null,
+    "title": "Add Request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Requests (V2)",
+    "subcategory": null,
+    "title": "Update Request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Requests (V2)",
+    "subcategory": null,
+    "title": "Retrieve Request Status using ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Requests (V2)",
+    "subcategory": null,
+    "title": "Retrieve Request Details using Type and Subtype",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Requests (V2)",
+    "subcategory": null,
+    "title": "Status event notification",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Requests (V2)",
+    "subcategory": null,
+    "title": "Error codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Change customer status request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Points redemption request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Issue goodwill points request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Issue/Earn badge request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Enrol customers for badges",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Retro transaction - Claim transaction",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Approve or reject a request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Get details of all requests",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Get details of a particular request",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Request workflow",
+    "subcategory": "Create a request",
+    "title": "Error codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Partner Program",
+    "subcategory": null,
+    "title": "Link Customer to Partner Program",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Partner Program",
+    "subcategory": null,
+    "title": "Update Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Partner Program",
+    "subcategory": null,
+    "title": "Delink Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Partner Program",
+    "subcategory": null,
+    "title": "Get Customer Activity",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Partner Program",
+    "subcategory": null,
+    "title": "Get customer activity history",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Authentication",
+    "subcategory": null,
+    "title": "Register User",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Authentication",
+    "subcategory": null,
+    "title": "Authorize User",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "User Authentication",
+    "subcategory": null,
+    "title": "Update Password",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "OTP",
+    "subcategory": "Generate OTP",
+    "title": "OTP template guidelines",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "OTP",
+    "subcategory": "Generate OTP",
+    "title": "Validate OTP",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "OTP",
+    "subcategory": "Generate OTP",
+    "title": "Get OTP",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "OTP",
+    "subcategory": "Generate OTP",
+    "title": "Success and error codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Add Brands",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Update Brands",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Get/Search Brands",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Add Categories",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Update Categories",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Get/Search Categories",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Add Attributes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Update Attributes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Get/Search Attributes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Add Attribute Values",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Update Attribute Values",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Get/Search Attribute Values",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Add SKUs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v2)",
+    "title": "Update SKUs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Add Product",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Get Product Attributes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Get Product Brands",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Get Product Categories",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Get Product Colors",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Get Product Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Get Product Meta Sizes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Get Product Sizes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Search Products",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Product",
+    "subcategory": "Product APIs (v1)",
+    "title": "Response codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store",
+    "subcategory": null,
+    "title": "Get Store Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store",
+    "subcategory": null,
+    "title": "Get Store Staff Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store",
+    "subcategory": null,
+    "title": "Get Store Tasks",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store",
+    "subcategory": null,
+    "title": "Verify Login Credentials",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store",
+    "subcategory": null,
+    "title": "Upload Store Logs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store",
+    "subcategory": null,
+    "title": "Upload Store Reports",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store",
+    "subcategory": null,
+    "title": "Get Store Reports",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store",
+    "subcategory": null,
+    "title": "Get Store Configurations",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store Locator API",
+    "subcategory": null,
+    "title": "Authentication Token",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store Locator API",
+    "subcategory": null,
+    "title": "Locate nearby stores",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store Locator API",
+    "subcategory": null,
+    "title": "Retrieve Organization Sync Data",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store Locator API",
+    "subcategory": null,
+    "title": "Store Locator Custom Fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Store Locator API",
+    "subcategory": null,
+    "title": "Retrieve Mapped Custom Field",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Task",
+    "subcategory": null,
+    "title": "Add Tasks",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Task",
+    "subcategory": null,
+    "title": "Update Tasks",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Task",
+    "subcategory": null,
+    "title": "Get Tasks Metadata",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Task",
+    "subcategory": null,
+    "title": "Get Task Logs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Task",
+    "subcategory": null,
+    "title": "Update Status Mappings",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Task",
+    "subcategory": null,
+    "title": "Get Status Mappings",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Task",
+    "subcategory": null,
+    "title": "Get Task Reminders",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Task",
+    "subcategory": null,
+    "title": "Create/Update Task Reminders",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Task",
+    "subcategory": null,
+    "title": "Retrieve Individual Task Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "First factor authentication",
+    "title": "Generate Authentication Token",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "First factor authentication",
+    "title": "Generate OTP",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "First factor authentication",
+    "title": "Validate OTP",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "First factor authentication",
+    "title": "Validate Password",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "First factor authentication",
+    "title": "Regenerate Authentication Token",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "First factor authentication",
+    "title": "Change Password",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "First factor authentication",
+    "title": "Forget Password",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "First factor authentication",
+    "title": "Status codes",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "Multi-factor authentication",
+    "title": "Generate MFA token",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "Multi-factor authentication",
+    "title": "Generate MFA OTP",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "Multi-factor authentication",
+    "title": "Validate MFA OTP",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "MFA password flow",
+    "title": "Validate password",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "MFA password flow",
+    "title": "Change password",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "MFA password flow",
+    "title": "Forgot password",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "MFA password flow",
+    "title": "Regenerate token",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "MFA password flow",
+    "title": "Delete token",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Customer Authentication (Web/Mobile)",
+    "subcategory": "MFA password flow",
+    "title": "Authentication configurations",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Referral",
+    "subcategory": null,
+    "title": "Refer Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Referral",
+    "subcategory": null,
+    "title": "Add Referrals",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Referral",
+    "subcategory": null,
+    "title": "Validate Referral Code",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Connect+ DIY Template APIs",
+    "subcategory": null,
+    "title": "Create DIY Template",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Connect+ DIY Template APIs",
+    "subcategory": null,
+    "title": "Retrieve Workspaces",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Connect+ DIY Template APIs",
+    "subcategory": null,
+    "title": "Retrieve Blocks Supported by the Template",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Event Log IDs with Credit or Debit for Points",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Event Log IDs with Credit or Debit for Alternate Currency",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Custom Field Values for TransactionAdd event",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Point Redemption Details for Redemption Events",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Target Completion Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Manual Points Adjustment Details",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Allocated Points Details with Expiry in Specified Date Range",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Point Allocation Details by Event ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get points awarded ID",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Custom Fields Associated with Coupon Redemption",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Private APIs",
+    "subcategory": null,
+    "title": "Get Customer’s Earned and Expired Points by Year",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Trigger Walk-in Notifications on InStore",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Get Transaction Earning",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Update Currency Ratio",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Configure Org Extended Field",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Get Org Extended Fields",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Create Store Associates",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Feed (Scan Event)",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Get Configured Card Limit per Customer",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Get Org Sources",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Get org configs",
+    "status": "pending",
+    "specFile": null
+  },
+  {
+    "category": "Other APIs",
+    "subcategory": null,
+    "title": "Retrieve extended field config details",
+    "status": "pending",
+    "specFile": null
+  }
+]
