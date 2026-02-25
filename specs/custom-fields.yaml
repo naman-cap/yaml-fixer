@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  title: Custom Fields APIs
+  description: Custom field creation and tagging endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v2
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /x/neo/couponRedemption/customFields:
+    get:
+      summary: Get Custom Fields Associated with Coupon Redemption
+      operationId: get-custom-fields-associated-with-coupon-redemption-global
+      parameters:
+        - name: redemption_ids
+          in: query
+          description: >-
+            A unique identifier for the redemption instance. This ID is generated when a coupon is redeemed. You can
+            provide multiple redemption IDs, separated by commas.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1. Example: page=2 results on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. Default value is 10. Maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    [
+                        {
+                            "redemptionId": 1046094,
+                            "redemptionCustomFields": [
+                                {
+                                    "name": "age",
+                                    "value": "12"
+                                },
+                                {
+                                    "name": "redem_gender",
+                                    "value": "Female1"
+                                }
+                            ]
+                        },
+                        {
+                            "redemptionId": 1046095,
+                            "redemptionCustomFields": [
+                                {
+                                    "name": "age",
+                                    "value": "10"
+                                }
+                            ]
+                        },
+                        {
+                            "redemptionId": 1046096,
+                            "redemptionCustomFields": [
+                                {
+                                    "name": "age",
+                                    "value": "12"
+                                },
+                                {
+                                    "name": "redem_gender",
+                                    "value": "Female2"
+                                }
+                            ]
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    redemptionId:
+                      type: integer
+                      example: 1046094
+                      default: 0
+                    redemptionCustomFields:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: age
+                          value:
+                            type: string
+                            example: "12"
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

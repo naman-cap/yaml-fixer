@@ -1,0 +1,3266 @@
+openapi: 3.0.1
+info:
+  title: Private APIs
+  description: Internal data analytics and ledger detail endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /x/neo/pointsAllocation/event:
+    get:
+      summary: Get Point Allocation Details by Event ID
+      operationId: get-point-allocation-event-id-global
+      parameters:
+        - name: entity_id
+          in: query
+          description: >-
+            Specifies the identifier used to fetch event-specific details. This can be one of the following:  The event
+            ID of the event, such as TransactionAdd or a behavioral event  The unique ID of the event  The
+            server-generated request ID of a behavioral event
+          required: true
+          schema:
+            type: string
+        - name: customer_id
+          in: query
+          description: Unique Customer ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: event_type_id
+          in: query
+          description: Unique identifier for the type of event.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    [
+                        {
+                            "till_id": 50140377,
+                            "point_category_id": 17383,
+                            "program_id": 2282,
+                            "event_log_id": 10072893,
+                            "event_type_id": 15,
+                            "points_source_type_id": 1,
+                            "original_points": 0,
+                            "awarded_date": 1648489472000,
+                            "returned_exclusive_value": 0,
+                            "points_source_id": 2148434124,
+                            "id": 31787856,
+                            "cps_id": 51368957,
+                            "original_customer_id": 374819205,
+                            "expiry_strategy_id": 105602,
+                            "returned_value": 0,
+                            "redeemed_exclusive_value": 0,
+                            "expiry_date": 1648578599000,
+                            "auto_update_time": 1648596913000,
+                            "redeemed_value": 0,
+                            "expired_exclusive_value": 50,
+                            "allocation_strategy_id": 105773,
+                            "points_value": 0,
+                            "org_id": 50914,
+                            "expired_value": 0,
+                            "customer_id": 374819205,
+                            "points_exclusive": 50,
+                            "status": "EXPIRED"
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    till_id:
+                      type: integer
+                      example: 50140377
+                      default: 0
+                    point_category_id:
+                      type: integer
+                      example: 17383
+                      default: 0
+                    program_id:
+                      type: integer
+                      example: 2282
+                      default: 0
+                    event_log_id:
+                      type: integer
+                      example: 10072893
+                      default: 0
+                    event_type_id:
+                      type: integer
+                      example: 15
+                      default: 0
+                    points_source_type_id:
+                      type: integer
+                      example: 1
+                      default: 0
+                    original_points:
+                      type: integer
+                      example: 0
+                      default: 0
+                    awarded_date:
+                      type: integer
+                      example: 1648489472000
+                      default: 0
+                    returned_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    points_source_id:
+                      type: integer
+                      example: 2148434124
+                      default: 0
+                    id:
+                      type: integer
+                      example: 31787856
+                      default: 0
+                    cps_id:
+                      type: integer
+                      example: 51368957
+                      default: 0
+                    original_customer_id:
+                      type: integer
+                      example: 374819205
+                      default: 0
+                    expiry_strategy_id:
+                      type: integer
+                      example: 105602
+                      default: 0
+                    returned_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    redeemed_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expiry_date:
+                      type: integer
+                      example: 1648578599000
+                      default: 0
+                    auto_update_time:
+                      type: integer
+                      example: 1648596913000
+                      default: 0
+                    redeemed_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expired_exclusive_value:
+                      type: integer
+                      example: 50
+                      default: 0
+                    allocation_strategy_id:
+                      type: integer
+                      example: 105773
+                      default: 0
+                    points_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    org_id:
+                      type: integer
+                      example: 50914
+                      default: 0
+                    expired_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    customer_id:
+                      type: integer
+                      example: 374819205
+                      default: 0
+                    points_exclusive:
+                      type: integer
+                      example: 50
+                      default: 0
+                    status:
+                      type: string
+                      example: EXPIRED
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /x/neo/pointsAllocationId/transactionId:
+    get:
+      summary: Retrieve Points‐Award Records Associated with a Specific Transaction ID
+      operationId: retrieve-pointsaward-records-associated-with-a-specific-transaction-id
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    [
+                        {
+                            "pointsCategoryId": 131,
+                            "pointsAwardedId": 38060732,
+                            "customerId": 381618579,
+                            "programId": 33
+                        },
+                        {
+                            "pointsCategoryId": 134,
+                            "pointsAwardedId": 38060733,
+                            "customerId": 381618579,
+                            "programId": 33
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    pointsCategoryId:
+                      type: integer
+                      example: 131
+                      default: 0
+                    pointsAwardedId:
+                      type: integer
+                      example: 38060732
+                      default: 0
+                    customerId:
+                      type: integer
+                      example: 381618579
+                      default: 0
+                    programId:
+                      type: integer
+                      example: 33
+                      default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /x/neo/pointsAllocation/dateRange:
+    get:
+      summary: Get Allocated Points Details with Expiry in Specified Date Range
+      operationId: get-allocated-points-details-with-expiry-in-specified-date-range-global
+      parameters:
+        - name: program_id
+          in: query
+          description: Unique identifier of the loyalty program.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: point_category_id
+          in: query
+          description: Unique identifier for a Point Category in the loyalty points system.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: expiry_date_start
+          in: query
+          description: "Start date of the expiry range. Format: YYYY-MM-DD. Example: 2025-06-01"
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: expiry_date_end
+          in: query
+          description: "End date of the expiry range. Format: YYYY-MM-DD. Example: 2025-06-22"
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: entity_id
+          in: query
+          description: Customer ID of the customer for whom the points allocation ID is retrieved.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    [
+                        {
+                            "till_id": 50140377,
+                            "point_category_id": 17383,
+                            "program_id": 2282,
+                            "event_log_id": 33822621,
+                            "event_type_id": 15,
+                            "points_source_type_id": 1,
+                            "original_points": 0,
+                            "awarded_date": 1735309787000,
+                            "returned_exclusive_value": 50,
+                            "points_source_id": 2151585684,
+                            "id": 38855229,
+                            "cps_id": 80537188,
+                            "original_customer_id": 383474113,
+                            "expiry_strategy_id": 105462,
+                            "returned_value": 0,
+                            "redeemed_exclusive_value": 0,
+                            "expiry_date": 1766687399000,
+                            "auto_update_time": 1735309788000,
+                            "redeemed_value": 0,
+                            "expired_exclusive_value": 0,
+                            "allocation_strategy_id": 105594,
+                            "points_value": 0,
+                            "org_id": 50914,
+                            "expired_value": 0,
+                            "customer_id": 383474113,
+                            "points_exclusive": 100,
+                            "status": "AVAILABLE"
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    till_id:
+                      type: integer
+                      example: 50140377
+                      default: 0
+                    point_category_id:
+                      type: integer
+                      example: 17383
+                      default: 0
+                    program_id:
+                      type: integer
+                      example: 2282
+                      default: 0
+                    event_log_id:
+                      type: integer
+                      example: 33822621
+                      default: 0
+                    event_type_id:
+                      type: integer
+                      example: 15
+                      default: 0
+                    points_source_type_id:
+                      type: integer
+                      example: 1
+                      default: 0
+                    original_points:
+                      type: integer
+                      example: 0
+                      default: 0
+                    awarded_date:
+                      type: integer
+                      example: 1735309787000
+                      default: 0
+                    returned_exclusive_value:
+                      type: integer
+                      example: 50
+                      default: 0
+                    points_source_id:
+                      type: integer
+                      example: 2151585684
+                      default: 0
+                    id:
+                      type: integer
+                      example: 38855229
+                      default: 0
+                    cps_id:
+                      type: integer
+                      example: 80537188
+                      default: 0
+                    original_customer_id:
+                      type: integer
+                      example: 383474113
+                      default: 0
+                    expiry_strategy_id:
+                      type: integer
+                      example: 105462
+                      default: 0
+                    returned_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    redeemed_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expiry_date:
+                      type: integer
+                      example: 1766687399000
+                      default: 0
+                    auto_update_time:
+                      type: integer
+                      example: 1735309788000
+                      default: 0
+                    redeemed_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expired_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    allocation_strategy_id:
+                      type: integer
+                      example: 105594
+                      default: 0
+                    points_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    org_id:
+                      type: integer
+                      example: 50914
+                      default: 0
+                    expired_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    customer_id:
+                      type: integer
+                      example: 383474113
+                      default: 0
+                    points_exclusive:
+                      type: integer
+                      example: 100
+                      default: 0
+                    status:
+                      type: string
+                      example: AVAILABLE
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getLedgerEntriesWithEventId:
+    get:
+      summary: Get Event Log IDs with Credit or Debit for Points
+      operationId: get-event-log-ids-for-credit-debit
+      parameters:
+        - name: ledger_entry_types
+          in: query
+          description: "Type of entry recorded in a customer's points ledger. Values: CREDIT, DEBIT"
+          required: true
+          schema:
+            type: string
+        - name: entity_id
+          in: query
+          description: Customer ID of the customer.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: end_date
+          in: query
+          description: >-
+            Last date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+            2025-06-22
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: start_date
+          in: query
+          description: >-
+            Start date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+            2024-01-01
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: till_ids
+          in: query
+          description: Till IDs used to filter the results.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: is_filter_not_based_on_date
+          in: query
+          description: >-
+            Indicates whether the API should apply a date filter.  If set to 1, the API does not apply any date filter.
+            However, you must still pass dummy values for startDate and endDate Example, 2025-01-01.  If set to 0, the
+            API filters the results based on the provided date range. In this case, pass the actual startDate and
+            endDate values Example: 2024-04-01 to 2025-03-31.
+          required: true
+          schema:
+            type: boolean
+        - name: is_till_not_present
+          in: query
+          description: >-
+            Indicates whether the API should ignore filtering by till ID.  If set to 1, the API does not apply a till ID
+            filter. In this case, pass till_ids = -1.  If set to 0, the API filters results based on the specified till
+            IDs. Provide one or more comma-separated values in the till_ids parameter. Example:1234323432,8759345333.
+          required: true
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    {
+                        "request_id": "39dbfc61-4e8b-4c5c-a1ee-913c99fb46e7",
+                        "data": {
+                            "records": [
+                                {
+                                    "fields": {
+                                        "ledgerEntryType": {
+                                            "string_value": "DEBIT"
+                                        },
+                                        "cpsId": {
+                                            "number_value": 85912160
+                                        },
+                                        "configMetadata": {
+                                            "null_value": "NULL_VALUE"
+                                        },
+                                        "pointsLedgerId": {
+                                            "number_value": 65152554
+                                        },
+                                        "createdOn": {
+                                            "number_value": 1749573240000
+                                        },
+                                        "pointsCategoryName": {
+                                            "string_value": "Main"
+                                        },
+                                        "eventSubjectId": {
+                                            "number_value": 2152317880
+                                        },
+                                        "processingTime": {
+                                            "number_value": 1749105748000
+                                        },
+                                        "points": {
+                                            "number_value": 31
+                                        },
+                                        "categoryType": {
+                                            "string_value": "REGULAR_POINTS"
+                                        },
+                                        "eventTypeId": {
+                                            "number_value": 5
+                                        },
+                                        "sourceProgramId": {
+                                            "number_value": 2809
+                                        },
+                                        "entityMetadata": {
+                                            "string_value": "{\\"pointInTimeSlabs\\": []}"
+                                        },
+                                        "requestId": {
+                                            "string_value": "6ad7d91f9b543d5adf0cd4c90de35d0b"
+                                        },
+                                        "customerId": {
+                                            "number_value": 387457911
+                                        },
+                                        "eventTime": {
+                                            "number_value": 1749105748000
+                                        },
+                                        "eventName": {
+                                            "string_value": "ReturnBill"
+                                        },
+                                        "genericEventId": {
+                                            "null_value": "NULL_VALUE"
+                                        },
+                                        "eventLogId": {
+                                            "number_value": 38943074
+                                        },
+                                        "tillId": {
+                                            "number_value": 50691660
+                                        },
+                                        "uniqueId": {
+                                            "string_value": "fFOIZvZwef"
+                                        }
+                                    }
+                                },
+                                {
+                                    "fields": {
+                                        "ledgerEntryType": {
+                                            "string_value": "CREDIT"
+                                        },
+                                        "cpsId": {
+                                            "number_value": 85912160
+                                        },
+                                        "configMetadata": {
+                                            "null_value": "NULL_VALUE"
+                                        },
+                                        "pointsLedgerId": {
+                                            "number_value": 65152551
+                                        },
+                                        "createdOn": {
+                                            "number_value": 1749573203000
+                                        },
+                                        "pointsCategoryName": {
+                                            "string_value": "Main"
+                                        },
+                                        "eventSubjectId": {
+                                            "number_value": 2152317882
+                                        },
+                                        "processingTime": {
+                                            "number_value": 1748958294000
+                                        },
+                                        "points": {
+                                            "number_value": 31
+                                        },
+                                        "categoryType": {
+                                            "string_value": "REGULAR_POINTS"
+                                        },
+                                        "eventTypeId": {
+                                            "number_value": 15
+                                        },
+                                        "sourceProgramId": {
+                                            "number_value": 2809
+                                        },
+                                        "entityMetadata": {
+                                            "string_value": "{\\"pointInTimeSlabs\\": [{\\"programId\\": 2809, \\"isDefaultProgram\\": true, \\"pointInTimeSlabName\\": \\"Diamond\\", \\"pointInTimeSlabNumber\\": 5}]}"
+                                        },
+                                        "requestId": {
+                                            "string_value": "2d27cb2119f7ca4a0c7733b6baccd20b"
+                                        },
+                                        "customerId": {
+                                            "number_value": 387457911
+                                        },
+                                        "eventTime": {
+                                            "number_value": 1748958294000
+                                        },
+                                        "eventName": {
+                                            "string_value": "TransactionAdd"
+                                        },
+                                        "genericEventId": {
+                                            "null_value": "NULL_VALUE"
+                                        },
+                                        "eventLogId": {
+                                            "number_value": 38943071
+                                        },
+                                        "tillId": {
+                                            "number_value": 50691660
+                                        },
+                                        "uniqueId": {
+                                            "string_value": "jbASNg5B0x"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getACLedgerEntriesWithEventId:
+    get:
+      summary: Get Event Log IDs with Credit or Debit for Alternate Currency
+      operationId: get-event-log-ids-with-credit-or-debit-for-alternate-currency
+      parameters:
+        - name: ledger_entry_types
+          in: query
+          description: "Type of entry recorded in a customer's points ledger. Values: CREDIT, DEBIT"
+          required: true
+          schema:
+            type: string
+        - name: entity_id
+          in: query
+          description: Customer ID of the customer.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: end_date
+          in: query
+          description: >-
+            Last date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+            2025-06-22
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: start_date
+          in: query
+          description: >-
+            Start date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+            2024-01-01
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: alternate_currency_names
+          in: query
+          description: Name of the alternate currency for which ledger information is retrieved.
+          required: true
+          schema:
+            type: string
+        - name: till_ids
+          in: query
+          description: Till IDs used to filter the results.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: is_filter_not_based_on_date
+          in: query
+          description: >-
+            Indicates whether the API should apply a date filter.  If set to 1, the API does not apply any date filter.
+            However, you must still pass dummy values for startDate and endDate Example, 2025-01-01.  If set to 0, the
+            API filters the results based on the provided date range. In this case, pass the actual startDate and
+            endDate values Example: 2024-04-01 to 2025-03-31.
+          required: true
+          schema:
+            type: boolean
+        - name: is_till_not_present
+          in: query
+          description: >-
+            Indicates whether the API should ignore filtering by till ID.  If set to 1, the API does not apply a till ID
+            filter. In this case, pass till_ids = -1.  If set to 0, the API filters results based on the specified till
+            IDs. Provide one or more comma-separated values in the till_ids parameter. Example:1234323432,8759345333.
+          required: true
+          schema:
+            type: boolean
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: ""
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getTransactionAddExplodeLedger:
+    get:
+      summary: Get Custom Field Values for TransactionAdd event
+      operationId: get-custom-field-for-transaction-add-event
+      parameters:
+        - name: entity_id
+          in: query
+          description: Customer ID of the customer.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: cf_names
+          in: query
+          description: Custom field names for which to retrieve values.
+          required: true
+          schema:
+            type: string
+        - name: event_log_ids
+          in: query
+          description: Unique identifier generated for the event at the time of its creation.
+          required: true
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    {
+                        "request_id": "1bbd0bb7-de10-4fa4-8ba2-8b44aee40f9b",
+                        "data": {
+                            "records": [
+                                {
+                                    "fields": {
+                                        "eventTypeId": {
+                                            "number_value": 15
+                                        },
+                                        "billId": {
+                                            "number_value": 2152306126
+                                        },
+                                        "customerId": {
+                                            "number_value": 387970841
+                                        },
+                                        "eventTime": {
+                                            "number_value": 1738481105000
+                                        },
+                                        "customFieldId": {
+                                            "number_value": 6212
+                                        },
+                                        "eventLogId": {
+                                            "number_value": 38769078
+                                        },
+                                        "tillId": {
+                                            "number_value": 50692627
+                                        },
+                                        "customFieldValue": {
+                                            "string_value": "CREDIT"
+                                        },
+                                        "customFieldName": {
+                                            "string_value": "ledgerentryname"
+                                        },
+                                        "uniqueId": {
+                                            "string_value": "tAfisFBDFB"
+                                        },
+                                        "processingTime": {
+                                            "number_value": 1738481105000
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                    example: 1bbd0bb7-de10-4fa4-8ba2-8b44aee40f9b
+                  data:
+                    type: object
+                    properties:
+                      records:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fields:
+                              type: object
+                              properties:
+                                eventTypeId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 15
+                                      default: 0
+                                billId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 2152306126
+                                      default: 0
+                                customerId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 387970841
+                                      default: 0
+                                eventTime:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 1738481105000
+                                      default: 0
+                                customFieldId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 6212
+                                      default: 0
+                                eventLogId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 38769078
+                                      default: 0
+                                tillId:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 50692627
+                                      default: 0
+                                customFieldValue:
+                                  type: object
+                                  properties:
+                                    string_value:
+                                      type: string
+                                      example: CREDIT
+                                customFieldName:
+                                  type: object
+                                  properties:
+                                    string_value:
+                                      type: string
+                                      example: ledgerentryname
+                                uniqueId:
+                                  type: object
+                                  properties:
+                                    string_value:
+                                      type: string
+                                      example: tAfisFBDFB
+                                processingTime:
+                                  type: object
+                                  properties:
+                                    number_value:
+                                      type: integer
+                                      example: 1738481105000
+                                      default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getPointsRedemptionExplodeLedger:
+    get:
+      summary: Get Point Redemption Details for Redemption Events
+      operationId: get-point-redemption-details-for-redemption-events
+      parameters:
+        - name: entity_id
+          in: query
+          description: Customer ID of the customer.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: event_log_ids
+          in: query
+          description: Unique identifier generated for the event at the time of its creation.
+          required: true
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: ""
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getTargetCompletedExplodeLedger:
+    get:
+      summary: Get Target Completion Details
+      operationId: get-target-completion-details
+      parameters:
+        - name: ledgerEntryTypes
+          in: query
+          description: "Type of entry recorded in a customer's points ledger. Values: CREDIT, DEBIT"
+          required: true
+          schema:
+            type: string
+        - name: userId
+          in: query
+          description: Customer ID of the customer.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: endDate
+          in: query
+          description: >-
+            Last date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+            2025-06-22
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: startDate
+          in: query
+          description: >-
+            Start date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+            2025-06-01
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: alternateCurrencyNames
+          in: query
+          description: Name of the alternate currency for which ledger information is retrieved.
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: ""
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getManualPointsAdjustmentExplodeLedger:
+    get:
+      summary: Get Manual Points Adjustment Details
+      operationId: get-manual-points-adjustment-details
+      parameters:
+        - name: ledgerEntryTypes
+          in: query
+          description: "Type of entry recorded in a customer's points ledger. Values: CREDIT, DEBIT"
+          required: true
+          schema:
+            type: string
+        - name: userId
+          in: query
+          description: Customer ID of the customer.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: endDate
+          in: query
+          description: >-
+            Last date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+            2025-06-22
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: startDate
+          in: query
+          description: >-
+            Start date to which you want to retrieve the ledger information. **Format**: YYYY-MM-DD.   **Example**:
+            2025-06-01
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: alternateCurrencyNames
+          in: query
+          description: Name of the alternate currency for which ledger information is retrieved.
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: ""
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getPAIdsForProvidedDateRange:
+    get:
+      summary: Get Allocated Points Details with Expiry in Specified Date Range
+      operationId: retrieve-pa-id-for-specified-data-range
+      parameters:
+        - name: program_id
+          in: query
+          description: Unique identifier of the loyalty program.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: point_category_id
+          in: query
+          description: Unique identifier for a Point Category in the loyalty points system.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: expiry_date_start
+          in: query
+          description: "Start date of the expiry range. **Format**: YYYY-MM-DD.   **Example**: 2025-06-01"
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: expiry_date_end
+          in: query
+          description: "End date of the expiry range. **Format**: YYYY-MM-DD.   **Example**: 2025-06-01"
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: entity_id
+          in: query
+          description: Customer ID of the customer for whom the points allocation ID is retrieved.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    [
+                        {
+                            "till_id": 50140377,
+                            "point_category_id": 17383,
+                            "program_id": 2282,
+                            "event_log_id": 33822621,
+                            "event_type_id": 15,
+                            "points_source_type_id": 1,
+                            "original_points": 0,
+                            "awarded_date": 1735309787000,
+                            "returned_exclusive_value": 50,
+                            "points_source_id": 2151585684,
+                            "id": 38855229,
+                            "cps_id": 80537188,
+                            "original_customer_id": 383474113,
+                            "expiry_strategy_id": 105462,
+                            "returned_value": 0,
+                            "redeemed_exclusive_value": 0,
+                            "expiry_date": 1766687399000,
+                            "auto_update_time": 1735309788000,
+                            "redeemed_value": 0,
+                            "expired_exclusive_value": 0,
+                            "allocation_strategy_id": 105594,
+                            "points_value": 0,
+                            "org_id": 50914,
+                            "expired_value": 0,
+                            "customer_id": 383474113,
+                            "points_exclusive": 100,
+                            "status": "AVAILABLE"
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    till_id:
+                      type: integer
+                      example: 50140377
+                      default: 0
+                    point_category_id:
+                      type: integer
+                      example: 17383
+                      default: 0
+                    program_id:
+                      type: integer
+                      example: 2282
+                      default: 0
+                    event_log_id:
+                      type: integer
+                      example: 33822621
+                      default: 0
+                    event_type_id:
+                      type: integer
+                      example: 15
+                      default: 0
+                    points_source_type_id:
+                      type: integer
+                      example: 1
+                      default: 0
+                    original_points:
+                      type: integer
+                      example: 0
+                      default: 0
+                    awarded_date:
+                      type: integer
+                      example: 1735309787000
+                      default: 0
+                    returned_exclusive_value:
+                      type: integer
+                      example: 50
+                      default: 0
+                    points_source_id:
+                      type: integer
+                      example: 2151585684
+                      default: 0
+                    id:
+                      type: integer
+                      example: 38855229
+                      default: 0
+                    cps_id:
+                      type: integer
+                      example: 80537188
+                      default: 0
+                    original_customer_id:
+                      type: integer
+                      example: 383474113
+                      default: 0
+                    expiry_strategy_id:
+                      type: integer
+                      example: 105462
+                      default: 0
+                    returned_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    redeemed_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expiry_date:
+                      type: integer
+                      example: 1766687399000
+                      default: 0
+                    auto_update_time:
+                      type: integer
+                      example: 1735309788000
+                      default: 0
+                    redeemed_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expired_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    allocation_strategy_id:
+                      type: integer
+                      example: 105594
+                      default: 0
+                    points_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    org_id:
+                      type: integer
+                      example: 50914
+                      default: 0
+                    expired_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    customer_id:
+                      type: integer
+                      example: 383474113
+                      default: 0
+                    points_exclusive:
+                      type: integer
+                      example: 100
+                      default: 0
+                    status:
+                      type: string
+                      example: AVAILABLE
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getPaDetailsByEventId:
+    get:
+      summary: Get Point Allocation Details by Event ID
+      operationId: get-allocated-points-details-with-event-id
+      parameters:
+        - name: entity_id
+          in: query
+          description: >-
+            Specifies the identifier used to fetch event-specific details. This can be one of the following:  The event
+            ID of the event, such as TransactionAdd or a behavioral event  The unique ID of the event  The
+            server-generated request ID of a behavioral event
+          required: true
+          schema:
+            type: string
+        - name: customer_id
+          in: query
+          description: Unique Customer ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: event_type_id
+          in: query
+          description: Unique identifier for the type of event.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.  Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    [
+                        {
+                            "till_id": 50140377,
+                            "point_category_id": 17383,
+                            "program_id": 2282,
+                            "event_log_id": 10072893,
+                            "event_type_id": 15,
+                            "points_source_type_id": 1,
+                            "original_points": 0,
+                            "awarded_date": 1648489472000,
+                            "returned_exclusive_value": 0,
+                            "points_source_id": 2148434124,
+                            "id": 31787856,
+                            "cps_id": 51368957,
+                            "original_customer_id": 374819205,
+                            "expiry_strategy_id": 105602,
+                            "returned_value": 0,
+                            "redeemed_exclusive_value": 0,
+                            "expiry_date": 1648578599000,
+                            "auto_update_time": 1648596913000,
+                            "redeemed_value": 0,
+                            "expired_exclusive_value": 50,
+                            "allocation_strategy_id": 105773,
+                            "points_value": 0,
+                            "org_id": 50914,
+                            "expired_value": 0,
+                            "customer_id": 374819205,
+                            "points_exclusive": 50,
+                            "status": "EXPIRED"
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    till_id:
+                      type: integer
+                      example: 50140377
+                      default: 0
+                    point_category_id:
+                      type: integer
+                      example: 17383
+                      default: 0
+                    program_id:
+                      type: integer
+                      example: 2282
+                      default: 0
+                    event_log_id:
+                      type: integer
+                      example: 10072893
+                      default: 0
+                    event_type_id:
+                      type: integer
+                      example: 15
+                      default: 0
+                    points_source_type_id:
+                      type: integer
+                      example: 1
+                      default: 0
+                    original_points:
+                      type: integer
+                      example: 0
+                      default: 0
+                    awarded_date:
+                      type: integer
+                      example: 1648489472000
+                      default: 0
+                    returned_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    points_source_id:
+                      type: integer
+                      example: 2148434124
+                      default: 0
+                    id:
+                      type: integer
+                      example: 31787856
+                      default: 0
+                    cps_id:
+                      type: integer
+                      example: 51368957
+                      default: 0
+                    original_customer_id:
+                      type: integer
+                      example: 374819205
+                      default: 0
+                    expiry_strategy_id:
+                      type: integer
+                      example: 105602
+                      default: 0
+                    returned_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    redeemed_exclusive_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expiry_date:
+                      type: integer
+                      example: 1648578599000
+                      default: 0
+                    auto_update_time:
+                      type: integer
+                      example: 1648596913000
+                      default: 0
+                    redeemed_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    expired_exclusive_value:
+                      type: integer
+                      example: 50
+                      default: 0
+                    allocation_strategy_id:
+                      type: integer
+                      example: 105773
+                      default: 0
+                    points_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    org_id:
+                      type: integer
+                      example: 50914
+                      default: 0
+                    expired_value:
+                      type: integer
+                      example: 0
+                      default: 0
+                    customer_id:
+                      type: integer
+                      example: 374819205
+                      default: 0
+                    points_exclusive:
+                      type: integer
+                      example: 50
+                      default: 0
+                    status:
+                      type: string
+                      example: EXPIRED
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getCouponRedemptionCustomFieldsData:
+    get:
+      summary: Get Custom Fields Associated with Coupon Redemption
+      operationId: get-custom-fields-associated-with-coupon-redemption
+      parameters:
+        - name: redemption_ids
+          in: query
+          description: >-
+            A unique identifier for the redemption instance. This ID is generated when a coupon is redeemed. You can
+            provide multiple redemption IDs, separated by commas.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1. Example: page=2 results on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. Default value is 10. Maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    [
+                        {
+                            "redemptionId": 1046094,
+                            "redemptionCustomFields": [
+                                {
+                                    "name": "age",
+                                    "value": "12"
+                                },
+                                {
+                                    "name": "redem_gender",
+                                    "value": "Female1"
+                                }
+                            ]
+                        },
+                        {
+                            "redemptionId": 1046095,
+                            "redemptionCustomFields": [
+                                {
+                                    "name": "age",
+                                    "value": "10"
+                                }
+                            ]
+                        },
+                        {
+                            "redemptionId": 1046096,
+                            "redemptionCustomFields": [
+                                {
+                                    "name": "age",
+                                    "value": "12"
+                                },
+                                {
+                                    "name": "redem_gender",
+                                    "value": "Female2"
+                                }
+                            ]
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    redemptionId:
+                      type: integer
+                      example: 1046094
+                      default: 0
+                    redemptionCustomFields:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: age
+                          value:
+                            type: string
+                            example: "12"
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /das/getExpiredPointsByCustomerIdAndYear:
+    get:
+      summary: Get Customer’s Earned and Expired Points by Year
+      operationId: get-expired-points-for-a-customer
+      parameters:
+        - name: points_category_id
+          in: query
+          description: Identifier of the category under which the points were awarded.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: program_id
+          in: query
+          description: Unique identifier of the loyalty program.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: entity_id
+          in: query
+          description: Unique customer ID of the customer whose details are retrieved.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1. Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    [
+                        {
+                            "customerId": 387910941,
+                            "year": 2025,
+                            "earned": 160,
+                            "expired": 0
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    customerId:
+                      type: integer
+                      example: 387910941
+                      default: 0
+                    year:
+                      type: integer
+                      example: 2025
+                      default: 0
+                    earned:
+                      type: integer
+                      example: 160
+                      default: 0
+                    expired:
+                      type: integer
+                      example: 0
+                      default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /x/neo/customer/ledgerDetails:
+    get:
+      summary: Get Ledger Information for Event Log IDs
+      operationId: get-ledger-information-for-event-log-ids
+      parameters:
+        - name: ledgerEntryTypes
+          in: query
+          description: "Type of entry recorded in a customer's points ledger. Values: CREDIT, DEBIT"
+          schema:
+            type: string
+        - name: userId
+          in: query
+          description: Unique customer ID of the customer.
+          schema:
+            type: integer
+            format: int64
+        - name: endDate
+          in: query
+          description: "Last date to which you want to retrieve the ledger information. Format: YYYY-MM-DD. Example: 2025-06-30"
+          schema:
+            type: string
+            format: date
+        - name: startDate
+          in: query
+          description: "Start date to which you want to retrieve the ledger information. Format: YYYY-MM-DD. Example: 2025-06-01"
+          schema:
+            type: string
+            format: date
+        - name: page
+          in: query
+          description: "Retrieve details of a specific page. Page count starts from 1.   Example: page=2 retrieves data on page 2."
+          schema:
+            type: integer
+            format: int32
+        - name: count
+          in: query
+          description: Number of results to display per page. The default value is 10. The maximum supported value is 100.
+          schema:
+            type: integer
+            format: int32
+        - name: alternateCurrencyNames
+          in: query
+          description: Name of the alternate currency for which ledger information is retrieved.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response with points:
+                  value: |-
+                    {
+                        "pageDetails": {
+                            "page": "1",
+                            "count": 13
+                        },
+                        "pointsLedgerResponse": [
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-06-04T19:49:04.000Z",
+                                "points": 5,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "29fe95130688e59a4d9d58b446e9afc1",
+                                "eventName": "PointsRedemption",
+                                "eventLogId": 38797923,
+                                "tillId": 50692627,
+                                "additionalEventDetails": {
+                                    "notes": "Sample notes",
+                                    "billNumber": "wefsadefdfdasfds"
+                                }
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-04T08:33:15.000Z",
+                                "points": 21,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "677ea947e07ae4292328c4fa06cf9cc7",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38769078,
+                                "tillId": 50692627,
+                                "additionalEventDetails": {
+                                    "ledgerentryname": "CREDIT"
+                                }
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-04T08:28:42.000Z",
+                                "points": 21,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "5d9433316b7452765fbbcc1ecf547266",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38769042,
+                                "tillId": 50692627
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-04T08:17:04.000Z",
+                                "points": 21,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "86502c1366a7cc384b86ef3662241ed9",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38769019,
+                                "tillId": 50692627
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-04T08:14:11.000Z",
+                                "points": 21,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "d8f7da7b79a28d97765ba69c94a6038b",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38769015,
+                                "tillId": 50692627
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-06-03T11:36:22.000Z",
+                                "points": 26,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "a1a18d3c721cae6da73f8e7456401883",
+                                "eventName": "PointsRedemption",
+                                "eventLogId": 38731921,
+                                "tillId": 50691660,
+                                "additionalEventDetails": {
+                                    "notes": "general",
+                                    "billNumber": ""
+                                }
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-03T11:29:50.000Z",
+                                "points": 10,
+                                "categoryType": "PROMISED_POINTS",
+                                "requestId": "4eeabf6d-6f70-44dd-8d96-f0cacff686a4",
+                                "eventName": "GenericEvent",
+                                "eventLogId": 38731906,
+                                "tillId": 50692627,
+                                "additionalEventDetails": {
+                                    "displayName": "BrowsingDuration"
+                                }
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-03T11:29:31.000Z",
+                                "points": 100,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "89105351-b518-4bfe-991e-e4f093b85b28",
+                                "eventName": "GenericEvent",
+                                "eventLogId": 38731905,
+                                "tillId": 50692627,
+                                "additionalEventDetails": {
+                                    "displayName": "Ledger"
+                                }
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-03T11:28:31.000Z",
+                                "points": 100,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "81970952-98f7-46ab-9625-fed0fb23b777",
+                                "eventName": "TargetCompleted",
+                                "eventLogId": 38731904,
+                                "tillId": 50692627,
+                                "additionalEventDetails": {
+                                    "sourceType": "USERTARGET",
+                                    "targetGroupDescription": "Test_Behavioural_Event_Target",
+                                    "targetGroupName": "Test_Behavioural_Event_Target"
+                                }
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-06-03T11:27:40.000Z",
+                                "points": 10,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "5d41bb3035fd768b18a776d8ea80b3c7",
+                                "eventName": "ManualPointsAdjustment",
+                                "eventLogId": 38731901,
+                                "tillId": 50692627,
+                                "additionalEventDetails": {
+                                    "reason": "testing the ledger"
+                                }
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-06-03T11:27:33.000Z",
+                                "points": 5,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "f7ac55d05e2a341dcc47946aa5e7a4f6",
+                                "eventName": "PointsRedemption",
+                                "eventLogId": 38731899,
+                                "tillId": 50692627,
+                                "additionalEventDetails": {
+                                    "notes": "Sample notes",
+                                    "billNumber": "fsadefdfdas"
+                                }
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-03T11:27:27.000Z",
+                                "points": 21,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "87bf6a547eda20213e2b9beafc565602",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38731893,
+                                "tillId": 50692627
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-03T11:27:22.000Z",
+                                "points": 21,
+                                "categoryType": "REGULAR_POINTS",
+                                "requestId": "276b513e316c6eda1ae12357b5c1821c",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38731892,
+                                "tillId": 50692627
+                            }
+                        ]
+                    }
+                Result:
+                  value: |-
+                    {
+                        "pageDetails": {
+                            "page": "1",
+                            "count": 100
+                        },
+                        "pointsLedgerResponse": [
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-06-11T16:39:57.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "c9f077caea787c7e2c32b8f6207d11bf",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38971475,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-11T16:35:08.000Z",
+                                "points": 9895,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b54bf25e59d5363338ecf01a12edf58a",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38971455,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-11T16:35:05.000Z",
+                                "points": 9729,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b54bf25e59d5363338ecf01a12edf58a",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38971454,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-11T16:35:01.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b54bf25e59d5363338ecf01a12edf58a",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38971453,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-11T16:34:57.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b54bf25e59d5363338ecf01a12edf58a",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38971452,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-11T16:34:53.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b54bf25e59d5363338ecf01a12edf58a",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38971451,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-10T15:33:18.000Z",
+                                "points": 4575,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "066f0342d3902d425b109de0c7185a97",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38942360,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-10T15:32:45.000Z",
+                                "points": 7824,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "066f0342d3902d425b109de0c7185a97",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38942345,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-10T15:32:13.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "066f0342d3902d425b109de0c7185a97",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38942330,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-10T15:31:42.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "066f0342d3902d425b109de0c7185a97",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38942317,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-10T15:31:05.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "066f0342d3902d425b109de0c7185a97",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38942304,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-06T15:30:49.000Z",
+                                "points": 1286,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "13ca1f69d48a32df28dd9a5c8319dd52",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38839270,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-06T15:30:46.000Z",
+                                "points": 3599,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "13ca1f69d48a32df28dd9a5c8319dd52",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38839269,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-06T15:30:44.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "13ca1f69d48a32df28dd9a5c8319dd52",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38839268,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-06T15:30:41.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "13ca1f69d48a32df28dd9a5c8319dd52",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38839267,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-06-06T15:30:37.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "13ca1f69d48a32df28dd9a5c8319dd52",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38802764,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-22T16:16:35.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "ffe1e9c4500fed4ca3eeaff7b9b9f893",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38501936,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T16:10:11.000Z",
+                                "points": 3739,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b0ac62a7ec3a5d3eaaf32fbafe08f2ea",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38501804,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T16:09:58.000Z",
+                                "points": 6350,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b0ac62a7ec3a5d3eaaf32fbafe08f2ea",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38501796,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T16:09:36.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b0ac62a7ec3a5d3eaaf32fbafe08f2ea",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38501787,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T16:09:27.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b0ac62a7ec3a5d3eaaf32fbafe08f2ea",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38501784,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T16:09:21.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b0ac62a7ec3a5d3eaaf32fbafe08f2ea",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38501779,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T15:31:44.000Z",
+                                "points": 3677,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "e4d57f27f309dc113f2cfe8b9c6d4bdc",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38500392,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T15:31:37.000Z",
+                                "points": 6967,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "e4d57f27f309dc113f2cfe8b9c6d4bdc",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38500391,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T15:31:30.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "e4d57f27f309dc113f2cfe8b9c6d4bdc",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38500388,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T15:31:24.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "e4d57f27f309dc113f2cfe8b9c6d4bdc",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38500387,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-22T15:31:17.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "e4d57f27f309dc113f2cfe8b9c6d4bdc",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38500385,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-19T13:55:49.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "0906b22602aa3ca1649d1b2ded14fd1b",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38364959,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T13:48:45.000Z",
+                                "points": 9181,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "af78a35b3e8e14492a9e64e3ec2f7c03",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38364638,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T13:48:43.000Z",
+                                "points": 7868,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "af78a35b3e8e14492a9e64e3ec2f7c03",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38364632,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T13:48:41.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "af78a35b3e8e14492a9e64e3ec2f7c03",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38364626,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T13:48:39.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "af78a35b3e8e14492a9e64e3ec2f7c03",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38364622,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T13:48:37.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "af78a35b3e8e14492a9e64e3ec2f7c03",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38364620,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-19T09:48:45.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "eba72762edddeca33c25d48da1911103",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38360470,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T09:42:16.000Z",
+                                "points": 4375,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "824e604499119b53cd1dae0a8ade9088",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38360383,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T09:42:15.000Z",
+                                "points": 2119,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "824e604499119b53cd1dae0a8ade9088",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38360382,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T09:42:14.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "824e604499119b53cd1dae0a8ade9088",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38360381,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T09:42:12.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "824e604499119b53cd1dae0a8ade9088",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38360380,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-19T09:41:43.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "824e604499119b53cd1dae0a8ade9088",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38360379,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-16T06:45:07.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "852c41cecc1016e0594543ce044495b7",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38297107,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-16T06:38:03.000Z",
+                                "points": 6675,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "7e63d79ab2eaf97f6939faa360e6ed9e",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38297083,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-16T06:38:01.000Z",
+                                "points": 8463,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "7e63d79ab2eaf97f6939faa360e6ed9e",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38297082,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-16T06:37:59.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "7e63d79ab2eaf97f6939faa360e6ed9e",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38297081,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-16T06:37:57.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "7e63d79ab2eaf97f6939faa360e6ed9e",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38297080,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-16T06:37:54.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "7e63d79ab2eaf97f6939faa360e6ed9e",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38297079,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-15T16:48:47.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "64f2e497044197258523e70cf5f406de",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38246885,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-15T16:41:52.000Z",
+                                "points": 4443,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "129013ca779008278ec29f73c29a4eb0",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38246778,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-15T16:41:48.000Z",
+                                "points": 5154,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "129013ca779008278ec29f73c29a4eb0",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38246777,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-15T16:41:44.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "129013ca779008278ec29f73c29a4eb0",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38246776,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-15T16:41:39.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "129013ca779008278ec29f73c29a4eb0",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38246773,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-15T16:41:35.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "129013ca779008278ec29f73c29a4eb0",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38246770,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-13T08:42:58.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "03ab96f004b4f67f81f33ebbffc669f1",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38173497,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:42:49.000Z",
+                                "points": 6810,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "17d86c720fcacfe8637afac09187c5e6",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173496,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:42:48.000Z",
+                                "points": 9797,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "17d86c720fcacfe8637afac09187c5e6",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173495,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:42:44.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "17d86c720fcacfe8637afac09187c5e6",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173494,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:42:28.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "17d86c720fcacfe8637afac09187c5e6",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173493,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:42:22.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "17d86c720fcacfe8637afac09187c5e6",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173492,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-13T08:41:26.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "84f80666bb433fa01b2efe9e9a1de6ec",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38173480,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:40:59.000Z",
+                                "points": 7611,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "709b1297430c7dad66b073934ee58dcd",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173475,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:40:45.000Z",
+                                "points": 9994,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "709b1297430c7dad66b073934ee58dcd",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173474,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:40:21.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "709b1297430c7dad66b073934ee58dcd",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173472,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:40:06.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "709b1297430c7dad66b073934ee58dcd",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173471,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:39:44.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "709b1297430c7dad66b073934ee58dcd",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173469,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-13T08:39:01.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "7ffd92efab2c9c3ed6241bdb55b9764f",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38173462,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:38:51.000Z",
+                                "points": 3951,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "2da52a2fe50ed6cfd656d3cbd1787fd3",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173461,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:38:46.000Z",
+                                "points": 7199,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "2da52a2fe50ed6cfd656d3cbd1787fd3",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173458,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:38:40.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "2da52a2fe50ed6cfd656d3cbd1787fd3",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173457,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:38:14.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "2da52a2fe50ed6cfd656d3cbd1787fd3",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38173455,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-13T08:37:40.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "2da52a2fe50ed6cfd656d3cbd1787fd3",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38103570,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-08T09:59:46.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "c464f60e156a98e6ea312001e85a98cb",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38088823,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-08T09:52:43.000Z",
+                                "points": 4605,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b92b947213061f91a386736c57a410aa",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38088800,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-08T09:52:42.000Z",
+                                "points": 3855,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b92b947213061f91a386736c57a410aa",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38088799,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-08T09:52:40.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b92b947213061f91a386736c57a410aa",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38088798,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-08T09:52:39.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b92b947213061f91a386736c57a410aa",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38088797,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-08T09:52:36.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b92b947213061f91a386736c57a410aa",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38088796,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-07T05:48:46.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "3be0ceae3fe245bdd3e6a4e41e1b12c0",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38053934,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-07T05:41:41.000Z",
+                                "points": 9308,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "d91631d94f4ca6d39baef93c166c7296",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38053891,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-07T05:41:40.000Z",
+                                "points": 6986,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "d91631d94f4ca6d39baef93c166c7296",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38053890,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-07T05:41:38.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "d91631d94f4ca6d39baef93c166c7296",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38053889,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-07T05:41:36.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "d91631d94f4ca6d39baef93c166c7296",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38053888,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-07T05:41:35.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "d91631d94f4ca6d39baef93c166c7296",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38053887,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-06T15:30:51.000Z",
+                                "points": 4995,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b3438959c09f63df0b532bc25ca1a867",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38026987,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-06T15:30:48.000Z",
+                                "points": 6785,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b3438959c09f63df0b532bc25ca1a867",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38026985,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-06T15:30:47.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b3438959c09f63df0b532bc25ca1a867",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38026983,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-06T15:30:43.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b3438959c09f63df0b532bc25ca1a867",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38026982,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-06T15:30:40.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "b3438959c09f63df0b532bc25ca1a867",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38026981,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-05T12:14:41.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "3cfb40febbe67db21d6613a9900eb8ff",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38011782,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-05T12:07:35.000Z",
+                                "points": 2276,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "2d3c4790a788eec6d5b2a4c1551cb1db",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38011723,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-05T12:07:29.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "2d3c4790a788eec6d5b2a4c1551cb1db",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38011721,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-05T12:07:26.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "2d3c4790a788eec6d5b2a4c1551cb1db",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38011720,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-05T12:07:23.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "2d3c4790a788eec6d5b2a4c1551cb1db",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38011719,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-05-05T08:14:29.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "7bafa8aaf539371bb33923d8af593c90",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 38010456,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-05T08:07:24.000Z",
+                                "points": 6717,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "9bfb119cb6798c5b94341dcfeb878832",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38010398,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-05T08:07:21.000Z",
+                                "points": 4614,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "9bfb119cb6798c5b94341dcfeb878832",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38010397,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-05T08:07:19.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "9bfb119cb6798c5b94341dcfeb878832",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38010396,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-05T08:07:16.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "9bfb119cb6798c5b94341dcfeb878832",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38010395,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-05-05T08:07:13.000Z",
+                                "points": 3000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "9bfb119cb6798c5b94341dcfeb878832",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 38010394,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "DEBIT",
+                                "createdOn": "2025-04-25T14:45:22.000Z",
+                                "points": 2000,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "daeee4e871854767c63817c9c6590e5c",
+                                "eventName": "ReturnBill",
+                                "eventLogId": 37743946,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-04-25T14:38:15.000Z",
+                                "points": 6065,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "fd92e787424dc0bcd9b40dbf1231af32",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 37743793,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            },
+                            {
+                                "ledgerEntryType": "CREDIT",
+                                "createdOn": "2025-04-25T14:38:10.000Z",
+                                "points": 9094,
+                                "categoryType": "ALTERNATE_CURRENCIES",
+                                "requestId": "fd92e787424dc0bcd9b40dbf1231af32",
+                                "eventName": "TransactionAdd",
+                                "eventLogId": 37743792,
+                                "tillId": 50776147,
+                                "alternateCurrencyName": "DynamicPoints"
+                            }
+                        ]
+                    }
+              schema:
+                oneOf:
+                  - title: Sample response with points
+                    type: object
+                    properties:
+                      pageDetails:
+                        type: object
+                        properties:
+                          page:
+                            type: string
+                            example: "1"
+                          count:
+                            type: integer
+                            example: 13
+                            default: 0
+                      pointsLedgerResponse:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ledgerEntryType:
+                              type: string
+                              example: DEBIT
+                            createdOn:
+                              type: string
+                              example: "2025-06-04T19:49:04.000Z"
+                            points:
+                              type: integer
+                              example: 5
+                              default: 0
+                            categoryType:
+                              type: string
+                              example: REGULAR_POINTS
+                            requestId:
+                              type: string
+                              example: 29fe95130688e59a4d9d58b446e9afc1
+                            eventName:
+                              type: string
+                              example: PointsRedemption
+                            eventLogId:
+                              type: integer
+                              example: 38797923
+                              default: 0
+                            tillId:
+                              type: integer
+                              example: 50692627
+                              default: 0
+                            additionalEventDetails:
+                              type: object
+                              properties:
+                                notes:
+                                  type: string
+                                  example: Sample notes
+                                billNumber:
+                                  type: string
+                                  example: wefsadefdfdasfds
+                  - type: object
+                    properties:
+                      pageDetails:
+                        type: object
+                        properties:
+                          page:
+                            type: string
+                            example: "1"
+                          count:
+                            type: integer
+                            example: 100
+                            default: 0
+                      pointsLedgerResponse:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ledgerEntryType:
+                              type: string
+                              example: DEBIT
+                            createdOn:
+                              type: string
+                              example: "2025-06-11T16:39:57.000Z"
+                            points:
+                              type: integer
+                              example: 2000
+                              default: 0
+                            categoryType:
+                              type: string
+                              example: ALTERNATE_CURRENCIES
+                            requestId:
+                              type: string
+                              example: c9f077caea787c7e2c32b8f6207d11bf
+                            eventName:
+                              type: string
+                              example: ReturnBill
+                            eventLogId:
+                              type: integer
+                              example: 38971475
+                              default: 0
+                            tillId:
+                              type: integer
+                              example: 50776147
+                              default: 0
+                            alternateCurrencyName:
+                              type: string
+                              example: DynamicPoints
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

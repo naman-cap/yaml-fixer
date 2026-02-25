@@ -1,0 +1,1992 @@
+openapi: 3.0.1
+info:
+  title: Reward Catalog Custom Fields APIs
+  description: Custom field management for rewards
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/rewards/core/v1/brand/customfield:
+    get:
+      summary: Get all custom fields
+      operationId: get-custom-field
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response With sortBy-lastUpdatedOn:
+                  value:
+                    - id: 32546
+                      orgId: 100737
+                      name: terrorz
+                      description: Custom Field of STRING Type
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75197372
+                      createdOn: 1763644000000
+                      createdOnDateTime: "2025-11-20T13:06:40Z"
+                      lastUpdatedBy: 75197372
+                      lastUpdatedOn: 1763644000000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-11-20T13:06:40Z"
+                    - id: 32545
+                      orgId: 100737
+                      name: terror
+                      description: Custom Field of STRING Type
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75197372
+                      createdOn: 1763643953000
+                      createdOnDateTime: "2025-11-20T13:05:53Z"
+                      lastUpdatedBy: 75197372
+                      lastUpdatedOn: 1763643953000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-11-20T13:05:53Z"
+                    - id: 28961
+                      orgId: 100737
+                      name: UAT_CF_11
+                      description: Custom Field of STRING Type
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757999610000
+                      createdOnDateTime: "2025-09-16T05:13:30Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757999610000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-16T05:13:30Z"
+                    - id: 28655
+                      orgId: 100737
+                      name: UAT_CF_10
+                      description: Custom Field of STRING Type + with isMandatory false + scope catalogue promotion
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: "false"
+                      dataType: BOOLEAN
+                      createdBy: 75155297
+                      createdOn: 1757503078000
+                      createdOnDateTime: "2025-09-10T11:17:58Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757998989000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-16T05:03:09Z"
+                    - id: 28652
+                      orgId: 100737
+                      name: "&^%^%"
+                      description: Custom Field of STRING Type + with integer as name
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757499667000
+                      createdOnDateTime: "2025-09-10T10:21:07Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757499667000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T10:21:07Z"
+                    - id: 28651
+                      orgId: 100737
+                      name: "983734628"
+                      description: Custom Field of STRING Type + with integer as name
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757499293000
+                      createdOnDateTime: "2025-09-10T10:14:53Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757499293000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T10:14:53Z"
+                    - id: 28647
+                      orgId: 100737
+                      name: UAT_CF_8
+                      description: Custom Field of ENUM Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: PAID
+                      dataType: ENUM
+                      createdBy: 75155297
+                      createdOn: 1757495943000
+                      createdOnDateTime: "2025-09-10T09:19:03Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757495943000
+                      enumValues:
+                        - FREE
+                        - PAID
+                      lastUpdatedOnDateTime: "2025-09-10T09:19:03Z"
+                    - id: 28642
+                      orgId: 100737
+                      name: UAT_CF_7
+                      description: Custom Field of STRING Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: >-
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has su
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757490081000
+                      createdOnDateTime: "2025-09-10T07:41:21Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757490081000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:41:21Z"
+                    - id: 28641
+                      orgId: 100737
+                      name: UAT_CF_6
+                      description: Custom Field of STRING Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: >-
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has su
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757490012000
+                      createdOnDateTime: "2025-09-10T07:40:12Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757490012000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:40:12Z"
+                    - id: 28640
+                      orgId: 100737
+                      name: UAT_CF_5
+                      description: Custom Field of INTEGER Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: "10"
+                      dataType: INTEGER
+                      createdBy: 75155297
+                      createdOn: 1757489651000
+                      createdOnDateTime: "2025-09-10T07:34:11Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757489651000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:34:11Z"
+                    - id: 28639
+                      orgId: 100737
+                      name: UAT_CF_4
+                      description: Custom Field of DATE Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: "2025-09-10T07:00:00Z"
+                      dataType: DATE
+                      createdBy: 75155297
+                      createdOn: 1757489396000
+                      createdOnDateTime: "2025-09-10T07:29:56Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757489396000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:29:56Z"
+                    - id: 28638
+                      orgId: 100737
+                      name: UAT_CF_3
+                      description: Custom Field of Boolean Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: "false"
+                      dataType: BOOLEAN
+                      createdBy: 75155297
+                      createdOn: 1757489222000
+                      createdOnDateTime: "2025-09-10T07:27:02Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757489222000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:27:02Z"
+                    - id: 28635
+                      orgId: 100737
+                      name: UAT_CF_2
+                      description: Custom Field for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757486967000
+                      createdOnDateTime: "2025-09-10T06:49:27Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757486967000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T06:49:27Z"
+                    - id: 27563
+                      orgId: 100737
+                      name: UAT_CF_1
+                      description: Custom Field for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1755773599000
+                      createdOnDateTime: "2025-08-21T10:53:19Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1755773599000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-08-21T10:53:19Z"
+                    - id: 21683
+                      orgId: 100737
+                      name: Points Issued
+                      description: Points issued to customer
+                      isMandatory: false
+                      isActive: true
+                      scope: ISSUE_REWARD
+                      defaultValue: null
+                      dataType: INTEGER
+                      createdBy: 75152721
+                      createdOn: 1746501974000
+                      createdOnDateTime: "2025-05-06T03:26:14Z"
+                      lastUpdatedBy: 75152721
+                      lastUpdatedOn: 1746503356000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-05-06T03:49:16Z"
+                    - id: 21682
+                      orgId: 100737
+                      name: Address
+                      description: Address to deliver reward
+                      isMandatory: false
+                      isActive: true
+                      scope: ISSUE_REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75152721
+                      createdOn: 1746501773000
+                      createdOnDateTime: "2025-05-06T03:22:53Z"
+                      lastUpdatedBy: 75152721
+                      lastUpdatedOn: 1746501773000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-05-06T03:22:53Z"
+                    - id: 21681
+                      orgId: 100737
+                      name: Address
+                      description: Address to deliver reward
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75152721
+                      createdOn: 1746501610000
+                      createdOnDateTime: "2025-05-06T03:20:10Z"
+                      lastUpdatedBy: 75152721
+                      lastUpdatedOn: 1746501610000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-05-06T03:20:10Z"
+                    - id: 18880
+                      orgId: 100737
+                      name: age_update
+                      description: CF1A
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155282
+                      createdOn: 1741926993000
+                      createdOnDateTime: "2025-03-14T04:36:33Z"
+                      lastUpdatedBy: 75155282
+                      lastUpdatedOn: 1741927126000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-03-14T04:38:46Z"
+                    - id: 18833
+                      orgId: 100737
+                      name: CF1A_update
+                      description: CF1A
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75152721
+                      createdOn: 1741847093000
+                      createdOnDateTime: "2025-03-13T06:24:53Z"
+                      lastUpdatedBy: 75155282
+                      lastUpdatedOn: 1741886142000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-03-13T17:15:42Z"
+                    - id: 18836
+                      orgId: 100737
+                      name: CF1A112
+                      description: CF1A112
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155282
+                      createdOn: 1741850714000
+                      createdOnDateTime: "2025-03-13T07:25:14Z"
+                      lastUpdatedBy: 75155282
+                      lastUpdatedOn: 1741850714000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-03-13T07:25:14Z"
+                  summary: Sample response With sortBy-lastUpdatedOn
+                Sample response With scope=ISSUE_REWARD:
+                  value:
+                    - id: 21682
+                      orgId: 100737
+                      name: Address
+                      description: Address to deliver reward
+                      isMandatory: false
+                      isActive: true
+                      scope: ISSUE_REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75152721
+                      createdOn: 1746501773000
+                      createdOnDateTime: "2025-05-06T03:22:53Z"
+                      lastUpdatedBy: 75152721
+                      lastUpdatedOn: 1746501773000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-05-06T03:22:53Z"
+                    - id: 21683
+                      orgId: 100737
+                      name: Points Issued
+                      description: Points issued to customer
+                      isMandatory: false
+                      isActive: true
+                      scope: ISSUE_REWARD
+                      defaultValue: null
+                      dataType: INTEGER
+                      createdBy: 75152721
+                      createdOn: 1746501974000
+                      createdOnDateTime: "2025-05-06T03:26:14Z"
+                      lastUpdatedBy: 75152721
+                      lastUpdatedOn: 1746503356000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-05-06T03:49:16Z"
+                  summary: Sample response With scope=ISSUE_REWARD
+                Sample response With scope=CATALOGUE_PROMOTION:
+                  value:
+                    - id: 28655
+                      orgId: 100737
+                      name: UAT_CF_10
+                      description: Custom Field of STRING Type + with isMandatory false + scope catalogue promotion
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: "false"
+                      dataType: BOOLEAN
+                      createdBy: 75155297
+                      createdOn: 1757503078000
+                      createdOnDateTime: "2025-09-10T11:17:58Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757998989000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-16T05:03:09Z"
+                    - id: 28961
+                      orgId: 100737
+                      name: UAT_CF_11
+                      description: Custom Field of STRING Type
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757999610000
+                      createdOnDateTime: "2025-09-16T05:13:30Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757999610000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-16T05:13:30Z"
+                    - id: 32545
+                      orgId: 100737
+                      name: terror
+                      description: Custom Field of STRING Type
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75197372
+                      createdOn: 1763643953000
+                      createdOnDateTime: "2025-11-20T13:05:53Z"
+                      lastUpdatedBy: 75197372
+                      lastUpdatedOn: 1763643953000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-11-20T13:05:53Z"
+                    - id: 32546
+                      orgId: 100737
+                      name: terrorz
+                      description: Custom Field of STRING Type
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75197372
+                      createdOn: 1763644000000
+                      createdOnDateTime: "2025-11-20T13:06:40Z"
+                      lastUpdatedBy: 75197372
+                      lastUpdatedOn: 1763644000000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-11-20T13:06:40Z"
+                  summary: Sample response With scope=CATALOGUE_PROMOTION
+                Sample response With scope=REWARD:
+                  value:
+                    - id: 18833
+                      orgId: 100737
+                      name: CF1A_update
+                      description: CF1A
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75152721
+                      createdOn: 1741847093000
+                      createdOnDateTime: "2025-03-13T06:24:53Z"
+                      lastUpdatedBy: 75155282
+                      lastUpdatedOn: 1741886142000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-03-13T17:15:42Z"
+                    - id: 18836
+                      orgId: 100737
+                      name: CF1A112
+                      description: CF1A112
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155282
+                      createdOn: 1741850714000
+                      createdOnDateTime: "2025-03-13T07:25:14Z"
+                      lastUpdatedBy: 75155282
+                      lastUpdatedOn: 1741850714000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-03-13T07:25:14Z"
+                    - id: 18880
+                      orgId: 100737
+                      name: age_update
+                      description: CF1A
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155282
+                      createdOn: 1741926993000
+                      createdOnDateTime: "2025-03-14T04:36:33Z"
+                      lastUpdatedBy: 75155282
+                      lastUpdatedOn: 1741927126000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-03-14T04:38:46Z"
+                    - id: 21681
+                      orgId: 100737
+                      name: Address
+                      description: Address to deliver reward
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75152721
+                      createdOn: 1746501610000
+                      createdOnDateTime: "2025-05-06T03:20:10Z"
+                      lastUpdatedBy: 75152721
+                      lastUpdatedOn: 1746501610000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-05-06T03:20:10Z"
+                    - id: 27563
+                      orgId: 100737
+                      name: UAT_CF_1
+                      description: Custom Field for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1755773599000
+                      createdOnDateTime: "2025-08-21T10:53:19Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1755773599000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-08-21T10:53:19Z"
+                    - id: 28635
+                      orgId: 100737
+                      name: UAT_CF_2
+                      description: Custom Field for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757486967000
+                      createdOnDateTime: "2025-09-10T06:49:27Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757486967000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T06:49:27Z"
+                    - id: 28638
+                      orgId: 100737
+                      name: UAT_CF_3
+                      description: Custom Field of Boolean Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: "false"
+                      dataType: BOOLEAN
+                      createdBy: 75155297
+                      createdOn: 1757489222000
+                      createdOnDateTime: "2025-09-10T07:27:02Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757489222000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:27:02Z"
+                    - id: 28639
+                      orgId: 100737
+                      name: UAT_CF_4
+                      description: Custom Field of DATE Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: "2025-09-10T07:00:00Z"
+                      dataType: DATE
+                      createdBy: 75155297
+                      createdOn: 1757489396000
+                      createdOnDateTime: "2025-09-10T07:29:56Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757489396000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:29:56Z"
+                    - id: 28640
+                      orgId: 100737
+                      name: UAT_CF_5
+                      description: Custom Field of INTEGER Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: "10"
+                      dataType: INTEGER
+                      createdBy: 75155297
+                      createdOn: 1757489651000
+                      createdOnDateTime: "2025-09-10T07:34:11Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757489651000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:34:11Z"
+                    - id: 28641
+                      orgId: 100737
+                      name: UAT_CF_6
+                      description: Custom Field of STRING Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: >-
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has su
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757490012000
+                      createdOnDateTime: "2025-09-10T07:40:12Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757490012000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:40:12Z"
+                    - id: 28642
+                      orgId: 100737
+                      name: UAT_CF_7
+                      description: Custom Field of STRING Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: >-
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has su
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757490081000
+                      createdOnDateTime: "2025-09-10T07:41:21Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757490081000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T07:41:21Z"
+                    - id: 28647
+                      orgId: 100737
+                      name: UAT_CF_8
+                      description: Custom Field of ENUM Type + Not mandatory for UAT
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: PAID
+                      dataType: ENUM
+                      createdBy: 75155297
+                      createdOn: 1757495943000
+                      createdOnDateTime: "2025-09-10T09:19:03Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757495943000
+                      enumValues:
+                        - FREE
+                        - PAID
+                      lastUpdatedOnDateTime: "2025-09-10T09:19:03Z"
+                    - id: 28651
+                      orgId: 100737
+                      name: "983734628"
+                      description: Custom Field of STRING Type + with integer as name
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757499293000
+                      createdOnDateTime: "2025-09-10T10:14:53Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757499293000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T10:14:53Z"
+                    - id: 28652
+                      orgId: 100737
+                      name: "&^%^%"
+                      description: Custom Field of STRING Type + with integer as name
+                      isMandatory: false
+                      isActive: true
+                      scope: REWARD
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757499667000
+                      createdOnDateTime: "2025-09-10T10:21:07Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757499667000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-10T10:21:07Z"
+                  summary: Sample response With scope=REWARD
+                Sample response With sortBy=lastUpdatedOn&orderBy=DESC&scope=CATALOGUE_PROMOTION:
+                  value:
+                    - id: 32546
+                      orgId: 100737
+                      name: terrorz
+                      description: Custom Field of STRING Type
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75197372
+                      createdOn: 1763644000000
+                      createdOnDateTime: "2025-11-20T13:06:40Z"
+                      lastUpdatedBy: 75197372
+                      lastUpdatedOn: 1763644000000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-11-20T13:06:40Z"
+                    - id: 32545
+                      orgId: 100737
+                      name: terror
+                      description: Custom Field of STRING Type
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75197372
+                      createdOn: 1763643953000
+                      createdOnDateTime: "2025-11-20T13:05:53Z"
+                      lastUpdatedBy: 75197372
+                      lastUpdatedOn: 1763643953000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-11-20T13:05:53Z"
+                    - id: 28961
+                      orgId: 100737
+                      name: UAT_CF_11
+                      description: Custom Field of STRING Type
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: null
+                      dataType: STRING
+                      createdBy: 75155297
+                      createdOn: 1757999610000
+                      createdOnDateTime: "2025-09-16T05:13:30Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757999610000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-16T05:13:30Z"
+                    - id: 28655
+                      orgId: 100737
+                      name: UAT_CF_10
+                      description: Custom Field of STRING Type + with isMandatory false + scope catalogue promotion
+                      isMandatory: false
+                      isActive: true
+                      scope: CATALOGUE_PROMOTION
+                      defaultValue: "false"
+                      dataType: BOOLEAN
+                      createdBy: 75155297
+                      createdOn: 1757503078000
+                      createdOnDateTime: "2025-09-10T11:17:58Z"
+                      lastUpdatedBy: 75155297
+                      lastUpdatedOn: 1757998989000
+                      enumValues: null
+                      lastUpdatedOnDateTime: "2025-09-16T05:03:09Z"
+                  summary: Sample response With sortBy=lastUpdatedOn&orderBy=DESC&scope=CATALOGUE_PROMOTION
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 18833
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100737
+                          default: 0
+                        name:
+                          type: string
+                          example: CF1A_update
+                        description:
+                          type: string
+                          example: CF1A
+                        isMandatory:
+                          type: boolean
+                          example: false
+                          default: true
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        scope:
+                          type: string
+                          example: REWARD
+                        defaultValue: {}
+                        dataType:
+                          type: string
+                          example: STRING
+                        createdBy:
+                          type: integer
+                          example: 75152721
+                          default: 0
+                        createdOn:
+                          type: integer
+                          example: 1741847093000
+                          default: 0
+                        createdOnDateTime:
+                          type: string
+                          example: "2025-03-13T06:24:53Z"
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75155282
+                          default: 0
+                        lastUpdatedOn:
+                          type: integer
+                          example: 1741886142000
+                          default: 0
+                        enumValues: {}
+                        lastUpdatedOnDateTime:
+                          type: string
+                          example: "2025-03-13T17:15:42Z"
+                  - title: With scope=REWARD
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5916
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100458
+                          default: 0
+                        name:
+                          type: string
+                          example: CF1
+                        description:
+                          type: string
+                          example: CF1 Description
+                        isMandatory:
+                          type: boolean
+                          example: false
+                          default: true
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        scope:
+                          type: string
+                          example: REWARD
+                        defaultValue:
+                          type: string
+                          example: test
+                        dataType:
+                          type: string
+                          example: STRING
+                        createdBy:
+                          type: integer
+                          example: 75036445
+                          default: 0
+                        createdOn:
+                          type: integer
+                          example: 1720003372000
+                          default: 0
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75036445
+                          default: 0
+                        lastUpdatedOn:
+                          type: integer
+                          example: 1720003372000
+                          default: 0
+                  - title: With scope=CATALOGUE_PROMOTION
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 87
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100458
+                          default: 0
+                        name:
+                          type: string
+                          example: CF1
+                        description:
+                          type: string
+                          example: CF1 Description
+                        isMandatory:
+                          type: boolean
+                          example: false
+                          default: true
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        scope:
+                          type: string
+                          example: CATALOGUE_PROMOTION
+                        defaultValue: {}
+                        dataType:
+                          type: string
+                          example: STRING
+                        createdBy:
+                          type: integer
+                          example: 75078478
+                          default: 0
+                        createdOn:
+                          type: integer
+                          example: 1701863921000
+                          default: 0
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75078478
+                          default: 0
+                        lastUpdatedOn:
+                          type: integer
+                          example: 1701863921000
+                          default: 0
+                  - title: With scope=ISSUE_REWARD
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5918
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100458
+                          default: 0
+                        name:
+                          type: string
+                          example: testdate
+                        description:
+                          type: string
+                          example: order id of reward purchased
+                        isMandatory:
+                          type: boolean
+                          example: false
+                          default: true
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        scope:
+                          type: string
+                          example: ISSUE_REWARD
+                        defaultValue: {}
+                        dataType:
+                          type: string
+                          example: DATE
+                        createdBy:
+                          type: integer
+                          example: 75078478
+                          default: 0
+                        createdOn:
+                          type: integer
+                          example: 1720003550000
+                          default: 0
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75078478
+                          default: 0
+                        lastUpdatedOn:
+                          type: integer
+                          example: 1720003550000
+                          default: 0
+                  - title: With sortBy-lastUpdatedOn
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 18836
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100737
+                          default: 0
+                        name:
+                          type: string
+                          example: CF1A112
+                        description:
+                          type: string
+                          example: CF1A112
+                        isMandatory:
+                          type: boolean
+                          example: false
+                          default: true
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        scope:
+                          type: string
+                          example: REWARD
+                        defaultValue: {}
+                        dataType:
+                          type: string
+                          example: STRING
+                        createdBy:
+                          type: integer
+                          example: 75155282
+                          default: 0
+                        createdOn:
+                          type: integer
+                          example: 1741850714000
+                          default: 0
+                        createdOnDateTime:
+                          type: string
+                          example: "2025-03-13T07:25:14Z"
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75155282
+                          default: 0
+                        lastUpdatedOn:
+                          type: integer
+                          example: 1741850714000
+                          default: 0
+                        enumValues: {}
+                        lastUpdatedOnDateTime:
+                          type: string
+                          example: "2025-03-13T07:25:14Z"
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+    post:
+      summary: Create custom field for reward
+      operationId: post-create-custom-field
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - description
+                - scope
+                - dataType
+              properties:
+                name:
+                  type: string
+                  description: Unique name identifier for the custom field.
+                orgId:
+                  type: string
+                  description: Unique identifier of the organisation. To retrieve the orgId, use the Get Org Details API.
+                description:
+                  type: string
+                  description: Description for the custom field.
+                isMandatory:
+                  type: boolean
+                  description: Specify if the custom field is mandatory.
+                  default: false
+                isActive:
+                  type: boolean
+                  description: Parameter to define if the custom field is active or not
+                  default: true
+                scope:
+                  type: string
+                  description: Specify where the additional custom fields will apply
+                  enum:
+                    - REWARD
+                    - ISSUE_REWARD
+                    - CATALOGUE_PROMOTION
+                dataType:
+                  type: string
+                  description: Type of data for the custom field. 255 is the character limit with datatype as string
+                  enum:
+                    - BOOLEAN
+                    - ENUM
+                    - DATE
+                    - STRING
+                    - INTEGER
+                enumValues:
+                  type: array
+                  description: Object containing the enum values. This parameter is required if dataType is ENUM.
+                  items:
+                    type: string
+            examples:
+              request body:
+                value:
+                  orgId: 100458
+                  name: CF1A112
+                  description: CF1A112
+                  isMandatory: false
+                  isActive: true
+                  scope: REWARD
+                  defaultValue: null
+                  dataType: STRING
+              "scope : Catalogue Promotion":
+                value:
+                  orgId: 100458
+                  name: Order confirmed
+                  description: Reward is processing
+                  isMandatory: false
+                  isActive: true
+                  scope: CATALOGUE_PROMOTION
+                  defaultValue: null
+                  dataType: STRING
+              "scope: Issue Reward":
+                value:
+                  orgId: 100458
+                  name: Order confirmed
+                  description: Reward is processing
+                  isMandatory: false
+                  isActive: true
+                  scope: CATALOGUE_PROMOTION
+                  defaultValue: null
+                  dataType: STRING
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                "Scope: REWARD":
+                  value: |-
+                    {
+                        "id": 18833,
+                        "orgId": 100737,
+                        "name": "CustomField1",
+                        "description": "CustomField1",
+                        "isMandatory": false,
+                        "isActive": true,
+                        "scope": "REWARD",
+                        "defaultValue": null,
+                        "dataType": "STRING",
+                        "createdBy": 75152721,
+                        "createdOn": 1741934782959,
+                        "createdOnDateTime": "2025-03-14T06:46:22Z",
+                        "lastUpdatedBy": 75152721,
+                        "lastUpdatedOn": 1741934782959,
+                        "enumValues": null,
+                        "lastUpdatedOnDateTime": "2025-03-14T06:46:22Z"
+                    }
+                "Scope: CATALOGUE_PROMOTION":
+                  value: |-
+                    {
+                        "id": 6913,
+                        "orgId": 100458,
+                        "name": "Order confirmed",
+                        "description": "Reward is processing",
+                        "isMandatory": false,
+                        "isActive": true,
+                        "scope": "CATALOGUE_PROMOTION",
+                        "defaultValue": null,
+                        "dataType": "STRING",
+                        "createdBy": 75130850,
+                        "createdOn": null,
+                        "lastUpdatedBy": 75130850,
+                        "lastUpdatedOn": null
+                    }
+                "Scope: ISSUE_REWARD":
+                  value: |-
+                    {
+                        "id": 210,
+                        "orgId": 100458,
+                        "name": "CF1A112",
+                        "description": "CF1A112",
+                        "isMandatory": false,
+                        "isActive": true,
+                        "scope": "ISSUE_REWARD",
+                        "defaultValue": null,
+                        "dataType": "STRING",
+                        "createdBy": 75086856,
+                        "createdOn": null,
+                        "lastUpdatedBy": 75086856,
+                        "lastUpdatedOn": null
+                    }
+                "dataType: ENUM":
+                  value: |-
+                    {
+                        "orgId": 100458,
+                        "name": "CustomField",
+                        "description": "",
+                        "isMandatory": false,
+                        "isActive": false,
+                        "defaultValue": "PRIMARY",
+                        "dataType": "ENUM",
+                        "scope": "ISSUE_REWARD",
+                        "enumValues": [
+                            "PRIMARY",
+                            "SECONDARY"
+                        ]
+                    }
+                Sample response:
+                  summary: Sample response
+                  value:
+                    id: 32546
+                    orgId: 100737
+                    name: terrorz
+                    description: Custom Field of STRING Type
+                    isMandatory: false
+                    isActive: true
+                    scope: CATALOGUE_PROMOTION
+                    defaultValue: null
+                    dataType: STRING
+                    createdBy: 75197372
+                    createdOn: null
+                    createdOnDateTime: null
+                    lastUpdatedBy: 75197372
+                    lastUpdatedOn: null
+                    enumValues: null
+                    lastUpdatedOnDateTime: null
+              schema:
+                oneOf:
+                  - title: "Scope: REWARD"
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 18833
+                        default: 0
+                      orgId:
+                        type: integer
+                        example: 100737
+                        default: 0
+                      name:
+                        type: string
+                        example: CustomField1
+                      description:
+                        type: string
+                        example: CustomField1
+                      isMandatory:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      scope:
+                        type: string
+                        example: REWARD
+                      defaultValue: {}
+                      dataType:
+                        type: string
+                        example: STRING
+                      createdBy:
+                        type: integer
+                        example: 75152721
+                        default: 0
+                      createdOn:
+                        type: integer
+                        example: 1741934782959
+                        default: 0
+                      createdOnDateTime:
+                        type: string
+                        example: "2025-03-14T06:46:22Z"
+                      lastUpdatedBy:
+                        type: integer
+                        example: 75152721
+                        default: 0
+                      lastUpdatedOn:
+                        type: integer
+                        example: 1741934782959
+                        default: 0
+                      enumValues: {}
+                      lastUpdatedOnDateTime:
+                        type: string
+                        example: "2025-03-14T06:46:22Z"
+                  - title: "Scope: CATALOGUE_PROMOTION"
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 6913
+                        default: 0
+                      orgId:
+                        type: integer
+                        example: 100458
+                        default: 0
+                      name:
+                        type: string
+                        example: Order confirmed
+                      description:
+                        type: string
+                        example: Reward is processing
+                      isMandatory:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      scope:
+                        type: string
+                        example: CATALOGUE_PROMOTION
+                      defaultValue: {}
+                      dataType:
+                        type: string
+                        example: STRING
+                      createdBy:
+                        type: integer
+                        example: 75130850
+                        default: 0
+                      createdOn: {}
+                      lastUpdatedBy:
+                        type: integer
+                        example: 75130850
+                        default: 0
+                      lastUpdatedOn: {}
+                  - title: "Scope: ISSUE_REWARD"
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 210
+                        default: 0
+                      orgId:
+                        type: integer
+                        example: 100458
+                        default: 0
+                      name:
+                        type: string
+                        example: CF1A112
+                      description:
+                        type: string
+                        example: CF1A112
+                      isMandatory:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      scope:
+                        type: string
+                        example: ISSUE_REWARD
+                      defaultValue: {}
+                      dataType:
+                        type: string
+                        example: STRING
+                      createdBy:
+                        type: integer
+                        example: 75086856
+                        default: 0
+                      createdOn: {}
+                      lastUpdatedBy:
+                        type: integer
+                        example: 75086856
+                        default: 0
+                      lastUpdatedOn: {}
+                  - title: "dataType: ENUM"
+                    type: object
+                    properties:
+                      orgId:
+                        type: integer
+                        example: 100458
+                        default: 0
+                      name:
+                        type: string
+                        example: CustomField
+                      description:
+                        type: string
+                        example: ""
+                      isMandatory:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: false
+                        default: true
+                      defaultValue:
+                        type: string
+                        example: PRIMARY
+                      dataType:
+                        type: string
+                        example: ENUM
+                      scope:
+                        type: string
+                        example: ISSUE_REWARD
+                      enumValues:
+                        type: array
+                        items:
+                          type: string
+                          example: PRIMARY
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Wrong default value:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3025,
+                            "message": "Default value not found in the enum list"
+                        }
+                    }
+                ENUM value empty:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3030,
+                            "message": "Enum value cannot be empty"
+                        }
+                    }
+                Unsupported character in ENUM:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3024,
+                            "message": "Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]"
+                        }
+                    }
+                No ENUM provided:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 400,
+                            "message": "ENUM's list size is out of limit"
+                        }
+                    }
+                ENUM character limit exceeded:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3028,
+                            "message": "Enum value exceeds the limit of 80 characters"
+                        }
+                    }
+                Duplicate ENUM values provided:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3029,
+                            "message": "Duplicate enum values found"
+                        }
+                    }
+              schema:
+                oneOf:
+                  - title: Wrong default value
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3025
+                            default: 0
+                          message:
+                            type: string
+                            example: Default value not found in the enum list
+                  - title: ENUM value empty
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3030
+                            default: 0
+                          message:
+                            type: string
+                            example: Enum value cannot be empty
+                  - title: Unsupported character in ENUM
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3024
+                            default: 0
+                          message:
+                            type: string
+                            example: "Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]"
+                  - title: No ENUM provided
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 400
+                            default: 0
+                          message:
+                            type: string
+                            example: ENUM's list size is out of limit
+                  - title: ENUM character limit exceeded
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3028
+                            default: 0
+                          message:
+                            type: string
+                            example: Enum value exceeds the limit of 80 characters
+                  - title: Duplicate ENUM values provided
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3029
+                            default: 0
+                          message:
+                            type: string
+                            example: Duplicate enum values found
+  /api_gateway/rewards/core/v1/brand/customfield/{id}:
+    put:
+      summary: Update reward custom field
+      operationId: update-custom-field
+      parameters:
+        - name: id
+          in: path
+          description: Unique name identifier for the custom field.
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - description
+                - scope
+                - dataType
+              properties:
+                name:
+                  type: string
+                  description: Unique name identifier for the custom field.
+                orgId:
+                  type: string
+                  description: Unique identifier of the organisation. To retrieve the orgId, use the Get Org Details API.
+                description:
+                  type: string
+                  description: Description for the custom field.
+                isMandatory:
+                  type: boolean
+                  description: Specify if the custom field is mandatory.
+                isActive:
+                  type: boolean
+                  description: Parameter to define if the custom field is active or not
+                scope:
+                  type: string
+                  description: Specify where the additional custom fields will apply
+                  enum:
+                    - REWARD
+                    - ISSUE_REWARD
+                    - CATALOGUE_PROMOTION
+                dataType:
+                  type: string
+                  description: Type of data for the custom field. 255 is the character limit with datatype as string
+                  enum:
+                    - BOOLEAN
+                    - ENUM
+                    - DATE
+                    - STRING
+                    - INTEGER
+                enumValues:
+                  type: array
+                  description: Object containing the enum values. This parameter is required if dataType is ENUM.
+                  items:
+                    type: string
+            examples:
+              Request body:
+                value:
+                  orgId: 100458
+                  name: CF1A_update
+                  description: CF1A
+                  isMandatory: false
+                  isActive: true
+                  scope: REWARD
+                  defaultValue: null
+                  dataType: STRING
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                "Scope: REWARD":
+                  value: |-
+                    {
+                        "id": 18880,
+                        "orgId": 100737,
+                        "name": "age_update",
+                        "description": "CF1A",
+                        "isMandatory": false,
+                        "isActive": true,
+                        "scope": "REWARD",
+                        "defaultValue": null,
+                        "dataType": "STRING",
+                        "createdBy": 75155282,
+                        "createdOn": 1741934782959,
+                        "createdOnDateTime": "2025-03-14T06:46:22Z",
+                        "lastUpdatedBy": 75155282,
+                        "lastUpdatedOn": 1741934782959,
+                        "enumValues": null,
+                        "lastUpdatedOnDateTime": "2025-03-14T06:46:22Z"
+                    }
+                "Scope: CATALOGUE_PROMOTION":
+                  value: |-
+                    {
+                        "id": 107,
+                        "orgId": 100458,
+                        "name": "CF1A_update",
+                        "description": "CF1A",
+                        "isMandatory": false,
+                        "isActive": true,
+                        "scope": "CATALOGUE_PROMOTION",
+                        "defaultValue": null,
+                        "dataType": "STRING",
+                        "createdBy": null,
+                        "createdOn": null,
+                        "lastUpdatedBy": 75086856,
+                        "lastUpdatedOn": null
+                    }
+                "Scope: ISSUE_REWARD":
+                  value: |-
+                    {
+                        "id": 108,
+                        "orgId": 100458,
+                        "name": "CF1A_update",
+                        "description": "CF1A",
+                        "isMandatory": false,
+                        "isActive": true,
+                        "scope": "ISSUE_REWARD",
+                        "defaultValue": null,
+                        "dataType": "STRING",
+                        "createdBy": null,
+                        "createdOn": null,
+                        "lastUpdatedBy": 75086856,
+                        "lastUpdatedOn": null
+                    }
+              schema:
+                oneOf:
+                  - title: "Scope: REWARD"
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 18880
+                        default: 0
+                      orgId:
+                        type: integer
+                        example: 100737
+                        default: 0
+                      name:
+                        type: string
+                        example: age_update
+                      description:
+                        type: string
+                        example: CF1A
+                      isMandatory:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      scope:
+                        type: string
+                        example: REWARD
+                      defaultValue: {}
+                      dataType:
+                        type: string
+                        example: STRING
+                      createdBy:
+                        type: integer
+                        example: 75155282
+                        default: 0
+                      createdOn:
+                        type: integer
+                        example: 1741934782959
+                        default: 0
+                      createdOnDateTime:
+                        type: string
+                        example: "2025-03-14T06:46:22Z"
+                      lastUpdatedBy:
+                        type: integer
+                        example: 75155282
+                        default: 0
+                      lastUpdatedOn:
+                        type: integer
+                        example: 1741934782959
+                        default: 0
+                      enumValues: {}
+                      lastUpdatedOnDateTime:
+                        type: string
+                        example: "2025-03-14T06:46:22Z"
+                  - title: "Scope: CATALOGUE_PROMOTION"
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 107
+                        default: 0
+                      orgId:
+                        type: integer
+                        example: 100458
+                        default: 0
+                      name:
+                        type: string
+                        example: CF1A_update
+                      description:
+                        type: string
+                        example: CF1A
+                      isMandatory:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      scope:
+                        type: string
+                        example: CATALOGUE_PROMOTION
+                      defaultValue: {}
+                      dataType:
+                        type: string
+                        example: STRING
+                      createdBy: {}
+                      createdOn: {}
+                      lastUpdatedBy:
+                        type: integer
+                        example: 75086856
+                        default: 0
+                      lastUpdatedOn: {}
+                  - title: "Scope: ISSUE_REWARD"
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 108
+                        default: 0
+                      orgId:
+                        type: integer
+                        example: 100458
+                        default: 0
+                      name:
+                        type: string
+                        example: CF1A_update
+                      description:
+                        type: string
+                        example: CF1A
+                      isMandatory:
+                        type: boolean
+                        example: false
+                        default: true
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      scope:
+                        type: string
+                        example: ISSUE_REWARD
+                      defaultValue: {}
+                      dataType:
+                        type: string
+                        example: STRING
+                      createdBy: {}
+                      createdOn: {}
+                      lastUpdatedBy:
+                        type: integer
+                        example: 75086856
+                        default: 0
+                      lastUpdatedOn: {}
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Wrong default value:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3025,
+                            "message": "Default value not found in the enum list"
+                        }
+                    }
+                ENUM value empty:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3030,
+                            "message": "Enum value cannot be empty"
+                        }
+                    }
+                Unsupported character in ENUM:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3024,
+                            "message": "Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]"
+                        }
+                    }
+                No ENUM provided:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 400,
+                            "message": "ENUM's list size is out of limit"
+                        }
+                    }
+                ENUM character limit exceeded:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3028,
+                            "message": "Enum value exceeds the limit of 80 characters"
+                        }
+                    }
+                Duplicate ENUM values provided:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3029,
+                            "message": "Duplicate enum values found"
+                        }
+                    }
+              schema:
+                oneOf:
+                  - title: Wrong default value
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3025
+                            default: 0
+                          message:
+                            type: string
+                            example: Default value not found in the enum list
+                  - title: ENUM value empty
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3030
+                            default: 0
+                          message:
+                            type: string
+                            example: Enum value cannot be empty
+                  - title: Unsupported character in ENUM
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3024
+                            default: 0
+                          message:
+                            type: string
+                            example: "Invalid characters in enum value. Allowed characters: [a-z,A-Z,0-9,[]()-_ ]"
+                  - title: No ENUM provided
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 400
+                            default: 0
+                          message:
+                            type: string
+                            example: ENUM's list size is out of limit
+                  - title: ENUM character limit exceeded
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3028
+                            default: 0
+                          message:
+                            type: string
+                            example: Enum value exceeds the limit of 80 characters
+                  - title: Duplicate ENUM values provided
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 3029
+                            default: 0
+                          message:
+                            type: string
+                            example: Duplicate enum values found
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

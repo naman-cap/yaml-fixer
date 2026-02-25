@@ -1,0 +1,1330 @@
+openapi: 3.0.1
+info:
+  title: Search APIs
+  description: Search filter, data field, and Cortex search endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/cortex/v1/criteria:
+    post:
+      summary: Create search criteria
+      description: This API allows you to create a search criteria.
+      operationId: create-meta-search
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Search criteria created:
+                  value: >-
+                    {"data":{"id":"67c091299e22382d75d405bc","orgId":100737,"name":"TransactionSearch3","searchStrategyType":"COMBINATION","entityType":"TRANSACTION","fieldDefinitions":[{"fieldId":"billNumber","fieldAlias":"billNumber","fieldType":"INDEXED","dataSourceDetails":{"fieldReference":"billNumber"},"dataType":"STRING"}],"dataFieldDefinitions":[{"fieldId":"billNumber","fieldAlias":"billNumber","fieldType":"DATA","dataSourceDetails":{"fieldReference":"billNumber"},"dataType":"STRING"},{"fieldId":"billDate","fieldAlias":"billDate","fieldType":"DATA","dataSourceDetails":{"fieldReference":"billDate"},"dataType":"DATE"}],"searchDataPolicy":{"dataRetentionPolicy":{"unit":"DAYS","value":10},"expireDataFrom":"CREATE"},"criteriaStatus":{"status":"VERIFICATION_IN_PROGRESS"},"bulkJobStatus":"OPEN","auditInfo":{"createdOn":"2025-02-27T16:22:01.911+00:00","createdBy":75155282,"lastUpdatedOn":"2025-02-27T16:22:01.911+00:00","lastUpdatedBy":75155282}},"errors":[]}
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 67c091299e22382d75d405bc
+                      orgId:
+                        type: integer
+                        example: 100737
+                        default: 0
+                      name:
+                        type: string
+                        example: TransactionSearch3
+                      searchStrategyType:
+                        type: string
+                        example: COMBINATION
+                      entityType:
+                        type: string
+                        example: TRANSACTION
+                      fieldDefinitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fieldId:
+                              type: string
+                              example: billNumber
+                            fieldAlias:
+                              type: string
+                              example: billNumber
+                            fieldType:
+                              type: string
+                              example: INDEXED
+                            dataSourceDetails:
+                              type: object
+                              properties:
+                                fieldReference:
+                                  type: string
+                                  example: billNumber
+                            dataType:
+                              type: string
+                              example: STRING
+                      dataFieldDefinitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fieldId:
+                              type: string
+                              example: billNumber
+                            fieldAlias:
+                              type: string
+                              example: billNumber
+                            fieldType:
+                              type: string
+                              example: DATA
+                            dataSourceDetails:
+                              type: object
+                              properties:
+                                fieldReference:
+                                  type: string
+                                  example: billNumber
+                            dataType:
+                              type: string
+                              example: STRING
+                      searchDataPolicy:
+                        type: object
+                        properties:
+                          dataRetentionPolicy:
+                            type: object
+                            properties:
+                              unit:
+                                type: string
+                                example: DAYS
+                              value:
+                                type: integer
+                                example: 10
+                                default: 0
+                          expireDataFrom:
+                            type: string
+                            example: CREATE
+                      criteriaStatus:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+                            example: VERIFICATION_IN_PROGRESS
+                      bulkJobStatus:
+                        type: string
+                        example: OPEN
+                      auditInfo:
+                        type: object
+                        properties:
+                          createdOn:
+                            type: string
+                            example: "2025-02-27T16:22:01.911+00:00"
+                          createdBy:
+                            type: integer
+                            example: 75155282
+                            default: 0
+                          lastUpdatedOn:
+                            type: string
+                            example: "2025-02-27T16:22:01.911+00:00"
+                          lastUpdatedBy:
+                            type: integer
+                            example: 75155282
+                            default: 0
+                  errors:
+                    type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/cortex/v1/criteria/{id}:
+    get:
+      summary: Retrieve search criteria details
+      description: >-
+        This API enables you to retrieve the search criteria details using the search criteria ID obtained during
+        creation of the search criteria.
+      operationId: get-meta
+      parameters:
+        - name: id
+          in: path
+          description: The ID that you obtained during meta-search creation.
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Criteria details:
+                  value: |-
+                    {
+                        "data": {
+                            "id": "64b117d756bb3f20312aae7f",
+                            "orgId": 2064,
+                            "name": "criteria_1231_1",
+                            "entityType": "TRANSACTION",
+                            "fieldDefinitions": [
+                                {
+                                    "fieldId": "destination",
+                                    "fieldAlias": "destination",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "extendedFields.destination"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "origin",
+                                    "fieldAlias": "origin",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "extendedFields.origin"
+                                    },
+                                    "dataType": "STRING"
+                                }
+                            ],
+                            "searchDataPolicy": {
+                                "dataRetentionPolicy": {
+                                    "unit": "DAYS",
+                                    "value": 30
+                                },
+                                "expireDataFrom": "CREATE"
+                            },
+                            "active": true,
+                            "bulkJobStatus": "OPEN",
+                            "auditInfo": {
+                                "createdOn": "2023-07-14T09:39:35.353+00:00",
+                                "createdBy": 13425520,
+                                "lastUpdatedOn": "2023-07-14T09:39:35.353+00:00",
+                                "lastUpdatedBy": 13425520
+                            }
+                        },
+                        "errors": []
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 64b117d756bb3f20312aae7f
+                      orgId:
+                        type: integer
+                        example: 2064
+                        default: 0
+                      name:
+                        type: string
+                        example: criteria_1231_1
+                      entityType:
+                        type: string
+                        example: TRANSACTION
+                      fieldDefinitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fieldId:
+                              type: string
+                              example: destination
+                            fieldAlias:
+                              type: string
+                              example: destination
+                            dataSourceDetails:
+                              type: object
+                              properties:
+                                fieldReference:
+                                  type: string
+                                  example: extendedFields.destination
+                            dataType:
+                              type: string
+                              example: STRING
+                      searchDataPolicy:
+                        type: object
+                        properties:
+                          dataRetentionPolicy:
+                            type: object
+                            properties:
+                              unit:
+                                type: string
+                                example: DAYS
+                              value:
+                                type: integer
+                                example: 30
+                                default: 0
+                          expireDataFrom:
+                            type: string
+                            example: CREATE
+                      active:
+                        type: boolean
+                        example: true
+                        default: true
+                      bulkJobStatus:
+                        type: string
+                        example: OPEN
+                      auditInfo:
+                        type: object
+                        properties:
+                          createdOn:
+                            type: string
+                            example: "2023-07-14T09:39:35.353+00:00"
+                          createdBy:
+                            type: integer
+                            example: 13425520
+                            default: 0
+                          lastUpdatedOn:
+                            type: string
+                            example: "2023-07-14T09:39:35.353+00:00"
+                          lastUpdatedBy:
+                            type: integer
+                            example: 13425520
+                            default: 0
+                  errors:
+                    type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+    delete:
+      summary: Deactivate search criteria
+      description: This API enables you to deactivate a search criteria.
+      operationId: deactivate-search-criteria
+      parameters:
+        - name: id
+          in: path
+          description: The unique identifier of the search criteria
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "data": {
+                            "id": "64b117d756bb3f20312aae7f",
+                            "orgId": 2064,
+                            "name": "criteria_1231_1",
+                            "entityType": "TRANSACTION",
+                            "fieldDefinitions": [
+                                {
+                                    "fieldId": "destination",
+                                    "fieldAlias": "destination",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "extendedFields.destination"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "origin",
+                                    "fieldAlias": "origin",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "extendedFields.origin"
+                                    },
+                                    "dataType": "STRING"
+                                }
+                            ],
+                            "searchDataPolicy": {
+                                "dataRetentionPolicy": {
+                                    "unit": "DAYS",
+                                    "value": 30
+                                },
+                                "expireDataFrom": "CREATE"
+                            },
+                            "active": false,
+                            "bulkJobStatus": "IN_PROGRESS",
+                            "auditInfo": {
+                                "createdOn": "2023-07-14T09:39:35.353+00:00",
+                                "createdBy": 13425520,
+                                "lastUpdatedOn": "2023-07-14T12:20:35.994+00:00",
+                                "lastUpdatedBy": -1
+                            }
+                        },
+                        "errors": []
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 64b117d756bb3f20312aae7f
+                      orgId:
+                        type: integer
+                        example: 2064
+                        default: 0
+                      name:
+                        type: string
+                        example: criteria_1231_1
+                      entityType:
+                        type: string
+                        example: TRANSACTION
+                      fieldDefinitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fieldId:
+                              type: string
+                              example: destination
+                            fieldAlias:
+                              type: string
+                              example: destination
+                            dataSourceDetails:
+                              type: object
+                              properties:
+                                fieldReference:
+                                  type: string
+                                  example: extendedFields.destination
+                            dataType:
+                              type: string
+                              example: STRING
+                      searchDataPolicy:
+                        type: object
+                        properties:
+                          dataRetentionPolicy:
+                            type: object
+                            properties:
+                              unit:
+                                type: string
+                                example: DAYS
+                              value:
+                                type: integer
+                                example: 30
+                                default: 0
+                          expireDataFrom:
+                            type: string
+                            example: CREATE
+                      active:
+                        type: boolean
+                        example: false
+                        default: true
+                      bulkJobStatus:
+                        type: string
+                        example: IN_PROGRESS
+                      auditInfo:
+                        type: object
+                        properties:
+                          createdOn:
+                            type: string
+                            example: "2023-07-14T09:39:35.353+00:00"
+                          createdBy:
+                            type: integer
+                            example: 13425520
+                            default: 0
+                          lastUpdatedOn:
+                            type: string
+                            example: "2023-07-14T12:20:35.994+00:00"
+                          lastUpdatedBy:
+                            type: integer
+                            example: -1
+                            default: 0
+                  errors:
+                    type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/cortex/v1/bulk/trigger/{id}:
+    post:
+      summary: Enable search index of older data
+      description: This allows you to enable the data retention policy.
+      operationId: enable-bulk-trigger
+      parameters:
+        - name: id
+          in: path
+          description: The unique search identifier obtained during creation of search criteria.
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Enabled older data indexing:
+                  value: |-
+                    {
+                        "data": true,
+                        "errors": []
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: boolean
+                    example: true
+                    default: true
+                  errors:
+                    type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/cortex/v1/dataFields:
+    get:
+      summary: Get Data Field Detail
+      description: This API allows you to retrieve the data field definitions for the specified entity (Customer or Transaction)
+      operationId: get-data-field-detail-api
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Customer:
+                  value: |-
+                    {
+                        "data": [
+                            {
+                                "id": "67e6a8bfdd6a186b5555ba98",
+                                "orgId": 100737,
+                                "searchStrategyType": "PREFIX",
+                                "entityType": "CUSTOMER",
+                                "dataFieldDefinitions": [
+                                    {
+                                        "fieldId": "firstName",
+                                        "fieldAlias": "firstName",
+                                        "fieldType": "DATA",
+                                        "dataSourceDetails": {
+                                            "fieldReference": "firstName"
+                                        },
+                                        "dataType": "STRING"
+                                    },
+                                    {
+                                        "fieldId": "lastName",
+                                        "fieldAlias": "lastName",
+                                        "fieldType": "DATA",
+                                        "dataSourceDetails": {
+                                            "fieldReference": "lastName"
+                                        },
+                                        "dataType": "STRING"
+                                    },
+                                    {
+                                        "fieldId": "mobile",
+                                        "fieldAlias": "mobile",
+                                        "fieldType": "DATA",
+                                        "dataSourceDetails": {
+                                            "fieldReference": "mobile"
+                                        },
+                                        "dataType": "STRING"
+                                    },
+                                    {
+                                        "fieldId": "email",
+                                        "fieldAlias": "email",
+                                        "fieldType": "DATA",
+                                        "dataSourceDetails": {
+                                            "fieldReference": "email"
+                                        },
+                                        "dataType": "STRING"
+                                    },
+                                    {
+                                        "fieldId": "externalId",
+                                        "fieldAlias": "externalId",
+                                        "fieldType": "DATA",
+                                        "dataSourceDetails": {
+                                            "fieldReference": "externalId"
+                                        },
+                                        "dataType": "STRING"
+                                    }
+                                ],
+                                "auditInfo": {
+                                    "createdOn": "2025-03-28T13:48:47.665+00:00",
+                                    "createdBy": 75155282,
+                                    "lastUpdatedOn": "2025-03-28T13:48:47.665+00:00",
+                                    "lastUpdatedBy": 75155282
+                                }
+                            }
+                        ],
+                        "errors": []
+                    }
+                Transaction:
+                  value: |-
+                    {
+                        "data": {
+                            "id": "67ebcbe9730aa850fc504145",
+                            "orgId": 100737,
+                            "searchStrategyType": "COMBINATION",
+                            "entityType": "TRANSACTION",
+                            "dataFieldDefinitions": [
+                                {
+                                    "fieldId": "billNumber",
+                                    "fieldAlias": "billNumber",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "billNumber"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "billDate",
+                                    "fieldAlias": "billDate",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "billDate"
+                                    },
+                                    "dataType": "DATE"
+                                },
+                                {
+                                    "fieldId": "storename",
+                                    "fieldAlias": "storename",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "additionalFields.storename"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "storecode",
+                                    "fieldAlias": "storecode",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "additionalFields.storecode"
+                                    },
+                                    "dataType": "STRING"
+                                }
+                            ],
+                            "auditInfo": {
+                                "createdOn": "2025-04-01T11:20:09.793+00:00",
+                                "createdBy": 75155282,
+                                "lastUpdatedOn": "2025-04-01T11:20:09.793+00:00",
+                                "lastUpdatedBy": 75155282
+                            }
+                        },
+                        "errors": []
+                    }
+              schema:
+                oneOf:
+                  - title: Customer
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 67e6a8bfdd6a186b5555ba98
+                            orgId:
+                              type: integer
+                              example: 100737
+                              default: 0
+                            searchStrategyType:
+                              type: string
+                              example: PREFIX
+                            entityType:
+                              type: string
+                              example: CUSTOMER
+                            dataFieldDefinitions:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  fieldId:
+                                    type: string
+                                    example: firstName
+                                  fieldAlias:
+                                    type: string
+                                    example: firstName
+                                  fieldType:
+                                    type: string
+                                    example: DATA
+                                  dataSourceDetails:
+                                    type: object
+                                    properties:
+                                      fieldReference:
+                                        type: string
+                                        example: firstName
+                                  dataType:
+                                    type: string
+                                    example: STRING
+                            auditInfo:
+                              type: object
+                              properties:
+                                createdOn:
+                                  type: string
+                                  example: "2025-03-28T13:48:47.665+00:00"
+                                createdBy:
+                                  type: integer
+                                  example: 75155282
+                                  default: 0
+                                lastUpdatedOn:
+                                  type: string
+                                  example: "2025-03-28T13:48:47.665+00:00"
+                                lastUpdatedBy:
+                                  type: integer
+                                  example: 75155282
+                                  default: 0
+                      errors:
+                        type: array
+                  - title: Transaction
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 67ebcbe9730aa850fc504145
+                          orgId:
+                            type: integer
+                            example: 100737
+                            default: 0
+                          searchStrategyType:
+                            type: string
+                            example: COMBINATION
+                          entityType:
+                            type: string
+                            example: TRANSACTION
+                          dataFieldDefinitions:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                fieldId:
+                                  type: string
+                                  example: billNumber
+                                fieldAlias:
+                                  type: string
+                                  example: billNumber
+                                fieldType:
+                                  type: string
+                                  example: DATA
+                                dataSourceDetails:
+                                  type: object
+                                  properties:
+                                    fieldReference:
+                                      type: string
+                                      example: billNumber
+                                dataType:
+                                  type: string
+                                  example: STRING
+                          auditInfo:
+                            type: object
+                            properties:
+                              createdOn:
+                                type: string
+                                example: "2025-04-01T11:20:09.793+00:00"
+                              createdBy:
+                                type: integer
+                                example: 75155282
+                                default: 0
+                              lastUpdatedOn:
+                                type: string
+                                example: "2025-04-01T11:20:09.793+00:00"
+                              lastUpdatedBy:
+                                type: integer
+                                example: 75155282
+                                default: 0
+                      errors:
+                        type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+    post:
+      summary: Create Data Field
+      description: >-
+        This API allows you to define specific data fields that you want to include in the entity search at organisation
+        level.
+      operationId: create-data-field
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Customer:
+                  value: |-
+                    {
+                        "data": {
+                            "id": "67e6a8bfdd6a186b5555ba98",
+                            "orgId": 100737,
+                            "searchStrategyType": "PREFIX",
+                            "entityType": "CUSTOMER",
+                            "dataFieldDefinitions": [
+                                {
+                                    "fieldId": "firstName",
+                                    "fieldAlias": "firstName",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "firstName"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "lastName",
+                                    "fieldAlias": "lastName",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "lastName"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "mobile",
+                                    "fieldAlias": "mobile",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "mobile"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "email",
+                                    "fieldAlias": "email",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "email"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "externalId",
+                                    "fieldAlias": "externalId",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "externalId"
+                                    },
+                                    "dataType": "STRING"
+                                }
+                            ],
+                            "auditInfo": {
+                                "createdOn": "2025-03-28T13:48:47.665+00:00",
+                                "createdBy": 75155282,
+                                "lastUpdatedOn": "2025-03-28T13:48:47.665+00:00",
+                                "lastUpdatedBy": 75155282
+                            }
+                        },
+                        "errors": []
+                    }
+                Transaction:
+                  value: |-
+                    {
+                        "data": {
+                            "id": "67ebcbe9730aa850fc504145",
+                            "orgId": 100737,
+                            "searchStrategyType": "COMBINATION",
+                            "entityType": "TRANSACTION",
+                            "dataFieldDefinitions": [
+                                {
+                                    "fieldId": "billNumber",
+                                    "fieldAlias": "billNumber",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "billNumber"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "billDate",
+                                    "fieldAlias": "billDate",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "billDate"
+                                    },
+                                    "dataType": "DATE"
+                                },
+                                {
+                                    "fieldId": "storename",
+                                    "fieldAlias": "storename",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "additionalFields.storename"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "storecode",
+                                    "fieldAlias": "storecode",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "additionalFields.storecode"
+                                    },
+                                    "dataType": "STRING"
+                                }
+                            ],
+                            "auditInfo": {
+                                "createdOn": "2025-04-01T11:20:09.793+00:00",
+                                "createdBy": 75155282,
+                                "lastUpdatedOn": "2025-04-01T11:20:09.793+00:00",
+                                "lastUpdatedBy": 75155282
+                            }
+                        },
+                        "errors": []
+                    }
+              schema:
+                oneOf:
+                  - title: Customer
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 67e6a8bfdd6a186b5555ba98
+                          orgId:
+                            type: integer
+                            example: 100737
+                            default: 0
+                          searchStrategyType:
+                            type: string
+                            example: PREFIX
+                          entityType:
+                            type: string
+                            example: CUSTOMER
+                          dataFieldDefinitions:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                fieldId:
+                                  type: string
+                                  example: firstName
+                                fieldAlias:
+                                  type: string
+                                  example: firstName
+                                fieldType:
+                                  type: string
+                                  example: DATA
+                                dataSourceDetails:
+                                  type: object
+                                  properties:
+                                    fieldReference:
+                                      type: string
+                                      example: firstName
+                                dataType:
+                                  type: string
+                                  example: STRING
+                          auditInfo:
+                            type: object
+                            properties:
+                              createdOn:
+                                type: string
+                                example: "2025-03-28T13:48:47.665+00:00"
+                              createdBy:
+                                type: integer
+                                example: 75155282
+                                default: 0
+                              lastUpdatedOn:
+                                type: string
+                                example: "2025-03-28T13:48:47.665+00:00"
+                              lastUpdatedBy:
+                                type: integer
+                                example: 75155282
+                                default: 0
+                      errors:
+                        type: array
+                  - title: Transaction
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 67ebcbe9730aa850fc504145
+                          orgId:
+                            type: integer
+                            example: 100737
+                            default: 0
+                          searchStrategyType:
+                            type: string
+                            example: COMBINATION
+                          entityType:
+                            type: string
+                            example: TRANSACTION
+                          dataFieldDefinitions:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                fieldId:
+                                  type: string
+                                  example: billNumber
+                                fieldAlias:
+                                  type: string
+                                  example: billNumber
+                                fieldType:
+                                  type: string
+                                  example: DATA
+                                dataSourceDetails:
+                                  type: object
+                                  properties:
+                                    fieldReference:
+                                      type: string
+                                      example: billNumber
+                                dataType:
+                                  type: string
+                                  example: STRING
+                          auditInfo:
+                            type: object
+                            properties:
+                              createdOn:
+                                type: string
+                                example: "2025-04-01T11:20:09.793+00:00"
+                              createdBy:
+                                type: integer
+                                example: 75155282
+                                default: 0
+                              lastUpdatedOn:
+                                type: string
+                                example: "2025-04-01T11:20:09.793+00:00"
+                              lastUpdatedBy:
+                                type: integer
+                                example: 75155282
+                                default: 0
+                      errors:
+                        type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/cortex/v1/dataFields/{id}:
+    put:
+      summary: Update Data Field
+      description: This API allows you to update data fields that you defined for the org.
+      operationId: put-data-field-api
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Customer:
+                  value: "{\n  \"searchStrategyType\" : \"PREFIX\",\n  \"entityType\" : \"CUSTOMER\",\n  \"dataFieldDefinitions\" : [\n\t\t{\n\t\t\t\"fieldId\" : \"firstName\",\n\t\t\t\"fieldAlias\" : \"firstName\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"firstName\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"lastName\",\n\t\t\t\"fieldAlias\" : \"lastName\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"lastName\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"mobile\",\n\t\t\t\"fieldAlias\" : \"mobile\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"mobile\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n\t\t{\n\t\t\t\"fieldId\" : \"email\",\n\t\t\t\"fieldAlias\" : \"email\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"email\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t},\n    {\n\t\t\t\"fieldId\" : \"externalId\",\n\t\t\t\"fieldAlias\" : \"externalId\",\n\t\t\t\"fieldType\" : \"DATA\",\n\t\t\t\"dataSourceDetails\" : {\n\t\t\t\t\"fieldReference\" : \"externalId\"\n\t\t\t},\n\t\t\t\"dataType\" : \"STRING\"\n\t\t}\n\n\t]\n}"
+                Transaction:
+                  value: |-
+                    {
+                        "data": {
+                            "id": "67ebcbe9730aa850fc504145",
+                            "orgId": 100737,
+                            "searchStrategyType": "COMBINATION",
+                            "entityType": "TRANSACTION",
+                            "dataFieldDefinitions": [
+                                {
+                                    "fieldId": "billNumber",
+                                    "fieldAlias": "billNumber",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "billNumber"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "billDate",
+                                    "fieldAlias": "billDate",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "billDate"
+                                    },
+                                    "dataType": "DATE"
+                                },
+                                {
+                                    "fieldId": "storename",
+                                    "fieldAlias": "storename",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "additionalFields.storename"
+                                    },
+                                    "dataType": "STRING"
+                                },
+                                {
+                                    "fieldId": "storecode",
+                                    "fieldAlias": "storecode",
+                                    "fieldType": "DATA",
+                                    "dataSourceDetails": {
+                                        "fieldReference": "additionalFields.storecode"
+                                    },
+                                    "dataType": "STRING"
+                                }
+                            ],
+                            "auditInfo": {
+                                "createdOn": "2025-04-01T11:20:09.793+00:00",
+                                "createdBy": 75155282,
+                                "lastUpdatedOn": "2025-04-01T11:20:09.793+00:00",
+                                "lastUpdatedBy": 75155282
+                            }
+                        },
+                        "errors": []
+                    }
+              schema:
+                oneOf:
+                  - title: Customer
+                    type: object
+                    properties:
+                      searchStrategyType:
+                        type: string
+                        example: PREFIX
+                      entityType:
+                        type: string
+                        example: CUSTOMER
+                      dataFieldDefinitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            fieldId:
+                              type: string
+                              example: firstName
+                            fieldAlias:
+                              type: string
+                              example: firstName
+                            fieldType:
+                              type: string
+                              example: DATA
+                            dataSourceDetails:
+                              type: object
+                              properties:
+                                fieldReference:
+                                  type: string
+                                  example: firstName
+                            dataType:
+                              type: string
+                              example: STRING
+                  - title: Transaction
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 67ebcbe9730aa850fc504145
+                          orgId:
+                            type: integer
+                            example: 100737
+                            default: 0
+                          searchStrategyType:
+                            type: string
+                            example: COMBINATION
+                          entityType:
+                            type: string
+                            example: TRANSACTION
+                          dataFieldDefinitions:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                fieldId:
+                                  type: string
+                                  example: billNumber
+                                fieldAlias:
+                                  type: string
+                                  example: billNumber
+                                fieldType:
+                                  type: string
+                                  example: DATA
+                                dataSourceDetails:
+                                  type: object
+                                  properties:
+                                    fieldReference:
+                                      type: string
+                                      example: billNumber
+                                dataType:
+                                  type: string
+                                  example: STRING
+                          auditInfo:
+                            type: object
+                            properties:
+                              createdOn:
+                                type: string
+                                example: "2025-04-01T11:20:09.793+00:00"
+                              createdBy:
+                                type: integer
+                                example: 75155282
+                                default: 0
+                              lastUpdatedOn:
+                                type: string
+                                example: "2025-04-01T11:20:09.793+00:00"
+                              lastUpdatedBy:
+                                type: integer
+                                example: 75155282
+                                default: 0
+                      errors:
+                        type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/cortex/v1/search:
+    post:
+      summary: Perform Search (Cortex API)
+      operationId: search-api-cortex-api
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {}{
+                        "data": {
+                            "orgId": 100737,
+                            "entityType": "CUSTOMER",
+                            "entityDetails": [
+                                {
+                                    "entityId": "564647512",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine"
+                                    }
+                                },
+                                {
+                                    "entityId": "564647566",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine",
+                                        "externalId": "mega123"
+                                    }
+                                },
+                                {
+                                    "entityId": "564647568",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine",
+                                        "externalId": "mega1234"
+                                    }
+                                },
+                                {
+                                    "entityId": "564647574",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine",
+                                        "mobile": "9988221100",
+                                        "externalId": "mega12345",
+                                        "email": "user@example.com"
+                                    }
+                                },
+                                {
+                                    "entityId": "564647589",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine",
+                                        "externalId": "mega123457"
+                                    }
+                                },
+                                {
+                                    "entityId": "564662467",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine",
+                                        "externalId": "mega123458"
+                                    }
+                                },
+                                {
+                                    "entityId": "564662468",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine",
+                                        "externalId": "mega123459"
+                                    }
+                                },
+                                {
+                                    "entityId": "564663537",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine",
+                                        "externalId": "mega1"
+                                    }
+                                },
+                                {
+                                    "entityId": "564663541",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine1",
+                                        "externalId": "megaa"
+                                    }
+                                },
+                                {
+                                    "entityId": "564663557",
+                                    "entityData": {
+                                        "firstName": "dave",
+                                        "lastName": "mustaine1",
+                                        "externalId": "megaa1"
+                                    }
+                                }
+                            ]
+                        },
+                        "errors": []
+                    }
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

@@ -1,0 +1,136 @@
+openapi: 3.0.1
+info:
+  title: Transaction (V2) APIs
+  description: Transaction endpoints - Version 2
+  version: 1.0.0
+servers:
+  - url: https://{host}/v2
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/rewards/core/v1/management/transactions:
+    put:
+      summary: Update fulfillment status and transaction custom fields for issued rewards
+      operationId: update-fulfilment-status-and-txn-custom-fields
+      parameters:
+        - name: skip_validation
+          in: query
+          description: >-
+            A validation code is used to redeem points for the transaction. skip_validation is set to true as brands
+            configured in Marvel bypass validation code.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "transactions": [
+                            {
+                                "transactionId": 3482445,
+                                "rewardId": 177657,
+                                "customerId": 85076836,
+                                "fulfillmentDetails": {
+                                    "id": 9,
+                                    "status": "Confirmed"
+                                },
+                                "transactionCustomFields": {
+                                    "Partner_Order_Id": "6565454987656",
+                                    "Date": "10/09/2024",
+                                    "Time": "evening",
+                                    "Seat_Section": "Orchestra",
+                                    "Seat_Row": "Q",
+                                    "Seat_Number": "205",
+                                    "Paypal_Order_Id": "45678",
+                                    "Paypal_amout": "30$"
+                                }
+                            }
+                        ]
+                    }
+              schema:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        transactionId:
+                          type: integer
+                          example: 3482445
+                          default: 0
+                        rewardId:
+                          type: integer
+                          example: 177657
+                          default: 0
+                        customerId:
+                          type: integer
+                          example: 85076836
+                          default: 0
+                        fulfillmentDetails:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 9
+                              default: 0
+                            status:
+                              type: string
+                              example: Confirmed
+                        transactionCustomFields:
+                          type: object
+                          properties:
+                            Partner_Order_Id:
+                              type: string
+                              example: "6565454987656"
+                            Date:
+                              type: string
+                              example: 10/09/2024
+                            Time:
+                              type: string
+                              example: evening
+                            Seat_Section:
+                              type: string
+                              example: Orchestra
+                            Seat_Row:
+                              type: string
+                              example: Q
+                            Seat_Number:
+                              type: string
+                              example: "205"
+                            Paypal_Order_Id:
+                              type: string
+                              example: "45678"
+                            Paypal_amout:
+                              type: string
+                              example: 30$
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

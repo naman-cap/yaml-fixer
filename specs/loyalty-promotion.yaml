@@ -1,0 +1,3802 @@
+openapi: 3.0.1
+info:
+  title: Loyalty Promotion APIs
+  description: Loyalty promotion enrollment, issuance, and management
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/loyalty/v1/programs/{programId}/promotions/add/{promotion_type}:
+    post:
+      summary: "Add Promotion : don't make it public"
+      description: Lets you create a promotion for a specific loyalty program.
+      operationId: add-promotion
+      parameters:
+        - name: programId
+          in: path
+          description: Unique ID of the loyalty program.
+          schema:
+            type: integer
+            format: int64
+          required: true
+        - name: promotionType
+          in: path
+          description: Type of promotion.
+          schema:
+            type: string
+            enum:
+              - SIMPLE
+              - RANGE
+              - KEYWORD
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - programId
+                - startDate
+                - endDate
+                - identifier
+                - eventName
+                - rulesetInfos
+                - contextID
+                - orgID
+                - contextType
+                - endpointName
+                - type
+                - startDate , endDate
+                - active
+                - rules
+                - "-exp"
+                - "-expJSON"
+                - "-isActive"
+                - caseToActions
+                - "--name"
+                - "--mandatoryPropertiesValues"
+              properties:
+                name:
+                  type: string
+                  description: Unique name for the ruleset
+                programId:
+                  type: integer
+                  description: >-
+                    Unique ID of the loyalty program to associate with the promotion. You can create multiple promotions
+                    under a single loyalty program.
+                  format: int32
+                startDate:
+                  type: string
+                  description: >-
+                    Validity of the promotion. Pass the date range in `startDate` and `endDate` (ISO standard -
+                    `yyyy-mm-ddThh:mm:ss.s+z`).
+                  format: date
+                endDate:
+                  type: string
+                  description: >-
+                    Validity of the promotion. Pass the ISO date range in `startDate` and `endDate` (ISO standard -
+                    `yyyy-mm-ddThh:mm:ss.s+z`).
+                  format: date
+                allocatePointsOn:
+                  type: string
+                  description: Enter event action name that generates promotional points. For example,  `Bill`
+                identifier:
+                  type: string
+                  description: Unique identifier of the promotion
+                eventName:
+                  type: string
+                  description: >-
+                    Name of the event to associate with the promotion. For example, `TRANSACTIONADD`, `CUSTOMERUPDATE`,
+                    `OfferScan`, `spinTheWheel`, and more
+                  enum:
+                    - ""
+                metadata:
+                  type: object
+                  description: metadataEnter meta information of the promotion in key and value.
+                  properties: {}
+                allocationActions:
+                  type: object
+                  description: Allocation attributes like allocation type, expiry days, and more.
+                  properties: {}
+                qualifyingConditions:
+                  type: array
+                  description: Array of different conditions like KPI, parameters, and more.
+                  items:
+                    type: string
+                conditionExpression:
+                  type: string
+                  description: Name of the condition that is passed in `qualifyingConditions`.
+                allocationRule:
+                  type: array
+                  description: Set the condition to generate the promotional points.
+                  items:
+                    type: string
+                limits:
+                  type: object
+                  description: >-
+                    Set the maximum number of promotional points issued to a customer during a specific promotion
+                    period. Set the maximum number of times points can be issued to a customer during a promotion
+                    period. Set the total number of points that can be generated during a promotion period.
+                  properties: {}
+                rulesetInfos:
+                  type: object
+                  description: >-
+                    Information about the ruleset associated with the promotion. The rulesets define the rules and
+                    conditions under which a promotion operates.
+                  properties: {}
+                id:
+                  type: integer
+                  description: >-
+                    The ID of the ruleset. Set the value to -1. This indicates that a new promotion request is being
+                    created.
+                  format: int32
+                contextID:
+                  type: integer
+                  description: >-
+                    Unique ID of the promotion. Refer to the documentation on [promotion
+                    IDs](https://docs.capillarytech.com/reference/get-promotion-by-id) for more information.
+                  format: int32
+                orgID:
+                  type: integer
+                  description: Unique ID of the organization
+                  format: int32
+                contextType:
+                  type: string
+                  description: The type of context. Set to program.
+                endpointName:
+                  type: string
+                  description: Set to POINTSENGINE_ENDPOINT
+                type:
+                  type: string
+                  description: Type of ruleset.
+                startDate , endDate:
+                  type: string
+                  description: Format in Epoch time (ex. 1726207950)
+                active:
+                  type: boolean
+                  description: Status of the promotion. Set to true when creating a promotion for the first time
+                rules:
+                  type: array
+                  description: The rules defined for the promotion
+                  items:
+                    type: string
+                "-id":
+                  type: integer
+                  description: The unique identifier for the rule.
+                  format: int32
+                "-exp":
+                  type: boolean
+                  description: >-
+                    Enable rule expression. Rule expressions are conditions that determine whether a statement is true
+                    or false. Refer to rule writing for more information.
+                "-expJSON":
+                  type: string
+                  description: The rule expression in JSON format.
+                "-isActive":
+                  type: boolean
+                  description: Indicates whether the rule is active. Set to true when creating a promotion for the first time
+                "-priority":
+                  type: integer
+                  description: The priority of the rule.
+                  format: int32
+                "-startDate":
+                  type: integer
+                  description: The start date of the rule. ISO 8601 Date Format
+                  format: int32
+                "-endDate":
+                  type: integer
+                  description: The end date of the rule. ISO 8601 Date Format
+                  format: int32
+                "-createdOn":
+                  type: integer
+                  description: The timestamp when the rule was created. ISO 8601 Date Format
+                  format: int32
+                caseToActions:
+                  type: object
+                  description: The actions to be taken based on the rule. Refer to actions for more information
+                  properties: {}
+                "--name":
+                  type: string
+                  description: Name of the action
+                "--mandatoryPropertiesValues":
+                  type: string
+                  description: "As a set of key pair values  eg:   \"key\": \"ProRateOnSourceValue\", \"value\": \"EVENT_DEFAULT_VALUE\""
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "code": 200,
+                            "message": "success"
+                        },
+                        "validationErrors": null,
+                        "data": [
+                            {
+                                "id": 74116,
+                                "name": "promotion_nov27th",
+                                "promotionStatus": "UPCOMING",
+                                "programId": 699,
+                                "startDate": "2024-11-27T00:00:00.856Z",
+                                "endDate": "2024-12-27T23:59:59.856Z",
+                                "identifier": "promotion_nov27th",
+                                "isActive": true,
+                                "promotionSourceType": "PROMOTION_API",
+                                "eventName": "TRANSACTIONADD",
+                                "allocatePointsOn": "BILL",
+                                "allocationActions": [
+                                    {
+                                        "A1": {
+                                            "allocation": {
+                                                "type": "FIXED",
+                                                "value": 1.25
+                                            },
+                                            "expiry": {
+                                                "type": "DAYS",
+                                                "value": "2"
+                                            },
+                                            "rounding": "ROUND"
+                                        }
+                                    }
+                                ],
+                                "limits": {
+                                    "pointsPerCustomer": -1,
+                                    "numberOfTimesPerCustomer": -1,
+                                    "totalPointsInPromotion": -1,
+                                    "totalPointsPerEventLimit": -1
+                                },
+                                "pointsOfferType": "LOYALTY",
+                                "promotionRestrictions": {
+                                    "restrictions": {
+                                        "redemptionRestrictions": [
+                                            {
+                                                "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
+                                                "value": 3,
+                                                "type": "PERIOD_BASED",
+                                                "periodType": "MOVING_WINDOW",
+                                                "periodUnit": "WEEKLY"
+                                            },
+                                            {
+                                                "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
+                                                "value": 3,
+                                                "type": "NON_PERIOD_BASED",
+                                                "periodType": null,
+                                                "periodUnit": null
+                                            },
+                                            {
+                                                "name": "MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER",
+                                                "value": 100,
+                                                "type": "NON_PERIOD_BASED",
+                                                "periodType": null,
+                                                "periodUnit": null
+                                            }
+                                        ],
+                                        "issualRestrictions": [
+                                            {
+                                                "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                                                "value": 3
+                                            }
+                                        ],
+                                        "earnRestrictions": [
+                                            {
+                                                "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                                                "value": 3
+                                            }
+                                        ],
+                                        "expiryRestrictions": [
+                                            {
+                                                "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                                                "value": 10,
+                                                "type": "PROMOTION"
+                                            }
+                                        ]
+                                    },
+                                    "scope": null,
+                                    "isStackable": true,
+                                    "isConsideredForRanking": true,
+                                    "loyaltyEarningType": "ISSUE_AND_EARN",
+                                    "expiryReminder": null,
+                                    "isExclusive": false,
+                                    "isAlwaysApply": false,
+                                    "targetGroupIds": null,
+                                    "targetRuleIds": null,
+                                    "linkedTargetGroupVsTargetRuleIdMap": null
+                                }
+                            }
+                        ]
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: success
+                  validationErrors: {}
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 74116
+                          default: 0
+                        name:
+                          type: string
+                          example: promotion_nov27th
+                        promotionStatus:
+                          type: string
+                          example: UPCOMING
+                        programId:
+                          type: integer
+                          example: 699
+                          default: 0
+                        startDate:
+                          type: string
+                          example: "2024-11-27T00:00:00.856Z"
+                        endDate:
+                          type: string
+                          example: "2024-12-27T23:59:59.856Z"
+                        identifier:
+                          type: string
+                          example: promotion_nov27th
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        promotionSourceType:
+                          type: string
+                          example: PROMOTION_API
+                        eventName:
+                          type: string
+                          example: TRANSACTIONADD
+                        allocatePointsOn:
+                          type: string
+                          example: BILL
+                        allocationActions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              A1:
+                                type: object
+                                properties:
+                                  allocation:
+                                    type: object
+                                    properties:
+                                      type:
+                                        type: string
+                                        example: FIXED
+                                      value:
+                                        type: number
+                                        example: 1.25
+                                        default: 0
+                                  expiry:
+                                    type: object
+                                    properties:
+                                      type:
+                                        type: string
+                                        example: DAYS
+                                      value:
+                                        type: string
+                                        example: "2"
+                                  rounding:
+                                    type: string
+                                    example: ROUND
+                        limits:
+                          type: object
+                          properties:
+                            pointsPerCustomer:
+                              type: integer
+                              example: -1
+                              default: 0
+                            numberOfTimesPerCustomer:
+                              type: integer
+                              example: -1
+                              default: 0
+                            totalPointsInPromotion:
+                              type: integer
+                              example: -1
+                              default: 0
+                            totalPointsPerEventLimit:
+                              type: integer
+                              example: -1
+                              default: 0
+                        pointsOfferType:
+                          type: string
+                          example: LOYALTY
+                        promotionRestrictions:
+                          type: object
+                          properties:
+                            restrictions:
+                              type: object
+                              properties:
+                                redemptionRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_ALLOWED_TIMES_PER_CUSTOMER
+                                      value:
+                                        type: integer
+                                        example: 3
+                                        default: 0
+                                      type:
+                                        type: string
+                                        example: PERIOD_BASED
+                                      periodType:
+                                        type: string
+                                        example: MOVING_WINDOW
+                                      periodUnit:
+                                        type: string
+                                        example: WEEKLY
+                                issualRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                      value:
+                                        type: integer
+                                        example: 3
+                                        default: 0
+                                earnRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                      value:
+                                        type: integer
+                                        example: 3
+                                        default: 0
+                                expiryRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: ISSUAL_PROMOTION_EXPIRY_BASED_ON
+                                      value:
+                                        type: integer
+                                        example: 10
+                                        default: 0
+                                      type:
+                                        type: string
+                                        example: PROMOTION
+                            scope: {}
+                            isStackable:
+                              type: boolean
+                              example: true
+                              default: true
+                            isConsideredForRanking:
+                              type: boolean
+                              example: true
+                              default: true
+                            loyaltyEarningType:
+                              type: string
+                              example: ISSUE_AND_EARN
+                            expiryReminder: {}
+                            isExclusive:
+                              type: boolean
+                              example: false
+                              default: true
+                            isAlwaysApply:
+                              type: boolean
+                              example: false
+                              default: true
+                            targetGroupIds: {}
+                            targetRuleIds: {}
+                            linkedTargetGroupVsTargetRuleIdMap: {}
+  /api_gateway/loyalty/v1/programs/{programId}/createPromotion/{promotionType}:
+    post:
+      summary: Create Loyalty Promotion for UCC
+      description: Lets you create a promotion for UCC a specific loyalty program.
+      operationId: create-promotion-for-ucc
+      parameters:
+        - name: programId
+          in: path
+          description: Unique ID of the loyalty program associated with the promotion.
+          schema:
+            type: integer
+            format: int64
+          required: true
+        - name: promotionType
+          in: path
+          description: Type of promotion. Supported values SIMPLE, RANGE, KEYWORD
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - programId
+                - startDate
+                - endDate
+                - identifier
+                - eventName
+                - rulesetInfos
+                - contextID
+                - orgID
+                - contextType
+                - endpointName
+                - type
+                - startDate , endDate
+                - active
+                - rules
+                - "-exp"
+                - "-expJSON"
+                - "-isActive"
+                - caseToActions
+                - "--name"
+                - "--mandatoryPropertiesValues"
+              properties:
+                id:
+                  type: integer
+                  description: >-
+                    The ID of the ruleset. Set the value to -1. This indicates that a new promotion request is being
+                    created.
+                  format: int32
+                name:
+                  type: string
+                  description: Unique name for the ruleset
+                programId:
+                  type: integer
+                  description: >-
+                    Unique ID of the loyalty program to associate with the promotion. You can create multiple promotions
+                    under a single loyalty program.
+                  format: int32
+                startDate:
+                  type: string
+                  description: >-
+                    Validity of the promotion. Pass the date range in `startDate` and `endDate` (ISO standard -
+                    `yyyy-mm-ddThh:mm:ss.s+z`).
+                  format: date
+                endDate:
+                  type: string
+                  description: >-
+                    Validity of the promotion. Pass the ISO date range in `startDate` and `endDate` (ISO standard -
+                    `yyyy-mm-ddThh:mm:ss.s+z`).
+                  format: date
+                allocatePointsOn:
+                  type: string
+                  description: Enter event action name that generates promotional points. For example,  `Bill`
+                identifier:
+                  type: string
+                  description: Unique identifier of the promotion
+                eventName:
+                  type: string
+                  description: >-
+                    Name of the event to associate with the promotion. For example, `TRANSACTIONADD`, `CUSTOMERUPDATE`,
+                    `OfferScan`, `spinTheWheel`, and more
+                  enum:
+                    - ""
+                metadata:
+                  type: object
+                  description: metadataEnter meta information of the promotion in key and value.
+                  properties: {}
+                allocationActions:
+                  type: object
+                  description: Allocation attributes like allocation type, expiry days, and more.
+                  properties: {}
+                qualifyingConditions:
+                  type: array
+                  description: Array of different conditions like KPI, parameters, and more.
+                  items:
+                    type: string
+                conditionExpression:
+                  type: string
+                  description: Name of the condition that is passed in `qualifyingConditions`.
+                allocationRule:
+                  type: array
+                  description: Set the condition to generate the promotional points.
+                  items:
+                    type: string
+                limits:
+                  type: object
+                  description: >-
+                    Set the maximum number of promotional points issued to a customer during a specific promotion
+                    period. Set the maximum number of times points can be issued to a customer during a promotion
+                    period. Set the total number of points that can be generated during a promotion period.
+                  properties: {}
+                rulesetInfos:
+                  type: object
+                  description: >-
+                    Information about the ruleset associated with the promotion. The rulesets define the rules and
+                    conditions under which a promotion operates.
+                  properties: {}
+                contextID:
+                  type: integer
+                  description: >-
+                    Unique ID of the promotion. Refer to the documentation on [promotion
+                    IDs](https://docs.capillarytech.com/reference/get-promotion-by-id) for more information.
+                  format: int32
+                orgID:
+                  type: integer
+                  description: Unique ID of the organization
+                  format: int32
+                contextType:
+                  type: string
+                  description: The type of context. Set to program.
+                endpointName:
+                  type: string
+                  description: Set to POINTSENGINE_ENDPOINT
+                type:
+                  type: string
+                  description: Type of ruleset.
+                startDate , endDate:
+                  type: string
+                  description: Format in Epoch time (ex. 1726207950)
+                active:
+                  type: boolean
+                  description: Status of the promotion. Set to true when creating a promotion for the first time
+                rules:
+                  type: array
+                  description: The rules defined for the promotion
+                  items:
+                    type: string
+                "-id":
+                  type: integer
+                  description: The unique identifier for the rule.
+                  format: int32
+                "-exp":
+                  type: boolean
+                  description: >-
+                    Enable rule expression. Rule expressions are conditions that determine whether a statement is true
+                    or false. Refer to rule writing for more information.
+                "-expJSON":
+                  type: string
+                  description: The rule expression in JSON format.
+                "-isActive":
+                  type: boolean
+                  description: Indicates whether the rule is active. Set to true when creating a promotion for the first time
+                "-priority":
+                  type: integer
+                  description: The priority of the rule.
+                  format: int32
+                "-startDate":
+                  type: integer
+                  description: The start date of the rule. ISO 8601 Date Format
+                  format: int32
+                "-endDate":
+                  type: integer
+                  description: The end date of the rule. ISO 8601 Date Format
+                  format: int32
+                "-createdOn":
+                  type: integer
+                  description: The timestamp when the rule was created. ISO 8601 Date Format
+                  format: int32
+                caseToActions:
+                  type: object
+                  description: The actions to be taken based on the rule. Refer to actions for more information
+                  properties: {}
+                "--name":
+                  type: string
+                  description: Name of the action
+                "--mandatoryPropertiesValues":
+                  type: string
+                  description: "As a set of key pair values  eg:   \"key\": \"ProRateOnSourceValue\", \"value\": \"EVENT_DEFAULT_VALUE\""
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "promotion": {
+                            "id": -1,
+                            "name": "test_promo_uniqueName110",
+                            "programId": 2932,
+                            "startDate": "2024-08-09T12:00:00+01:00",
+                            "endDate": "2024-08-25T12:00:00+01:00",
+                            "allocatePointsOn": "BILL",
+                            "identifier": "test_promo_uniqueIdentifier110",
+                            "eventName": "TARGETCOMPLETED",
+                            "pointsOfferType": "LOYALTY",
+                            "promotionType": "BILL",
+                            "promotionSourceType": "USER_CREATED",
+                            "limits": {
+                                "pointsPerCustomer": -1,
+                                "numberOfTimesPerCustomer": -1,
+                                "totalPointsInPromotion": -1
+                            },
+                            "promotionRestrictions": {
+                                "loyaltyEarningType": "ISSUE_AND_EARN",
+                                "isStackable": false,
+                                "isExclusive": false,
+                                "isConsideredForRanking": false,
+                                "targetRuleIds": [
+                                    123
+                                ],
+                                "targetGroupIds": [
+                                    1234567
+                                ],
+                                "restrictions": {
+                                    "redemptionRestrictions": [
+                                        {
+                                            "name": "MAX_ALLOWED_TIMES_PER_CUSTOMER",
+                                            "value": 3,
+                                            "type": "PERIOD_BASED",
+                                            "periodType": "MOVING_WINDOW",
+                                            "periodUnit": "WEEKLY"
+                                        },
+                                        {
+                                            "name": "MAX_ALLOWED_TIMES_PER_PROMOTION",
+                                            "value": 3,
+                                            "type": "NON_PERIOD_BASED"
+                                        }
+                                    ],
+                                    "issualRestrictions": [
+                                        {
+                                            "name": "MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER",
+                                            "value": 3,
+                                            "type": "NON_PERIOD_BASED"
+                                        }
+                                    ],
+                                    "earnRestrictions": [
+                                        {
+                                            "name": "MAX_NUMBER_OF_EARNS_PER_CUSTOMER",
+                                            "value": 3
+                                        }
+                                    ],
+                                    "expiryRestrictions": [
+                                        {
+                                            "name": "ISSUAL_PROMOTION_EXPIRY_BASED_ON",
+                                            "type": "PROMOTION",
+                                            "value": 10
+                                        }
+                                    ]
+                                }
+                            },
+                            "rulesetInfos": [
+                                {
+                                    "id": -1,
+                                    "contextID": 2932,
+                                    "orgID": 51174,
+                                    "contextType": "program",
+                                    "endpointName": "POINTSENGINE_ENDPOINT",
+                                    "name": "rulesetName_uniqueue1",
+                                    "type": "USER_CREATED",
+                                    "startDate": 1089532593324,
+                                    "endDate": 33593126193324,
+                                    "active": true,
+                                    "rules": [
+                                        {
+                                            "id": -1,
+                                            "exp": "true",
+                                            "expJSON": "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }",
+                                            "isActive": true,
+                                            "caseToActions": {
+                                                "true": [
+                                                    {
+                                                        "id": -1,
+                                                        "actionName": "AWARD_TARGET_POINTS_ACTION",
+                                                        "mandatoryPropertiesValues": {
+                                                            "ProRateOnSourceValue": "EVENT_DEFAULT_VALUE",
+                                                            "DelayStrategy": "AS_DEFINED_IN_ALLOCATION_STRATEGY",
+                                                            "SourceValueRoundingStrategy": "ACTUAL",
+                                                            "ExpiryStrategy": "81042",
+                                                            "AwardStrategy": "82690",
+                                                            "PointsRoundingStrategy": "ACTUAL",
+                                                            "TargetGroupId": "1234567",
+                                                            "TargetRuleName": "TargetRuleName"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "filterInfo": [],
+                                            "description": "",
+                                            "expDataType": "",
+                                            "ruleSetId": -1,
+                                            "updatedViaNewUI": false
+                                        }
+                                    ],
+                                    "filterInfo": [
+                                        {
+                                            "id": -1,
+                                            "contextType": "RULESET",
+                                            "name": "LoyaltyType",
+                                            "description": "LoyaltyType",
+                                            "isInclude": true,
+                                            "propertyToValues": {
+                                                "loyaltyType": [
+                                                    "loyalty"
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": -1,
+                                            "contextType": "RULESET",
+                                            "name": "EventSource",
+                                            "description": "EventSource",
+                                            "isInclude": true,
+                                            "propertyToValues": {
+                                                "eventSource": [
+                                                    "INSTORE"
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "cappingInfo": [],
+                                    "isRulesetForGlobalPromotion": "false",
+                                    "programIds": []
+                                }
+                            ]
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  promotion:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: -1
+                        default: 0
+                      name:
+                        type: string
+                        example: test_promo_uniqueName110
+                      programId:
+                        type: integer
+                        example: 2932
+                        default: 0
+                      startDate:
+                        type: string
+                        example: "2024-08-09T12:00:00+01:00"
+                      endDate:
+                        type: string
+                        example: "2024-08-25T12:00:00+01:00"
+                      allocatePointsOn:
+                        type: string
+                        example: BILL
+                      identifier:
+                        type: string
+                        example: test_promo_uniqueIdentifier110
+                      eventName:
+                        type: string
+                        example: TARGETCOMPLETED
+                      pointsOfferType:
+                        type: string
+                        example: LOYALTY
+                      promotionType:
+                        type: string
+                        example: BILL
+                      promotionSourceType:
+                        type: string
+                        example: USER_CREATED
+                      limits:
+                        type: object
+                        properties:
+                          pointsPerCustomer:
+                            type: integer
+                            example: -1
+                            default: 0
+                          numberOfTimesPerCustomer:
+                            type: integer
+                            example: -1
+                            default: 0
+                          totalPointsInPromotion:
+                            type: integer
+                            example: -1
+                            default: 0
+                      promotionRestrictions:
+                        type: object
+                        properties:
+                          loyaltyEarningType:
+                            type: string
+                            example: ISSUE_AND_EARN
+                          isStackable:
+                            type: boolean
+                            example: false
+                            default: true
+                          isExclusive:
+                            type: boolean
+                            example: false
+                            default: true
+                          isConsideredForRanking:
+                            type: boolean
+                            example: false
+                            default: true
+                          targetRuleIds:
+                            type: array
+                            items:
+                              type: integer
+                              example: 123
+                              default: 0
+                          targetGroupIds:
+                            type: array
+                            items:
+                              type: integer
+                              example: 1234567
+                              default: 0
+                          restrictions:
+                            type: object
+                            properties:
+                              redemptionRestrictions:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                      example: MAX_ALLOWED_TIMES_PER_CUSTOMER
+                                    value:
+                                      type: integer
+                                      example: 3
+                                      default: 0
+                                    type:
+                                      type: string
+                                      example: PERIOD_BASED
+                                    periodType:
+                                      type: string
+                                      example: MOVING_WINDOW
+                                    periodUnit:
+                                      type: string
+                                      example: WEEKLY
+                              issualRestrictions:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                      example: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                    value:
+                                      type: integer
+                                      example: 3
+                                      default: 0
+                                    type:
+                                      type: string
+                                      example: NON_PERIOD_BASED
+                              earnRestrictions:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                      example: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                    value:
+                                      type: integer
+                                      example: 3
+                                      default: 0
+                              expiryRestrictions:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                      example: ISSUAL_PROMOTION_EXPIRY_BASED_ON
+                                    type:
+                                      type: string
+                                      example: PROMOTION
+                                    value:
+                                      type: integer
+                                      example: 10
+                                      default: 0
+                      rulesetInfos:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: -1
+                              default: 0
+                            contextID:
+                              type: integer
+                              example: 2932
+                              default: 0
+                            orgID:
+                              type: integer
+                              example: 51174
+                              default: 0
+                            contextType:
+                              type: string
+                              example: program
+                            endpointName:
+                              type: string
+                              example: POINTSENGINE_ENDPOINT
+                            name:
+                              type: string
+                              example: rulesetName_uniqueue1
+                            type:
+                              type: string
+                              example: USER_CREATED
+                            startDate:
+                              type: integer
+                              example: 1089532593324
+                              default: 0
+                            endDate:
+                              type: integer
+                              example: 33593126193324
+                              default: 0
+                            active:
+                              type: boolean
+                              example: true
+                              default: true
+                            rules:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                    example: -1
+                                    default: 0
+                                  exp:
+                                    type: string
+                                    example: "true"
+                                  expJSON:
+                                    type: string
+                                    example: "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }"
+                                  isActive:
+                                    type: boolean
+                                    example: true
+                                    default: true
+                                  caseToActions:
+                                    type: object
+                                    properties:
+                                      "true":
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            id:
+                                              type: integer
+                                              example: -1
+                                              default: 0
+                                            actionName:
+                                              type: string
+                                              example: AWARD_TARGET_POINTS_ACTION
+                                            mandatoryPropertiesValues:
+                                              type: object
+                                              properties:
+                                                ProRateOnSourceValue:
+                                                  type: string
+                                                  example: EVENT_DEFAULT_VALUE
+                                                DelayStrategy:
+                                                  type: string
+                                                  example: AS_DEFINED_IN_ALLOCATION_STRATEGY
+                                                SourceValueRoundingStrategy:
+                                                  type: string
+                                                  example: ACTUAL
+                                                ExpiryStrategy:
+                                                  type: string
+                                                  example: "81042"
+                                                AwardStrategy:
+                                                  type: string
+                                                  example: "82690"
+                                                PointsRoundingStrategy:
+                                                  type: string
+                                                  example: ACTUAL
+                                                TargetGroupId:
+                                                  type: string
+                                                  example: "1234567"
+                                                TargetRuleName:
+                                                  type: string
+                                                  example: TargetRuleName
+                                  filterInfo:
+                                    type: array
+                                  description:
+                                    type: string
+                                    example: ""
+                                  expDataType:
+                                    type: string
+                                    example: ""
+                                  ruleSetId:
+                                    type: integer
+                                    example: -1
+                                    default: 0
+                                  updatedViaNewUI:
+                                    type: boolean
+                                    example: false
+                                    default: true
+                            filterInfo:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                    example: -1
+                                    default: 0
+                                  contextType:
+                                    type: string
+                                    example: RULESET
+                                  name:
+                                    type: string
+                                    example: LoyaltyType
+                                  description:
+                                    type: string
+                                    example: LoyaltyType
+                                  isInclude:
+                                    type: boolean
+                                    example: true
+                                    default: true
+                                  propertyToValues:
+                                    type: object
+                                    properties:
+                                      loyaltyType:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: loyalty
+                            cappingInfo:
+                              type: array
+                            isRulesetForGlobalPromotion:
+                              type: string
+                              example: "false"
+                            programIds:
+                              type: array
+  /api_gateway/loyalty/v1/programs/promotions/list:
+    get:
+      summary: Get Details of all Loyalty Promotions
+      description: Lists all promotions.
+      operationId: get-promotion-details
+      parameters:
+        - name: limit
+          in: query
+          description: Number of entries in a page.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: Page number you want to fetch.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: program
+          in: query
+          description: Program ID for which you want to get the promotion metadata.
+          schema:
+            type: integer
+            format: int64
+        - name: status
+          in: query
+          description: Status of promotion.
+          schema:
+            type: string
+            enum:
+              - COMPLETED
+              - LIVE
+              - UPCOMING
+              - INACTIVE
+        - name: activity
+          in: query
+          description: Event name for promotion.
+          schema:
+            type: string
+            enum:
+              - CustomerRegistration
+              - CustomerUpdate
+              - GenericEvent
+              - NewBill
+              - PointsContributionToGroup
+              - PointsTransfer
+              - ReturnBill
+              - TargetCompleted
+              - TransactionAdd
+              - ALL
+        - name: startDate
+          in: query
+          description: Start date of the promotion.
+          schema:
+            type: string
+        - name: endDate
+          in: query
+          description: End date of promotion.
+          schema:
+            type: string
+        - name: promotionName
+          in: query
+          description: Promotion name.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    status:
+                      code: 200
+                      message: success
+                    validationErrors: null
+                    data:
+                      - id: 106985
+                        name: Premium Partner Program - Transaction Benefits
+                        description: Ongoing benefits for partner program members
+                        promotionStatus: INACTIVE
+                        lastUpdateDate: "2025-09-23T03:51:19Z"
+                        startRuleIdentifier: ruleset_f8101376-26e9-4c24-aab8-d8ef454de4c8
+                        lastUpdatedBy: 75184878
+                        programName: DocDemoDefaultProgram
+                        promotionType: BILL
+                        programId: 973
+                        startDate: 2024-12-31T18:30Z
+                        endDate: "2025-12-31T18:29:59Z"
+                        identifier: 21e881f3-4b58-4f3c-b491-0dcd49b57d55
+                        isActive: false
+                        eventName: TRANSACTIONADD
+                        pointsOfferType: GENERIC
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 100
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions: []
+                            earnRestrictions: []
+                            expiryRestrictions: []
+                          scope: null
+                          loyaltyEarningType: null
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: true
+                          isAlwaysApply: false
+                      - id: 106984
+                        name: Premium Partner Program - Enrollment Benefits
+                        description: Welcome benefits for new partner program members
+                        promotionStatus: INACTIVE
+                        lastUpdateDate: "2025-09-23T03:51:18Z"
+                        startRuleIdentifier: ruleset_c87a9a69-31b9-4666-8b43-8d018d91be9f
+                        lastUpdatedBy: 75184878
+                        programName: DocDemoDefaultProgram
+                        promotionType: CUSTOMER
+                        programId: 973
+                        startDate: 2024-12-31T18:30Z
+                        endDate: "2025-12-31T18:29:59Z"
+                        identifier: 22a60c9d-9d96-4039-85f2-d80aae837a9e
+                        isActive: false
+                        eventName: CUSTOMERREGISTRATION
+                        pointsOfferType: LOYALTY_EARNING
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 100
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions:
+                              - name: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                value: 1
+                            earnRestrictions:
+                              - name: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                value: 1
+                              - name: MAX_POINTS_PER_EARN_PER_CUSTOMER
+                                value: -1
+                            expiryRestrictions:
+                              - name: EARN_PROMOTION_EXPIRY_BASED_ON
+                                value: 365
+                                type: CUSTOM
+                              - name: ISSUAL_PROMOTION_EXPIRY_BASED_ON
+                                value: 365
+                                type: CUSTOM
+                          scope: null
+                          loyaltyEarningType: ISSUE_AND_EARN
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: true
+                          isAlwaysApply: false
+                      - id: 106442
+                        name: Customer_566135941_Event_Trigger
+                        description: Special event trigger for customer 566135941 - simulating event type 12
+                        promotionStatus: INACTIVE
+                        lastUpdateDate: "2025-09-18T05:36:50Z"
+                        startRuleIdentifier: ruleset_3d77dcfe-9af9-4530-aefa-1b7be9717160
+                        lastUpdatedBy: 75184878
+                        programName: DocDemoDefaultProgram
+                        promotionType: BILL
+                        programId: 973
+                        startDate: 2024-12-31T18:30Z
+                        endDate: "2025-12-31T18:29:59Z"
+                        identifier: 32ac1cdb-b11d-4d81-9c5a-f35b6824f0a7
+                        isActive: false
+                        eventName: TRANSACTIONADD
+                        pointsOfferType: GENERIC
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 100
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions: []
+                            earnRestrictions: []
+                            expiryRestrictions: []
+                          scope: null
+                          loyaltyEarningType: null
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: true
+                          isAlwaysApply: false
+                      - id: 105593
+                        name: 100 Points for $500+ Purchase
+                        description: Earn 100 bonus points when you spend more than $500 in a single transaction
+                        promotionStatus: INACTIVE
+                        lastUpdateDate: "2025-09-10T17:40:07Z"
+                        startRuleIdentifier: ruleset_4b1441ac-41d2-4c1e-8e74-a90829c0fdb4
+                        lastUpdatedBy: 75184878
+                        programName: DocDemoDefaultProgram
+                        promotionType: BILL
+                        programId: 973
+                        startDate: 2024-12-31T18:30Z
+                        endDate: "2025-12-31T18:29:59Z"
+                        identifier: cdee661c-4e57-4736-963d-cd21760707a1
+                        isActive: false
+                        eventName: TRANSACTIONADD
+                        pointsOfferType: GENERIC
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 100
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions: []
+                            earnRestrictions: []
+                            expiryRestrictions: []
+                          scope: null
+                          loyaltyEarningType: null
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: true
+                          isAlwaysApply: false
+                      - id: 104203
+                        name: AllRewardsDirect
+                        description: ""
+                        promotionStatus: COMPLETED
+                        lastUpdateDate: "2025-08-29T10:42:24Z"
+                        startRuleIdentifier: ruleset_20250829103332
+                        lastUpdatedBy: 75139931
+                        programName: DocDemoDefaultProgram
+                        promotionType: BILL
+                        programId: 973
+                        startDate: 2025-08-01T00:00Z
+                        endDate: "2025-08-31T23:59:59Z"
+                        identifier: d28dfcb6-9386-42e3-84f1-2eb681d8f49a
+                        isActive: true
+                        eventName: TRANSACTIONADD
+                        pointsOfferType: LOYALTY
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 1
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions:
+                              - name: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                value: 100
+                            earnRestrictions:
+                              - name: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                value: 1
+                              - name: MAX_POINTS_PER_EARN_PER_CUSTOMER
+                                value: -1
+                            expiryRestrictions:
+                              - name: EARN_PROMOTION_EXPIRY_BASED_ON
+                                value: 0
+                                type: PROMOTION
+                          scope: null
+                          loyaltyEarningType: null
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: false
+                          isAlwaysApply: false
+                      - id: 104202
+                        name: AllRewards
+                        description: ""
+                        promotionStatus: LIVE
+                        lastUpdateDate: "2025-08-29T10:47:07Z"
+                        startRuleIdentifier: ruleset_20250829102418
+                        lastUpdatedBy: 75139931
+                        programName: DocDemoDefaultProgram
+                        promotionType: BILL
+                        programId: 973
+                        startDate: 2025-08-01T00:00Z
+                        endDate: "2025-12-31T23:59:59Z"
+                        identifier: f2402ce8-538a-4936-8af6-5fd86ca0bf19
+                        isActive: true
+                        eventName: TRANSACTIONADD
+                        pointsOfferType: GENERIC
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 100
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions: []
+                            earnRestrictions: []
+                            expiryRestrictions: []
+                          scope: null
+                          loyaltyEarningType: null
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: true
+                          isAlwaysApply: false
+                      - id: 103848
+                        name: test_promo11
+                        description: test
+                        promotionStatus: LIVE
+                        lastUpdateDate: "2025-08-26T06:51:03Z"
+                        startRuleIdentifier: ruleset_20250826065058
+                        lastUpdatedBy: 75164387
+                        programName: DocDemoDefaultProgram
+                        promotionType: CUSTOMER
+                        programId: 973
+                        startDate: 2025-08-26T00:00Z
+                        endDate: "2025-09-29T23:59:59Z"
+                        identifier: b3e52fd7-ca6d-4f07-b0da-c3fac9caa950
+                        isActive: true
+                        eventName: TARGETCOMPLETED
+                        pointsOfferType: GENERIC
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 100
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions: []
+                            earnRestrictions: []
+                            expiryRestrictions: []
+                          scope: null
+                          loyaltyEarningType: null
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: false
+                          isAlwaysApply: false
+                      - id: 100508
+                        name: doc_test27
+                        description: wdcfwdecfwcfwdecf
+                        promotionStatus: LIVE
+                        lastUpdateDate: "2025-07-27T08:28:33Z"
+                        startRuleIdentifier: ruleset_20250727082826
+                        lastUpdatedBy: 75160045
+                        programName: DocTransferPoints
+                        promotionType: CUSTOMER
+                        programId: 983
+                        startDate: 2025-07-31T00:00Z
+                        endDate: "2025-09-24T23:59:59Z"
+                        identifier: c320cd35-266e-4148-a29d-97b4ca542095
+                        isActive: true
+                        eventName: POINTSREDEMPTION
+                        pointsOfferType: LOYALTY
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 1
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions:
+                              - name: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                value: 100
+                            earnRestrictions:
+                              - name: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                value: 1
+                              - name: MAX_POINTS_PER_EARN_PER_CUSTOMER
+                                value: -1
+                            expiryRestrictions:
+                              - name: EARN_PROMOTION_EXPIRY_BASED_ON
+                                value: 0
+                                type: PROMOTION
+                          scope: null
+                          loyaltyEarningType: null
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: false
+                          isAlwaysApply: false
+                      - id: 99350
+                        name: Test Direct promo
+                        description: Test Direct promo
+                        promotionStatus: COMPLETED
+                        lastUpdateDate: "2025-07-18T11:39:04Z"
+                        startRuleIdentifier: ruleset_20250717065119
+                        lastUpdatedBy: 75175714
+                        programName: DocDemoDefaultProgram
+                        promotionType: CUSTOMER
+                        programId: 973
+                        startDate: 2025-07-17T00:00Z
+                        endDate: "2025-07-18T23:59:59Z"
+                        identifier: 0a523fbf-5a61-44e6-ba63-8d3d9cca36da
+                        isActive: true
+                        eventName: GENERICEVENT
+                        eventSubTypeName: TestEvent1
+                        pointsOfferType: LOYALTY
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 2
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions:
+                              - name: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                value: 100
+                            earnRestrictions:
+                              - name: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                value: 5
+                              - name: MAX_POINTS_PER_EARN_PER_CUSTOMER
+                                value: -1
+                              - name: MAX_NUMBER_OF_EARN_PER_PROMOTION
+                                value: 100
+                            expiryRestrictions:
+                              - name: EARN_PROMOTION_EXPIRY_BASED_ON
+                                value: 0
+                                type: PROMOTION
+                          scope: null
+                          loyaltyEarningType: null
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: false
+                          isAlwaysApply: false
+                      - id: 99269
+                        name: Test promo
+                        description: Test promo
+                        promotionStatus: COMPLETED
+                        lastUpdateDate: "2025-07-18T11:40:57Z"
+                        startRuleIdentifier: ruleset_20250716130240
+                        lastUpdatedBy: 75175714
+                        programName: DocDemoDefaultProgram
+                        promotionType: BILL
+                        programId: 973
+                        startDate: 2025-07-16T00:00Z
+                        endDate: "2025-07-18T23:59:59Z"
+                        identifier: 945d2c84-8d09-4a43-9f82-c88c7f4fe5ae
+                        isActive: true
+                        eventName: TRANSACTIONADD
+                        pointsOfferType: LOYALTY_EARNING
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 2
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions:
+                              - name: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                value: 10
+                            earnRestrictions:
+                              - name: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                value: 5
+                              - name: MAX_POINTS_PER_EARN_PER_CUSTOMER
+                                value: -1
+                              - name: MAX_NUMBER_OF_EARN_PER_PROMOTION
+                                value: 100
+                            expiryRestrictions:
+                              - name: ISSUAL_PROMOTION_EXPIRY_BASED_ON
+                                value: 0
+                                type: PROMOTION
+                              - name: EARN_PROMOTION_EXPIRY_BASED_ON
+                                value: 0
+                                type: PROMOTION
+                          scope: null
+                          loyaltyEarningType: ISSUE_AND_EARN
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: true
+                          isAlwaysApply: false
+                    pageDetails:
+                      pageNumber: 0
+                      pageSize: 10
+                      totalEntries: 21
+                      pageCount: 3
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: success
+                  validationErrors: {}
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 56796
+                          default: 0
+                        name:
+                          type: string
+                          example: Happyhour
+                        description:
+                          type: string
+                          example: Promotion Description
+                        promotionStatus:
+                          type: string
+                          example: INACTIVE
+                        lastUpdateDate:
+                          type: string
+                          example: "2024-04-16T07:39:05Z"
+                        lastUpdatedBy:
+                          type: integer
+                          example: 606249
+                          default: 0
+                        programName:
+                          type: string
+                          example: Default Program
+                        promotionType:
+                          type: string
+                          example: BILL
+                        programId:
+                          type: integer
+                          example: 469
+                          default: 0
+                        startDate:
+                          type: string
+                          example: 2024-04-04T00:00Z
+                        endDate:
+                          type: string
+                          example: "2024-04-27T23:59:59Z"
+                        identifier:
+                          type: string
+                          example: d32dd076-67b2-4b15-b52d-83f9c4785589
+                        isActive:
+                          type: boolean
+                          example: false
+                          default: true
+                        eventName:
+                          type: string
+                          example: TRANSACTIONADD
+                        pointsOfferType:
+                          type: string
+                          example: GENERIC
+                        promotionRestrictions:
+                          type: object
+                          properties:
+                            restrictions:
+                              type: object
+                              properties:
+                                redemptionRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                      value:
+                                        type: integer
+                                        example: 100
+                                        default: 0
+                                      type:
+                                        type: string
+                                        example: NON_PERIOD_BASED
+                                      periodType: {}
+                                      periodUnit: {}
+                                issualRestrictions:
+                                  type: array
+                                earnRestrictions:
+                                  type: array
+                                expiryRestrictions:
+                                  type: array
+                            scope: {}
+                            isStackable:
+                              type: boolean
+                              example: false
+                              default: true
+                            isConsideredForRanking:
+                              type: boolean
+                              example: false
+                              default: true
+                            loyaltyEarningType: {}
+                            expiryReminder: {}
+                            isExclusive:
+                              type: boolean
+                              example: false
+                              default: true
+                            isAlwaysApply:
+                              type: boolean
+                              example: false
+                              default: true
+                            cappingStatus:
+                              type: boolean
+                              example: true
+                              default: true
+                  pageDetails:
+                    type: object
+                    properties:
+                      pageNumber:
+                        type: integer
+                        example: 1
+                        default: 0
+                      pageSize:
+                        type: integer
+                        example: 5
+                        default: 0
+                      totalEntries:
+                        type: integer
+                        example: 88
+                        default: 0
+                      pageCount:
+                        type: integer
+                        example: 18
+                        default: 0
+  /api_gateway/loyalty/v1/programs/{programId}/promotionsV2:
+    get:
+      summary: Get Loyalty Promotion List for a Program
+      description: Retrieves a paginated list of promotions for a given program.
+      operationId: get-loyalty-promotion-list-for-a-program
+      parameters:
+        - name: limit
+          in: query
+          description: Number of results that need to be displayed. The values from zero to a maximum of 100 are supported.
+          required: true
+          schema:
+            type: string
+        - name: sourceType
+          in: query
+          description: Filter promotion data based on its source type.
+          required: true
+          schema:
+            type: string
+            enum:
+              - ""
+        - name: programId
+          in: path
+          description: Unique ID of the program.
+          schema:
+            type: string
+          required: true
+        - name: offset
+          in: query
+          description: Start index for data retrieval. This value should not be negative.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    status:
+                      code: 200
+                      message: success
+                    validationErrors: null
+                    data:
+                      - id: 96664
+                        name: test_promo_uniqueName110
+                        description: creating promotion via API
+                        promotionStatus: LIVE
+                        lastUpdateDate: "2025-06-23T09:25:04Z"
+                        lastUpdatedBy: -1
+                        rulesetInfos:
+                          - id: 126412694
+                            orgName: DocDemo
+                            contextID: 2932
+                            orgID: 100737
+                            contextType: program
+                            rules:
+                              - id: 126600796
+                                exp: "true"
+                                expJSON: "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }"
+                                jsonType: JNODE
+                                isActive: true
+                                priority: -1
+                                startDate: 1089532593324
+                                endDate: 33593126193324
+                                createdOn: 1750670704532
+                                caseToActions:
+                                  "true":
+                                    - id: 126778453
+                                      actionName: AWARD_TARGET_POINTS_ACTION
+                                      actionClass: >-
+                                        com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardTargetPointsActionImpl
+                                      mandatoryPropertiesValues:
+                                        TargetRuleId: "123"
+                                        ProRateOnSourceValue: EVENT_DEFAULT_VALUE
+                                        DelayStrategy: AS_DEFINED_IN_ALLOCATION_STRATEGY
+                                        SourceValueRoundingStrategy: ACTUAL
+                                        TargetGroupId: "1234567"
+                                        ExpiryStrategy: "81042"
+                                        TargetRuleName: TargetRuleName
+                                        AwardStrategy: "82690"
+                                        PointsRoundingStrategy: ACTUAL
+                                      mandatoryComplexPropertiesValues: {}
+                                      description: null
+                                ruleScope: SERVER
+                                createdBy: -1
+                                modifiedBy: -1
+                                modifiedOn: 1750670704532
+                                name: Rule 1
+                                description: Rule 1
+                                expDataType: null
+                                filterInfo: []
+                                ruleSetId: 126412694
+                                updatedViaNewUI: false
+                            ruleScope: SERVER
+                            startDate: 1089532593324
+                            endDate: 33593126193324
+                            createdOn: 1750670704532
+                            createdBy: -1
+                            modifiedBy: -1
+                            modifiedOn: 1750670704532
+                            name: rulesetName_uniqueue1
+                            packageName: ""
+                            description: Promotional Rulesets
+                            filterInfo:
+                              - id: 126654282
+                                orgID: 100737
+                                ruleID: -1
+                                name: LoyaltyType
+                                className: com.capillary.shopbook.emf.impl.filter.LoyaltyTypeFilterImpl
+                                isInclude: true
+                                propertyToValues:
+                                  loyaltyType:
+                                    - loyalty
+                              - id: 126654283
+                                orgID: 100737
+                                ruleID: -1
+                                name: EventSource
+                                className: com.capillary.shopbook.emf.impl.filter.EventSourceFilterImpl
+                                isInclude: true
+                                propertyToValues:
+                                  eventSource:
+                                    - INSTORE
+                            eventType: null
+                            cappingInfo: []
+                            updatedViaNewUI: false
+                            label: userCreatedLabel_2025-06-23T09:25:04.532Z
+                            private: true
+                        programName: DocDemoDefaultProgram
+                        programId: 973
+                        startDate: 2025-06-23T00:00Z
+                        endDate: "2026-08-25T23:59:59Z"
+                        identifier: test_promo_uniqueIdentifier110
+                        isActive: true
+                        eventName: TARGETCOMPLETED
+                        allocatePointsOn: BILL
+                        limits:
+                          pointsPerCustomer: 10
+                          numberOfTimesPerCustomer: 2
+                          totalPointsInPromotion: 10
+                          totalPointsPerEventLimit: -1
+                        useProportions: false
+                        pointsOfferType: LOYALTY
+                        promotionRestrictions:
+                          restrictions:
+                            redemptionRestrictions:
+                              - name: MAX_ALLOWED_TIMES_PER_CUSTOMER
+                                value: 3
+                                type: PERIOD_BASED
+                                periodType: MOVING_WINDOW
+                                periodUnit: WEEKLY
+                              - name: MAX_ALLOWED_TIMES_PER_PROMOTION
+                                value: 3
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                              - name: MAX_REDEMPTIONS_PER_EARN_PER_CUSTOMER
+                                value: 100
+                                type: NON_PERIOD_BASED
+                                periodType: null
+                                periodUnit: null
+                            issualRestrictions:
+                              - name: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                value: 3
+                            earnRestrictions:
+                              - name: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                value: 3
+                            expiryRestrictions:
+                              - name: ISSUAL_PROMOTION_EXPIRY_BASED_ON
+                                value: 10
+                                type: PROMOTION
+                          scope: null
+                          loyaltyEarningType: ISSUE_AND_EARN
+                          expiryReminder: null
+                          targetGroupIds:
+                            - 1234567
+                          targetRuleIds:
+                            - 123
+                          linkedTargetGroupVsTargetRuleIdMap:
+                            "1234567":
+                              - 123
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: false
+                          isAlwaysApply: false
+                    pageDetails:
+                      pageNumber: 0
+                      pageSize: 100
+                      totalEntries: 1
+                      pageCount: 1
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: success
+                  validationErrors: {}
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 201399
+                          default: 0
+                        name:
+                          type: string
+                          example: "1726568617"
+                        description:
+                          type: string
+                          example: creating promotion via API
+                        promotionStatus:
+                          type: string
+                          example: LIVE
+                        lastUpdateDate:
+                          type: string
+                          example: "2024-09-17T10:23:37Z"
+                        lastUpdatedBy:
+                          type: integer
+                          example: -1
+                          default: 0
+                        rulesetInfos:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 2030798
+                                default: 0
+                              orgName:
+                                type: string
+                                example: Nirvana Originals
+                              contextID:
+                                type: integer
+                                example: 2822
+                                default: 0
+                              orgID:
+                                type: integer
+                                example: 4000110
+                                default: 0
+                              contextType:
+                                type: string
+                                example: program
+                              rules:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 2134515
+                                      default: 0
+                                    exp:
+                                      type: string
+                                      example: "true"
+                                    expJSON:
+                                      type: string
+                                      example: "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }"
+                                    jsonType:
+                                      type: string
+                                      example: JNODE
+                                    isActive:
+                                      type: boolean
+                                      example: true
+                                      default: true
+                                    priority:
+                                      type: integer
+                                      example: -1
+                                      default: 0
+                                    startDate:
+                                      type: integer
+                                      example: 1089532593324
+                                      default: 0
+                                    endDate:
+                                      type: integer
+                                      example: 33593126193324
+                                      default: 0
+                                    createdOn:
+                                      type: integer
+                                      example: 1726568617611
+                                      default: 0
+                                    caseToActions:
+                                      type: object
+                                      properties:
+                                        "true":
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              id:
+                                                type: integer
+                                                example: 2220059
+                                                default: 0
+                                              actionName:
+                                                type: string
+                                                example: AWARD_TARGET_POINTS_ACTION
+                                              actionClass:
+                                                type: string
+                                                example: >-
+                                                  com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardTargetPointsActionImpl
+                                              mandatoryPropertiesValues:
+                                                type: object
+                                                properties:
+                                                  TargetRuleId:
+                                                    type: string
+                                                    example: "71085"
+                                                  ProRateOnSourceValue:
+                                                    type: string
+                                                    example: ACHIEVED_VALUE
+                                                  DelayStrategy:
+                                                    type: string
+                                                    example: AS_DEFINED_IN_ALLOCATION_STRATEGY
+                                                  SourceValueRoundingStrategy:
+                                                    type: string
+                                                    example: ACTUAL
+                                                  TargetGroupId:
+                                                    type: string
+                                                    example: "39534"
+                                                  ExpiryStrategy:
+                                                    type: string
+                                                    example: "102863"
+                                                  PointType:
+                                                    type: string
+                                                    example: Main
+                                                  AwardStrategy:
+                                                    type: string
+                                                    example: "102860"
+                                                  PointsRoundingStrategy:
+                                                    type: string
+                                                    example: ACTUAL
+                                                  TargetName:
+                                                    type: string
+                                                    example: "172464910566"
+                                              mandatoryComplexPropertiesValues:
+                                                type: object
+                                                properties: {}
+                                              description: {}
+                                    ruleScope:
+                                      type: string
+                                      example: SERVER
+                                    createdBy:
+                                      type: integer
+                                      example: -1
+                                      default: 0
+                                    modifiedBy:
+                                      type: integer
+                                      example: -1
+                                      default: 0
+                                    modifiedOn:
+                                      type: integer
+                                      example: 1726568617611
+                                      default: 0
+                                    name:
+                                      type: string
+                                      example: Rule 1
+                                    description:
+                                      type: string
+                                      example: Rule 1
+                                    expDataType: {}
+                                    filterInfo:
+                                      type: array
+                                    ruleSetId:
+                                      type: integer
+                                      example: 2030798
+                                      default: 0
+                                    updatedViaNewUI:
+                                      type: boolean
+                                      example: false
+                                      default: true
+                              ruleScope:
+                                type: string
+                                example: SERVER
+                              startDate:
+                                type: integer
+                                example: 1089532593324
+                                default: 0
+                              endDate:
+                                type: integer
+                                example: 33593126193324
+                                default: 0
+                              createdOn:
+                                type: integer
+                                example: 1726568617610
+                                default: 0
+                              createdBy:
+                                type: integer
+                                example: -1
+                                default: 0
+                              modifiedBy:
+                                type: integer
+                                example: -1
+                                default: 0
+                              modifiedOn:
+                                type: integer
+                                example: 1726568617610
+                                default: 0
+                              name:
+                                type: string
+                                example: "1726568617"
+                              packageName:
+                                type: string
+                                example: ""
+                              description:
+                                type: string
+                                example: Promotional Rulesets
+                              filterInfo:
+                                type: array
+                              eventType: {}
+                              cappingInfo:
+                                type: array
+                              updatedViaNewUI:
+                                type: boolean
+                                example: false
+                                default: true
+                              label:
+                                type: string
+                                example: userCreatedLabel_2024-09-17T10:23:37.610Z
+                              private:
+                                type: boolean
+                                example: true
+                                default: true
+                        programName:
+                          type: string
+                          example: NirvanaOriginsDefaultProgram
+                        programId:
+                          type: integer
+                          example: 2822
+                          default: 0
+                        startDate:
+                          type: string
+                          example: 2024-08-09T00:00Z
+                        endDate:
+                          type: string
+                          example: "2024-09-30T23:59:59Z"
+                        identifier:
+                          type: string
+                          example: identifier_123
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        eventName:
+                          type: string
+                          example: TARGETCOMPLETED
+                        allocatePointsOn:
+                          type: string
+                          example: BILL
+                        limits:
+                          type: object
+                          properties:
+                            pointsPerCustomer:
+                              type: integer
+                              example: -1
+                              default: 0
+                            numberOfTimesPerCustomer:
+                              type: integer
+                              example: -1
+                              default: 0
+                            totalPointsInPromotion:
+                              type: integer
+                              example: -1
+                              default: 0
+                            totalPointsPerEventLimit:
+                              type: integer
+                              example: -1
+                              default: 0
+                        useProportions:
+                          type: boolean
+                          example: false
+                          default: true
+                        pointsOfferType:
+                          type: string
+                          example: LOYALTY
+                        promotionRestrictions:
+                          type: object
+                          properties:
+                            restrictions:
+                              type: object
+                              properties:
+                                redemptionRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_ALLOWED_TIMES_PER_CUSTOMER
+                                      value:
+                                        type: integer
+                                        example: 3
+                                        default: 0
+                                      type:
+                                        type: string
+                                        example: PERIOD_BASED
+                                      periodType:
+                                        type: string
+                                        example: MOVING_WINDOW
+                                      periodUnit:
+                                        type: string
+                                        example: WEEKLY
+                                issualRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                      value:
+                                        type: integer
+                                        example: 3
+                                        default: 0
+                                earnRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                      value:
+                                        type: integer
+                                        example: 3
+                                        default: 0
+                                expiryRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: ISSUAL_PROMOTION_EXPIRY_BASED_ON
+                                      value:
+                                        type: integer
+                                        example: 10
+                                        default: 0
+                                      type:
+                                        type: string
+                                        example: PROMOTION
+                            scope: {}
+                            isStackable:
+                              type: boolean
+                              example: false
+                              default: true
+                            isConsideredForRanking:
+                              type: boolean
+                              example: true
+                              default: true
+                            loyaltyEarningType:
+                              type: string
+                              example: ISSUE_AND_EARN
+                            expiryReminder: {}
+                            isExclusive:
+                              type: boolean
+                              example: false
+                              default: true
+                            isAlwaysApply:
+                              type: boolean
+                              example: false
+                              default: true
+                            targetGroupIds:
+                              type: array
+                              items:
+                                type: integer
+                                example: 39534
+                                default: 0
+                            targetRuleIds:
+                              type: array
+                              items:
+                                type: integer
+                                example: 71085
+                                default: 0
+                  pageDetails:
+                    type: object
+                    properties:
+                      pageNumber:
+                        type: integer
+                        example: 5
+                        default: 0
+                      pageSize:
+                        type: integer
+                        example: 10
+                        default: 0
+                      totalEntries:
+                        type: integer
+                        example: 23
+                        default: 0
+                      pageCount:
+                        type: integer
+                        example: 3
+                        default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "code": 400,
+                            "message": "Bad Request"
+                        },
+                        "validationErrors": {
+                            "otherErrors": {
+                                "data": [
+                                    {
+                                        "status": false,
+                                        "responseCode": 4085,
+                                        "responseMessage": "SourceType passed is invalid, valid values are (UI, IMPORT, GOODWILL, CAMPAIGN, POINTS_TRANSFER, IMPORT_API, PROMOTION_API, POINTS_CONTRIBUTION_TO_GROUP,MANUAL_POINTS_ADJUSTMENT, BADGES, USER_CREATED)",
+                                        "valid": false
+                                    }
+                                ]
+                            }
+                        },
+                        "data": null
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                        default: 0
+                      message:
+                        type: string
+                        example: Bad Request
+                  validationErrors:
+                    type: object
+                    properties:
+                      otherErrors:
+                        type: object
+                        properties:
+                          data:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                status:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                                responseCode:
+                                  type: integer
+                                  example: 4085
+                                  default: 0
+                                responseMessage:
+                                  type: string
+                                  example: >-
+                                    SourceType passed is invalid, valid values are (UI, IMPORT, GOODWILL, CAMPAIGN,
+                                    POINTS_TRANSFER, IMPORT_API, PROMOTION_API,
+                                    POINTS_CONTRIBUTION_TO_GROUP,MANUAL_POINTS_ADJUSTMENT, BADGES, USER_CREATED)
+                                valid:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                  data: {}
+  /api_gateway/loyalty/v1/programs/{programId}/promotions/{promotionId}/get:
+    get:
+      summary: Get Loyalty Promotion by ID
+      description: Get details of the promotion using promotion ID.
+      operationId: get-promotion-by-id
+      parameters:
+        - name: programId
+          in: path
+          description: Unique program ID.
+          schema:
+            type: integer
+            format: int64
+          required: true
+        - name: promotionId
+          in: path
+          description: Unique identifier of the promotion
+          schema:
+            type: integer
+            format: int64
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    status:
+                      code: 200
+                      message: success
+                    validationErrors: null
+                    data:
+                      - id: 95085
+                        name: AllRewards
+                        description: ""
+                        promotionStatus: COMPLETED
+                        lastUpdateDate: "2025-06-23T08:02:58Z"
+                        lastUpdatedBy: 75155288
+                        rulesetInfos:
+                          - id: 126408744
+                            orgName: DocDemo
+                            contextID: 973
+                            orgID: 100737
+                            contextType: program
+                            rules:
+                              - id: 126595178
+                                exp: "true"
+                                expJSON: |-
+
+                                  {
+                                    "arity":"literal",
+                                    "value":"true",
+                                    "type":"boolean:primitive"
+                                  }
+                                jsonType: JNODE
+                                isActive: true
+                                priority: -1
+                                startDate: 1118300462375
+                                endDate: 2064985262375
+                                createdOn: 1749452462375
+                                caseToActions:
+                                  "true":
+                                    - id: 126771365
+                                      actionName: AWARD_POINTS_ACTION
+                                      actionClass: com.capillary.shopbook.pointsengine.endpoint.impl.action.AwardPointsActionImpl
+                                      mandatoryPropertiesValues:
+                                        ProRateOnSourceValue: EVENT_DEFAULT_VALUE
+                                        DelayStrategy: AS_DEFINED_IN_ALLOCATION_STRATEGY
+                                        SourceValueRoundingStrategy: ACTUAL
+                                        EvaluatedEntity: USER
+                                        ExpiryStrategy: "11833"
+                                        PointType: Main
+                                        AwardStrategy: "11879"
+                                        DelayExtendedFieldName: ""
+                                        PointsRoundingStrategy: ACTUAL
+                                      mandatoryComplexPropertiesValues: {}
+                                      description: 2X
+                                    - id: 126771366
+                                      actionName: CONVERT_POINTS_TO_REWARD_ACTION
+                                      actionClass: com.capillary.shopbook.pointsengine.endpoint.impl.action.RewardIssualActionImpl
+                                      mandatoryPropertiesValues:
+                                        quantityBasedOn: POINTS_ON_EVENT
+                                        brandName: DOCDEMO
+                                        rewardId: "295948"
+                                        brandId: "61"
+                                        quantityValue: ""
+                                        isRewardIssualForCustomerActivity: "true"
+                                        fulfillmentStatus: ON ITS WAY
+                                      mandatoryComplexPropertiesValues: {}
+                                      description: Convert points to reward action
+                                    - id: 126771367
+                                      actionName: BADGE_EARN_ACTION
+                                      actionClass: com.capillary.shopbook.pointsengine.endpoint.impl.action.BadgeEarnActionImpl
+                                      mandatoryPropertiesValues:
+                                        ownerType: Loyalty_Promotion
+                                        badgeMetaId: 67eb99516666db076c3c7519
+                                        badgeMetaName: Badge Issue georgetest
+                                        referenceId: 973_TransactionAdd_c143a683
+                                      mandatoryComplexPropertiesValues: {}
+                                      description: Badge Issue georgetest
+                                    - id: 126771368
+                                      actionName: ISSUE_ALTERNATE_CURRENCY_9DxGBP
+                                      actionClass: >-
+                                        com.capillary.shopbook.pointsengine.endpoint.impl.action.BillAwardPointsActionImpl
+                                      mandatoryPropertiesValues:
+                                        ProRateOnSourceValue: EVENT_DEFAULT_VALUE
+                                        DelayStrategy: AS_DEFINED_IN_ALLOCATION_STRATEGY
+                                        SourceValueRoundingStrategy: ACTUAL
+                                        EvaluatedEntity: USER
+                                        AlternateCurrencyIdentifier: 9DxGBP
+                                        ZeroAwardStrategy: "11879"
+                                        ExpiryStrategy: "11833"
+                                        PointType: REGULAR
+                                        AwardStrategy: "11879"
+                                        DelayExtendedFieldName: ""
+                                        PointsRoundingStrategy: ACTUAL
+                                      mandatoryComplexPropertiesValues: {}
+                                      description: 2X
+                                ruleScope: SERVER
+                                createdBy: 60594279
+                                modifiedBy: 60594279
+                                modifiedOn: 1749452462375
+                                name: Rule 1
+                                description: ""
+                                expDataType: null
+                                filterInfo: []
+                                ruleSetId: 126408744
+                                updatedViaNewUI: false
+                            ruleScope: SERVER
+                            startDate: 1749427200000
+                            endDate: 1751327999000
+                            createdOn: 1749452462375
+                            createdBy: 60594279
+                            modifiedBy: 60594279
+                            modifiedOn: 1749452462375
+                            name: ruleset_20250609070102
+                            packageName: ""
+                            description: ""
+                            filterInfo:
+                              - id: 126644898
+                                orgID: 100737
+                                ruleID: -1
+                                name: LoyaltyType
+                                className: com.capillary.shopbook.emf.impl.filter.LoyaltyTypeFilterImpl
+                                isInclude: true
+                                propertyToValues:
+                                  loyaltyType:
+                                    - loyalty
+                              - id: 126644899
+                                orgID: 100737
+                                ruleID: -1
+                                name: EventSource
+                                className: com.capillary.shopbook.emf.impl.filter.EventSourceFilterImpl
+                                isInclude: true
+                                propertyToValues:
+                                  eventSource:
+                                    - INSTORE
+                            eventType: null
+                            cappingInfo: []
+                            updatedViaNewUI: false
+                            label: null
+                            private: false
+                        programName: DocDemoDefaultProgram
+                        programId: 973
+                        startDate: 2025-06-09T00:00Z
+                        endDate: "2025-06-30T23:59:59Z"
+                        identifier: 0b89574e-aab9-49ad-812f-c1ea709f5daf
+                        isActive: true
+                        eventName: TRANSACTIONADD
+                        allocatePointsOn: BILL
+                        limits:
+                          pointsPerCustomer: 0
+                          numberOfTimesPerCustomer: 0
+                          totalPointsInPromotion: 0
+                          totalPointsPerEventLimit: 0
+                        useProportions: false
+                        pointsOfferType: GENERIC
+                        promotionRestrictions:
+                          restrictions: null
+                          scope: null
+                          loyaltyEarningType: null
+                          expiryReminder: null
+                          targetGroupIds: null
+                          targetRuleIds: null
+                          linkedTargetGroupVsTargetRuleIdMap: null
+                          cappingStatus: null
+                          skipEarnedDateCheckOnRedeem: false
+                          isStackable: false
+                          isConsideredForRanking: false
+                          isExclusive: false
+                          isAlwaysApply: false
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: success
+                  validationErrors: {}
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 89972
+                          default: 0
+                        name:
+                          type: string
+                          example: SummerPromotion
+                        description:
+                          type: string
+                          example: ""
+                        promotionStatus:
+                          type: string
+                          example: LIVE
+                        lastUpdateDate:
+                          type: string
+                          example: "2025-04-25T06:43:35Z"
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75139931
+                          default: 0
+                        rulesetInfos:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 126396500
+                                default: 0
+                              orgName:
+                                type: string
+                                example: Bukl Enterprises
+                              contextID:
+                                type: integer
+                                example: 469
+                                default: 0
+                              orgID:
+                                type: integer
+                                example: 100458
+                                default: 0
+                              contextType:
+                                type: string
+                                example: program
+                              rules:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 126577573
+                                      default: 0
+                                    exp:
+                                      type: string
+                                      example: "true"
+                                    expJSON:
+                                      type: string
+                                      example: "{ \"arity\": \"literal\", \"value\": \"true\", \"type\": \"boolean:primitive\" }"
+                                    jsonType:
+                                      type: string
+                                      example: JNODE
+                                    isActive:
+                                      type: boolean
+                                      example: true
+                                      default: true
+                                    priority:
+                                      type: integer
+                                      example: -1
+                                      default: 0
+                                    startDate:
+                                      type: integer
+                                      example: 1114410534106
+                                      default: 0
+                                    endDate:
+                                      type: integer
+                                      example: 2061095334106
+                                      default: 0
+                                    createdOn:
+                                      type: integer
+                                      example: 1745562534106
+                                      default: 0
+                                    caseToActions:
+                                      type: object
+                                      properties: {}
+                                    ruleScope:
+                                      type: string
+                                      example: SERVER
+                                    createdBy:
+                                      type: integer
+                                      example: 60594279
+                                      default: 0
+                                    modifiedBy:
+                                      type: integer
+                                      example: 60594279
+                                      default: 0
+                                    modifiedOn:
+                                      type: integer
+                                      example: 1745562534106
+                                      default: 0
+                                    name:
+                                      type: string
+                                      example: Rule 1
+                                    description:
+                                      type: string
+                                      example: ""
+                                    expDataType: {}
+                                    filterInfo:
+                                      type: array
+                                    ruleSetId:
+                                      type: integer
+                                      example: 126396500
+                                      default: 0
+                                    updatedViaNewUI:
+                                      type: boolean
+                                      example: false
+                                      default: true
+                              ruleScope:
+                                type: string
+                                example: SERVER
+                              startDate:
+                                type: integer
+                                example: 1745539200000
+                                default: 0
+                              endDate:
+                                type: integer
+                                example: 1746057599000
+                                default: 0
+                              createdOn:
+                                type: integer
+                                example: 1745562534106
+                                default: 0
+                              createdBy:
+                                type: integer
+                                example: 60594279
+                                default: 0
+                              modifiedBy:
+                                type: integer
+                                example: 60594279
+                                default: 0
+                              modifiedOn:
+                                type: integer
+                                example: 1745562534106
+                                default: 0
+                              name:
+                                type: string
+                                example: ruleset_20250425062854
+                              packageName:
+                                type: string
+                                example: ""
+                              description:
+                                type: string
+                                example: ""
+                              filterInfo:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 126614945
+                                      default: 0
+                                    orgID:
+                                      type: integer
+                                      example: 100458
+                                      default: 0
+                                    ruleID:
+                                      type: integer
+                                      example: -1
+                                      default: 0
+                                    name:
+                                      type: string
+                                      example: LoyaltyType
+                                    className:
+                                      type: string
+                                      example: com.capillary.shopbook.emf.impl.filter.LoyaltyTypeFilterImpl
+                                    isInclude:
+                                      type: boolean
+                                      example: true
+                                      default: true
+                                    propertyToValues:
+                                      type: object
+                                      properties:
+                                        loyaltyType:
+                                          type: array
+                                          items:
+                                            type: string
+                                            example: loyalty
+                              eventType: {}
+                              cappingInfo:
+                                type: array
+                              updatedViaNewUI:
+                                type: boolean
+                                example: false
+                                default: true
+                              label: {}
+                              private:
+                                type: boolean
+                                example: false
+                                default: true
+                        programName:
+                          type: string
+                          example: Default Program
+                        programId:
+                          type: integer
+                          example: 469
+                          default: 0
+                        startDate:
+                          type: string
+                          example: 2025-04-25T00:00Z
+                        endDate:
+                          type: string
+                          example: "2025-04-30T23:59:59Z"
+                        identifier:
+                          type: string
+                          example: 68254aca-2f85-4d28-a01b-14c2229ccbda
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        eventName:
+                          type: string
+                          example: TRANSACTIONADD
+                        allocatePointsOn:
+                          type: string
+                          example: BILL
+                        limits:
+                          type: object
+                          properties:
+                            pointsPerCustomer:
+                              type: integer
+                              example: 0
+                              default: 0
+                            numberOfTimesPerCustomer:
+                              type: integer
+                              example: 0
+                              default: 0
+                            totalPointsInPromotion:
+                              type: integer
+                              example: 0
+                              default: 0
+                            totalPointsPerEventLimit:
+                              type: integer
+                              example: 0
+                              default: 0
+                        useProportions:
+                          type: boolean
+                          example: false
+                          default: true
+                        pointsOfferType:
+                          type: string
+                          example: LOYALTY_EARNING
+                        promotionRestrictions:
+                          type: object
+                          properties:
+                            restrictions:
+                              type: object
+                              properties:
+                                redemptionRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_ALLOWED_POINTS_PER_EVENT
+                                      value:
+                                        type: integer
+                                        example: 100
+                                        default: 0
+                                      type:
+                                        type: string
+                                        example: NON_PERIOD_BASED
+                                      periodType: {}
+                                      periodUnit: {}
+                                issualRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_NUMBER_OF_ISSUALS_PER_CUSTOMER
+                                      value:
+                                        type: integer
+                                        example: 1
+                                        default: 0
+                                earnRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: MAX_NUMBER_OF_EARNS_PER_CUSTOMER
+                                      value:
+                                        type: integer
+                                        example: 5
+                                        default: 0
+                                expiryRestrictions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                        example: ISSUAL_PROMOTION_EXPIRY_BASED_ON
+                                      value:
+                                        type: integer
+                                        example: 10
+                                        default: 0
+                                      type:
+                                        type: string
+                                        example: CUSTOM
+                            scope: {}
+                            isStackable:
+                              type: boolean
+                              example: false
+                              default: true
+                            isConsideredForRanking:
+                              type: boolean
+                              example: false
+                              default: true
+                            loyaltyEarningType:
+                              type: string
+                              example: ISSUE_AND_EARN
+                            expiryReminder: {}
+                            isExclusive:
+                              type: boolean
+                              example: false
+                              default: true
+                            isAlwaysApply:
+                              type: boolean
+                              example: false
+                              default: true
+                            targetGroupIds: {}
+                            targetRuleIds: {}
+                            linkedTargetGroupVsTargetRuleIdMap: {}
+                            cappingStatus: {}
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/loyalty/v1/programs/{programId}/cappings:
+    get:
+      summary: Get Reward Currency Limits
+      operationId: get-reward-currency-limits
+      parameters:
+        - name: programId
+          in: path
+          description: Unique ID of the loyalty program.
+          schema:
+            type: integer
+            format: int32
+          required: true
+        - name: skip
+          in: query
+          description: Page number to retrieve. To view the first page, set the value to 0.
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: >-
+            Number of entries to display per page. For example, if the total entires are 15 and the limit is 5, the
+            first page will display the first 5 records. The maximum supported limit is 100.
+          schema:
+            type: integer
+            format: int32
+        - name: eventName
+          in: query
+          description: Filter limits criteria based on the event associated.
+          schema:
+            type: string
+            enum:
+              - TransactionAdd
+              - TransactionUpdate
+              - CustomerRegistration
+              - CustomerUpdate
+              - GenericEvent
+              - NewBill
+              - PointsContributionToGroup
+              - PointsTransfer
+              - ReturnBill
+              - TargetCompleted
+              - PointsRedemption
+              - VoucherRedemption
+              - PartnerProgramDeLinking
+              - PartnerProgramLinking
+              - PartnerProgramTierUpdate
+        - name: cappingName
+          in: query
+          description: Filter limits criteria by providing the name.
+          schema:
+            type: string
+        - name: scope
+          in: query
+          description: Filter limits criteria based on the scope associated.
+          schema:
+            type: string
+            enum:
+              - INDIVIDUAL_EVENT
+              - INDIVIDUAL_CUSTOMER
+        - name: entity
+          in: query
+          description: Filter limits criteria based on the reward currency being limited.
+          schema:
+            type: string
+            enum:
+              - POINTS
+              - ALTERNATE_CURRENCIES
+        - name: cappingEntity
+          in: query
+          description: Filter limits criteria based on the entity associated with it.
+          schema:
+            type: string
+            enum:
+              - ALL_EVENTS
+              - PROMOTION
+              - TRANSACTION_ADD
+        - name: status
+          in: query
+          description: Filter limits criteria based on the current active status.
+          schema:
+            type: string
+            enum:
+              - "true"
+              - "false"
+        - name: identifier
+          in: query
+          description: Filter limits criteria based on the alternate currency identifier.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "cappingConfigResponses": {
+                            "content": [
+                                {
+                                    "eventName": null,
+                                    "cappingName": "Test Capping",
+                                    "scope": "INDIVIDUAL_CUSTOMER",
+                                    "status": true,
+                                    "cappingOn": null,
+                                    "targetGroups": {
+                                        "active": true,
+                                        "id": 1939,
+                                        "name": "CappingTG2",
+                                        "periods": [
+                                            {
+                                                "startDate": "2025-02-01",
+                                                "endDate": "2025-04-28",
+                                                "refCode": "Cycle_1",
+                                                "periodStatus": "RUNNING",
+                                                "active": true,
+                                                "targetGroupId": 1939,
+                                                "attribution": {
+                                                    "createdOn": "2025-04-04T00:00:00.000+0000",
+                                                    "lastUpdatedOn": "2025-04-04T00:00:00.000+0000"
+                                                }
+                                            }
+                                        ],
+                                        "targets": [
+                                            {
+                                                "id": 2087,
+                                                "orgId": null,
+                                                "targetGroupId": 1939,
+                                                "name": "CappingTG2",
+                                                "targetType": "REGULAR_POINTS",
+                                                "targetEntity": "POINTS",
+                                                "eventName": "TransactionAdd",
+                                                "active": true,
+                                                "enrolmentMethod": "TRANSACTION",
+                                                "defaultValues": [
+                                                    {
+                                                        "id": 14584,
+                                                        "periodId": 12242,
+                                                        "defaultValue": 100.000
+                                                    }
+                                                ],
+                                                "targetMilestoneTriggers": [],
+                                                "targetAudienceFilter": null,
+                                                "targetRuleMetaData": null,
+                                                "extendedFieldInfo": null
+                                            }
+                                        ],
+                                        "totalPeriods": 1,
+                                        "targetEvaluationType": "FIXED_CALENDAR_WINDOW",
+                                        "recurringCycles": -1,
+                                        "frequency": 0,
+                                        "targetCycleStartDate": "2025-02-01T00:00:00.000+0000",
+                                        "targetCycleEndDate": "2025-04-28T00:00:00.000+0000",
+                                        "frequencyType": "CUSTOM",
+                                        "trackingType": "CAPPING"
+                                    },
+                                    "additionalFilters": {
+                                        "pointsFilters": {},
+                                        "lineItemFilters": {
+                                            "includedSkus": [],
+                                            "includedBrands": [],
+                                            "includedCategories": [],
+                                            "includedAttributes": {}
+                                        }
+                                    },
+                                    "entity": "POINTS",
+                                    "limitValue": 100,
+                                    "enrollType": null
+                                }
+                            ],
+                            "totalPages": 4,
+                            "totalElements": 4,
+                            "size": 1,
+                            "number": 0
+                        },
+                        "activeIndividualEvents": 0,
+                        "activeIndividualCustomers": 4
+                    }
+              schema:
+                type: object
+                properties:
+                  cappingConfigResponses:
+                    type: object
+                    properties:
+                      content:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            eventName: {}
+                            cappingName:
+                              type: string
+                              example: Test Capping
+                            scope:
+                              type: string
+                              example: INDIVIDUAL_CUSTOMER
+                            status:
+                              type: boolean
+                              example: true
+                              default: true
+                            cappingOn: {}
+                            targetGroups:
+                              type: object
+                              properties:
+                                active:
+                                  type: boolean
+                                  example: true
+                                  default: true
+                                id:
+                                  type: integer
+                                  example: 1939
+                                  default: 0
+                                name:
+                                  type: string
+                                  example: CappingTG2
+                                periods:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      startDate:
+                                        type: string
+                                        example: "2025-02-01"
+                                      endDate:
+                                        type: string
+                                        example: "2025-04-28"
+                                      refCode:
+                                        type: string
+                                        example: Cycle_1
+                                      periodStatus:
+                                        type: string
+                                        example: RUNNING
+                                      active:
+                                        type: boolean
+                                        example: true
+                                        default: true
+                                      targetGroupId:
+                                        type: integer
+                                        example: 1939
+                                        default: 0
+                                      attribution:
+                                        type: object
+                                        properties:
+                                          createdOn:
+                                            type: string
+                                            example: 2025-04-04T00:00:00.000+0000
+                                          lastUpdatedOn:
+                                            type: string
+                                            example: 2025-04-04T00:00:00.000+0000
+                                targets:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                        example: 2087
+                                        default: 0
+                                      orgId: {}
+                                      targetGroupId:
+                                        type: integer
+                                        example: 1939
+                                        default: 0
+                                      name:
+                                        type: string
+                                        example: CappingTG2
+                                      targetType:
+                                        type: string
+                                        example: REGULAR_POINTS
+                                      targetEntity:
+                                        type: string
+                                        example: POINTS
+                                      eventName:
+                                        type: string
+                                        example: TransactionAdd
+                                      active:
+                                        type: boolean
+                                        example: true
+                                        default: true
+                                      enrolmentMethod:
+                                        type: string
+                                        example: TRANSACTION
+                                      defaultValues:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            id:
+                                              type: integer
+                                              example: 14584
+                                              default: 0
+                                            periodId:
+                                              type: integer
+                                              example: 12242
+                                              default: 0
+                                            defaultValue:
+                                              type: integer
+                                              example: 100
+                                              default: 0
+                                      targetMilestoneTriggers:
+                                        type: array
+                                      targetAudienceFilter: {}
+                                      targetRuleMetaData: {}
+                                      extendedFieldInfo: {}
+                                totalPeriods:
+                                  type: integer
+                                  example: 1
+                                  default: 0
+                                targetEvaluationType:
+                                  type: string
+                                  example: FIXED_CALENDAR_WINDOW
+                                recurringCycles:
+                                  type: integer
+                                  example: -1
+                                  default: 0
+                                frequency:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                targetCycleStartDate:
+                                  type: string
+                                  example: 2025-02-01T00:00:00.000+0000
+                                targetCycleEndDate:
+                                  type: string
+                                  example: 2025-04-28T00:00:00.000+0000
+                                frequencyType:
+                                  type: string
+                                  example: CUSTOM
+                                trackingType:
+                                  type: string
+                                  example: CAPPING
+                            additionalFilters:
+                              type: object
+                              properties:
+                                pointsFilters:
+                                  type: object
+                                  properties: {}
+                                lineItemFilters:
+                                  type: object
+                                  properties:
+                                    includedSkus:
+                                      type: array
+                                    includedBrands:
+                                      type: array
+                                    includedCategories:
+                                      type: array
+                                    includedAttributes:
+                                      type: object
+                                      properties: {}
+                            entity:
+                              type: string
+                              example: POINTS
+                            limitValue:
+                              type: integer
+                              example: 100
+                              default: 0
+                            enrollType: {}
+                      totalPages:
+                        type: integer
+                        example: 4
+                        default: 0
+                      totalElements:
+                        type: integer
+                        example: 4
+                        default: 0
+                      size:
+                        type: integer
+                        example: 1
+                        default: 0
+                      number:
+                        type: integer
+                        example: 0
+                        default: 0
+                  activeIndividualEvents:
+                    type: integer
+                    example: 0
+                    default: 0
+                  activeIndividualCustomers:
+                    type: integer
+                    example: 4
+                    default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                limit value provided is less than 1:
+                  value: |-
+                    {
+                        "error": "Invalid limit: less than 1 is not allowed"
+                    }
+                offset value provided is negative or invalid:
+                  value: |-
+                    {
+                        "error": "Invalid offset: Must be 0 or greater"
+                    }
+                entity value provided is invalid:
+                  value: |-
+                    {
+                        "error": "Invalid entity value: XZ"
+                    }
+                cappingEntity value provided is invalid:
+                  value: |-
+                    {
+                        "error": "Invalid cappingEntity value: XYZ"
+                    }
+                scopevalue provided is invalid:
+                  value: |-
+                    {
+                        "error": "Invalid scope value: XYZ"
+                    }
+              schema:
+                oneOf:
+                  - title: limit value provided is less than 1
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: "Invalid limit: less than 1 is not allowed"
+                  - title: offset value provided is negative or invalid
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: "Invalid offset: Must be 0 or greater"
+                  - title: entity value provided is invalid
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: "Invalid entity value: XZ"
+                  - title: cappingEntity value provided is invalid
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: "Invalid cappingEntity value: XYZ"
+                  - title: scopevalue provided is invalid
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: "Invalid scope value: XYZ"
+    post:
+      summary: Create Reward Currency Limits
+      operationId: create-reward-currency-limits
+      parameters:
+        - name: programId
+          in: path
+          description: Unique ID of the loyalty program.
+          schema:
+            type: integer
+            format: int32
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: |-
+                    {
+                        "code": null,
+                        "message": "Capping created successfully"
+                    }
+              schema:
+                type: object
+                properties:
+                  code: {}
+                  message:
+                    type: string
+                    example: Capping created successfully
+        "500":
+          description: "500"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "code": null,
+                        "message": "Error creating target group could not create targetGroups from intouch-api-v3 [IntouchApiError{code=300004, message='Invalid input', status=false}]"
+                    }
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      code: {}
+                      message:
+                        type: string
+                        example: >-
+                          Error creating target group could not create targetGroups from intouch-api-v3
+                          [IntouchApiError{code=310069, message='target group name already exist', status=false}]
+                  - type: object
+                    properties:
+                      code: {}
+                      message:
+                        type: string
+                        example: >-
+                          Error creating target group could not create targetGroups from intouch-api-v3
+                          [IntouchApiError{code=300004, message='Invalid input', status=false}]
+  /loyalty/api/v1/workflows/expJSON/{ProgramId}/{eventType}:
+    post:
+      summary: (Internal) Generate Expression JSON Endpoint
+      description: Converts a rule expression into an expressionJson format.
+      operationId: generate-expression-json-endpoint
+      parameters:
+        - name: ProgramId
+          in: path
+          description: Unique identifier for the loyalty program.
+          schema:
+            type: integer
+            format: int32
+          required: true
+        - name: accept
+          in: header
+          description: "Expected response format. Example: */*."
+          schema:
+            type: string
+        - name: eventType
+          in: path
+          description: Specifies the type of event for which the rule applies.
+          schema:
+            type: string
+          required: true
+        - name: accept-language
+          in: header
+          description: Language preference for the response.
+          schema:
+            type: string
+        - name: content-type
+          in: header
+          description: Media type of the request payload (application/json).
+          schema:
+            type: string
+        - name: cookie
+          in: header
+          description: Authentication and session information. CT token and OID are mandatory.
+          required: true
+          schema:
+            type: string
+        - name: user-agent
+          in: header
+          description: >-
+            User-agent string from the client making the request. It is string sent by a web browser or client
+            application to a server, identifying the software or device making the request.
+          schema:
+            type: string
+        - name: x-cap-remote-user
+          in: header
+          description: >-
+            Identifier for the remote user making the request. Useful for tracking which user or entity initiated a
+            request.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - exp
+              properties:
+                exp:
+                  type: string
+                  description: Logical rule expression to be tested or converted into JSON format.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Success Response:
+                  value: |-
+                    {
+                        "success": true,
+                        "status": 200,
+                        "result": {
+                            "expressionJSON": "\n{\n  \"arity\":\"binary_operation\",\n  \"value\":\"==\",\n  \"type\":\"boolean:primitive\",\n  \"operands\":[\n    {\n      \"arity\":\"object_dereference\",\n      \"type\":\"string:object:primitive\",\n      \"operands\":[\n        {\n          \"arity\":\"name\",\n          \"value\":\"currentEvent\",\n          \"type\":\"customer.targetCompletedEvent:object:primitive\"\n        },\n        {\n          \"arity\":\"name\",\n          \"value\":\"targetName\",\n          \"type\":\"string:object:primitive\"\n        }\n      ]\n    },\n    {\n      \"arity\":\"literal\",\n      \"value\":\"Gatekeeper T&C Accepted\",\n      \"type\":\"string:object:primitive\"\n    }\n  ]\n}",
+                            "expression": "currentEvent.targetName==\"Gatekeeper T&C Accepted\"",
+                            "isError": false
+                        }
+                    }
+                Sample Failure Response:
+                  value: |-
+                    {
+                        "success": true,
+                        "status": 200,
+                        "result": {
+                            "expressionJSON": "\n{\n  \"arity\":\"group\",\n  \"operands\":[\n    {\n      \"arity\":\"object_dereference\",\n      \"operands\":[\n        {\n          \"arity\":\"name\",\n          \"value\":\"currentEven\"\n        },\n        {\n          \"arity\":\"name\",\n          \"value\":\"target\"\n        }\n      ]\n    },\n    {\n      \"arity\":\"name\",\n      \"value\":\"DSCCDCCDVDVBIAAMWEG\"\n    },\n    {\n      \"arity\":\"name\",\n      \"value\":\"BUNWG\"\n    },\n    {\n      \"arity\":\"name\",\n      \"value\":\"BKRG\"\n    },\n    {\n      \"arity\":\"name\",\n      \"value\":\"DVHGRDVBRGWDVBE\"\n    },\n    {\n      \"arity\":\"binary_operation\",\n      \"value\":\"==\",\n      \"operands\":[\n        {\n          \"arity\":\"name\",\n          \"value\":\"FVILName\"\n        },\n        {\n          \"arity\":\"name\",\n          \"value\":\"looooo\"\n        }\n      ]\n    }\n  ]\n}",
+                            "expression": "currentEven.target DSCCDCCDVDVBIAAMWEG BUNWG BKRG DVHGRDVBRGWDVBE FVILName==looooo",
+                            "isError": true
+                        }
+                    }
+              schema:
+                oneOf:
+                  - title: Sample Success Response
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      status:
+                        type: integer
+                        example: 200
+                        default: 0
+                      result:
+                        type: object
+                        properties:
+                          expressionJSON:
+                            type: string
+                            example: |-
+
+                              {
+                                "arity":"binary_operation",
+                                "value":"==",
+                                "type":"boolean:primitive",
+                                "operands":[
+                                  {
+                                    "arity":"object_dereference",
+                                    "type":"string:object:primitive",
+                                    "operands":[
+                                      {
+                                        "arity":"name",
+                                        "value":"currentEvent",
+                                        "type":"customer.targetCompletedEvent:object:primitive"
+                                      },
+                                      {
+                                        "arity":"name",
+                                        "value":"targetName",
+                                        "type":"string:object:primitive"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "arity":"literal",
+                                    "value":"Gatekeeper T&C Accepted",
+                                    "type":"string:object:primitive"
+                                  }
+                                ]
+                              }
+                          expression:
+                            type: string
+                            example: currentEvent.targetName=="Gatekeeper T&C Accepted"
+                          isError:
+                            type: boolean
+                            example: false
+                            default: true
+                  - title: Sample Failure Response
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      status:
+                        type: integer
+                        example: 200
+                        default: 0
+                      result:
+                        type: object
+                        properties:
+                          expressionJSON:
+                            type: string
+                            example: |-
+
+                              {
+                                "arity":"group",
+                                "operands":[
+                                  {
+                                    "arity":"object_dereference",
+                                    "operands":[
+                                      {
+                                        "arity":"name",
+                                        "value":"currentEven"
+                                      },
+                                      {
+                                        "arity":"name",
+                                        "value":"target"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "arity":"name",
+                                    "value":"DSCCDCCDVDVBIAAMWEG"
+                                  },
+                                  {
+                                    "arity":"name",
+                                    "value":"BUNWG"
+                                  },
+                                  {
+                                    "arity":"name",
+                                    "value":"BKRG"
+                                  },
+                                  {
+                                    "arity":"name",
+                                    "value":"DVHGRDVBRGWDVBE"
+                                  },
+                                  {
+                                    "arity":"binary_operation",
+                                    "value":"==",
+                                    "operands":[
+                                      {
+                                        "arity":"name",
+                                        "value":"FVILName"
+                                      },
+                                      {
+                                        "arity":"name",
+                                        "value":"looooo"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                          expression:
+                            type: string
+                            example: currentEven.target DSCCDCCDVDVBIAAMWEG BUNWG BKRG DVHGRDVBRGWDVBE FVILName==looooo
+                          isError:
+                            type: boolean
+                            example: true
+                            default: true
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

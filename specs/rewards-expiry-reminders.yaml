@@ -1,0 +1,562 @@
+openapi: 3.0.1
+info:
+  title: Reward Expiry Reminders APIs
+  description: Reward expiry reminder configuration endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/rewards/core/v1/reward/expiryReminder:
+    get:
+      summary: Get Reward Expiry Reminder
+      operationId: get-reward-expiry-reminder
+      parameters:
+        - name: filter
+          in: query
+          description: Filters the active or inactive reward expiry reminder.
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          description: The amount of the data that you want to retrieve.
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          description: The number of items or records returned in a single API response.
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "rewardExpiryReminder": [
+                            {
+                                "id": 5,
+                                "orgId": 100458,
+                                "duration": 15,
+                                "durationType": "DAYS",
+                                "cronTaskId": 590567,
+                                "timing": "12:00",
+                                "isActive": true,
+                                "createdOn": 1727681940000,
+                                "lastUpdatedOn": 1727681946000,
+                                "createdBy": 75130850,
+                                "lastUpdatedBy": 75130850
+                            },
+                            {
+                                "id": 2,
+                                "orgId": 100458,
+                                "duration": 15,
+                                "durationType": "DAYS",
+                                "cronTaskId": 590564,
+                                "timing": "12:00",
+                                "isActive": true,
+                                "createdOn": 1727680228000,
+                                "lastUpdatedOn": 1727681674000,
+                                "createdBy": 75130850,
+                                "lastUpdatedBy": 75130850
+                            },
+                            {
+                                "id": 4,
+                                "orgId": 100458,
+                                "duration": 32,
+                                "durationType": "DAYS",
+                                "cronTaskId": 590566,
+                                "timing": "18:00",
+                                "isActive": true,
+                                "createdOn": 1727681405000,
+                                "lastUpdatedOn": 1727681405000,
+                                "createdBy": 75130850,
+                                "lastUpdatedBy": 75130850
+                            },
+                            {
+                                "id": 3,
+                                "orgId": 100458,
+                                "duration": 32,
+                                "durationType": "DAYS",
+                                "cronTaskId": 590565,
+                                "timing": "18:00",
+                                "isActive": true,
+                                "createdOn": 1727680457000,
+                                "lastUpdatedOn": 1727680457000,
+                                "createdBy": 75130850,
+                                "lastUpdatedBy": 75130850
+                            }
+                        ],
+                        "pagingDto": {
+                            "last": true,
+                            "totalElements": 4,
+                            "totalPages": 1,
+                            "numberOfElements": 4,
+                            "first": true,
+                            "size": 10,
+                            "number": 0
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  rewardExpiryReminder:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 5
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100458
+                          default: 0
+                        duration:
+                          type: integer
+                          example: 15
+                          default: 0
+                        durationType:
+                          type: string
+                          example: DAYS
+                        cronTaskId:
+                          type: integer
+                          example: 590567
+                          default: 0
+                        timing:
+                          type: string
+                          example: "12:00"
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        createdOn:
+                          type: integer
+                          example: 1727681940000
+                          default: 0
+                        lastUpdatedOn:
+                          type: integer
+                          example: 1727681946000
+                          default: 0
+                        createdBy:
+                          type: integer
+                          example: 75130850
+                          default: 0
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75130850
+                          default: 0
+                  pagingDto:
+                    type: object
+                    properties:
+                      last:
+                        type: boolean
+                        example: true
+                        default: true
+                      totalElements:
+                        type: integer
+                        example: 4
+                        default: 0
+                      totalPages:
+                        type: integer
+                        example: 1
+                        default: 0
+                      numberOfElements:
+                        type: integer
+                        example: 4
+                        default: 0
+                      first:
+                        type: boolean
+                        example: true
+                        default: true
+                      size:
+                        type: integer
+                        example: 10
+                        default: 0
+                      number:
+                        type: integer
+                        example: 0
+                        default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Size should be >=1:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 400,
+                            "message": "size should be greater or equal to 1."
+                        }
+                    }
+                page should be >=0:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 400,
+                            "message": "page should be greater or equal to 0."
+                        }
+                    }
+              schema:
+                oneOf:
+                  - title: Size should be >=1
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 400
+                            default: 0
+                          message:
+                            type: string
+                            example: size should be greater or equal to 1.
+                  - title: page should be >=0
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 400
+                            default: 0
+                          message:
+                            type: string
+                            example: page should be greater or equal to 0.
+    post:
+      summary: Create Reward Expiry Reminder
+      operationId: create-reward-expiry-reminder
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 12038,
+                            "message": "Reward expiry reminder created"
+                        },
+                        "rewardExpiryReminder": {
+                            "id": 35,
+                            "orgId": 100737,
+                            "duration": 32,
+                            "durationType": "DAYS",
+                            "cronTaskId": 605381,
+                            "timing": "18:00",
+                            "isActive": true,
+                            "createdOn": 1742186349783,
+                            "createdOnDateTime": "2025-03-17T04:39:09Z",
+                            "lastUpdatedOn": 1742186349783,
+                            "lastUpdatedOnDateTime": "2025-03-17T04:39:09Z",
+                            "createdBy": 75155282,
+                            "lastUpdatedBy": 75155282
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 12038
+                        default: 0
+                      message:
+                        type: string
+                        example: Reward expiry reminder created
+                  rewardExpiryReminder:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 35
+                        default: 0
+                      orgId:
+                        type: integer
+                        example: 100737
+                        default: 0
+                      duration:
+                        type: integer
+                        example: 32
+                        default: 0
+                      durationType:
+                        type: string
+                        example: DAYS
+                      cronTaskId:
+                        type: integer
+                        example: 605381
+                        default: 0
+                      timing:
+                        type: string
+                        example: "18:00"
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      createdOn:
+                        type: integer
+                        example: 1742186349783
+                        default: 0
+                      createdOnDateTime:
+                        type: string
+                        example: "2025-03-17T04:39:09Z"
+                      lastUpdatedOn:
+                        type: integer
+                        example: 1742186349783
+                        default: 0
+                      lastUpdatedOnDateTime:
+                        type: string
+                        example: "2025-03-17T04:39:09Z"
+                      createdBy:
+                        type: integer
+                        example: 75155282
+                        default: 0
+                      lastUpdatedBy:
+                        type: integer
+                        example: 75155282
+                        default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 400,
+                            "message": "Duration is mandatory"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: false
+                        default: true
+                      code:
+                        type: integer
+                        example: 400
+                        default: 0
+                      message:
+                        type: string
+                        example: Duration is mandatory
+  /api_gateway/rewards/core/v1/reward/expiryReminder/{rewardExpiryReminderid}:
+    put:
+      summary: Update Reward Expiry Reminder
+      operationId: update-reward-expiry-reminder
+      parameters:
+        - name: rewardExpiryReminderid
+          in: path
+          description: Unique identifier of Reward Expiry Reminder
+          schema:
+            type: integer
+            format: int32
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 12040,
+                            "message": "Reward expiry reminder updated"
+                        },
+                        "rewardExpiryReminder": {
+                            "id": 34,
+                            "orgId": 100737,
+                            "duration": 15,
+                            "durationType": "DAYS",
+                            "cronTaskId": 605157,
+                            "timing": "12:00",
+                            "isActive": true,
+                            "createdOn": 1741892481000,
+                            "createdOnDateTime": "2025-03-13T19:01:21Z",
+                            "lastUpdatedOn": 1741892497000,
+                            "lastUpdatedOnDateTime": "2025-03-13T19:01:37Z",
+                            "createdBy": 75155282,
+                            "lastUpdatedBy": 75155282
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 12040
+                        default: 0
+                      message:
+                        type: string
+                        example: Reward expiry reminder updated
+                  rewardExpiryReminder:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 34
+                        default: 0
+                      orgId:
+                        type: integer
+                        example: 100737
+                        default: 0
+                      duration:
+                        type: integer
+                        example: 15
+                        default: 0
+                      durationType:
+                        type: string
+                        example: DAYS
+                      cronTaskId:
+                        type: integer
+                        example: 605157
+                        default: 0
+                      timing:
+                        type: string
+                        example: "12:00"
+                      isActive:
+                        type: boolean
+                        example: true
+                        default: true
+                      createdOn:
+                        type: integer
+                        example: 1741892481000
+                        default: 0
+                      createdOnDateTime:
+                        type: string
+                        example: "2025-03-13T19:01:21Z"
+                      lastUpdatedOn:
+                        type: integer
+                        example: 1741892497000
+                        default: 0
+                      lastUpdatedOnDateTime:
+                        type: string
+                        example: "2025-03-13T19:01:37Z"
+                      createdBy:
+                        type: integer
+                        example: 75155282
+                        default: 0
+                      lastUpdatedBy:
+                        type: integer
+                        example: 75155282
+                        default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Duration is mandatory:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 400,
+                            "message": "Duration is mandatory"
+                        }
+                    }
+                Invalid Reward expiry reminder ID:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 400,
+                            "message": "Reward expiry reminder with id 34 does not exist"
+                        }
+                    }
+              schema:
+                oneOf:
+                  - title: Duration is mandatory
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 400
+                            default: 0
+                          message:
+                            type: string
+                            example: Duration is mandatory
+                  - title: Invalid Reward expiry reminder ID
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 400
+                            default: 0
+                          message:
+                            type: string
+                            example: Reward expiry reminder with id 34 does not exist
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

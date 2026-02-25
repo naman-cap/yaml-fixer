@@ -1,0 +1,564 @@
+openapi: 3.0.1
+info:
+  title: Points Restrictions APIs
+  description: Points restriction configuration for rewards
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/rewards/core/v1/brand/constraints:
+    get:
+      summary: Points - Get points constraints
+      operationId: get-points-constraints
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    [
+                        {
+                            "rewardConstraintId": 10259,
+                            "orgId": 100458,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+                            "frequencyType": "MONTHLY",
+                            "constraintLimitValue": 100,
+                            "isActive": true,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "redemptionType": "NULL"
+                        },
+                        {
+                            "rewardConstraintId": 10857,
+                            "orgId": 100458,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 5,
+                            "isActive": true,
+                            "intervalValue": 1,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            }
+                        },
+                        {
+                            "rewardConstraintId": 11123,
+                            "orgId": 100458,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 15,
+                            "isActive": true,
+                            "intervalValue": 1,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "redemptionType": "POINTS"
+                        },
+                        {
+                            "rewardConstraintId": 11436,
+                            "orgId": 100458,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_LOYALTY_PROGRAM",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 15,
+                            "isActive": true,
+                            "intervalValue": 1,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "programId": "1680"
+                        },
+                        {
+                            "rewardConstraintId": 11662,
+                            "orgId": 100458,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+                            "frequencyType": "WEEKLY",
+                            "constraintLimitValue": 10,
+                            "isActive": true,
+                            "startDayOfTheWeek": "MONDAY",
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "redemptionType": "MILES"
+                        },
+                        {
+                            "rewardConstraintId": 11664,
+                            "orgId": 100458,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_LOYALTY_PROGRAM",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 5,
+                            "isActive": true,
+                            "intervalValue": 1,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "programId": "469"
+                        },
+                        {
+                            "rewardConstraintId": 11667,
+                            "orgId": 100458,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_LABEL",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 5,
+                            "isActive": true,
+                            "intervalValue": 1,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "label": "Fashion"
+                        },
+                        {
+                            "rewardConstraintId": 13059,
+                            "orgId": 100458,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_TIER",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 5,
+                            "isActive": true,
+                            "intervalValue": 1,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "tierId": "1"
+                        }
+                    ]
+                With sortBy=lastUpdatedOn:
+                  value: |-
+                    [
+                        {
+                            "rewardConstraintId": 34327,
+                            "orgId": 100737,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 15,
+                            "isActive": true,
+                            "intervalValue": 1,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "createdOn": 1747374478000,
+                            "lastUpdatedOn": 1747374478000,
+                            "createdBy": 75161973,
+                            "lastUpdatedBy": 75161973,
+                            "createdOnDateTime": "2025-05-16T05:47:58Z",
+                            "lastUpdatedOnDateTime": "2025-05-16T05:47:58Z",
+                            "redemptionType": "CASH"
+                        },
+                        {
+                            "rewardConstraintId": 34326,
+                            "orgId": 100737,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 15,
+                            "isActive": true,
+                            "intervalValue": 1,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "createdOn": 1747374467000,
+                            "lastUpdatedOn": 1747374467000,
+                            "createdBy": 75161973,
+                            "lastUpdatedBy": 75161973,
+                            "createdOnDateTime": "2025-05-16T05:47:47Z",
+                            "lastUpdatedOnDateTime": "2025-05-16T05:47:47Z",
+                            "redemptionType": "VOUCHER"
+                        },
+                        {
+                            "rewardConstraintId": 29700,
+                            "orgId": 100737,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER_REDEMPTION_TYPE",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 15,
+                            "isActive": true,
+                            "intervalValue": 1,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            },
+                            "createdOn": 1742195093000,
+                            "lastUpdatedOn": 1742195093000,
+                            "createdBy": 75152721,
+                            "lastUpdatedBy": 75152721,
+                            "createdOnDateTime": "2025-03-17T07:04:53Z",
+                            "lastUpdatedOnDateTime": "2025-03-17T07:04:53Z",
+                            "redemptionType": "POINTS"
+                        }
+                    ]
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      type: object
+                      properties:
+                        rewardConstraintId:
+                          type: integer
+                          example: 10259
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100458
+                          default: 0
+                        kpi:
+                          type: string
+                          example: POINTS
+                        constraintLevel:
+                          type: string
+                          example: CUSTOMER_REDEMPTION_TYPE
+                        frequencyType:
+                          type: string
+                          example: MONTHLY
+                        constraintLimitValue:
+                          type: integer
+                          example: 100
+                          default: 0
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        status:
+                          type: object
+                          properties:
+                            success:
+                              type: boolean
+                              example: true
+                              default: true
+                            code:
+                              type: integer
+                              example: 0
+                              default: 0
+                        redemptionType:
+                          type: string
+                          example: "NULL"
+                  - title: With sortBy=lastUpdatedOn
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        rewardConstraintId:
+                          type: integer
+                          example: 34327
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100737
+                          default: 0
+                        kpi:
+                          type: string
+                          example: POINTS
+                        constraintLevel:
+                          type: string
+                          example: CUSTOMER_REDEMPTION_TYPE
+                        frequencyType:
+                          type: string
+                          example: DAILY
+                        constraintLimitValue:
+                          type: integer
+                          example: 15
+                          default: 0
+                        isActive:
+                          type: boolean
+                          example: true
+                          default: true
+                        intervalValue:
+                          type: integer
+                          example: 1
+                          default: 0
+                        status:
+                          type: object
+                          properties:
+                            success:
+                              type: boolean
+                              example: true
+                              default: true
+                            code:
+                              type: integer
+                              example: 0
+                              default: 0
+                        createdOn:
+                          type: integer
+                          example: 1747374478000
+                          default: 0
+                        lastUpdatedOn:
+                          type: integer
+                          example: 1747374478000
+                          default: 0
+                        createdBy:
+                          type: integer
+                          example: 75161973
+                          default: 0
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75161973
+                          default: 0
+                        createdOnDateTime:
+                          type: string
+                          example: "2025-05-16T05:47:58Z"
+                        lastUpdatedOnDateTime:
+                          type: string
+                          example: "2025-05-16T05:47:58Z"
+                        redemptionType:
+                          type: string
+                          example: CASH
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+    post:
+      summary: Points Restrictions - Create points restriction
+      operationId: create-points-restriction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: >-
+                    [     {   "kpi" :"POINTS",         "constraintLevel" : "CUSTOMER_REDEMPTION_TYPE",        
+                    "frequencyType" : "DAILY",         "intervalValue" : 1,         "constraintLimitValue" : 15,        
+                    "isActive" : true,         "redemptionType": "POINTS"     } ]
+            examples:
+              Request Example:
+                value:
+                  - kpi: POINTS
+                    constraintLevel: CUSTOMER_REDEMPTION_TYPE
+                    frequencyType: DAILY
+                    intervalValue: 1
+                    constraintLimitValue: 15
+                    isActive: true
+                    redemptionType: POINTS
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response:
+                  value:
+                    - rewardConstraintId: 50527
+                      orgId: 100737
+                      kpi: POINTS
+                      constraintLevel: CUSTOMER_REDEMPTION_TYPE
+                      frequencyType: DAILY
+                      constraintLimitValue: 15
+                      isActive: true
+                      intervalValue: 1
+                      status:
+                        success: true
+                        code: 0
+                      createdOn: 1765370540000
+                      lastUpdatedOn: 1765370540000
+                      createdBy: 75197372
+                      lastUpdatedBy: 75197372
+                      createdOnDateTime: "2025-12-10T12:42:20Z"
+                      lastUpdatedOnDateTime: "2025-12-10T12:42:20Z"
+                      redemptionType: INTOUCH_REWARD
+                  summary: Sample response
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rewardConstraintId:
+                      type: integer
+                      example: 6759
+                      default: 0
+                    orgId:
+                      type: integer
+                      example: 50672
+                      default: 0
+                    kpi:
+                      type: string
+                      example: POINTS
+                    constraintLevel:
+                      type: string
+                      example: CUSTOMER_REDEMPTION_TYPE
+                    frequencyType:
+                      type: string
+                      example: DAILY
+                    constraintLimitValue:
+                      type: integer
+                      example: 15
+                      default: 0
+                    isActive:
+                      type: boolean
+                      example: true
+                      default: true
+                    intervalValue:
+                      type: integer
+                      example: 1
+                      default: 0
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 0
+                          default: 0
+                    redemptionType:
+                      type: string
+                      example: POINTS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+    put:
+      summary: Points - Update points restriction
+      operationId: update-points-restriction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: >-
+                    [     {   "rewardConstraintId": 6759,         "kpi" :"POINTS",         "constraintLevel" :
+                    "CUSTOMER",         "frequencyType" : "DAILY",         "intervalValue" : 3,        
+                    "constraintLimitValue" : 8,         "isActive" : false     } ]
+            examples:
+              Request Example:
+                value:
+                  - rewardConstraintId: 6759
+                    kpi: POINTS
+                    constraintLevel: CUSTOMER
+                    frequencyType: DAILY
+                    intervalValue: 3
+                    constraintLimitValue: 8
+                    isActive: false
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    [
+                        {
+                            "rewardConstraintId": 6759,
+                            "orgId": 50672,
+                            "kpi": "POINTS",
+                            "constraintLevel": "CUSTOMER",
+                            "frequencyType": "DAILY",
+                            "constraintLimitValue": 8,
+                            "isActive": false,
+                            "intervalValue": 3,
+                            "status": {
+                                "success": true,
+                                "code": 0
+                            }
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rewardConstraintId:
+                      type: integer
+                      example: 6759
+                      default: 0
+                    orgId:
+                      type: integer
+                      example: 50672
+                      default: 0
+                    kpi:
+                      type: string
+                      example: POINTS
+                    constraintLevel:
+                      type: string
+                      example: CUSTOMER
+                    frequencyType:
+                      type: string
+                      example: DAILY
+                    constraintLimitValue:
+                      type: integer
+                      example: 8
+                      default: 0
+                    isActive:
+                      type: boolean
+                      example: false
+                      default: true
+                    intervalValue:
+                      type: integer
+                      example: 3
+                      default: 0
+                    status:
+                      type: object
+                      properties:
+                        success:
+                          type: boolean
+                          example: true
+                          default: true
+                        code:
+                          type: integer
+                          example: 0
+                          default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

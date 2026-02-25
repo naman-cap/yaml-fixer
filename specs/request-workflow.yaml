@@ -1,0 +1,1961 @@
+openapi: 3.0.1
+info:
+  title: Request Workflow APIs
+  description: Request workflow creation and approval endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v2
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/v2/request-workflow/{requestType}:
+    put:
+      summary: Approve or reject a request
+      description: This API enables you to approve or reject a request
+      operationId: approve-or-reject-a-request
+      parameters:
+        - name: requestType
+          in: path
+          schema:
+            type: string
+            enum:
+              - CUSTOMER-STATUS-CHANGE
+              - POINTS-REDEMPTION
+              - GOODWILL-POINTS
+              - EARN-BADGE
+              - ISSUE-BADGE
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - requestId
+                - actionName
+                - payload
+              properties:
+                requestId:
+                  type: string
+                  description: The request ID generated during creation of the request.
+                actionName:
+                  type: string
+                  description: The name of the action being performed by the checker admin user. For example, adminTask.
+                payload:
+                  type: object
+                  properties:
+                    "":
+                      type: string
+            examples:
+              Approval:
+                value:
+                  requestId: d9df3b65-62a7-11ee-aa6d-0aaee4e533d2
+                  actionName: AdminTask
+                  payload:
+                    AdminTask-Payload:
+                      actionDecision: approved
+                      actionMessage: approving the request
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Customer identifier change:
+                  value:
+                    data:
+                      requestId: 113cff87-62a5-11ee-aa6d-0aaee4e533d2
+                      userId: 232134
+                      userName: user@example.com
+                      requestType: customer-status-change
+                      state: approved
+                      startTime: "2023-10-04T16:29:19"
+                      endTime: "2023-10-04T16:42:25"
+                      details:
+                        IntouchAPITask-Payload:
+                          hostname: <https://crm-nightly-new.cc.capillarytech.com>
+                          path: /v2/customers/lookup/status
+                          method: PUT
+                          pathParams: {}
+                          queryParams:
+                            source: INSTORE
+                            accountId: ""
+                            use_async: "false"
+                            identifierName: mobile
+                            identifierValue: "919887766554"
+                          body:
+                            reason: testing
+                            label: Suspended
+                          headers:
+                            Authorization: REDACTED
+                            content-type: application/json
+                        AdminTask-Payload:
+                          actionDecision: approved
+                          actionMessage: approving the request
+                        ValidateMakerAccess_Output: true
+                        AdminTask_Output: approved
+                        ValidatePayload_Output: true
+                        IntouchAPITask_Output:
+                          status: 200
+                          headers:
+                            Date:
+                              - Wed, 04 Oct 2023 11:12:25 GMT
+                            Content-Type:
+                              - application/json; charset=UTF-8
+                            Content-Length:
+                              - "15"
+                            Connection:
+                              - keep-alive
+                            X-Application-Context:
+                              - application:1900
+                            Host:
+                              - intouch-api-64f99fb8b7-lkzjb
+                            uri_path:
+                              - /v2/customers/{id}/status
+                            org_id:
+                              - "51251"
+                            status_code:
+                              - "200"
+                            success:
+                              - "1"
+                            fail:
+                              - "0"
+                            X-CAP-REQUEST-ID:
+                              - b7131d8f40441dbefd65d24a0c56fe93
+                            till:
+                              - pun.01
+                            X-Cap-RequestID:
+                              - b7131d8f40441dbefd65d24a0c56fe93
+                            X-Frame-Options:
+                              - SAMEORIGIN
+                              - SAMEORIGIN
+                          body:
+                            warnings: []
+                        ValidateCheckerAccess_Output: true
+                Points redemtion:
+                  value:
+                    data:
+                      requestId: d9df3b65-62a7-11ee-aa6d-0aaee4e533d2
+                      userId: 232134
+                      userName: user@example.com
+                      requestType: points-redemption
+                      state: failed
+                      startTime: "2023-10-04T16:49:14"
+                      endTime: "2023-10-04T16:49:58"
+                      details:
+                        IntouchAPITask-Payload:
+                          hostname: <https://crm-nightly-new.cc.capillarytech.com>
+                          path: /v1.1/points/redeem
+                          method: POST
+                          pathParams: {}
+                          queryParams:
+                            skip_validation: "true"
+                            format: json
+                          body:
+                            root:
+                              redeem:
+                                points_redeemed: "100"
+                                customer:
+                                  mobile: "9988221100"
+                                redemption_time: "2020-04-15 23:01:46"
+                                transaction_number: numbr892723330323421971280
+                                notes: Redemption by SMS
+                                external_reference_number: ACR-583523332039150121
+                          headers:
+                            Authorization: REDACTED
+                            content-type: application/json
+                            X-CAP-CLIENT-SIGNATURE: jatin
+                        AdminTask-Payload:
+                          actionDecision: approved
+                          actionMessage: approving the points redemption request
+                        ValidateMakerAccess_Output: true
+                        AdminTask_Output: approved
+                        ValidatePayload_Output: true
+                        IntouchAPITask_Output:
+                          status: 200
+                          headers:
+                            Date:
+                              - Wed, 04 Oct 2023 11:19:58 GMT
+                            Content-Type:
+                              - application/json;charset=UTF-8
+                            Content-Length:
+                              - "640"
+                            Connection:
+                              - keep-alive
+                            X-Application-Context:
+                              - application:1900
+                            Host:
+                              - intouch-api-64f99fb8b7-lkzjb
+                            uri_path:
+                              - /v1.1/points/redeem
+                            org_id:
+                              - "51250"
+                            status_code:
+                              - "744"
+                            success:
+                              - "0"
+                            fail:
+                              - "1"
+                            X-CAP-REQUEST-ID:
+                              - 73af50154417526c8efea43cba314c0d
+                            till:
+                              - ind.1
+                            X-Cap-RequestID:
+                              - 73af50154417526c8efea43cba314c0d
+                            X-Frame-Options:
+                              - SAMEORIGIN
+                              - SAMEORIGIN
+                          body:
+                            response:
+                              status:
+                                success: "false"
+                                code: 500
+                                message: All requests have failed due to errors
+                              responses:
+                                points:
+                                  mobile: "919887766554"
+                                  email: user@example.com
+                                  external_id: XYPZ0063
+                                  user_id: "382332518"
+                                  points_redeemed: "100"
+                                  redemption_purpose: ""
+                                  redeemed_value: 0
+                                  side_effects:
+                                    effect: []
+                                  item_status:
+                                    success: "false"
+                                    code: 744
+                                    message: Reference number already exists
+                        ValidateCheckerAccess_Output: true
+                Issue goodwill:
+                  value: |-
+                    {
+                        "data": {
+                            "requestId": "ffcf19fb-a3fd-11ee-9fa7-4650f67465b8",
+                            "userId": 232134,
+                            "userName": "user@example.com",
+                            "requestType": "goodwill-points",
+                            "state": "approved",
+                            "startTime": "2023-12-26T20:19:40",
+                            "endTime": "2023-12-26T20:20:00",
+                            "details": {
+                                "IntouchAPITask-Payload": {
+                                    "hostname": "http://internal-intouch-api.default:1900",
+                                    "path": "/internal/goodwill/",
+                                    "method": "POST",
+                                    "pathParams": {},
+                                    "queryParams": {},
+                                    "body": {
+                                        "referenceId": "ref_id_1299314173",
+                                        "reason": "reason",
+                                        "baseType": "POINTS",
+                                        "programId": 2739,
+                                        "awardingTillId": 50682616,
+                                        "earningEntityType": "CUSTOMER",
+                                        "earningEntityId": 382332518,
+                                        "points": 20,
+                                        "source": "API"
+                                    },
+                                    "headers": {
+                                        "Authorization": "REDACTED",
+                                        "content-type": "application/json",
+                                        "X-CAP-API-AUTH-ORG-ID": "51250"
+                                    }
+                                },
+                                "AdminTask-Payload": {
+                                    "actionDecision": "approved",
+                                    "actionMessage": "approving the goodwill points request"
+                                },
+                                "ValidateMakerAccess_Output": true,
+                                "AdminTask_Output": "approved",
+                                "IntouchAPITask_Output": {
+                                    "status": 201,
+                                    "headers": {
+                                        "Date": [
+                                            "Tue, 26 Dec 2023 14:49:59 GMT"
+                                        ],
+                                        "X-Application-Context": [
+                                            "application:1900"
+                                        ],
+                                        "Content-Type": [
+                                            "application/json; charset=UTF-8"
+                                        ],
+                                        "Host": [
+                                            "internal-intouch-api-a-6667977874-jlzm4"
+                                        ],
+                                        "uri_path": [
+                                            "/internal/goodwill"
+                                        ],
+                                        "org_id": [
+                                            "51250"
+                                        ],
+                                        "status_code": [
+                                            ""
+                                        ],
+                                        "success": [
+                                            "0"
+                                        ],
+                                        "fail": [
+                                            "0"
+                                        ],
+                                        "X-CAP-REQUEST-ID": [
+                                            "13451b8b-a22c-4938-aeda-f62318854762"
+                                        ],
+                                        "till": [
+                                            "ind.1"
+                                        ],
+                                        "X-Cap-RequestID": [
+                                            "13451b8b-a22c-4938-aeda-f62318854762"
+                                        ],
+                                        "Content-Length": [
+                                            "30"
+                                        ],
+                                        "Connection": [
+                                            "close"
+                                        ],
+                                        "Server": [
+                                            "Jetty(9.2.14.v20151106)"
+                                        ]
+                                    },
+                                    "body": {
+                                        "createdId": 38,
+                                        "warnings": []
+                                    }
+                                },
+                                "ValidatePayload_Output": true,
+                                "ValidateCheckerAccess_Output": true
+                            }
+                        }
+                    }
+                Enrol badge:
+                  value: |-
+                    {
+                        "data": {
+                            "requestId": "23e06c3e-a5c3-11ee-9a63-9ab214749657",
+                            "userId": 232134,
+                            "userName": "user@example.com",
+                            "requestType": "issue-badge",
+                            "state": "approved",
+                            "startTime": "2023-12-29T02:23:23",
+                            "endTime": "2023-12-29T02:23:39",
+                            "details": {
+                                "IntouchAPITask-Payload": {
+                                    "hostname": "https://crm-nightly-new.cc.capillarytech.com",
+                                    "path": "/api_gateway/v1/badges/badgeMeta/customer/issueBulk",
+                                    "method": "POST",
+                                    "pathParams": {},
+                                    "body": {
+                                        "triggeredBy": {
+                                            "ownerType": "Goodwill_Module",
+                                            "referenceId": "134"
+                                        },
+                                        "customers": [
+                                            113460811
+                                        ],
+                                        "requestId": "e7requestd62c5ec5d115a2859228cefd9ee8cgh",
+                                        "badgeMetaId": "658de01c823d1b70aabcfaae"
+                                    },
+                                    "headers": {
+                                        "Authorization": "REDACTED",
+                                        "content-type": "application/json"
+                                    }
+                                },
+                                "AdminTask-Payload": {
+                                    "actionDecision": "approved",
+                                    "actionMessage": "approving the issue badge request"
+                                },
+                                "ValidateMakerAccess_Output": true,
+                                "AdminTask_Output": "approved",
+                                "ValidatePayload_Output": true,
+                                "IntouchAPITask_Output": {
+                                    "status": 200,
+                                    "headers": {
+                                        "Date": [
+                                            "Thu, 28 Dec 2023 20:53:38 GMT"
+                                        ],
+                                        "Content-Type": [
+                                            "application/json"
+                                        ],
+                                        "Transfer-Encoding": [
+                                            "chunked"
+                                        ],
+                                        "Connection": [
+                                            "keep-alive"
+                                        ],
+                                        "X-CAP-REQUEST-ID": [
+                                            "bf8189d95bdcb0696baee686f953ae75"
+                                        ],
+                                        "X-Frame-Options": [
+                                            "SAMEORIGIN",
+                                            "SAMEORIGIN"
+                                        ]
+                                    },
+                                    "body": {
+                                        "data": {
+                                            "badgeMetaId": "658de01c823d1b70aabcfaae",
+                                            "triggeredBy": {
+                                                "ownerType": "Goodwill_Module",
+                                                "referenceId": "134"
+                                            },
+                                            "expiresOn": 1.703883200896E9,
+                                            "issuedBadges": [
+                                                {
+                                                    "customerId": 113460811,
+                                                    "issuedId": "658de052823d1b70aabcfaaf"
+                                                }
+                                            ],
+                                            "requestId": "e7requestd62c5ec5d115a2859228cefd9ee8cgh"
+                                        },
+                                        "errors": [],
+                                        "warnings": []
+                                    }
+                                },
+                                "ValidateCheckerAccess_Output": true
+                            }
+                        }
+                    }
+                Retro transaction:
+                  value: |-
+                    {
+                        "data": {
+                            "requestId": "23e06c3e-a5c3-11ee-9a63-9ab214749657",
+                            "userId": 232134,
+                            "userName": "user@example.com",
+                            "requestType": "issue-badge",
+                            "state": "approved",
+                            "startTime": "2023-12-29T02:23:23",
+                            "endTime": "2023-12-29T02:23:39",
+                            "details": {
+                                "IntouchAPITask-Payload": {
+                                    "hostname": "https://crm-nightly-new.cc.capillarytech.com",
+                                    "path": "/api_gateway/v1/badges/badgeMeta/customer/issueBulk",
+                                    "method": "POST",
+                                    "pathParams": {},
+                                    "body": {
+                                        "triggeredBy": {
+                                            "ownerType": "Goodwill_Module",
+                                            "referenceId": "134"
+                                        },
+                                        "customers": [
+                                            113460811
+                                        ],
+                                        "requestId": "e7requestd62c5ec5d115a2859228cefd9ee8cgh",
+                                        "badgeMetaId": "658de01c823d1b70aabcfaae"
+                                    },
+                                    "headers": {
+                                        "Authorization": "REDACTED",
+                                        "content-type": "application/json"
+                                    }
+                                },
+                                "AdminTask-Payload": {
+                                    "actionDecision": "approved",
+                                    "actionMessage": "approving the issue badge request"
+                                },
+                                "ValidateMakerAccess_Output": true,
+                                "AdminTask_Output": "approved",
+                                "ValidatePayload_Output": true,
+                                "IntouchAPITask_Output": {
+                                    "status": 200,
+                                    "headers": {
+                                        "Date": [
+                                            "Thu, 28 Dec 2023 20:53:38 GMT"
+                                        ],
+                                        "Content-Type": [
+                                            "application/json"
+                                        ],
+                                        "Transfer-Encoding": [
+                                            "chunked"
+                                        ],
+                                        "Connection": [
+                                            "keep-alive"
+                                        ],
+                                        "X-CAP-REQUEST-ID": [
+                                            "bf8189d95bdcb0696baee686f953ae75"
+                                        ],
+                                        "X-Frame-Options": [
+                                            "SAMEORIGIN",
+                                            "SAMEORIGIN"
+                                        ]
+                                    },
+                                    "body": {
+                                        "data": {
+                                            "badgeMetaId": "658de01c823d1b70aabcfaae",
+                                            "triggeredBy": {
+                                                "ownerType": "Goodwill_Module",
+                                                "referenceId": "134"
+                                            },
+                                            "expiresOn": 1.703883200896E9,
+                                            "issuedBadges": [
+                                                {
+                                                    "customerId": 113460811,
+                                                    "issuedId": "658de052823d1b70aabcfaaf"
+                                                }
+                                            ],
+                                            "requestId": "e7requestd62c5ec5d115a2859228cefd9ee8cgh"
+                                        },
+                                        "errors": [],
+                                        "warnings": []
+                                    }
+                                },
+                                "ValidateCheckerAccess_Output": true
+                            }
+                        }
+                    }
+              schema:
+                oneOf:
+                  - title: Customer identifier change
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          requestId:
+                            type: string
+                            example: 113cff87-62a5-11ee-aa6d-0aaee4e533d2
+                          userId:
+                            type: integer
+                            example: 232134
+                            default: 0
+                          userName:
+                            type: string
+                            example: user@example.com
+                          requestType:
+                            type: string
+                            example: customer-status-change
+                          state:
+                            type: string
+                            example: approved
+                          startTime:
+                            type: string
+                            example: "2023-10-04T16:29:19"
+                          endTime:
+                            type: string
+                            example: "2023-10-04T16:42:25"
+                          details:
+                            type: object
+                            properties:
+                              IntouchAPITask-Payload:
+                                type: object
+                                properties:
+                                  hostname:
+                                    type: string
+                                    example: <https://crm-nightly-new.cc.capillarytech.com>
+                                  path:
+                                    type: string
+                                    example: /v2/customers/lookup/status
+                                  method:
+                                    type: string
+                                    example: PUT
+                                  pathParams:
+                                    type: object
+                                    properties: {}
+                                  queryParams:
+                                    type: object
+                                    properties:
+                                      source:
+                                        type: string
+                                        example: INSTORE
+                                      accountId:
+                                        type: string
+                                        example: ""
+                                      use_async:
+                                        type: string
+                                        example: "false"
+                                      identifierName:
+                                        type: string
+                                        example: mobile
+                                      identifierValue:
+                                        type: string
+                                        example: "9988221100"
+                                  body:
+                                    type: object
+                                    properties:
+                                      reason:
+                                        type: string
+                                        example: testing
+                                      label:
+                                        type: string
+                                        example: Suspended
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Authorization:
+                                        type: string
+                                        example: REDACTED
+                                      content-type:
+                                        type: string
+                                        example: application/json
+                              AdminTask-Payload:
+                                type: object
+                                properties:
+                                  actionDecision:
+                                    type: string
+                                    example: approved
+                                  actionMessage:
+                                    type: string
+                                    example: approving the request
+                              ValidateMakerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              AdminTask_Output:
+                                type: string
+                                example: approved
+                              ValidatePayload_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              IntouchAPITask_Output:
+                                type: object
+                                properties:
+                                  status:
+                                    type: integer
+                                    example: 200
+                                    default: 0
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Date:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: Wed, 04 Oct 2023 11:12:25 GMT
+                                      Content-Type:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: application/json; charset=UTF-8
+                                      Content-Length:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "15"
+                                      Connection:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: keep-alive
+                                      X-Application-Context:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: application:1900
+                                      Host:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: intouch-api-64f99fb8b7-lkzjb
+                                      uri_path:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: /v2/customers/{id}/status
+                                      org_id:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "51251"
+                                      status_code:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "200"
+                                      success:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "1"
+                                      fail:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "0"
+                                      X-CAP-REQUEST-ID:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: b7131d8f40441dbefd65d24a0c56fe93
+                                      till:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: pun.01
+                                      X-Cap-RequestID:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: b7131d8f40441dbefd65d24a0c56fe93
+                                      X-Frame-Options:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: SAMEORIGIN
+                                  body:
+                                    type: object
+                                    properties:
+                                      warnings:
+                                        type: array
+                              ValidateCheckerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                  - title: Points redemtion
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          requestId:
+                            type: string
+                            example: d9df3b65-62a7-11ee-aa6d-0aaee4e533d2
+                          userId:
+                            type: integer
+                            example: 232134
+                            default: 0
+                          userName:
+                            type: string
+                            example: user@example.com
+                          requestType:
+                            type: string
+                            example: points-redemption
+                          state:
+                            type: string
+                            example: failed
+                          startTime:
+                            type: string
+                            example: "2023-10-04T16:49:14"
+                          endTime:
+                            type: string
+                            example: "2023-10-04T16:49:58"
+                          details:
+                            type: object
+                            properties:
+                              IntouchAPITask-Payload:
+                                type: object
+                                properties:
+                                  hostname:
+                                    type: string
+                                    example: <https://crm-nightly-new.cc.capillarytech.com>
+                                  path:
+                                    type: string
+                                    example: /v1.1/points/redeem
+                                  method:
+                                    type: string
+                                    example: POST
+                                  pathParams:
+                                    type: object
+                                    properties: {}
+                                  queryParams:
+                                    type: object
+                                    properties:
+                                      skip_validation:
+                                        type: string
+                                        example: "true"
+                                      format:
+                                        type: string
+                                        example: json
+                                  body:
+                                    type: object
+                                    properties:
+                                      root:
+                                        type: object
+                                        properties:
+                                          redeem:
+                                            type: object
+                                            properties:
+                                              points_redeemed:
+                                                type: string
+                                                example: "100"
+                                              customer:
+                                                type: object
+                                                properties:
+                                                  mobile:
+                                                    type: string
+                                                    example: "9988221100"
+                                              redemption_time:
+                                                type: string
+                                                example: "2020-04-15 23:01:46"
+                                              transaction_number:
+                                                type: string
+                                                example: numbr892723330323421971280
+                                              notes:
+                                                type: string
+                                                example: Redemption by SMS
+                                              external_reference_number:
+                                                type: string
+                                                example: ACR-583523332039150121
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Authorization:
+                                        type: string
+                                        example: REDACTED
+                                      content-type:
+                                        type: string
+                                        example: application/json
+                                      X-CAP-CLIENT-SIGNATURE:
+                                        type: string
+                                        example: jatin
+                              AdminTask-Payload:
+                                type: object
+                                properties:
+                                  actionDecision:
+                                    type: string
+                                    example: approved
+                                  actionMessage:
+                                    type: string
+                                    example: approving the points redemption request
+                              ValidateMakerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              AdminTask_Output:
+                                type: string
+                                example: approved
+                              ValidatePayload_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              IntouchAPITask_Output:
+                                type: object
+                                properties:
+                                  status:
+                                    type: integer
+                                    example: 200
+                                    default: 0
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Date:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: Wed, 04 Oct 2023 11:19:58 GMT
+                                      Content-Type:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: application/json;charset=UTF-8
+                                      Content-Length:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "640"
+                                      Connection:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: keep-alive
+                                      X-Application-Context:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: application:1900
+                                      Host:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: intouch-api-64f99fb8b7-lkzjb
+                                      uri_path:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: /v1.1/points/redeem
+                                      org_id:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "51250"
+                                      status_code:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "744"
+                                      success:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "0"
+                                      fail:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "1"
+                                      X-CAP-REQUEST-ID:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: 73af50154417526c8efea43cba314c0d
+                                      till:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: ind.1
+                                      X-Cap-RequestID:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: 73af50154417526c8efea43cba314c0d
+                                      X-Frame-Options:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: SAMEORIGIN
+                                  body:
+                                    type: object
+                                    properties:
+                                      response:
+                                        type: object
+                                        properties:
+                                          status:
+                                            type: object
+                                            properties:
+                                              success:
+                                                type: string
+                                                example: "false"
+                                              code:
+                                                type: integer
+                                                example: 500
+                                                default: 0
+                                              message:
+                                                type: string
+                                                example: All requests have failed due to errors
+                                          responses:
+                                            type: object
+                                            properties:
+                                              points:
+                                                type: object
+                                                properties:
+                                                  mobile:
+                                                    type: string
+                                                    example: "9988221100"
+                                                  email:
+                                                    type: string
+                                                    example: user@example.com
+                                                  external_id:
+                                                    type: string
+                                                    example: XYPZ0063
+                                                  user_id:
+                                                    type: string
+                                                    example: "382332518"
+                                                  points_redeemed:
+                                                    type: string
+                                                    example: "100"
+                                                  redemption_purpose:
+                                                    type: string
+                                                    example: ""
+                                                  redeemed_value:
+                                                    type: integer
+                                                    example: 0
+                                                    default: 0
+                                                  side_effects:
+                                                    type: object
+                                                    properties:
+                                                      effect:
+                                                        type: array
+                                                  item_status:
+                                                    type: object
+                                                    properties:
+                                                      success:
+                                                        type: string
+                                                        example: "false"
+                                                      code:
+                                                        type: integer
+                                                        example: 744
+                                                        default: 0
+                                                      message:
+                                                        type: string
+                                                        example: Reference number already exists
+                              ValidateCheckerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                  - title: Issue goodwill
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          requestId:
+                            type: string
+                            example: ffcf19fb-a3fd-11ee-9fa7-4650f67465b8
+                          userId:
+                            type: integer
+                            example: 232134
+                            default: 0
+                          userName:
+                            type: string
+                            example: user@example.com
+                          requestType:
+                            type: string
+                            example: goodwill-points
+                          state:
+                            type: string
+                            example: approved
+                          startTime:
+                            type: string
+                            example: "2023-12-26T20:19:40"
+                          endTime:
+                            type: string
+                            example: "2023-12-26T20:20:00"
+                          details:
+                            type: object
+                            properties:
+                              IntouchAPITask-Payload:
+                                type: object
+                                properties:
+                                  hostname:
+                                    type: string
+                                    example: http://internal-intouch-api.default:1900
+                                  path:
+                                    type: string
+                                    example: /internal/goodwill/
+                                  method:
+                                    type: string
+                                    example: POST
+                                  pathParams:
+                                    type: object
+                                    properties: {}
+                                  queryParams:
+                                    type: object
+                                    properties: {}
+                                  body:
+                                    type: object
+                                    properties:
+                                      referenceId:
+                                        type: string
+                                        example: ref_id_1299314173
+                                      reason:
+                                        type: string
+                                        example: reason
+                                      baseType:
+                                        type: string
+                                        example: POINTS
+                                      programId:
+                                        type: integer
+                                        example: 2739
+                                        default: 0
+                                      awardingTillId:
+                                        type: integer
+                                        example: 50682616
+                                        default: 0
+                                      earningEntityType:
+                                        type: string
+                                        example: CUSTOMER
+                                      earningEntityId:
+                                        type: integer
+                                        example: 382332518
+                                        default: 0
+                                      points:
+                                        type: integer
+                                        example: 20
+                                        default: 0
+                                      source:
+                                        type: string
+                                        example: API
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Authorization:
+                                        type: string
+                                        example: REDACTED
+                                      content-type:
+                                        type: string
+                                        example: application/json
+                                      X-CAP-API-AUTH-ORG-ID:
+                                        type: string
+                                        example: "51250"
+                              AdminTask-Payload:
+                                type: object
+                                properties:
+                                  actionDecision:
+                                    type: string
+                                    example: approved
+                                  actionMessage:
+                                    type: string
+                                    example: approving the goodwill points request
+                              ValidateMakerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              AdminTask_Output:
+                                type: string
+                                example: approved
+                              IntouchAPITask_Output:
+                                type: object
+                                properties:
+                                  status:
+                                    type: integer
+                                    example: 201
+                                    default: 0
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Date:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: Tue, 26 Dec 2023 14:49:59 GMT
+                                      X-Application-Context:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: application:1900
+                                      Content-Type:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: application/json; charset=UTF-8
+                                      Host:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: internal-intouch-api-a-6667977874-jlzm4
+                                      uri_path:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: /internal/goodwill
+                                      org_id:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "51250"
+                                      status_code:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: ""
+                                      success:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "0"
+                                      fail:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "0"
+                                      X-CAP-REQUEST-ID:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: 13451b8b-a22c-4938-aeda-f62318854762
+                                      till:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: ind.1
+                                      X-Cap-RequestID:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: 13451b8b-a22c-4938-aeda-f62318854762
+                                      Content-Length:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: "30"
+                                      Connection:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: close
+                                      Server:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: Jetty(9.2.14.v20151106)
+                                  body:
+                                    type: object
+                                    properties:
+                                      createdId:
+                                        type: integer
+                                        example: 38
+                                        default: 0
+                                      warnings:
+                                        type: array
+                              ValidatePayload_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              ValidateCheckerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                  - title: Enrol badge
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          requestId:
+                            type: string
+                            example: 23e06c3e-a5c3-11ee-9a63-9ab214749657
+                          userId:
+                            type: integer
+                            example: 232134
+                            default: 0
+                          userName:
+                            type: string
+                            example: user@example.com
+                          requestType:
+                            type: string
+                            example: issue-badge
+                          state:
+                            type: string
+                            example: approved
+                          startTime:
+                            type: string
+                            example: "2023-12-29T02:23:23"
+                          endTime:
+                            type: string
+                            example: "2023-12-29T02:23:39"
+                          details:
+                            type: object
+                            properties:
+                              IntouchAPITask-Payload:
+                                type: object
+                                properties:
+                                  hostname:
+                                    type: string
+                                    example: https://crm-nightly-new.cc.capillarytech.com
+                                  path:
+                                    type: string
+                                    example: /api_gateway/v1/badges/badgeMeta/customer/issueBulk
+                                  method:
+                                    type: string
+                                    example: POST
+                                  pathParams:
+                                    type: object
+                                    properties: {}
+                                  body:
+                                    type: object
+                                    properties:
+                                      triggeredBy:
+                                        type: object
+                                        properties:
+                                          ownerType:
+                                            type: string
+                                            example: Goodwill_Module
+                                          referenceId:
+                                            type: string
+                                            example: "134"
+                                      customers:
+                                        type: array
+                                        items:
+                                          type: integer
+                                          example: 113460811
+                                          default: 0
+                                      requestId:
+                                        type: string
+                                        example: e7requestd62c5ec5d115a2859228cefd9ee8cgh
+                                      badgeMetaId:
+                                        type: string
+                                        example: 658de01c823d1b70aabcfaae
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Authorization:
+                                        type: string
+                                        example: REDACTED
+                                      content-type:
+                                        type: string
+                                        example: application/json
+                              AdminTask-Payload:
+                                type: object
+                                properties:
+                                  actionDecision:
+                                    type: string
+                                    example: approved
+                                  actionMessage:
+                                    type: string
+                                    example: approving the issue badge request
+                              ValidateMakerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              AdminTask_Output:
+                                type: string
+                                example: approved
+                              ValidatePayload_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              IntouchAPITask_Output:
+                                type: object
+                                properties:
+                                  status:
+                                    type: integer
+                                    example: 200
+                                    default: 0
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Date:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: Thu, 28 Dec 2023 20:53:38 GMT
+                                      Content-Type:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: application/json
+                                      Transfer-Encoding:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: chunked
+                                      Connection:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: keep-alive
+                                      X-CAP-REQUEST-ID:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: bf8189d95bdcb0696baee686f953ae75
+                                      X-Frame-Options:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: SAMEORIGIN
+                                  body:
+                                    type: object
+                                    properties:
+                                      data:
+                                        type: object
+                                        properties:
+                                          badgeMetaId:
+                                            type: string
+                                            example: 658de01c823d1b70aabcfaae
+                                          triggeredBy:
+                                            type: object
+                                            properties:
+                                              ownerType:
+                                                type: string
+                                                example: Goodwill_Module
+                                              referenceId:
+                                                type: string
+                                                example: "134"
+                                          expiresOn:
+                                            type: number
+                                            example: 1703883200.896
+                                            default: 0
+                                          issuedBadges:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties:
+                                                customerId:
+                                                  type: integer
+                                                  example: 113460811
+                                                  default: 0
+                                                issuedId:
+                                                  type: string
+                                                  example: 658de052823d1b70aabcfaaf
+                                          requestId:
+                                            type: string
+                                            example: e7requestd62c5ec5d115a2859228cefd9ee8cgh
+                                      errors:
+                                        type: array
+                                      warnings:
+                                        type: array
+                              ValidateCheckerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                  - title: Retro transaction
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          requestId:
+                            type: string
+                            example: 23e06c3e-a5c3-11ee-9a63-9ab214749657
+                          userId:
+                            type: integer
+                            example: 232134
+                            default: 0
+                          userName:
+                            type: string
+                            example: user@example.com
+                          requestType:
+                            type: string
+                            example: issue-badge
+                          state:
+                            type: string
+                            example: approved
+                          startTime:
+                            type: string
+                            example: "2023-12-29T02:23:23"
+                          endTime:
+                            type: string
+                            example: "2023-12-29T02:23:39"
+                          details:
+                            type: object
+                            properties:
+                              IntouchAPITask-Payload:
+                                type: object
+                                properties:
+                                  hostname:
+                                    type: string
+                                    example: https://crm-nightly-new.cc.capillarytech.com
+                                  path:
+                                    type: string
+                                    example: /api_gateway/v1/badges/badgeMeta/customer/issueBulk
+                                  method:
+                                    type: string
+                                    example: POST
+                                  pathParams:
+                                    type: object
+                                    properties: {}
+                                  body:
+                                    type: object
+                                    properties:
+                                      triggeredBy:
+                                        type: object
+                                        properties:
+                                          ownerType:
+                                            type: string
+                                            example: Goodwill_Module
+                                          referenceId:
+                                            type: string
+                                            example: "134"
+                                      customers:
+                                        type: array
+                                        items:
+                                          type: integer
+                                          example: 113460811
+                                          default: 0
+                                      requestId:
+                                        type: string
+                                        example: e7requestd62c5ec5d115a2859228cefd9ee8cgh
+                                      badgeMetaId:
+                                        type: string
+                                        example: 658de01c823d1b70aabcfaae
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Authorization:
+                                        type: string
+                                        example: REDACTED
+                                      content-type:
+                                        type: string
+                                        example: application/json
+                              AdminTask-Payload:
+                                type: object
+                                properties:
+                                  actionDecision:
+                                    type: string
+                                    example: approved
+                                  actionMessage:
+                                    type: string
+                                    example: approving the issue badge request
+                              ValidateMakerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              AdminTask_Output:
+                                type: string
+                                example: approved
+                              ValidatePayload_Output:
+                                type: boolean
+                                example: true
+                                default: true
+                              IntouchAPITask_Output:
+                                type: object
+                                properties:
+                                  status:
+                                    type: integer
+                                    example: 200
+                                    default: 0
+                                  headers:
+                                    type: object
+                                    properties:
+                                      Date:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: Thu, 28 Dec 2023 20:53:38 GMT
+                                      Content-Type:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: application/json
+                                      Transfer-Encoding:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: chunked
+                                      Connection:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: keep-alive
+                                      X-CAP-REQUEST-ID:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: bf8189d95bdcb0696baee686f953ae75
+                                      X-Frame-Options:
+                                        type: array
+                                        items:
+                                          type: string
+                                          example: SAMEORIGIN
+                                  body:
+                                    type: object
+                                    properties:
+                                      data:
+                                        type: object
+                                        properties:
+                                          badgeMetaId:
+                                            type: string
+                                            example: 658de01c823d1b70aabcfaae
+                                          triggeredBy:
+                                            type: object
+                                            properties:
+                                              ownerType:
+                                                type: string
+                                                example: Goodwill_Module
+                                              referenceId:
+                                                type: string
+                                                example: "134"
+                                          expiresOn:
+                                            type: number
+                                            example: 1703883200.896
+                                            default: 0
+                                          issuedBadges:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties:
+                                                customerId:
+                                                  type: integer
+                                                  example: 113460811
+                                                  default: 0
+                                                issuedId:
+                                                  type: string
+                                                  example: 658de052823d1b70aabcfaaf
+                                          requestId:
+                                            type: string
+                                            example: e7requestd62c5ec5d115a2859228cefd9ee8cgh
+                                      errors:
+                                        type: array
+                                      warnings:
+                                        type: array
+                              ValidateCheckerAccess_Output:
+                                type: boolean
+                                example: true
+                                default: true
+            text/plain:
+              examples:
+                Earn badge:
+                  value: |-
+                    {
+                        "data": {
+                            "requestId": "ef1bc378-a4d4-11ee-b2a9-462516199fc5",
+                            "userId": 232134,
+                            "userName": "user@example.com",
+                            "requestType": "earn-badge",
+                            "state": "approved",
+                            "startTime": "2023-12-27T21:58:14",
+                            "endTime": "2023-12-27T21:58:21",
+                            "details": {
+                                "IntouchAPITask-Payload": {
+                                    "hostname": "https://crm-nightly-new.cc.capillarytech.com",
+                                    "path": "/api_gateway/v1/badges/customer/earn",
+                                    "method": "POST",
+                                    "pathParams": {},
+                                    "body": {
+                                        "triggeredBy": {
+                                            "ownerType": "Goodwill_Module",
+                                            "referenceId": "123"
+                                        },
+                                        "customerId": 382477526,
+                                        "requestId": "0f932928-9878-441c-a78e-c1d32235534q",
+                                        "badgeMetaId": "658c50761c4c2b12732c3ec6"
+                                    },
+                                    "headers": {
+                                        "Authorization": "REDACTED",
+                                        "content-type": "application/json"
+                                    }
+                                },
+                                "AdminTask-Payload": {
+                                    "actionDecision": "approved",
+                                    "actionMessage": "approving the earn badge request"
+                                },
+                                "ValidateMakerAccess_Output": true,
+                                "AdminTask_Output": "approved",
+                                "ValidatePayload_Output": true,
+                                "IntouchAPITask_Output": {
+                                    "status": 200,
+                                    "headers": {
+                                        "Date": [
+                                            "Wed, 27 Dec 2023 16:28:21 GMT"
+                                        ],
+                                        "Content-Type": [
+                                            "application/json"
+                                        ],
+                                        "Transfer-Encoding": [
+                                            "chunked"
+                                        ],
+                                        "Connection": [
+                                            "keep-alive"
+                                        ],
+                                        "X-CAP-REQUEST-ID": [
+                                            "0afcf403bd41fa4a8502ac6d4e6f476d"
+                                        ],
+                                        "X-Frame-Options": [
+                                            "SAMEORIGIN",
+                                            "SAMEORIGIN"
+                                        ]
+                                    },
+                                    "body": {
+                                        "data": {
+                                            "badgeMetaId": "658c50761c4c2b12732c3ec6",
+                                            "customerId": 382477526,
+                                            "earnedBadgeId": "658c50a51c4c2b12732c3ec7",
+                                            "expiresOn": 1.704904101782875E9
+                                        },
+                                        "errors": [],
+                                        "warnings": []
+                                    }
+                                },
+                                "ValidateCheckerAccess_Output": true
+                            }
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+                        example: ef1bc378-a4d4-11ee-b2a9-462516199fc5
+                      userId:
+                        type: integer
+                        example: 232134
+                        default: 0
+                      userName:
+                        type: string
+                        example: user@example.com
+                      requestType:
+                        type: string
+                        example: earn-badge
+                      state:
+                        type: string
+                        example: approved
+                      startTime:
+                        type: string
+                        example: "2023-12-27T21:58:14"
+                      endTime:
+                        type: string
+                        example: "2023-12-27T21:58:21"
+                      details:
+                        type: object
+                        properties:
+                          IntouchAPITask-Payload:
+                            type: object
+                            properties:
+                              hostname:
+                                type: string
+                                example: https://crm-nightly-new.cc.capillarytech.com
+                              path:
+                                type: string
+                                example: /api_gateway/v1/badges/customer/earn
+                              method:
+                                type: string
+                                example: POST
+                              pathParams:
+                                type: object
+                                properties: {}
+                              body:
+                                type: object
+                                properties:
+                                  triggeredBy:
+                                    type: object
+                                    properties:
+                                      ownerType:
+                                        type: string
+                                        example: Goodwill_Module
+                                      referenceId:
+                                        type: string
+                                        example: "123"
+                                  customerId:
+                                    type: integer
+                                    example: 382477526
+                                    default: 0
+                                  requestId:
+                                    type: string
+                                    example: 0f932928-9878-441c-a78e-c1d32235534q
+                                  badgeMetaId:
+                                    type: string
+                                    example: 658c50761c4c2b12732c3ec6
+                              headers:
+                                type: object
+                                properties:
+                                  Authorization:
+                                    type: string
+                                    example: REDACTED
+                                  content-type:
+                                    type: string
+                                    example: application/json
+                          AdminTask-Payload:
+                            type: object
+                            properties:
+                              actionDecision:
+                                type: string
+                                example: approved
+                              actionMessage:
+                                type: string
+                                example: approving the earn badge request
+                          ValidateMakerAccess_Output:
+                            type: boolean
+                            example: true
+                            default: true
+                          AdminTask_Output:
+                            type: string
+                            example: approved
+                          ValidatePayload_Output:
+                            type: boolean
+                            example: true
+                            default: true
+                          IntouchAPITask_Output:
+                            type: object
+                            properties:
+                              status:
+                                type: integer
+                                example: 200
+                                default: 0
+                              headers:
+                                type: object
+                                properties:
+                                  Date:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: Wed, 27 Dec 2023 16:28:21 GMT
+                                  Content-Type:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: application/json
+                                  Transfer-Encoding:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: chunked
+                                  Connection:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: keep-alive
+                                  X-CAP-REQUEST-ID:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: 0afcf403bd41fa4a8502ac6d4e6f476d
+                                  X-Frame-Options:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: SAMEORIGIN
+                              body:
+                                type: object
+                                properties:
+                                  data:
+                                    type: object
+                                    properties:
+                                      badgeMetaId:
+                                        type: string
+                                        example: 658c50761c4c2b12732c3ec6
+                                      customerId:
+                                        type: integer
+                                        example: 382477526
+                                        default: 0
+                                      earnedBadgeId:
+                                        type: string
+                                        example: 658c50a51c4c2b12732c3ec7
+                                      expiresOn:
+                                        type: number
+                                        example: 1704904101.78288
+                                        default: 0
+                                  errors:
+                                    type: array
+                                  warnings:
+                                    type: array
+                          ValidateCheckerAccess_Output:
+                            type: boolean
+                            example: true
+                            default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/v2/request-workflow/requests:
+    get:
+      summary: Get details of all requests
+      description: This API enables you to retrieve details of the all requests.
+      operationId: get-all-requests
+      parameters:
+        - name: userId
+          in: query
+          description: User ID of the customer to whom the request was created.
+          schema:
+            type: string
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+        - name: sortOrder
+          in: query
+          description: Specifies the sorting order (ascending/descending).
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        - name: conceptId
+          in: query
+          description: Filters requests by concept ID.
+          schema:
+            type: string
+        - name: zoneId
+          in: query
+          description: Filters requests by zone ID.
+          schema:
+            type: string
+        - name: storeId
+          in: query
+          description: Filters requests by store ID.
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          description: Specifies the start date for the date range (YYYY-MM-DD format)
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: Specifies the end date for the date range (YYYY-MM-DD format)
+          schema:
+            type: string
+            format: date
+        - name: states
+          in: query
+          description: Filters requests by their states.
+          schema:
+            type: string
+            enum:
+              - approved
+              - rejected
+        - name: limit
+          in: query
+          description: Specifies the maximum number of results to return.
+          schema:
+            type: string
+        - name: PageNo
+          in: query
+          description: Specifies the page number for pagination.
+          schema:
+            type: integer
+            format: int32
+        - name: requestType
+          in: query
+          description: Filters requests by their type.
+          schema:
+            type: string
+            enum:
+              - CUSTOMER-STATUS-CHANGE
+              - POINTS-REDEMPTION
+              - GOODWILL-POINTS
+              - EARN-BADGE
+              - ISSUE-BADGE
+        - name: tillId
+          in: query
+          description: Filters requests by till ID.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/v2/request-workflow/requests/{requestId}:
+    get:
+      summary: Get details of a particular request
+      description: This API enables you to retrieve details of a particular request.
+      operationId: get-request-info
+      parameters:
+        - name: requestId
+          in: path
+          description: The request ID that was created
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

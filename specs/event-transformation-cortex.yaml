@@ -1,0 +1,198 @@
+openapi: 3.0.1
+info:
+  title: Event Transformation for Cortex Search APIs
+  description: Custom event transformation configuration for Cortex search
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/cortex/v1/neo-config:
+    get:
+      summary: Retrieve Custom Event Config Details of Org
+      operationId: retrieve-custom-event-config-details-of-org
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "data": [
+                            {
+                                "orgId": 100737,
+                                "entityType": "TRANSACTION",
+                                "transformEndpoint": "/transform/transaction/custom",
+                                "active": true,
+                                "auditInfo": {
+                                    "createdOn": "2025-04-23T06:59:56.411+00:00",
+                                    "createdBy": 75155282,
+                                    "lastUpdatedOn": "2025-04-23T07:06:33.947+00:00",
+                                    "lastUpdatedBy": 75155282
+                                }
+                            },
+                            {
+                                "orgId": 100737,
+                                "entityType": "CUSTOMER",
+                                "transformEndpoint": "/transform/customer/custom",
+                                "active": true,
+                                "auditInfo": {
+                                    "createdOn": "2025-04-23T10:22:01.792+00:00",
+                                    "createdBy": 75155282,
+                                    "lastUpdatedOn": "2025-04-23T10:22:01.792+00:00",
+                                    "lastUpdatedBy": 75155282
+                                }
+                            }
+                        ],
+                        "errors": []
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        orgId:
+                          type: integer
+                          example: 100737
+                          default: 0
+                        entityType:
+                          type: string
+                          example: TRANSACTION
+                        transformEndpoint:
+                          type: string
+                          example: /transform/transaction/custom
+                        active:
+                          type: boolean
+                          example: true
+                          default: true
+                        auditInfo:
+                          type: object
+                          properties:
+                            createdOn:
+                              type: string
+                              example: "2025-04-23T06:59:56.411+00:00"
+                            createdBy:
+                              type: integer
+                              example: 75155282
+                              default: 0
+                            lastUpdatedOn:
+                              type: string
+                              example: "2025-04-23T07:06:33.947+00:00"
+                            lastUpdatedBy:
+                              type: integer
+                              example: 75155282
+                              default: 0
+                  errors:
+                    type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+    post:
+      summary: Enable or Update Custom Event Tranformation
+      operationId: enable-custom-event-for-cortex-search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                      orgId: 100737
+                      entityType: TRANSACTION
+                      transformEndpoint: /transform/transaction/custom
+                      active: true
+                      auditInfo:
+                        createdOn: "2025-04-23T06:59:56.411+00:00"
+                        createdBy: 75155282
+                        lastUpdatedOn: "2025-04-23T07:06:33.947+00:00"
+                        lastUpdatedBy: 75155282
+                    errors: []
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/cortex/v1/neo-config/entity/{entityType}:
+    get:
+      summary: Retrieve Custom Event Config Details for an Entity
+      operationId: retrieve-custom-event-config-details-for-entity
+      parameters:
+        - name: entitytype
+          in: path
+          description: TRANSACTION, CUSTOMER
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                      orgId: 100737
+                      entityType: TRANSACTION
+                      transformEndpoint: /transform/transaction/custom
+                      active: true
+                      auditInfo:
+                        createdOn: "2025-04-23T06:59:56.411+00:00"
+                        createdBy: 75155282
+                        lastUpdatedOn: "2025-04-23T07:06:33.947+00:00"
+                        lastUpdatedBy: 75155282
+                    errors: []
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

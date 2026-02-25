@@ -1,0 +1,324 @@
+openapi: 3.0.1
+info:
+  title: Leaderboards APIs
+  description: Leaderboard ranking and user rank endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/intouch-api-v3/v3.1/leaderboards/user/{userID}:
+    get:
+      summary: Get user rank across target groups
+      operationId: get-user-ranks-across-target-groups
+      parameters:
+        - name: userID
+          in: query
+          description: The unique ID of the customer.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: DATA-SCOPE-ORG
+          in: header
+          description: List of Organisation IDs
+          schema:
+            type: string
+        - name: DATA-SCOPE
+          in: header
+          description: >-
+            Scopes define what data can be accessed using the API. You can use scopes to control access to data from a
+            parent or child organisation. Defining a scope ensures that the response contains only data from the
+            respective organisation.  Supported headers: SELF, OTHER and ALL.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - targetGroupId
+                - targetRuleId
+              properties:
+                orgId:
+                  type: integer
+                  description: Unique identifier for the organisation.
+                  format: int64
+                targetGroupId:
+                  type: integer
+                  description: Unique identifier for target group
+                  format: int64
+                targetRuleId:
+                  type: integer
+                  description: Unique identifier for target rule. Maximum of 25 rule IDs supported.
+                  format: int64
+                periodId:
+                  type: integer
+                  description: Identifier of period for which result will be fetched
+                  format: int64
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                      lastSyncTime: 2024-06-24T17:37:00.000IST
+                      customerId: 381329847
+                      userEnrichmentDetails:
+                        mobile: "9988221100"
+                        last_name: ""
+                        first_name: ""
+                        email: user@example.com
+                      userRanks:
+                        - orgId: 50711
+                          targetGroupId: 232
+                          targetRuleId: 366
+                          periodId: 243
+                          achievedValue: 3000
+                          rank: 1771
+                          lastActivityTime: 2022-11-25T21:45:05.000IST
+                          totalUsersInTargetGroup: 4527
+                    errors: []
+                    warnings: []
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      lastSyncTime:
+                        type: string
+                        example: 2024-06-24T17:37:00.000IST
+                      customerId:
+                        type: integer
+                        example: 381329847
+                        default: 0
+                      userEnrichmentDetails:
+                        type: object
+                        properties:
+                          mobile:
+                            type: string
+                            example: "9988221100"
+                          last_name:
+                            type: string
+                            example: ""
+                          first_name:
+                            type: string
+                            example: ""
+                          email:
+                            type: string
+                            example: user@example.com
+                      userRanks:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            orgId:
+                              type: integer
+                              example: 50711
+                              default: 0
+                            targetGroupId:
+                              type: integer
+                              example: 232
+                              default: 0
+                            targetRuleId:
+                              type: integer
+                              example: 366
+                              default: 0
+                            periodId:
+                              type: integer
+                              example: 243
+                              default: 0
+                            achievedValue:
+                              type: integer
+                              example: 3000
+                              default: 0
+                            rank:
+                              type: integer
+                              example: 1771
+                              default: 0
+                            lastActivityTime:
+                              type: string
+                              example: 2022-11-25T21:45:05.000IST
+                            totalUsersInTargetGroup:
+                              type: integer
+                              example: 4527
+                              default: 0
+                  errors:
+                    type: array
+                  warnings:
+                    type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/intouch-api-v3/v3.1/leaderboards/targetGroups/{targetGroupId}:
+    get:
+      summary: Get top ranked users
+      operationId: get-top-ranked-users
+      parameters:
+        - name: targetId
+          in: query
+          description: >-
+            The ID of the target. A target is a set of conditions or rules that need to be met to achieve a specific
+            goal.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: periodId
+          in: query
+          description: >-
+            The period ID of the target. A period is a set of parameters that define the timeframe for a target.  If
+            periodId is not provided, the current period of the target group will be used.
+          schema:
+            type: integer
+            format: int64
+        - name: pageSize
+          in: query
+          description: The number of results required.  For example, to view the top five ranks only, set the value to 5.
+          schema:
+            type: integer
+            format: int32
+        - name: pageOffset
+          in: query
+          description: >-
+            The start page from which data retrieval starts. This value should not be negative.  For example, a value of
+            5 indicates that data retrieval will begin from the 5th page.
+          schema:
+            type: integer
+            format: int32
+        - name: pageLimit
+          in: query
+          description: Number of pages from which results are displayed.    A maximum of 100 pages can be viewed in one request.
+          schema:
+            type: integer
+            format: int32
+        - name: DATA-SCOPE-ORG
+          in: header
+          description: List of Organisation IDs
+          schema:
+            type: string
+        - name: DATA-SCOPE
+          in: header
+          description: >-
+            Scopes define what data can be accessed using the API. You can use scopes to control access to data from a
+            parent or child organisation. Defining a scope ensures that the response contains only data from the
+            respective organisation.  Supported headers: SELF, OTHER and ALL.
+          schema:
+            type: string
+        - in: path
+          name: targetGroupId
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |2-
+
+                        "pagination": {
+                            "limit": 3,
+                            "offset": 0,
+                            "total": 4527
+                        },
+                        "data": {
+                            "lastSyncTime": "2024-06-24T17:37:00.000IST",
+                            "targetGroupId": 232,
+                            "targetGroupName": "Target",
+                            "periodId": 243,
+                            "periodRefCode": "target_period",
+                            "targetRuleId": 366,
+                            "targetRuleName": "target1",
+                            "rankings": [
+                                {
+                                    "rank": 1,
+                                    "userId": 381329844,
+                                    "achievedValue": 21000,
+                                    "lastActivityTime": "2022-11-25T21:44:40.000IST",
+                                    "userEnrichmentDetails": {
+                                        "birthday": "NOT-CAPTURED",
+                                        "gender": "Male",
+                                        "mobile": "Sawyer",
+                                        "last_name": "To",
+                                        "first_name": "Sawyer",
+                                        "anniversary": "NOT-CAPTURED",
+                                        "email": "user@example.com"
+                                    }
+                                },
+                                {
+                                    "rank": 2,
+                                    "userId": 381332324,
+                                    "achievedValue": 21000,
+                                    "lastActivityTime": "2022-11-29T00:14:48.000IST",
+                                    "userEnrichmentDetails": {
+                                        "birthday": "NOT-CAPTURED",
+                                        "gender": "Male",
+                                        "mobile": "919988221101",
+                                        "last_name": "Finn",
+                                        "first_name": "Huckleberry",
+                                        "anniversary": "NOT-CAPTURED",
+                                        "email": "user@example.com"
+                                    }
+                                },
+                                {
+                                    "rank": 3,
+                                    "userId": 381333386,
+                                    "achievedValue": 21000,
+                                    "lastActivityTime": "2022-11-29T13:48:28.000IST",
+                                    "userEnrichmentDetails": {
+                                        "birthday": "NOT-CAPTURED",
+                                        "gender": "Male",
+                                        "mobile": "919988221102",
+                                        "last_name": "Crusoe",
+                                        "first_name": "Robinson",
+                                        "anniversary": "NOT-CAPTURED",
+                                        "email": "robinson.crusoe@capillaryte"
+                                    }
+                                }
+                            ]
+                        },
+                        "errors": [],
+                        "warnings": []
+                    }m.comch.com
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

@@ -1,0 +1,1017 @@
+openapi: 3.0.1
+info:
+  title: Reward Catalog Groups APIs
+  description: Reward group management endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/rewards/core/v1/group/{id}:
+    get:
+      summary: Groups - Get rewards group by ID
+      operationId: get-rewards-group-by-id
+      parameters:
+        - name: id
+          in: path
+          description: Unique identifier for the group.
+          schema:
+            type: integer
+            format: int32
+          required: true
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response:
+                  value:
+                    id: 10417
+                    orgId: 100737
+                    name: UAT Group 2
+                    rank: 2
+                    isActive: true
+                    createdBy: 75155292
+                    createdOn: 1758007038000
+                    createdOnDateTime: "2025-09-16T07:17:18Z"
+                    lastUpdatedBy: 75155297
+                    lastUpdatedOn: 1758011894000
+                    lastUpdatedOnDateTime: "2025-09-16T08:38:14Z"
+                  summary: Sample response
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 2295
+                    default: 0
+                  orgId:
+                    type: integer
+                    example: 100737
+                    default: 0
+                  name:
+                    type: string
+                    example: groupName016
+                  rank:
+                    type: integer
+                    example: 8
+                    default: 0
+                  isActive:
+                    type: boolean
+                    example: true
+                    default: true
+                  createdBy:
+                    type: integer
+                    example: 75155282
+                    default: 0
+                  createdOn:
+                    type: integer
+                    example: 1741942980000
+                    default: 0
+                  createdOnDateTime:
+                    type: string
+                    example: "2025-03-14T09:03:00Z"
+                  lastUpdatedBy:
+                    type: integer
+                    example: 75155282
+                    default: 0
+                  lastUpdatedOn:
+                    type: integer
+                    example: 1741942980000
+                    default: 0
+                  lastUpdatedOnDateTime:
+                    type: string
+                    example: "2025-03-14T09:03:00Z"
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+    put:
+      summary: Groups - Update rewards group
+      operationId: update-group-reward
+      parameters:
+        - name: id
+          in: path
+          description: Unique ID of the group
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the group
+                rank:
+                  type: string
+                  description: Rank of the group
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "id": 2422,
+                        "orgId": 100737,
+                        "name": "dw",
+                        "rank": 8,
+                        "isActive": true,
+                        "createdBy": 75155282,
+                        "createdOn": 1742196639000,
+                        "createdOnDateTime": "2025-03-17T07:30:39Z",
+                        "lastUpdatedBy": 75155282,
+                        "lastUpdatedOn": 1742197082485,
+                        "lastUpdatedOnDateTime": "2025-03-17T07:38:02Z"
+                    }
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 2422
+                    default: 0
+                  orgId:
+                    type: integer
+                    example: 100737
+                    default: 0
+                  name:
+                    type: string
+                    example: dw
+                  rank:
+                    type: integer
+                    example: 8
+                    default: 0
+                  isActive:
+                    type: boolean
+                    example: true
+                    default: true
+                  createdBy:
+                    type: integer
+                    example: 75155282
+                    default: 0
+                  createdOn:
+                    type: integer
+                    example: 1742196639000
+                    default: 0
+                  createdOnDateTime:
+                    type: string
+                    example: "2025-03-17T07:30:39Z"
+                  lastUpdatedBy:
+                    type: integer
+                    example: 75155282
+                    default: 0
+                  lastUpdatedOn:
+                    type: integer
+                    example: 1742197082485
+                    default: 0
+                  lastUpdatedOnDateTime:
+                    type: string
+                    example: "2025-03-17T07:38:02Z"
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/rewards/core/v1/group/create:
+    post:
+      summary: Groups - Create reward group
+      operationId: create-group-reward
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the group
+                rank:
+                  type: string
+                  description: Rank of the group
+            examples:
+              Request Example:
+                value:
+                  name: Group Ranking
+                  rank: 1
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "id": 2412,
+                        "orgId": 100737,
+                        "name": "groupName066",
+                        "rank": 8,
+                        "isActive": true,
+                        "createdBy": 75155282,
+                        "createdOn": 1742180327987,
+                        "createdOnDateTime": "2025-03-17T02:58:47Z",
+                        "lastUpdatedBy": 75155282,
+                        "lastUpdatedOn": 1742180327987,
+                        "lastUpdatedOnDateTime": "2025-03-17T02:58:47Z"
+                    }
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 2412
+                    default: 0
+                  orgId:
+                    type: integer
+                    example: 100737
+                    default: 0
+                  name:
+                    type: string
+                    example: groupName066
+                  rank:
+                    type: integer
+                    example: 8
+                    default: 0
+                  isActive:
+                    type: boolean
+                    example: true
+                    default: true
+                  createdBy:
+                    type: integer
+                    example: 75155282
+                    default: 0
+                  createdOn:
+                    type: integer
+                    example: 1742180327987
+                    default: 0
+                  createdOnDateTime:
+                    type: string
+                    example: "2025-03-17T02:58:47Z"
+                  lastUpdatedBy:
+                    type: integer
+                    example: 75155282
+                    default: 0
+                  lastUpdatedOn:
+                    type: integer
+                    example: 1742180327987
+                    default: 0
+                  lastUpdatedOnDateTime:
+                    type: string
+                    example: "2025-03-17T02:58:47Z"
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/rewards/core/v1/group:
+    get:
+      summary: Groups - Get all rewards group
+      operationId: get-group-rewards
+      parameters:
+        - name: active
+          in: query
+          description: Indicates if the group is active.
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: Name of the group.
+          schema:
+            type: string
+        - name: orderBy
+          in: query
+          description: Sort response based on order
+          schema:
+            type: string
+            enum:
+              - ASC
+              - DESC
+        - name: page
+          in: query
+          description: The amount of the records that you want to retrieve
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: sortBy
+          in: query
+          description: Sorts the reward based on the group rank.
+          schema:
+            type: string
+            enum:
+              - RANK
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                with sortOn=LAST_UPDATED_ON:
+                  value:
+                    status:
+                      success: true
+                      code: 12013
+                      message: Get all groups fetched successfully
+                    groupRoList:
+                      - id: 2295
+                        orgId: 100737
+                        name: groupName016
+                        rank: 8
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1741942980000
+                        createdOnDateTime: "2025-03-14T09:03:00Z"
+                        lastUpdatedBy: 75155282
+                        lastUpdatedOn: 1741942980000
+                        lastUpdatedOnDateTime: "2025-03-14T09:03:00Z"
+                      - id: 2412
+                        orgId: 100737
+                        name: groupName066
+                        rank: 8
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1742180328000
+                        createdOnDateTime: "2025-03-17T02:58:48Z"
+                        lastUpdatedBy: 75155282
+                        lastUpdatedOn: 1742180328000
+                        lastUpdatedOnDateTime: "2025-03-17T02:58:48Z"
+                      - id: 2422
+                        orgId: 100737
+                        name: dw
+                        rank: 8
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1742196639000
+                        createdOnDateTime: "2025-03-17T07:30:39Z"
+                        lastUpdatedBy: 75155282
+                        lastUpdatedOn: 1743575719000
+                        lastUpdatedOnDateTime: "2025-04-02T06:35:19Z"
+                      - id: 3690
+                        orgId: 100737
+                        name: Special Rewards
+                        rank: 6
+                        isActive: true
+                        createdBy: 75161973
+                        createdOn: 1744713561000
+                        createdOnDateTime: "2025-04-15T10:39:21Z"
+                        lastUpdatedBy: 75161973
+                        lastUpdatedOn: 1744713561000
+                        lastUpdatedOnDateTime: "2025-04-15T10:39:21Z"
+                      - id: 2270
+                        orgId: 100737
+                        name: UAT Group 1
+                        rank: 1
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1741887808000
+                        createdOnDateTime: "2025-03-13T17:43:28Z"
+                        lastUpdatedBy: 75155292
+                        lastUpdatedOn: 1755774595000
+                        lastUpdatedOnDateTime: "2025-08-21T11:09:55Z"
+                      - id: 10417
+                        orgId: 100737
+                        name: UAT Group 2
+                        rank: 2
+                        isActive: true
+                        createdBy: 75155292
+                        createdOn: 1758007038000
+                        createdOnDateTime: "2025-09-16T07:17:18Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758011894000
+                        lastUpdatedOnDateTime: "2025-09-16T08:38:14Z"
+                      - id: 10422
+                        orgId: 100737
+                        name: UATGroup2
+                        rank: 2
+                        isActive: true
+                        createdBy: 75155297
+                        createdOn: 1758015219000
+                        createdOnDateTime: "2025-09-16T09:33:39Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758015219000
+                        lastUpdatedOnDateTime: "2025-09-16T09:33:39Z"
+                      - id: 10423
+                        orgId: 100737
+                        name: UAT Group 3
+                        rank: 3
+                        isActive: true
+                        createdBy: 75155297
+                        createdOn: 1758015567000
+                        createdOnDateTime: "2025-09-16T09:39:27Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758015567000
+                        lastUpdatedOnDateTime: "2025-09-16T09:39:27Z"
+                      - id: 10424
+                        orgId: 100737
+                        name: UAT Group 4
+                        rank: null
+                        isActive: true
+                        createdBy: 75155297
+                        createdOn: 1758015605000
+                        createdOnDateTime: "2025-09-16T09:40:05Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758015605000
+                        lastUpdatedOnDateTime: "2025-09-16T09:40:05Z"
+                      - id: 13272
+                        orgId: 100737
+                        name: UAT Group 7
+                        rank: 4
+                        isActive: true
+                        createdBy: 75197372
+                        createdOn: 1763644650000
+                        createdOnDateTime: "2025-11-20T13:17:30Z"
+                        lastUpdatedBy: 75197372
+                        lastUpdatedOn: 1763644650000
+                        lastUpdatedOnDateTime: "2025-11-20T13:17:30Z"
+                    pagingDto:
+                      last: true
+                      totalElements: 10
+                      totalPages: 1
+                      numberOfElements: 10
+                      first: true
+                      size: 10
+                      number: 0
+                orderBy=DESC:
+                  value:
+                    status:
+                      success: true
+                      code: 12013
+                      message: Get all groups fetched successfully
+                    groupRoList:
+                      - id: 2422
+                        orgId: 100737
+                        name: dw
+                        rank: 8
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1742196639000
+                        createdOnDateTime: "2025-03-17T07:30:39Z"
+                        lastUpdatedBy: 75155282
+                        lastUpdatedOn: 1743575719000
+                        lastUpdatedOnDateTime: "2025-04-02T06:35:19Z"
+                      - id: 2412
+                        orgId: 100737
+                        name: groupName066
+                        rank: 8
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1742180328000
+                        createdOnDateTime: "2025-03-17T02:58:48Z"
+                        lastUpdatedBy: 75155282
+                        lastUpdatedOn: 1742180328000
+                        lastUpdatedOnDateTime: "2025-03-17T02:58:48Z"
+                      - id: 2295
+                        orgId: 100737
+                        name: groupName016
+                        rank: 8
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1741942980000
+                        createdOnDateTime: "2025-03-14T09:03:00Z"
+                        lastUpdatedBy: 75155282
+                        lastUpdatedOn: 1741942980000
+                        lastUpdatedOnDateTime: "2025-03-14T09:03:00Z"
+                      - id: 3690
+                        orgId: 100737
+                        name: Special Rewards
+                        rank: 6
+                        isActive: true
+                        createdBy: 75161973
+                        createdOn: 1744713561000
+                        createdOnDateTime: "2025-04-15T10:39:21Z"
+                        lastUpdatedBy: 75161973
+                        lastUpdatedOn: 1744713561000
+                        lastUpdatedOnDateTime: "2025-04-15T10:39:21Z"
+                      - id: 13272
+                        orgId: 100737
+                        name: UAT Group 7
+                        rank: 4
+                        isActive: true
+                        createdBy: 75197372
+                        createdOn: 1763644650000
+                        createdOnDateTime: "2025-11-20T13:17:30Z"
+                        lastUpdatedBy: 75197372
+                        lastUpdatedOn: 1763644650000
+                        lastUpdatedOnDateTime: "2025-11-20T13:17:30Z"
+                      - id: 10423
+                        orgId: 100737
+                        name: UAT Group 3
+                        rank: 3
+                        isActive: true
+                        createdBy: 75155297
+                        createdOn: 1758015567000
+                        createdOnDateTime: "2025-09-16T09:39:27Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758015567000
+                        lastUpdatedOnDateTime: "2025-09-16T09:39:27Z"
+                      - id: 10422
+                        orgId: 100737
+                        name: UATGroup2
+                        rank: 2
+                        isActive: true
+                        createdBy: 75155297
+                        createdOn: 1758015219000
+                        createdOnDateTime: "2025-09-16T09:33:39Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758015219000
+                        lastUpdatedOnDateTime: "2025-09-16T09:33:39Z"
+                      - id: 10417
+                        orgId: 100737
+                        name: UAT Group 2
+                        rank: 2
+                        isActive: true
+                        createdBy: 75155292
+                        createdOn: 1758007038000
+                        createdOnDateTime: "2025-09-16T07:17:18Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758011894000
+                        lastUpdatedOnDateTime: "2025-09-16T08:38:14Z"
+                      - id: 2270
+                        orgId: 100737
+                        name: UAT Group 1
+                        rank: 1
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1741887808000
+                        createdOnDateTime: "2025-03-13T17:43:28Z"
+                        lastUpdatedBy: 75155292
+                        lastUpdatedOn: 1755774595000
+                        lastUpdatedOnDateTime: "2025-08-21T11:09:55Z"
+                      - id: 10424
+                        orgId: 100737
+                        name: UAT Group 4
+                        rank: null
+                        isActive: true
+                        createdBy: 75155297
+                        createdOn: 1758015605000
+                        createdOnDateTime: "2025-09-16T09:40:05Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758015605000
+                        lastUpdatedOnDateTime: "2025-09-16T09:40:05Z"
+                    pagingDto:
+                      last: true
+                      totalElements: 10
+                      totalPages: 1
+                      numberOfElements: 10
+                      first: true
+                      size: 10
+                      number: 0
+                Sample response with orderBy=DESC&active=true:
+                  value:
+                    status:
+                      success: true
+                      code: 12013
+                      message: Get all groups fetched successfully
+                    groupRoList:
+                      - id: 2422
+                        orgId: 100737
+                        name: dw
+                        rank: 8
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1742196639000
+                        createdOnDateTime: "2025-03-17T07:30:39Z"
+                        lastUpdatedBy: 75155282
+                        lastUpdatedOn: 1743575719000
+                        lastUpdatedOnDateTime: "2025-04-02T06:35:19Z"
+                      - id: 2412
+                        orgId: 100737
+                        name: groupName066
+                        rank: 8
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1742180328000
+                        createdOnDateTime: "2025-03-17T02:58:48Z"
+                        lastUpdatedBy: 75155282
+                        lastUpdatedOn: 1742180328000
+                        lastUpdatedOnDateTime: "2025-03-17T02:58:48Z"
+                      - id: 2295
+                        orgId: 100737
+                        name: groupName016
+                        rank: 8
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1741942980000
+                        createdOnDateTime: "2025-03-14T09:03:00Z"
+                        lastUpdatedBy: 75155282
+                        lastUpdatedOn: 1741942980000
+                        lastUpdatedOnDateTime: "2025-03-14T09:03:00Z"
+                      - id: 3690
+                        orgId: 100737
+                        name: Special Rewards
+                        rank: 6
+                        isActive: true
+                        createdBy: 75161973
+                        createdOn: 1744713561000
+                        createdOnDateTime: "2025-04-15T10:39:21Z"
+                        lastUpdatedBy: 75161973
+                        lastUpdatedOn: 1744713561000
+                        lastUpdatedOnDateTime: "2025-04-15T10:39:21Z"
+                      - id: 13272
+                        orgId: 100737
+                        name: UAT Group 7
+                        rank: 4
+                        isActive: true
+                        createdBy: 75197372
+                        createdOn: 1763644650000
+                        createdOnDateTime: "2025-11-20T13:17:30Z"
+                        lastUpdatedBy: 75197372
+                        lastUpdatedOn: 1763644650000
+                        lastUpdatedOnDateTime: "2025-11-20T13:17:30Z"
+                      - id: 10423
+                        orgId: 100737
+                        name: UAT Group 3
+                        rank: 3
+                        isActive: true
+                        createdBy: 75155297
+                        createdOn: 1758015567000
+                        createdOnDateTime: "2025-09-16T09:39:27Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758015567000
+                        lastUpdatedOnDateTime: "2025-09-16T09:39:27Z"
+                      - id: 10422
+                        orgId: 100737
+                        name: UATGroup2
+                        rank: 2
+                        isActive: true
+                        createdBy: 75155297
+                        createdOn: 1758015219000
+                        createdOnDateTime: "2025-09-16T09:33:39Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758015219000
+                        lastUpdatedOnDateTime: "2025-09-16T09:33:39Z"
+                      - id: 10417
+                        orgId: 100737
+                        name: UAT Group 2
+                        rank: 2
+                        isActive: true
+                        createdBy: 75155292
+                        createdOn: 1758007038000
+                        createdOnDateTime: "2025-09-16T07:17:18Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758011894000
+                        lastUpdatedOnDateTime: "2025-09-16T08:38:14Z"
+                      - id: 2270
+                        orgId: 100737
+                        name: UAT Group 1
+                        rank: 1
+                        isActive: true
+                        createdBy: 75155282
+                        createdOn: 1741887808000
+                        createdOnDateTime: "2025-03-13T17:43:28Z"
+                        lastUpdatedBy: 75155292
+                        lastUpdatedOn: 1755774595000
+                        lastUpdatedOnDateTime: "2025-08-21T11:09:55Z"
+                      - id: 10424
+                        orgId: 100737
+                        name: UAT Group 4
+                        rank: null
+                        isActive: true
+                        createdBy: 75155297
+                        createdOn: 1758015605000
+                        createdOnDateTime: "2025-09-16T09:40:05Z"
+                        lastUpdatedBy: 75155297
+                        lastUpdatedOn: 1758015605000
+                        lastUpdatedOnDateTime: "2025-09-16T09:40:05Z"
+                    pagingDto:
+                      last: true
+                      totalElements: 10
+                      totalPages: 1
+                      numberOfElements: 10
+                      first: true
+                      size: 10
+                      number: 0
+                  summary: Sample response with orderBy=DESC&active=true
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: true
+                            default: true
+                          code:
+                            type: integer
+                            example: 12013
+                            default: 0
+                          message:
+                            type: string
+                            example: Get all groups fetched successfully
+                      groupRoList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 2412
+                              default: 0
+                            orgId:
+                              type: integer
+                              example: 100737
+                              default: 0
+                            name:
+                              type: string
+                              example: groupName066
+                            rank:
+                              type: integer
+                              example: 8
+                              default: 0
+                            isActive:
+                              type: boolean
+                              example: true
+                              default: true
+                            createdBy:
+                              type: integer
+                              example: 75155282
+                              default: 0
+                            createdOn:
+                              type: integer
+                              example: 1742180328000
+                              default: 0
+                            createdOnDateTime:
+                              type: string
+                              example: "2025-03-17T02:58:48Z"
+                            lastUpdatedBy:
+                              type: integer
+                              example: 75155282
+                              default: 0
+                            lastUpdatedOn:
+                              type: integer
+                              example: 1742180328000
+                              default: 0
+                            lastUpdatedOnDateTime:
+                              type: string
+                              example: "2025-03-17T02:58:48Z"
+                      pagingDto:
+                        type: object
+                        properties:
+                          last:
+                            type: boolean
+                            example: true
+                            default: true
+                          totalElements:
+                            type: integer
+                            example: 3
+                            default: 0
+                          totalPages:
+                            type: integer
+                            example: 1
+                            default: 0
+                          numberOfElements:
+                            type: integer
+                            example: 3
+                            default: 0
+                          first:
+                            type: boolean
+                            example: true
+                            default: true
+                          size:
+                            type: integer
+                            example: 10
+                            default: 0
+                          number:
+                            type: integer
+                            example: 0
+                            default: 0
+                  - title: with sortOn=LAST_UPDATED_ON
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: true
+                            default: true
+                          code:
+                            type: integer
+                            example: 12013
+                            default: 0
+                          message:
+                            type: string
+                            example: Get all groups fetched successfully
+                      groupRoList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 2270
+                              default: 0
+                            orgId:
+                              type: integer
+                              example: 100737
+                              default: 0
+                            name:
+                              type: string
+                              example: groupGOLD3
+                            rank:
+                              type: integer
+                              example: 8
+                              default: 0
+                            isActive:
+                              type: boolean
+                              example: true
+                              default: true
+                            createdBy:
+                              type: integer
+                              example: 75155282
+                              default: 0
+                            createdOn:
+                              type: integer
+                              example: 1741887808000
+                              default: 0
+                            createdOnDateTime:
+                              type: string
+                              example: "2025-03-13T17:43:28Z"
+                            lastUpdatedBy:
+                              type: integer
+                              example: 75155282
+                              default: 0
+                            lastUpdatedOn:
+                              type: integer
+                              example: 1741887808000
+                              default: 0
+                            lastUpdatedOnDateTime:
+                              type: string
+                              example: "2025-03-13T17:43:28Z"
+                      pagingDto:
+                        type: object
+                        properties:
+                          last:
+                            type: boolean
+                            example: true
+                            default: true
+                          totalElements:
+                            type: integer
+                            example: 5
+                            default: 0
+                          totalPages:
+                            type: integer
+                            example: 1
+                            default: 0
+                          numberOfElements:
+                            type: integer
+                            example: 5
+                            default: 0
+                          first:
+                            type: boolean
+                            example: true
+                            default: true
+                          size:
+                            type: integer
+                            example: 10
+                            default: 0
+                          number:
+                            type: integer
+                            example: 0
+                            default: 0
+                  - title: orderBy=DESC
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: true
+                            default: true
+                          code:
+                            type: integer
+                            example: 12013
+                            default: 0
+                          message:
+                            type: string
+                            example: Get all groups fetched successfully
+                      groupRoList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 2422
+                              default: 0
+                            orgId:
+                              type: integer
+                              example: 100737
+                              default: 0
+                            name:
+                              type: string
+                              example: dw
+                            rank:
+                              type: integer
+                              example: 8
+                              default: 0
+                            isActive:
+                              type: boolean
+                              example: true
+                              default: true
+                            createdBy:
+                              type: integer
+                              example: 75155282
+                              default: 0
+                            createdOn:
+                              type: integer
+                              example: 1742196639000
+                              default: 0
+                            createdOnDateTime:
+                              type: string
+                              example: "2025-03-17T07:30:39Z"
+                            lastUpdatedBy:
+                              type: integer
+                              example: 75155282
+                              default: 0
+                            lastUpdatedOn:
+                              type: integer
+                              example: 1743575719000
+                              default: 0
+                            lastUpdatedOnDateTime:
+                              type: string
+                              example: "2025-04-02T06:35:19Z"
+                      pagingDto:
+                        type: object
+                        properties:
+                          last:
+                            type: boolean
+                            example: true
+                            default: true
+                          totalElements:
+                            type: integer
+                            example: 5
+                            default: 0
+                          totalPages:
+                            type: integer
+                            example: 1
+                            default: 0
+                          numberOfElements:
+                            type: integer
+                            example: 5
+                            default: 0
+                          first:
+                            type: boolean
+                            example: true
+                            default: true
+                          size:
+                            type: integer
+                            example: 10
+                            default: 0
+                          number:
+                            type: integer
+                            example: 0
+                            default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

@@ -213,8 +213,8 @@
     "category": "Customer (V1)",
     "subcategory": null,
     "title": "Change identifier on Auth engine",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-first-factor.yaml"
   },
   {
     "category": "Customer (V2)",
@@ -577,8 +577,8 @@
     "category": "Transaction",
     "subcategory": "Transaction (V1)",
     "title": "Get Transaction Details",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-user-queries.yaml"
   },
   {
     "category": "Transaction",
@@ -836,29 +836,29 @@
     "category": "Coupon",
     "subcategory": "Coupon Upload (V1 APIs)",
     "title": "Upload Redeemed Coupons",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "coupon-upload.yaml"
   },
   {
     "category": "Coupon",
     "subcategory": "Coupon Upload (V1 APIs)",
     "title": "Get Uploaded Coupons' Status",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "coupon-upload.yaml"
   },
   {
     "category": "Coupon",
     "subcategory": "Coupon Upload (V1 APIs)",
     "title": "Get Status of Redeemed Coupons",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "coupon-upload.yaml"
   },
   {
     "category": "Coupon",
     "subcategory": "Coupon Upload (V1 APIs)",
     "title": "Upload Coupons (Batch)",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "coupon-upload.yaml"
   },
   {
     "category": "Cards",
@@ -934,22 +934,22 @@
     "category": "Points",
     "subcategory": null,
     "title": "Get Point Allocation Details by Event ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "private-apis.yaml"
   },
   {
     "category": "Points",
     "subcategory": null,
     "title": "Get Custom Fields Associated with Coupon Redemption",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "custom-fields.yaml"
   },
   {
     "category": "Points",
     "subcategory": null,
     "title": "Get Allocated Points Details with Expiry in Specified Date Range",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "private-apis.yaml"
   },
   {
     "category": "Points",
@@ -1144,8 +1144,8 @@
     "category": "Points",
     "subcategory": "Points Ledger",
     "title": "Get Points Ledger",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "points-connected-orgs.yaml"
   },
   {
     "category": "Points",
@@ -1179,50 +1179,50 @@
     "category": "Search APIs",
     "subcategory": null,
     "title": "Retrieve search criteria details",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "search-apis.yaml"
   },
   {
     "category": "Search APIs",
     "subcategory": null,
     "title": "Enable search index of older data",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "search-apis.yaml"
   },
   {
     "category": "Search APIs",
     "subcategory": null,
     "title": "Perform search",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "search-apis.yaml"
   },
   {
     "category": "Search APIs",
     "subcategory": null,
     "title": "Deactivate search criteria",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "search-apis.yaml"
   },
   {
     "category": "Search APIs",
     "subcategory": null,
     "title": "Create Data Field",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "search-apis.yaml"
   },
   {
     "category": "Search APIs",
     "subcategory": null,
     "title": "Update Data Field",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "search-apis.yaml"
   },
   {
     "category": "Search APIs",
     "subcategory": null,
     "title": "Get Data Field Detail",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "search-apis.yaml"
   },
   {
     "category": "Search APIs",
@@ -1249,22 +1249,22 @@
     "category": "Search APIs",
     "subcategory": "Event Transformation for Cortex Search",
     "title": "Enable or Update Custom Event Tranformation",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "event-transformation-cortex.yaml"
   },
   {
     "category": "Search APIs",
     "subcategory": "Event Transformation for Cortex Search",
     "title": "Retrieve Custom Event Config Details for an Entity",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "event-transformation-cortex.yaml"
   },
   {
     "category": "Search APIs",
     "subcategory": "Event Transformation for Cortex Search",
     "title": "Retrieve Custom Event Config Details of Org",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "event-transformation-cortex.yaml"
   },
   {
     "category": "Search APIs",
@@ -1291,36 +1291,36 @@
     "category": "Badges",
     "subcategory": "Create badges",
     "title": "Update badges",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Create badges",
     "title": "Get badge by ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Create badges",
     "title": "Get all badges",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Create badges",
     "title": "Get fixed window details",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Create badges",
     "title": "Claim badge",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
@@ -1333,15 +1333,15 @@
     "category": "Badges",
     "subcategory": "Create badges",
     "title": "Update activation status of badge",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Create badges",
     "title": "Enrol customers for badges",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
@@ -1354,57 +1354,57 @@
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Issue badge to multiple customers",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Import earned (issued) badges of customer",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Revoke enrolled badges",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Revoke issued badge",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Get badges for customer",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Get all customer badges",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Get individual badge details of a customer",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Create badges group",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
@@ -1424,57 +1424,57 @@
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Get all groups",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Create custom field for badges",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Update badge custom field",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Get badge custom field by ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Badges",
     "subcategory": "Issue badge (earn)",
     "title": "Get all badge custom fields",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "badges.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Management",
     "title": "Create Reward",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "loyalty-promotion.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Management",
     "title": "Update Reward",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-custom-fields.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Management",
     "title": "Get reward details by ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-management.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1494,36 +1494,36 @@
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Categories",
     "title": "Enable or Disable Reward Categories",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-categories.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Categories",
     "title": "Get Reward Category",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-categories.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Rich Text Content for Rewards",
     "title": "Create Rich Text Content Metadata for Rewards",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-rich-text-content.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Rich Text Content for Rewards",
     "title": "Update Rich Text Content Metadata for Rewards",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-rich-text-content.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Rich Text Content for Rewards",
     "title": "Get all Rich Text Content Metadata for specific brand",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-rich-text-content.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1536,8 +1536,8 @@
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Issuance",
     "title": "Issue single reward",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-issuance.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1550,8 +1550,8 @@
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Issuance",
     "title": "Issue bulk reward",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-issuance.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1564,57 +1564,57 @@
     "category": "Rewards Catalog",
     "subcategory": "User-Centric Reward Queries",
     "title": "Get rewards for user",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-user-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "User-Centric Reward Queries",
     "title": "Get customer reward transactions",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-user-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "User-Centric Reward Queries",
     "title": "Get Reward Transaction Details using Reward Transaction ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-user-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "User-Centric Reward Queries",
     "title": "Get Purchased Rewards for User (New API)",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-user-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "User-Centric Reward Queries",
     "title": "Get available reward details for user by id",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-user-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Brand-Level Reward Queries",
     "title": "Get all brand rewards using Brand ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-brand-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Brand-Level Reward Queries",
     "title": "Get Brand Rewards",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-brand-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Brand-Level Reward Queries",
     "title": "Get available brand rewards",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-brand-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1627,43 +1627,43 @@
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Promotions",
     "title": "Create catalog promotion",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-promotions.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Promotions",
     "title": "Update catalog promotion",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-promotions.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Promotions",
     "title": "Get catalog promotion details",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-promotions.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Promotions",
     "title": "Get list of Catalog promotions",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-promotions.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Promotions",
     "title": "Disable Catalog promotion",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-promotions.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Custom Fields",
     "title": "Create custom field for reward",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-custom-fields.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1676,8 +1676,8 @@
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Custom Fields",
     "title": "Get all custom fields",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-custom-fields.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1697,57 +1697,57 @@
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Groups",
     "title": "Groups - Get all rewards group",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-groups.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Reward Catalog Groups",
     "title": "Groups - Get rewards group by ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-groups.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Points Restrictions",
     "title": "Points Restrictions - Create points restriction",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-points-restrictions.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Points Restrictions",
     "title": "Points - Update points restriction",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-points-restrictions.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Points Restrictions",
     "title": "Points - Get points constraints",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-points-restrictions.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Organization-Level Configuration",
     "title": "Organisation Level Configuration for Rewards Catalog",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-org-config.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Organization-Level Configuration",
     "title": "Get Organisation Level Configuration",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-management.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Vendor Management & Redemption",
     "title": "Create a Vendor",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-vendor-management.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1760,22 +1760,22 @@
     "category": "Rewards Catalog",
     "subcategory": "Vendor Management & Redemption",
     "title": "Enable or Disable a Vendor",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-vendor-management.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Vendor Management & Redemption",
     "title": "Get Vendor Details",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-vendor-management.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Vendor Management & Redemption",
     "title": "Vendor List for Specific Brand",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-vendor-management.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1788,57 +1788,57 @@
     "category": "Rewards Catalog",
     "subcategory": "Vendor Management & Redemption",
     "title": "Update Vendor Redemption",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-vendor-management.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Vendor Management & Redemption",
     "title": "Get all vendor redemptions",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-vendor-management.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Vendor Management & Redemption",
     "title": "Vendor Redemption Details by Redemption & Vendor ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-vendor-management.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Vendor Management & Redemption",
     "title": "Vendor Redemption Details by Brand ID and Vendor ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-vendor-management.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "File Service",
     "title": "Upload images to file service",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-file-service.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Fulfillment Status",
     "title": "Create fulfillment status",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-fulfillment-status.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Fulfillment Status",
     "title": "Update fulfillment status",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-fulfillment-status.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Fulfillment Status",
     "title": "Get fulfillment status",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-fulfillment-status.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1865,29 +1865,29 @@
     "category": "Rewards Catalog",
     "subcategory": "Reward Expiry Reminders",
     "title": "Get Reward Expiry Reminder",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-expiry-reminders.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Connected-Org APIs",
     "title": "Issue Reward in connected orgs",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-management.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Connected-Org APIs",
     "title": "Get all available rewards for user in connected orgs",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-catalog-management.yaml"
   },
   {
     "category": "Rewards Catalog",
     "subcategory": "Connected-Org APIs",
     "title": "Get all reward transactions for a user in connected orgs",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-user-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1900,8 +1900,8 @@
     "category": "Rewards Catalog",
     "subcategory": "Connected-Org APIs",
     "title": "Get Purchased Rewards for User in Connected Orgs",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-user-queries.yaml"
   },
   {
     "category": "Rewards Catalog",
@@ -1963,8 +1963,8 @@
     "category": "Target/Milestone",
     "subcategory": "Milestone & Streaks APIs",
     "title": "Get Associated Target Groups of a User",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "milestones-streaks.yaml"
   },
   {
     "category": "Target/Milestone",
@@ -2145,15 +2145,15 @@
     "category": "Target/Milestone",
     "subcategory": "Connected Org APIs",
     "title": "Enroll/Re-Enroll a Customer to a Milestone or Streak",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "milestones-streaks.yaml"
   },
   {
     "category": "Target/Milestone",
     "subcategory": "Connected Org APIs",
     "title": "Unenroll a Customer to from Milestone or Streak",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "milestones-streaks.yaml"
   },
   {
     "category": "Target/Milestone",
@@ -2173,15 +2173,15 @@
     "category": "Target/Milestone",
     "subcategory": "Leaderboards",
     "title": "Get top ranked users",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "leaderboards.yaml"
   },
   {
     "category": "Target/Milestone",
     "subcategory": "Leaderboards",
     "title": "Get user rank across target groups",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "leaderboards.yaml"
   },
   {
     "category": "Loyalty Promotion",
@@ -2201,22 +2201,22 @@
     "category": "Loyalty Promotion",
     "subcategory": "Connected Org APIs",
     "title": "Get Loyalty Promotion List of a Customer (Connected Org)",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-v2-lookup.yaml"
   },
   {
     "category": "Loyalty Promotion",
     "subcategory": "User Created Challenge",
     "title": "Create Loyalty Promotion for UCC",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "loyalty-promotion.yaml"
   },
   {
     "category": "Loyalty Promotion",
     "subcategory": "User Created Challenge",
     "title": "Get Details of all Loyalty Promotions",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "loyalty-promotion.yaml"
   },
   {
     "category": "Loyalty Promotion",
@@ -2229,15 +2229,15 @@
     "category": "Loyalty Promotion",
     "subcategory": "Get Promotion Details",
     "title": "Get Loyalty Promotion List for a Program",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "loyalty-promotion.yaml"
   },
   {
     "category": "Loyalty Promotion",
     "subcategory": "Get Promotion Details",
     "title": "Get Loyalty Promotion by ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "loyalty-promotion.yaml"
   },
   {
     "category": "Loyalty Promotion",
@@ -2306,8 +2306,8 @@
     "category": "Cart Promotions",
     "subcategory": null,
     "title": "Get Cart Promotion Redemptions",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "cart-promotions.yaml"
   },
   {
     "category": "Cart Promotions",
@@ -2348,8 +2348,8 @@
     "category": "Cart Promotions",
     "subcategory": null,
     "title": "Get Cart Promotions for a particular till",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "cart-promotions.yaml"
   },
   {
     "category": "Cart Promotions",
@@ -2383,15 +2383,15 @@
     "category": "Cart Promotions",
     "subcategory": null,
     "title": "Earn Cart Promotion",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "cart-promotions.yaml"
   },
   {
     "category": "Cart Promotions",
     "subcategory": null,
     "title": "Revoke Earned Cart Promotion",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "cart-promotions.yaml"
   },
   {
     "category": "Cart Promotions",
@@ -2411,8 +2411,8 @@
     "category": "Cart Promotions",
     "subcategory": null,
     "title": "Cancel Cart Evaluation - Cart Promotion",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "cart-promotions.yaml"
   },
   {
     "category": "Cart Promotions",
@@ -2425,8 +2425,8 @@
     "category": "Cart Promotions",
     "subcategory": null,
     "title": "Issue Cart Promotion",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "cart-promotions.yaml"
   },
   {
     "category": "Cart Promotions",
@@ -2439,8 +2439,8 @@
     "category": "Cart Promotions",
     "subcategory": null,
     "title": "Get Cart Promotions",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "cart-promotions.yaml"
   },
   {
     "category": "User Group",
@@ -2600,8 +2600,8 @@
     "category": "Organization",
     "subcategory": "Organization (V1)",
     "title": "Retrieve Brand ID",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "rewards-brand-queries.yaml"
   },
   {
     "category": "Organization",
@@ -2747,8 +2747,8 @@
     "category": "Audit logs",
     "subcategory": null,
     "title": "Get audit logs of entities",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "audit-logs.yaml"
   },
   {
     "category": "Audit logs",
@@ -2929,8 +2929,8 @@
     "category": "Staff",
     "subcategory": null,
     "title": "Validate OTP",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-first-factor.yaml"
   },
   {
     "category": "Staff",
@@ -3300,22 +3300,22 @@
     "category": "Request workflow",
     "subcategory": "Create a request",
     "title": "Approve or reject a request",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "request-workflow.yaml"
   },
   {
     "category": "Request workflow",
     "subcategory": "Create a request",
     "title": "Get details of all requests",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "request-workflow.yaml"
   },
   {
     "category": "Request workflow",
     "subcategory": "Create a request",
     "title": "Get details of a particular request",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "request-workflow.yaml"
   },
   {
     "category": "Request workflow",
@@ -3636,8 +3636,8 @@
     "category": "Store Locator API",
     "subcategory": null,
     "title": "Authentication Token",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-first-factor.yaml"
   },
   {
     "category": "Store Locator API",
@@ -3741,8 +3741,8 @@
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "First factor authentication",
     "title": "Generate OTP",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-first-factor.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
@@ -3755,8 +3755,8 @@
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "First factor authentication",
     "title": "Validate Password",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-first-factor.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
@@ -3769,15 +3769,15 @@
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "First factor authentication",
     "title": "Change Password",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-first-factor.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "First factor authentication",
     "title": "Forget Password",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-first-factor.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
@@ -3790,22 +3790,22 @@
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "Multi-factor authentication",
     "title": "Generate MFA token",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-mfa.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "Multi-factor authentication",
     "title": "Generate MFA OTP",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-mfa.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "Multi-factor authentication",
     "title": "Validate MFA OTP",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-mfa.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
@@ -3825,22 +3825,22 @@
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "MFA password flow",
     "title": "Forgot password",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-mfa.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "MFA password flow",
     "title": "Regenerate token",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-mfa.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
     "subcategory": "MFA password flow",
     "title": "Delete token",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "customer-auth-mfa.yaml"
   },
   {
     "category": "Customer Authentication (Web/Mobile)",
@@ -3895,43 +3895,43 @@
     "category": "Private APIs",
     "subcategory": null,
     "title": "Get Event Log IDs with Credit or Debit for Points",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "private-apis.yaml"
   },
   {
     "category": "Private APIs",
     "subcategory": null,
     "title": "Get Event Log IDs with Credit or Debit for Alternate Currency",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "private-apis.yaml"
   },
   {
     "category": "Private APIs",
     "subcategory": null,
     "title": "Get Custom Field Values for TransactionAdd event",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "private-apis.yaml"
   },
   {
     "category": "Private APIs",
     "subcategory": null,
     "title": "Get Point Redemption Details for Redemption Events",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "private-apis.yaml"
   },
   {
     "category": "Private APIs",
     "subcategory": null,
     "title": "Get Target Completion Details",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "private-apis.yaml"
   },
   {
     "category": "Private APIs",
     "subcategory": null,
     "title": "Get Manual Points Adjustment Details",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "private-apis.yaml"
   },
   {
     "category": "Private APIs",
@@ -3965,8 +3965,8 @@
     "category": "Private APIs",
     "subcategory": null,
     "title": "Get Customer’s Earned and Expired Points by Year",
-    "status": "pending",
-    "specFile": null
+    "status": "completed",
+    "specFile": "private-apis.yaml"
   },
   {
     "category": "Other APIs",

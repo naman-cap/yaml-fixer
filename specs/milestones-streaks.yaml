@@ -1,0 +1,722 @@
+openapi: 3.0.1
+info:
+  title: Milestone & Streaks APIs
+  description: Target group, milestone, and streak management endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v3
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/intouch-api-v3/v3.1/targetGroups/{targetGroupId}/targets/{targetId}/enroll:
+    post:
+      summary: Enroll/Re-Enroll a Customer to a Milestone or Streak
+      operationId: connectedorgs-enroll-customer-milestone-or-streak
+      parameters:
+        - name: DATA-SCOPE-ORG
+          in: header
+          description: List of Organization IDs
+          required: true
+          schema:
+            type: string
+        - name: DATA-SCOPE
+          in: header
+          description: The scope to authorize access (SELF, OTHER)
+          required: true
+          schema:
+            type: string
+        - name: targetGroupId
+          in: path
+          description: The ID of the target group associaThe ID of the target group associated with the item.ted with the item.
+          schema:
+            type: integer
+            format: int32
+          required: true
+        - name: targetId
+          in: path
+          description: The ID of the target.
+          schema:
+            type: integer
+            format: int32
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+              properties:
+                customerId:
+                  type: string
+                  description: Unique ID of the customer.
+                periodName:
+                  type: string
+                  description: >-
+                    Name of the period/cycle into which the user has to be enrolled/re-enrolled in the case of
+                    Milestones. Also, period names can be found from the UI of the milestone. In the case of Streaks,
+                    this field itself is not needed.
+                initialBalance:
+                  type: integer
+                  description: >-
+                    The initial balance amount assigned to the customer. This could be 0 or any other number, and when a
+                    user enrols with initial balance, the amount of targets needs to be achieved will be decreased by
+                    same value. If this given as NULL in the case or re-enrol, then the user's target value will start
+                    from the same value at which the un-enrol happened before. Initial balance field won't work for
+                    streaks.
+                  format: int32
+                resetStreakStatus:
+                  type: boolean
+                  description: >-
+                    This field is only for streaks. If this is false, user will continue from the streak value that is
+                    present before the un-enrol from the streak. If this is marked as true during re-enrol, then the
+                    streak value of the user will be reset & it's like starting fresh.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "data": 345651201,
+                        "errors": null,
+                        "warnings": null
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: integer
+                    example: 345651201
+                    default: 0
+                  errors: {}
+                  warnings: {}
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "data": null,
+                        "errors": [
+                          {
+                            "code": 310141,
+                            "message": 'Datascope 'ALL' is not supported for this 'API'
+                          }
+                          ],
+                        "warnings": null
+                    }
+  /api_gateway/intouch-api-v3/v3.1/targetGroups/{targetGroupId}/targets/{targetId}/unEnroll:
+    post:
+      summary: Unenroll a Customer to from Milestone or Streak
+      operationId: connectedorgs-unenroll-customer-milestone-or-streak
+      parameters:
+        - name: targetGroupId
+          in: path
+          description: The ID of the target group associated with the item.
+          schema:
+            type: integer
+            format: int32
+          required: true
+        - name: targetId
+          in: path
+          description: The ID of the target associated.
+          schema:
+            type: integer
+            format: int32
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerId
+              properties:
+                customerId:
+                  type: string
+                  description: Unique ID of the customer.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "data": 345651201,
+                        "errors": null,
+                        "warnings": null
+                    }
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: integer
+                    example: 345651201
+                    default: 0
+                  errors: {}
+                  warnings: {}
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "data": null,
+                        "errors": [
+                            {
+                                "code": 310017,
+                                "message": "Target group not found or deactivated"
+                            },
+                            {
+                                "code": 310018,
+                                "message": "Target rule not found"
+                            }
+                        ],
+                        "warnings": null
+                    }
+              schema:
+                type: object
+                properties:
+                  data: {}
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          example: 310017
+                          default: 0
+                        message:
+                          type: string
+                          example: Target group not found or deactivated
+                  warnings: {}
+  /api_gateway/intouch-api-v3/v3.1/users/{userId}/targetGroups:
+    get:
+      summary: Get Associated Target Groups of a User
+      operationId: connectedorgs-get-associated-target-groups-of-a-user
+      parameters:
+        - name: userId
+          in: path
+          description: >-
+            The userId represents the unique identifier of a user. It allows you to retrieve the target groups
+            associated with a specific user.
+          schema:
+            type: integer
+            format: int64
+          required: true
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+        - name: X-CAP-API-AUTH-KEY
+          in: header
+          schema:
+            type: string
+        - name: X-CAP-API-AUTH-ORG-ID
+          in: header
+          schema:
+            type: string
+        - name: X-CAP-API-OAUTH-TOKEN
+          in: header
+          schema:
+            type: string
+        - name: includeInactive
+          in: query
+          description: .Set true for fetching user target for all periods, both active and inactive.
+          schema:
+            type: boolean
+        - name: targetRuleId
+          in: query
+          description: The ID of the target rule set for the target group.
+          schema:
+            type: integer
+            format: int64
+        - name: includeInactiveTargets
+          in: query
+          description: Set true to fetch all inactive targets of the user.
+          schema:
+            type: boolean
+        - name: DATA-SCOPE-ORG
+          in: header
+          description: List of Organization IDs
+          schema:
+            type: string
+        - name: DATA-SCOPE
+          in: header
+          description: The scope to authorize access (SELF, OTHER, ALL)
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response with targetGroupId:
+                  value:
+                    data:
+                      userId: 566135941
+                      customer:
+                        id: 566135941
+                        profiles:
+                          - firstName: John
+                            lastName: Pork
+                            commChannels:
+                              - type: mobile
+                                accountId: null
+                                value: "91556667722"
+                                primary: false
+                                verified: false
+                                subscribed: null
+                                attributes: null
+                              - type: email
+                                accountId: null
+                                value: user@example.com
+                                primary: false
+                                verified: false
+                                subscribed: null
+                                attributes: null
+                            source: instore
+                            accountId: ""
+                            userId: 566135941
+                            orgSourceId: -1
+                        loyaltyInfo:
+                          attribution:
+                            createdOn: 2025-07-15T12:12:21.000+0000
+                            lastUpdatedOn: 2025-09-29T09:09:02.000+0000
+                            lastUpdatedBy:
+                              id: 75197372
+                              code: null
+                              description: null
+                              name: null
+                              type: null
+                            createdBy:
+                              id: 75152721
+                              code: null
+                              description: null
+                              name: null
+                              type: null
+                          loyaltyType: loyalty
+                          lifetimePurchases: 234000
+                        customFields: {}
+                      targetGroups:
+                        - id: 2684
+                          attribution:
+                            createdOn: 2025-09-29T09:52:54.000+0000
+                            lastUpdatedOn: 2025-09-29T09:52:54.000+0000
+                            lastUpdatedBy:
+                              id: 75197372
+                              code: madhu_rima
+                              description: madhurima's till
+                              name: madhurima
+                              type: TILL
+                            createdBy:
+                              id: 75197372
+                              code: madhu_rima
+                              description: madhurima's till
+                              name: madhurima
+                              type: TILL
+                          name: uatTargetGroup50
+                          orgId: 100737
+                          preferredTillId: 751552970000
+                          targets:
+                            - targetId: 97266279
+                              periodId: 29621
+                              programId: null
+                              alternateCurrencyIdentifier: null
+                              alternateCurrencyName: null
+                              periodRefCode: Cycle_1
+                              periodStartDate: "2025-06-11"
+                              periodEndDate: "2025-06-11"
+                              targetValue: 1
+                              targetAchievedValue: 999
+                              targetName: uat_target_group_50
+                              targetType: COUNT
+                              targetEntity: EVENT
+                              targetRuleId: 2902
+                              enrolledOn: 2025-09-29T11:45:56.000+0000
+                              eventName: TransactionAdd
+                              periodStartDateWithTimeStamp: "2025-06-11T00:00:00.000Z"
+                              periodEndDateWithTimeStamp: "2025-06-11T23:59:59.000Z"
+                              lastUpdatedOn: 2025-09-29T11:45:56.000+0000
+                              targetAchievedDateTime: null
+                              targetAchievedEventLogId: null
+                              currentPeriod: false
+                              unEnrolled: false
+                              milestones: null
+                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                          trackingType: DEFAULT
+                    errors: null
+                    warnings: null
+                  summary: Sample response with targetGroupId
+                Sample response with targetId:
+                  summary: Sample response with targetId
+                  value:
+                    data:
+                      userId: 566135941
+                      customer:
+                        id: 566135941
+                        profiles:
+                          - firstName: John
+                            lastName: Pork
+                            commChannels:
+                              - type: mobile
+                                accountId: null
+                                value: "91556667722"
+                                primary: false
+                                verified: false
+                                subscribed: null
+                                attributes: null
+                              - type: email
+                                accountId: null
+                                value: user@example.com
+                                primary: false
+                                verified: false
+                                subscribed: null
+                                attributes: null
+                            source: instore
+                            accountId: ""
+                            userId: 566135941
+                            orgSourceId: -1
+                        loyaltyInfo:
+                          attribution:
+                            createdOn: 2025-07-15T12:12:21.000+0000
+                            lastUpdatedOn: 2025-09-29T09:09:02.000+0000
+                            lastUpdatedBy:
+                              id: 75197372
+                              code: null
+                              description: null
+                              name: null
+                              type: null
+                            createdBy:
+                              id: 75152721
+                              code: null
+                              description: null
+                              name: null
+                              type: null
+                          loyaltyType: loyalty
+                          lifetimePurchases: 234000
+                        customFields: {}
+                      targetGroups:
+                        - id: 2684
+                          attribution:
+                            createdOn: 2025-09-29T09:52:54.000+0000
+                            lastUpdatedOn: 2025-09-29T09:52:54.000+0000
+                            lastUpdatedBy:
+                              id: 75197372
+                              code: madhu_rima
+                              description: madhurima's till
+                              name: madhurima
+                              type: TILL
+                            createdBy:
+                              id: 75197372
+                              code: madhu_rima
+                              description: madhurima's till
+                              name: madhurima
+                              type: TILL
+                          name: uatTargetGroup50
+                          orgId: 100737
+                          preferredTillId: 751552970000
+                          targets:
+                            - targetId: 97266279
+                              periodId: 29621
+                              programId: null
+                              alternateCurrencyIdentifier: null
+                              alternateCurrencyName: null
+                              periodRefCode: Cycle_1
+                              periodStartDate: "2025-06-11"
+                              periodEndDate: "2025-06-11"
+                              targetValue: 1
+                              targetAchievedValue: 999
+                              targetName: uat_target_group_50
+                              targetType: COUNT
+                              targetEntity: EVENT
+                              targetRuleId: 2902
+                              enrolledOn: 2025-09-29T11:45:56.000+0000
+                              eventName: TransactionAdd
+                              periodStartDateWithTimeStamp: "2025-06-11T00:00:00.000Z"
+                              periodEndDateWithTimeStamp: "2025-06-11T23:59:59.000Z"
+                              lastUpdatedOn: 2025-09-29T11:45:56.000+0000
+                              targetAchievedDateTime: null
+                              targetAchievedEventLogId: null
+                              currentPeriod: false
+                              unEnrolled: false
+                              milestones: null
+                          targetEvaluationType: FIXED_CALENDAR_WINDOW
+                          trackingType: DEFAULT
+                    errors: null
+                    warnings: null
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      userId:
+                        type: integer
+                        example: 347286146
+                        default: 0
+                      customer:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 347286146
+                            default: 0
+                          profiles:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                firstName:
+                                  type: string
+                                  example: "919111122111"
+                                lastName:
+                                  type: string
+                                  example: "919111122111"
+                                commChannels:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      type:
+                                        type: string
+                                        example: email
+                                      accountId: {}
+                                      value:
+                                        type: string
+                                        example: user@example.com
+                                      primary:
+                                        type: boolean
+                                        example: false
+                                        default: true
+                                      verified:
+                                        type: boolean
+                                        example: false
+                                        default: true
+                                      subscribed: {}
+                                      attributes: {}
+                                source:
+                                  type: string
+                                  example: instore
+                                accountId:
+                                  type: string
+                                  example: ""
+                                userId:
+                                  type: integer
+                                  example: 347286146
+                                  default: 0
+                                orgSourceId:
+                                  type: integer
+                                  example: -1
+                                  default: 0
+                          loyaltyInfo:
+                            type: object
+                            properties:
+                              attribution:
+                                type: object
+                                properties:
+                                  createdOn:
+                                    type: string
+                                    example: 2024-08-27T09:35:24.000+0000
+                                  lastUpdatedOn:
+                                    type: string
+                                    example: 2024-08-27T09:43:41.000+0000
+                                  lastUpdatedBy:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                        example: 50150886
+                                        default: 0
+                                      code: {}
+                                      description: {}
+                                      name: {}
+                                      type: {}
+                                  createdBy:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                        example: 50150886
+                                        default: 0
+                                      code: {}
+                                      description: {}
+                                      name: {}
+                                      type: {}
+                              loyaltyType:
+                                type: string
+                                example: loyalty
+                              lifetimePurchases:
+                                type: integer
+                                example: 2400
+                                default: 0
+                          customFields:
+                            type: object
+                            properties: {}
+                      targetGroups:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 33008
+                              default: 0
+                            attribution:
+                              type: object
+                              properties:
+                                createdOn:
+                                  type: string
+                                  example: 2024-04-30T13:15:44.000+0000
+                                lastUpdatedOn:
+                                  type: string
+                                  example: 2024-04-30T13:15:44.000+0000
+                                lastUpdatedBy:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 4
+                                      default: 0
+                                    code:
+                                      type: string
+                                      example: First
+                                    description: {}
+                                    name:
+                                      type: string
+                                      example: First User
+                                    type:
+                                      type: string
+                                      example: ADMIN_USER
+                                createdBy:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      example: 4
+                                      default: 0
+                                    code:
+                                      type: string
+                                      example: First
+                                    description: {}
+                                    name:
+                                      type: string
+                                      example: First User
+                                    type:
+                                      type: string
+                                      example: ADMIN_USER
+                            name:
+                              type: string
+                              example: Ac test
+                            orgId:
+                              type: integer
+                              example: 50363
+                              default: 0
+                            preferredTillId:
+                              type: integer
+                              example: 50150886
+                              default: 0
+                            targets:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  targetId: {}
+                                  periodId:
+                                    type: integer
+                                    example: 38375
+                                    default: 0
+                                  periodRefCode:
+                                    type: string
+                                    example: Cycle_1
+                                  periodStartDate:
+                                    type: string
+                                    example: "2024-04-30"
+                                  periodEndDate:
+                                    type: string
+                                    example: "2024-05-29"
+                                  targetValue:
+                                    type: integer
+                                    example: 1000
+                                    default: 0
+                                  targetAchievedValue:
+                                    type: integer
+                                    example: 0
+                                    default: 0
+                                  targetName:
+                                    type: string
+                                    example: Ac test
+                                  targetType:
+                                    type: string
+                                    example: GROSS_SALES
+                                  targetEntity:
+                                    type: string
+                                    example: TRANSACTION
+                                  targetRuleId:
+                                    type: integer
+                                    example: 72389
+                                    default: 0
+                                  enrolledOn:
+                                    type: string
+                                    example: 2024-08-30T09:21:43.741+0000
+                                  eventName:
+                                    type: string
+                                    example: TransactionAdd
+                                  periodStartDateWithTimeStamp:
+                                    type: string
+                                    example: "2024-04-30T00:00:00.000Z"
+                                  periodEndDateWithTimeStamp:
+                                    type: string
+                                    example: "2024-05-29T23:59:59.000Z"
+                                  targetAchievedDateTime: {}
+                                  currentPeriod:
+                                    type: boolean
+                                    example: false
+                                    default: true
+                                  milestones: {}
+                            targetEvaluationType:
+                              type: string
+                              example: FIXED_CALENDAR_WINDOW
+                            trackingType:
+                              type: string
+                              example: DEFAULT
+                  errors: {}
+                  warnings: {}
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

@@ -1,0 +1,433 @@
+openapi: 3.0.1
+info:
+  title: Other APIs
+  description: Miscellaneous utility and configuration endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v2
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/v1/recommendations/user:
+    get:
+      summary: Get User Recommendations
+      description: >-
+        Retrieves the list of recommended products of a user based on past activities such as orders, frequent orders,
+        search items, and trending items.
+      operationId: get-user-recommendations
+      parameters:
+        - name: model
+          in: path
+          description: >-
+            Recommendation type to fetch results. <br>you-may-also-like to retrieve product recommendations on the
+            user’s currently viewing products (during online shopping). trending to retrieve recommended products based
+            on previous orders, searches, items viewed, and other user activities. buy-it-again to retrieve products
+            that were bought by the user earlier (for reordering).
+          schema:
+            type: string
+            enum:
+              - you-may-also-like
+              - trending
+              - buy-it-again
+          required: true
+        - name: utype
+          in: query
+          description: Identifier type to identify customer.
+          required: true
+          schema:
+            type: string
+            enum:
+              - user_id
+              - mobile
+              - email
+        - name: uvalue
+          in: query
+          description: The unique identifier value of the utype. For example, if utype=mobile, uvalue=9988221100 (mobile number).
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Limit the number of results to retrieve. You can retrieve a maximum of 25 results.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: >-
+            Number of results to ignore from top (where the recommendations array to start fetching). Set 0 to ignore
+            the first result, 1 to ignore the first two results and so on.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: categories
+          in: query
+          description: >-
+            Filter recommended products by one or more categories. Pass comma separated category codes. Maximum of 10
+            categories are supported. Example: categories=Shirts,Bottomwear
+          schema:
+            type: array
+            items:
+              type: string
+        - name: stores
+          in: query
+          description: >-
+            Filter products by stores. Pass comma separated store codes. Max limit is 10. Example:
+            stores=store.1,store.2
+          schema:
+            type: array
+            items:
+              type: string
+        - name: deviceLocation
+          in: query
+          description: NA
+          schema:
+            type: array
+            items:
+              type: string
+        - name: deviceType
+          in: query
+          description: NA
+          schema:
+            type: string
+        - name: X-CAP-API-AUTH-ENTITY-ID
+          in: header
+          description: Unique Till ID used for authentication.
+          required: true
+          schema:
+            type: string
+        - name: X-CAP-API-AUTH-ORG-ID
+          in: header
+          description: Unique Org ID used for authentication.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |
+                    {
+                       "status":{
+                          "success":true,
+                          "code":200
+                       },
+                       "group":"TEST",
+                       "boxType":"you-may-also-like",
+                       "totalResults":2,
+                       "recommendedItems":{
+                          "items":[
+                             {
+                                "sku":"564714",
+                                "score":10,
+                                "rank":1,
+                                "values":{
+                                   "name":"T-Shirts",
+                                   "description":"Reebok T-Shirts",
+                                   "categories":[
+                                      "Shirts"
+                                   ],
+                                   "image":{
+                                      "label":"",
+                                      "url":""
+                                   },
+                                   "smallImage":{
+                                      "label":"",
+                                      "url":""
+                                   },
+                                   "productUrl":""
+                                }
+                             },
+                             {
+                                "sku":"564716",
+                                "score":9,
+                                "rank":2,
+                                "values":{
+                                   "name":"Trackpants",
+                                   "description":"Puma Trackpants",
+                                   "categories":[
+                                      "Bottomwear"
+                                   ],
+                                   "image":{
+                                      "label":"",
+                                      "url":""
+                                   },
+                                   "smallImage":{
+                                      "label":"",
+                                      "url":""
+                                   },
+                                   "productUrl":""
+                                }
+                             }
+                          ]
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                  group:
+                    type: string
+                    example: TEST
+                  boxType:
+                    type: string
+                    example: you-may-also-like
+                  totalResults:
+                    type: integer
+                    example: 2
+                    default: 0
+                  recommendedItems:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            sku:
+                              type: string
+                              example: "564714"
+                            score:
+                              type: integer
+                              example: 10
+                              default: 0
+                            rank:
+                              type: integer
+                              example: 1
+                              default: 0
+                            values:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  example: T-Shirts
+                                description:
+                                  type: string
+                                  example: Reebok T-Shirts
+                                categories:
+                                  type: array
+                                  items:
+                                    type: string
+                                    example: Shirts
+                                image:
+                                  type: object
+                                  properties:
+                                    label:
+                                      type: string
+                                      example: ""
+                                    url:
+                                      type: string
+                                      example: ""
+                                smallImage:
+                                  type: object
+                                  properties:
+                                    label:
+                                      type: string
+                                      example: ""
+                                    url:
+                                      type: string
+                                      example: ""
+                                productUrl:
+                                  type: string
+                                  example: ""
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/v1/recommendations/item:
+    get:
+      summary: Get Item Recommendations
+      description: Retrieves product recommendations based on the product attribute.
+      operationId: get-item-recommendations
+      parameters:
+        - name: model
+          in: path
+          description: >-
+            similar-attribute to get products with similar product attributes as per the SKU item. similar-btab to get
+            products that are are frequently bought along with the SKU item passed.
+          schema:
+            type: string
+            enum:
+              - similar-attribute
+              - SKU
+              - similar-btab
+          required: true
+        - name: sku
+          in: query
+          description: The unique stock keeping unit code by which you want to fetch product recommendations.
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Limit the number of results to retrieve. You can retrieve a maximum of 25 results.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: >-
+            Number of results to ignore from top (where the recommendations array to start fetching). Set 0 to ignore
+            the first result, 1 to ignore the first two results and so on.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: categories
+          in: query
+          description: >-
+            Filter recommended products by one or more categories. Pass comma separated category codes. Maximum of 10
+            categories are supported. Example: categories=Shirts,Bottomwear
+          schema:
+            type: array
+            items:
+              type: string
+        - name: stores
+          in: query
+          description: >-
+            Filter products by stores. Pass comma separated store codes. Max limit is 10. Example:
+            stores=store.1,store.2
+          schema:
+            type: array
+            items:
+              type: string
+        - name: X-CAP-API-AUTH-ENTITY-ID
+          in: header
+          description: Unique Till ID used for authentication.
+          required: true
+          schema:
+            type: string
+        - name: X-CAP-API-AUTH-ORG-ID
+          in: header
+          description: Unique Org ID used for authentication.
+          required: true
+          schema:
+            type: string
+      responses:
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /api_gateway/v1/recommendations/cart:
+    get:
+      summary: Get Cart Recommendations
+      description: Retrieves the recommended products of a specific cart items.
+      operationId: get-cart-recommendations
+      parameters:
+        - name: model
+          in: path
+          description: >-
+            Pass frequently-bought-together to get products that were frequently bought along with the items in the
+            cart. For example, if the cart has mobile, the recommended item could be mobile case.
+          schema:
+            type: string
+            enum:
+              - frequently-bought-together
+          required: true
+        - name: cartparam
+          in: query
+          description: >-
+            Object type to identify the cart items in SKU:quantity pairs - {sku1:quantity,sku2:quantity}. For
+            example,cartparam={"000000000000010242":1,000000000000080246":5}
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Limit the number of results to retrieve. You can retrieve a maximum of 25 results.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: >-
+            Number of results to ignore from top (where the recommendations array to start fetching). Set 0 to ignore
+            the first result, 1 to ignore the first two results and so on.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: categories
+          in: query
+          description: >-
+            Filter recommended products by one or more categories. Pass comma separated category codes. Maximum of 10
+            categories are supported. Example: categories=Shirts,Bottomwear
+          schema:
+            type: array
+            items:
+              type: string
+        - name: stores
+          in: query
+          description: >-
+            Filter products by stores. Pass comma separated store codes. Max limit is 10. Example:
+            stores=store.1,store.2
+          schema:
+            type: array
+            items:
+              type: string
+        - name: X-CAP-API-AUTH-ENTITY-ID
+          in: header
+          description: Unique Till ID used for authentication.
+          required: true
+          schema:
+            type: string
+        - name: X-CAP-API-AUTH-ORG-ID
+          in: header
+          description: Unique Org ID used for authentication.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal Server Error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

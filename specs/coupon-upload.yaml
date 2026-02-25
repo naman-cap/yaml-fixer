@@ -1,0 +1,1122 @@
+openapi: 3.0.1
+info:
+  title: Coupon Upload (V1) APIs
+  description: Coupon upload and batch processing endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /coupon/api/v1/upload/file/{couponSeriedId}:
+    post:
+      summary: Upload Coupons (Batch)
+      operationId: upload-coupons-batch
+      parameters:
+        - name: couponSeriedId*
+          in: path
+          description: Unique ID of the coupon series for which you need to upload coupons.
+          schema:
+            type: integer
+            format: int64
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    {
+                        "success": true,
+                        "status": 200,
+                        "result": {
+                            "orgId": 100458,
+                            "couponSeriesId": 541854,
+                            "uploadJobStatuses": [
+                                {
+                                    "jobId": 222696,
+                                    "uploadStatus": "STARTED",
+                                    "createdOn": "1717651325445",
+                                    "updatedOn": "1717651325445",
+                                    "errorFileUrl": null,
+                                    "successFileUrl": null,
+                                    "uploadedFileUrl": "couponbatchupload_1717651325326_541854.csv",
+                                    "totalUploadedCount": 0,
+                                    "actualRowCount": 0,
+                                    "errorCount": 0,
+                                    "uploadTableName": null,
+                                    "uploadedFileName": "couponbatchupload.csv",
+                                    "audienceGroupId": 0,
+                                    "audienceGroupVersionId": 0
+                                }
+                            ],
+                            "fileName": "couponbatchupload_1717651325326_541854.csv"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+                  status:
+                    type: integer
+                    example: 200
+                    default: 0
+                  result:
+                    type: object
+                    properties:
+                      orgId:
+                        type: integer
+                        example: 100458
+                        default: 0
+                      couponSeriesId:
+                        type: integer
+                        example: 541854
+                        default: 0
+                      uploadJobStatuses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            jobId:
+                              type: integer
+                              example: 222696
+                              default: 0
+                            uploadStatus:
+                              type: string
+                              example: STARTED
+                            createdOn:
+                              type: string
+                              example: "1717651325445"
+                            updatedOn:
+                              type: string
+                              example: "1717651325445"
+                            errorFileUrl: {}
+                            successFileUrl: {}
+                            uploadedFileUrl:
+                              type: string
+                              example: couponbatchupload_1717651325326_541854.csv
+                            totalUploadedCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            actualRowCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            errorCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            uploadTableName: {}
+                            uploadedFileName:
+                              type: string
+                              example: couponbatchupload.csv
+                            audienceGroupId:
+                              type: integer
+                              example: 0
+                              default: 0
+                            audienceGroupVersionId:
+                              type: integer
+                              example: 0
+                              default: 0
+                      fileName:
+                        type: string
+                        example: couponbatchupload_1717651325326_541854.csv
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /coupon/api/v1/upload/getUploadStatus/{couponSeriesId}:
+    get:
+      summary: Get Uploaded Coupons' Status
+      description: Retrieves the status of a coupon upload job.
+      operationId: get-uploaded-coupons-status-copy
+      parameters:
+        - name: couponSeriesId
+          in: query
+          description: The unique ID of the coupon series to get the status.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    {
+                       "success":true,
+                       "status":200,
+                       "result":{
+                          "orgId":2345,
+                          "couponSeriesId":253543,
+                          "uploadJobStatuses":[
+                             {
+                                "jobId":93477,
+                                "uploadStatus":"FINISHED",
+                                "createdOn":"1603101625000",
+                                "updatedOn":"1603101632000",
+                                "errorFileUrl":"error_1619_2532342020_10_19_15_30_32",
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_1603101623721_253234.csv",
+                                "totalUploadedCount":3,
+                                "actualRowCount":3,
+                                "errorCount":3,
+                                "uploadTableName":"temp_1619_20201019_153531582",
+                                "uploadedFileName":"couponCode.csv",
+                                "audienceGroupId":0,
+                                "audienceGroupVersionId":0
+                             }
+                          ]
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+                  status:
+                    type: integer
+                    example: 200
+                    default: 0
+                  result:
+                    type: object
+                    properties:
+                      orgId:
+                        type: integer
+                        example: 2345
+                        default: 0
+                      couponSeriesId:
+                        type: integer
+                        example: 253543
+                        default: 0
+                      uploadJobStatuses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            jobId:
+                              type: integer
+                              example: 93477
+                              default: 0
+                            uploadStatus:
+                              type: string
+                              example: FINISHED
+                            createdOn:
+                              type: string
+                              example: "1603101625000"
+                            updatedOn:
+                              type: string
+                              example: "1603101632000"
+                            errorFileUrl:
+                              type: string
+                              example: error_1619_2532342020_10_19_15_30_32
+                            successFileUrl: {}
+                            uploadedFileUrl:
+                              type: string
+                              example: couponCode_1603101623721_253234.csv
+                            totalUploadedCount:
+                              type: integer
+                              example: 3
+                              default: 0
+                            actualRowCount:
+                              type: integer
+                              example: 3
+                              default: 0
+                            errorCount:
+                              type: integer
+                              example: 3
+                              default: 0
+                            uploadTableName:
+                              type: string
+                              example: temp_1619_20201019_153531582
+                            uploadedFileName:
+                              type: string
+                              example: couponCode.csv
+                            audienceGroupId:
+                              type: integer
+                              example: 0
+                              default: 0
+                            audienceGroupVersionId:
+                              type: integer
+                              example: 0
+                              default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriesId}:
+    get:
+      summary: Get Status of Redeemed Coupons (COPY)
+      description: Retrieves the status of the uploaded coupon redeem job a coupon series.
+      operationId: get-status-of-redeemed-coupons-copy-1
+      parameters:
+        - name: couponSeriesId
+          in: query
+          description: The ID of coupon series for which the user wants to know the redeem status.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: x-cap-api-oauth-token
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    {
+                       "success":true,
+                       "status":200,
+                       "result":{
+                          "orgId":9838,
+                          "couponSeriesId":909234,
+                          "redeemUploadJobStatuses":[
+                             {
+                                "jobId":4455,
+                                "uploadRedeemedCouponStatus":"COMPLETED",
+                                "createdOn":"1603132200000",
+                                "updatedOn":"1603132200000",
+                                "errorFileUrl":"error_redemption_upload_1619_2532342020_10_20_14_17_00",
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_1603183613031_253234.csv",
+                                "totalUploadedCount":1,
+                                "actualRowCount":1,
+                                "errorCount":1,
+                                "uploadTableName":"temp_redemption_upload_1619_20201020_141700172",
+                                "uploadedFileName":"couponCode_1603183613081_259234.csv"
+                             },
+                             {
+                                "jobId":4456,
+                                "uploadRedeemedCouponStatus":"COMPLETED",
+                                "createdOn":"1603132200000",
+                                "updatedOn":"1603132200000",
+                                "errorFileUrl":"error_redemption_upload_1619_2532342020_10_20_17_33_14",
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_1603195385330_253234.csv",
+                                "totalUploadedCount":1,
+                                "actualRowCount":1,
+                                "errorCount":1,
+                                "uploadTableName":"temp_redemption_upload_1619_20201020_173313820",
+                                "uploadedFileName":"couponCode_1603195345330_253564.csv"
+                             },
+                             {
+                                "jobId":4457,
+                                "uploadRedeemedCouponStatus":"COMPLETED",
+                                "createdOn":"1603218600000",
+                                "updatedOn":"1603218600000",
+                                "errorFileUrl":"error_redemption_upload_1619_2532342020_10_21_12_29_00",
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_1603263533789_253234.csv",
+                                "totalUploadedCount":1,
+                                "actualRowCount":1,
+                                "errorCount":1,
+                                "uploadTableName":"temp_redemption_upload_1619_20201021_122859950",
+                                "uploadedFileName":"couponCode_1603263533789_253234.csv"
+                             }
+                          ]
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+                  status:
+                    type: integer
+                    example: 200
+                    default: 0
+                  result:
+                    type: object
+                    properties:
+                      orgId:
+                        type: integer
+                        example: 9838
+                        default: 0
+                      couponSeriesId:
+                        type: integer
+                        example: 909234
+                        default: 0
+                      redeemUploadJobStatuses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            jobId:
+                              type: integer
+                              example: 4455
+                              default: 0
+                            uploadRedeemedCouponStatus:
+                              type: string
+                              example: COMPLETED
+                            createdOn:
+                              type: string
+                              example: "1603132200000"
+                            updatedOn:
+                              type: string
+                              example: "1603132200000"
+                            errorFileUrl:
+                              type: string
+                              example: error_redemption_upload_1619_2532342020_10_20_14_17_00
+                            successFileUrl: {}
+                            uploadedFileUrl:
+                              type: string
+                              example: couponCode_1603183613031_253234.csv
+                            totalUploadedCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            actualRowCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            errorCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            uploadTableName:
+                              type: string
+                              example: temp_redemption_upload_1619_20201020_141700172
+                            uploadedFileName:
+                              type: string
+                              example: couponCode_1603183613081_259234.csv
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+            text/plain:
+              examples:
+                Invalid input:
+                  value: ""
+        "500":
+          description: "500"
+          content:
+            text/plain:
+              examples:
+                Unable to post or retrieve details:
+                  value: ""
+  /upload/getUploadRedeemedCouponStatus/{couponSeriesId}:
+    get:
+      summary: Get Status of Redeemed Coupons
+      description: Retrieves the status of the uploaded coupon redeem job a coupon series.
+      operationId: get-status-of-redeemed-coupons-copy
+      parameters:
+        - name: couponSeriesId
+          in: query
+          description: The ID of coupon series for which the user wants to know the redeem status.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: x-cap-api-oauth-token
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    {
+                       "success":true,
+                       "status":200,
+                       "result":{
+                          "orgId":9838,
+                          "couponSeriesId":909234,
+                          "redeemUploadJobStatuses":[
+                             {
+                                "jobId":4455,
+                                "uploadRedeemedCouponStatus":"COMPLETED",
+                                "createdOn":"1603132200000",
+                                "updatedOn":"1603132200000",
+                                "errorFileUrl":"error_redemption_upload_1619_2532342020_10_20_14_17_00",
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_1603183613031_253234.csv",
+                                "totalUploadedCount":1,
+                                "actualRowCount":1,
+                                "errorCount":1,
+                                "uploadTableName":"temp_redemption_upload_1619_20201020_141700172",
+                                "uploadedFileName":"couponCode_1603183613081_259234.csv"
+                             },
+                             {
+                                "jobId":4456,
+                                "uploadRedeemedCouponStatus":"COMPLETED",
+                                "createdOn":"1603132200000",
+                                "updatedOn":"1603132200000",
+                                "errorFileUrl":"error_redemption_upload_1619_2532342020_10_20_17_33_14",
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_1603195385330_253234.csv",
+                                "totalUploadedCount":1,
+                                "actualRowCount":1,
+                                "errorCount":1,
+                                "uploadTableName":"temp_redemption_upload_1619_20201020_173313820",
+                                "uploadedFileName":"couponCode_1603195345330_253564.csv"
+                             },
+                             {
+                                "jobId":4457,
+                                "uploadRedeemedCouponStatus":"COMPLETED",
+                                "createdOn":"1603218600000",
+                                "updatedOn":"1603218600000",
+                                "errorFileUrl":"error_redemption_upload_1619_2532342020_10_21_12_29_00",
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_1603263533789_253234.csv",
+                                "totalUploadedCount":1,
+                                "actualRowCount":1,
+                                "errorCount":1,
+                                "uploadTableName":"temp_redemption_upload_1619_20201021_122859950",
+                                "uploadedFileName":"couponCode_1603263533789_253234.csv"
+                             }
+                          ]
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+                  status:
+                    type: integer
+                    example: 200
+                    default: 0
+                  result:
+                    type: object
+                    properties:
+                      orgId:
+                        type: integer
+                        example: 9838
+                        default: 0
+                      couponSeriesId:
+                        type: integer
+                        example: 909234
+                        default: 0
+                      redeemUploadJobStatuses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            jobId:
+                              type: integer
+                              example: 4455
+                              default: 0
+                            uploadRedeemedCouponStatus:
+                              type: string
+                              example: COMPLETED
+                            createdOn:
+                              type: string
+                              example: "1603132200000"
+                            updatedOn:
+                              type: string
+                              example: "1603132200000"
+                            errorFileUrl:
+                              type: string
+                              example: error_redemption_upload_1619_2532342020_10_20_14_17_00
+                            successFileUrl: {}
+                            uploadedFileUrl:
+                              type: string
+                              example: couponCode_1603183613031_253234.csv
+                            totalUploadedCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            actualRowCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            errorCount:
+                              type: integer
+                              example: 1
+                              default: 0
+                            uploadTableName:
+                              type: string
+                              example: temp_redemption_upload_1619_20201020_141700172
+                            uploadedFileName:
+                              type: string
+                              example: couponCode_1603183613081_259234.csv
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+            text/plain:
+              examples:
+                Invalid input:
+                  value: ""
+        "500":
+          description: "500"
+          content:
+            text/plain:
+              examples:
+                Unable to post or retrieve details:
+                  value: ""
+  /upload/redeemFile:
+    post:
+      summary: Upload Redeemed Coupons
+      description: |-
+        Lets you upload coupons that are redeemed for a coupon series in bulk. 
+
+        You can also import coupons (Capillary CRM) that are redeemed externally using an endpoint.
+      operationId: upload-redeemed-coupons-copy
+      parameters:
+        - name: couponSeriesId
+          in: path
+          description: Unique ID of the coupon series for which you need to upload redeemed coupons.
+          schema:
+            type: integer
+            format: int64
+          required: true
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - multipart/form-data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerIdentifier
+                - couponIdentifier
+              properties:
+                customerIdentifier:
+                  type: string
+                  description: Unique identifier of the customer to update redeemed coupons.
+                  enum:
+                    - MOBILE
+                    - EXTERNAL_ID
+                    - EMAIL
+                    - USER_ID
+                couponIdentifier:
+                  type: string
+                  description: Coupon identifier used.
+                  enum:
+                    - COUPON_ID
+                    - COUPON_CODE
+                file:
+                  type: string
+                  description: >-
+                    The CSV file that contains information of redeemed coupons. Each row in CSV file can contain
+                    following fields(columns marked with * are mandatory).
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |
+                    {
+                       "success":true,
+                       "status":200,
+                       "result":{
+                          "orgId":9619,
+                          "couponSeriesId":953234,
+                          "redeemUploadJobStatuses":[
+                             {
+                                "jobId":9137,
+                                "uploadRedeemedCouponStatus":"QUEUED",
+                                "createdOn":"1603263535389",
+                                "updatedOn":"1603263535389",
+                                "errorFileUrl":null,
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_9603263533789_253294.csv",
+                                "totalUploadedCount":0,
+                                "actualRowCount":0,
+                                "errorCount":0,
+                                "uploadTableName":null,
+                                "uploadedFileName":"couponCode_9603263533789_253294.csv"
+                             }
+                          ],
+                          "fileName":"couponCode_9603263533789_253294.csv"
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+                  status:
+                    type: integer
+                    example: 200
+                    default: 0
+                  result:
+                    type: object
+                    properties:
+                      orgId:
+                        type: integer
+                        example: 9619
+                        default: 0
+                      couponSeriesId:
+                        type: integer
+                        example: 953234
+                        default: 0
+                      redeemUploadJobStatuses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            jobId:
+                              type: integer
+                              example: 9137
+                              default: 0
+                            uploadRedeemedCouponStatus:
+                              type: string
+                              example: QUEUED
+                            createdOn:
+                              type: string
+                              example: "1603263535389"
+                            updatedOn:
+                              type: string
+                              example: "1603263535389"
+                            errorFileUrl: {}
+                            successFileUrl: {}
+                            uploadedFileUrl:
+                              type: string
+                              example: couponCode_9603263533789_253294.csv
+                            totalUploadedCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            actualRowCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            errorCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            uploadTableName: {}
+                            uploadedFileName:
+                              type: string
+                              example: couponCode_9603263533789_253294.csv
+                      fileName:
+                        type: string
+                        example: couponCode_9603263533789_253294.csv
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /upload/file/{couponSeriedId}:
+    post:
+      summary: Upload Coupons (Batch)
+      operationId: upload-coupons-batch-copy
+      parameters:
+        - name: couponSeriedId*
+          in: path
+          description: Unique ID of the coupon series for which you need to upload coupons.
+          schema:
+            type: integer
+            format: int64
+          required: true
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - multipart/form-data
+        - name: x-cap-api-oauth-token
+          in: header
+          description: Access token generated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - file
+                - customerIdentifier
+                - customerIdentifierColumn
+              properties:
+                file:
+                  type: string
+                  description: >-
+                    Name of the CSV file with customer and coupon details. Sample file content: File content sample for
+                    uploading the coupon code is as follows customer_identifier,coupon code value 1,ABCDEF1 value
+                    2,ABCDEF2 value 3,ABCDEF3 File content sample for uploading customer identifier: customerIdentifier
+                    value 1 value 2 value 3 File content sample for uploading customer tagged coupons is as follows
+                    customerIdentifier,coupon code value 1,ABCDEF1 value 2,ABCDEF2 value 3,ABCDEF3
+                customerIdentifier:
+                  type: string
+                  description: >-
+                    Customer identifier type used in the CSV file. Use NOT_TAGGED as the identifier to upload only
+                    coupon codes.
+                  enum:
+                    - MOBILE
+                    - EXTERNAL_ID
+                    - EMAIL
+                    - USER_ID
+                    - NOT_TAGGED.
+                customerIdentifierColumn:
+                  type: string
+                  description: >-
+                    Column ID of the customer identifier in the uploaded CSV file. For example, If the first column of
+                    the file contains customer identification data, then the value of customerIdentifierColumn will be
+                    0. If the second column of the file contains customer identification data, then the value of
+                    customerIdentifierColumn will be 1.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample Response:
+                  value: |-
+                    {
+                       "success":true,
+                       "status":200,
+                       "result":{
+                          "orgId":0,
+                          "couponSeriesId":123,
+                          "uploadJobStatuses":[
+                             {
+                                "jobId":1,
+                                "uploadStatus":"STARTED",
+                                "createdOn":"1601835836973",
+                                "updatedOn":"1601835836973",
+                                "errorFileUrl":null,
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_1601835836573_123.csv",
+                                "totalUploadedCount":0,
+                                "actualRowCount":0,
+                                "errorCount":0,
+                                "uploadTableName":null,
+                                "uploadedFileName":"couponCode.csv",
+                                "audienceGroupId":0,
+                                "audienceGroupVersionId":0
+                             }
+                          ],
+                          "fileName":"couponCode_1601835836573_123.csv"
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+                  status:
+                    type: integer
+                    example: 200
+                    default: 0
+                  result:
+                    type: object
+                    properties:
+                      orgId:
+                        type: integer
+                        example: 0
+                        default: 0
+                      couponSeriesId:
+                        type: integer
+                        example: 123
+                        default: 0
+                      uploadJobStatuses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            jobId:
+                              type: integer
+                              example: 1
+                              default: 0
+                            uploadStatus:
+                              type: string
+                              example: STARTED
+                            createdOn:
+                              type: string
+                              example: "1601835836973"
+                            updatedOn:
+                              type: string
+                              example: "1601835836973"
+                            errorFileUrl: {}
+                            successFileUrl: {}
+                            uploadedFileUrl:
+                              type: string
+                              example: couponCode_1601835836573_123.csv
+                            totalUploadedCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            actualRowCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            errorCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            uploadTableName: {}
+                            uploadedFileName:
+                              type: string
+                              example: couponCode.csv
+                            audienceGroupId:
+                              type: integer
+                              example: 0
+                              default: 0
+                            audienceGroupVersionId:
+                              type: integer
+                              example: 0
+                              default: 0
+                      fileName:
+                        type: string
+                        example: couponCode_1601835836573_123.csv
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /upload/redeemFile/{couponSeriesId}:
+    post:
+      summary: Upload Redeemed Coupons
+      description: |-
+        Lets you upload coupons that are redeemed for a coupon series in bulk. 
+
+        You can also import coupons (Capillary CRM) that are redeemed externally using an endpoint.
+      operationId: upload-redeemed-coupons
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - multipart/form-data
+        - in: path
+          name: couponSeriesId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - customerIdentifier
+                - couponIdentifier
+              properties:
+                customerIdentifier:
+                  type: string
+                  description: Unique identifier of the customer to update redeemed coupons.
+                  enum:
+                    - MOBILE
+                    - EXTERNAL_ID
+                    - EMAIL
+                    - USER_ID
+                couponIdentifier:
+                  type: string
+                  description: Coupon identifier used.
+                  enum:
+                    - COUPON_ID
+                    - COUPON_CODE
+                file:
+                  type: string
+                  description: >-
+                    The CSV file that contains information of redeemed coupons. Each row in CSV file can contain
+                    following fields(columns marked with * are mandatory).
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |
+                    {
+                       "success":true,
+                       "status":200,
+                       "result":{
+                          "orgId":9619,
+                          "couponSeriesId":953234,
+                          "redeemUploadJobStatuses":[
+                             {
+                                "jobId":9137,
+                                "uploadRedeemedCouponStatus":"QUEUED",
+                                "createdOn":"1603263535389",
+                                "updatedOn":"1603263535389",
+                                "errorFileUrl":null,
+                                "successFileUrl":null,
+                                "uploadedFileUrl":"couponCode_9603263533789_253294.csv",
+                                "totalUploadedCount":0,
+                                "actualRowCount":0,
+                                "errorCount":0,
+                                "uploadTableName":null,
+                                "uploadedFileName":"couponCode_9603263533789_253294.csv"
+                             }
+                          ],
+                          "fileName":"couponCode_9603263533789_253294.csv"
+                       }
+                    }
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                    default: true
+                  status:
+                    type: integer
+                    example: 200
+                    default: 0
+                  result:
+                    type: object
+                    properties:
+                      orgId:
+                        type: integer
+                        example: 9619
+                        default: 0
+                      couponSeriesId:
+                        type: integer
+                        example: 953234
+                        default: 0
+                      redeemUploadJobStatuses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            jobId:
+                              type: integer
+                              example: 9137
+                              default: 0
+                            uploadRedeemedCouponStatus:
+                              type: string
+                              example: QUEUED
+                            createdOn:
+                              type: string
+                              example: "1603263535389"
+                            updatedOn:
+                              type: string
+                              example: "1603263535389"
+                            errorFileUrl: {}
+                            successFileUrl: {}
+                            uploadedFileUrl:
+                              type: string
+                              example: couponCode_9603263533789_253294.csv
+                            totalUploadedCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            actualRowCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            errorCount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            uploadTableName: {}
+                            uploadedFileName:
+                              type: string
+                              example: couponCode_9603263533789_253294.csv
+                      fileName:
+                        type: string
+                        example: couponCode_9603263533789_253294.csv
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

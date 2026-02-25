@@ -1,0 +1,398 @@
+openapi: 3.0.1
+info:
+  title: Fulfillment Status APIs
+  description: Reward fulfillment status management endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/rewards/core/v1/fulfillmentStatus:
+    get:
+      summary: Get fulfillment status
+      operationId: get-fulfillment-status
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    [
+                        {
+                            "id": 164,
+                            "orgId": 100737,
+                            "name": "DELIVERED",
+                            "isEnabled": true,
+                            "createdBy": 75154383,
+                            "createdOn": 1736405355000,
+                            "createdOnDateTime": "2025-01-09T06:49:15Z",
+                            "lastUpdatedBy": 75154383,
+                            "lastUpdatedOn": 1736405355000,
+                            "lastUpdatedOnDateTime": "2025-01-09T06:49:15Z"
+                        },
+                        {
+                            "id": 163,
+                            "orgId": 100737,
+                            "name": "DELIVERING SOON",
+                            "isEnabled": true,
+                            "createdBy": 75154383,
+                            "createdOn": 1736405355000,
+                            "createdOnDateTime": "2025-01-09T06:49:15Z",
+                            "lastUpdatedBy": 75154383,
+                            "lastUpdatedOn": 1736405355000,
+                            "lastUpdatedOnDateTime": "2025-01-09T06:49:15Z"
+                        },
+                        {
+                            "id": 252,
+                            "orgId": 100737,
+                            "name": "it is here",
+                            "isEnabled": true,
+                            "createdBy": 75155282,
+                            "createdOn": 1741934183000,
+                            "createdOnDateTime": "2025-03-14T06:36:23Z",
+                            "lastUpdatedBy": 75155282,
+                            "lastUpdatedOn": 1741934183000,
+                            "lastUpdatedOnDateTime": "2025-03-14T06:36:23Z"
+                        },
+                        {
+                            "id": 253,
+                            "orgId": 100737,
+                            "name": "it is here now",
+                            "isEnabled": true,
+                            "createdBy": 75155282,
+                            "createdOn": 1741934783000,
+                            "createdOnDateTime": "2025-03-14T06:46:23Z",
+                            "lastUpdatedBy": 75155282,
+                            "lastUpdatedOn": 1741934783000,
+                            "lastUpdatedOnDateTime": "2025-03-14T06:46:23Z"
+                        },
+                        {
+                            "id": 162,
+                            "orgId": 100737,
+                            "name": "ON ITS WAY",
+                            "isEnabled": true,
+                            "createdBy": 75154383,
+                            "createdOn": 1736405355000,
+                            "createdOnDateTime": "2025-01-09T06:49:15Z",
+                            "lastUpdatedBy": 75154383,
+                            "lastUpdatedOn": 1736405355000,
+                            "lastUpdatedOnDateTime": "2025-01-09T06:49:15Z"
+                        }
+                    ]
+                With sortBy=lastUpdatedOn:
+                  value: |-
+                    [
+                        {
+                            "id": 253,
+                            "orgId": 100737,
+                            "name": "DELIVERED2",
+                            "isEnabled": true,
+                            "createdBy": 75155282,
+                            "createdOn": 1741934783000,
+                            "createdOnDateTime": "2025-03-14T06:46:23Z",
+                            "lastUpdatedBy": 75155282,
+                            "lastUpdatedOn": 1741934783000,
+                            "lastUpdatedOnDateTime": "2025-03-14T06:46:23Z"
+                        },
+                        {
+                            "id": 252,
+                            "orgId": 100737,
+                            "name": "DELIVERED1",
+                            "isEnabled": true,
+                            "createdBy": 75155282,
+                            "createdOn": 1741934183000,
+                            "createdOnDateTime": "2025-03-14T06:36:23Z",
+                            "lastUpdatedBy": 75155282,
+                            "lastUpdatedOn": 1741934183000,
+                            "lastUpdatedOnDateTime": "2025-03-14T06:36:23Z"
+                        },
+                        {
+                            "id": 164,
+                            "orgId": 100737,
+                            "name": "DELIVERED",
+                            "isEnabled": true,
+                            "createdBy": 75154383,
+                            "createdOn": 1736405355000,
+                            "createdOnDateTime": "2025-01-09T06:49:15Z",
+                            "lastUpdatedBy": 75154383,
+                            "lastUpdatedOn": 1736405355000,
+                            "lastUpdatedOnDateTime": "2025-01-09T06:49:15Z"
+                        },
+                        {
+                            "id": 163,
+                            "orgId": 100737,
+                            "name": "DELIVERING SOON",
+                            "isEnabled": true,
+                            "createdBy": 75154383,
+                            "createdOn": 1736405355000,
+                            "createdOnDateTime": "2025-01-09T06:49:15Z",
+                            "lastUpdatedBy": 75154383,
+                            "lastUpdatedOn": 1736405355000,
+                            "lastUpdatedOnDateTime": "2025-01-09T06:49:15Z"
+                        },
+                        {
+                            "id": 162,
+                            "orgId": 100737,
+                            "name": "ON ITS WAY",
+                            "isEnabled": true,
+                            "createdBy": 75154383,
+                            "createdOn": 1736405355000,
+                            "createdOnDateTime": "2025-01-09T06:49:15Z",
+                            "lastUpdatedBy": 75154383,
+                            "lastUpdatedOn": 1736405355000,
+                            "lastUpdatedOnDateTime": "2025-01-09T06:49:15Z"
+                        }
+                    ]
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 164
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100737
+                          default: 0
+                        name:
+                          type: string
+                          example: DELIVERED
+                        isEnabled:
+                          type: boolean
+                          example: true
+                          default: true
+                        createdBy:
+                          type: integer
+                          example: 75154383
+                          default: 0
+                        createdOn:
+                          type: integer
+                          example: 1736405355000
+                          default: 0
+                        createdOnDateTime:
+                          type: string
+                          example: "2025-01-09T06:49:15Z"
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75154383
+                          default: 0
+                        lastUpdatedOn:
+                          type: integer
+                          example: 1736405355000
+                          default: 0
+                        lastUpdatedOnDateTime:
+                          type: string
+                          example: "2025-01-09T06:49:15Z"
+                  - title: With sortBy=lastUpdatedOn
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 253
+                          default: 0
+                        orgId:
+                          type: integer
+                          example: 100737
+                          default: 0
+                        name:
+                          type: string
+                          example: DELIVERED2
+                        isEnabled:
+                          type: boolean
+                          example: true
+                          default: true
+                        createdBy:
+                          type: integer
+                          example: 75155282
+                          default: 0
+                        createdOn:
+                          type: integer
+                          example: 1741934783000
+                          default: 0
+                        createdOnDateTime:
+                          type: string
+                          example: "2025-03-14T06:46:23Z"
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75155282
+                          default: 0
+                        lastUpdatedOn:
+                          type: integer
+                          example: 1741934783000
+                          default: 0
+                        lastUpdatedOnDateTime:
+                          type: string
+                          example: "2025-03-14T06:46:23Z"
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+    post:
+      summary: Create fulfillment status
+      operationId: create-fulfillment-status
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    [
+                        {
+                            "orgId": 100737,
+                            "name": "it is here now",
+                            "isEnabled": true,
+                            "createdBy": 75155282,
+                            "createdOn": 1741934782959,
+                            "createdOnDateTime": "2025-03-14T06:46:22Z",
+                            "lastUpdatedBy": 75155282,
+                            "lastUpdatedOn": 1741934782959,
+                            "lastUpdatedOnDateTime": "2025-03-14T06:46:22Z"
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    orgId:
+                      type: integer
+                      example: 100737
+                      default: 0
+                    name:
+                      type: string
+                      example: it is here now
+                    isEnabled:
+                      type: boolean
+                      example: true
+                      default: true
+                    createdBy:
+                      type: integer
+                      example: 75155282
+                      default: 0
+                    createdOn:
+                      type: integer
+                      example: 1741934782959
+                      default: 0
+                    createdOnDateTime:
+                      type: string
+                      example: "2025-03-14T06:46:22Z"
+                    lastUpdatedBy:
+                      type: integer
+                      example: 75155282
+                      default: 0
+                    lastUpdatedOn:
+                      type: integer
+                      example: 1741934782959
+                      default: 0
+                    lastUpdatedOnDateTime:
+                      type: string
+                      example: "2025-03-14T06:46:22Z"
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+    put:
+      summary: Update fulfillment status
+      operationId: update-fulfillment-status
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    [
+                        {
+                            "id": 3,
+                            "orgId": 100458,
+                            "name": "Order confirmed",
+                            "isEnabled": true,
+                            "lastUpdatedBy": 75130850,
+                            "lastUpdatedOn": 1721724740074
+                        },
+                        {
+                            "id": 4,
+                            "orgId": 100458,
+                            "name": "On the way",
+                            "isEnabled": true,
+                            "lastUpdatedBy": 75130850,
+                            "lastUpdatedOn": 1721724740087
+                        }
+                    ]
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 3
+                      default: 0
+                    orgId:
+                      type: integer
+                      example: 100458
+                      default: 0
+                    name:
+                      type: string
+                      example: Order confirmed
+                    isEnabled:
+                      type: boolean
+                      example: true
+                      default: true
+                    lastUpdatedBy:
+                      type: integer
+                      example: 75130850
+                      default: 0
+                    lastUpdatedOn:
+                      type: integer
+                      example: 1721724740074
+                      default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

@@ -1,0 +1,922 @@
+openapi: 3.0.1
+info:
+  title: Reward Catalog Promotions APIs
+  description: Catalog promotion management endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/rewards/core/v1/promotion/create:
+    post:
+      summary: Create catalog promotion
+      operationId: post-create-catalog-promotion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: Sample request body
+                  default: >-
+                    {     "startTime": "2024-05-04T20:58:49.000Z",     "endTime": "2025-10-25T05:46Z",    
+                    "discountType": "ABSOLUTE",     "discountValue": 1,     "brandId": "1",     "enabled": true,    
+                    "languageSpecificInfo":     [         {             "languageCode": "en",             "name":
+                    "test1",             "description": "description",             "enabled": true         }     ],    
+                    "rewardIds":     [         112295     ] }
+                  format: json
+            examples:
+              Request Body:
+                value:
+                  startTime: "2024-05-04T20:58:49.000Z"
+                  endTime: 2025-10-25T05:46Z
+                  discountType: ABSOLUTE
+                  discountValue: 1
+                  brandId: "1"
+                  enabled: true
+                  languageSpecificInfo:
+                    - languageCode: en
+                      name: test1
+                      description: description
+                      enabled: true
+                  rewardIds:
+                    - 112295
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response:
+                  value:
+                    status:
+                      success: true
+                      code: 11002
+                      message: Catalog promotion created successfully.
+                    catalogPromotion:
+                      id: 14862
+                    failedRewards: []
+                  summary: Sample response
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 11002
+                        default: 0
+                      message:
+                        type: string
+                        example: Catalog promotion created successfully.
+                  catalogPromotion:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 8
+                        default: 0
+                  failedRewards:
+                    type: array
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                "11004":
+                  value: |+
+                    {
+                       "status": {
+                           "success": false,
+                           "code": 11004,
+                           "message": "Reward already linked to active catalog promotion."
+                       },
+                       "catalogPromotion": null,
+                       "failedRewards": [
+                           {
+                               "id": 49827,
+                               "name": "20% off on women's wear",
+                               "startTime": "2023-04-18 13:03:00",
+                               "endTime": "2023-10-29 04:59:30",
+                               "type": "VOUCHER",
+                               "priority": 1,
+                               "enabled": true,
+                               "intouchPoints": 100,
+                               "redemptionType": "INTOUCH_REWARD",
+                               "customFields": {}
+                           }
+                       ]
+                    }
+
+                "11015":
+                  value: |+
+                    {
+                       "status": {
+                           "success": false,
+                           "code": 11015,
+                           "message": "Reward expired or disabled or free. Cannot apply  catalog promotion."
+                       },
+                       "catalogPromotion": null,
+                       "failedRewards": [
+                           {
+                               "id": 49499,
+                               "name": "20 off on 2000",
+                               "startTime": "2023-04-17 09:17:08",
+                               "endTime": "2023-12-29 02:17:08",
+                               "type": "VOUCHER",
+                               "priority": 1,
+                               "enabled": false,
+                               "intouchPoints": 150,
+                               "redemptionType": "INTOUCH_REWARD",
+                               "customFields": {}
+                           }
+                       ]
+                    }
+
+              schema:
+                oneOf:
+                  - title: "11015"
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 11015
+                            default: 0
+                          message:
+                            type: string
+                            example: Reward expired or disabled or free. Cannot apply  catalog promotion.
+                      catalogPromotion: {}
+                      failedRewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 49499
+                              default: 0
+                            name:
+                              type: string
+                              example: 20 off on 2000
+                            startTime:
+                              type: string
+                              example: "2023-04-17 09:17:08"
+                            endTime:
+                              type: string
+                              example: "2023-12-29 02:17:08"
+                            type:
+                              type: string
+                              example: VOUCHER
+                            priority:
+                              type: integer
+                              example: 1
+                              default: 0
+                            enabled:
+                              type: boolean
+                              example: false
+                              default: true
+                            intouchPoints:
+                              type: integer
+                              example: 150
+                              default: 0
+                            redemptionType:
+                              type: string
+                              example: INTOUCH_REWARD
+                            customFields:
+                              type: object
+                              properties: {}
+                  - title: "11004"
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: false
+                            default: true
+                          code:
+                            type: integer
+                            example: 11004
+                            default: 0
+                          message:
+                            type: string
+                            example: Reward already linked to active catalog promotion.
+                      catalogPromotion: {}
+                      failedRewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 49827
+                              default: 0
+                            name:
+                              type: string
+                              example: 20% off on women's wear
+                            startTime:
+                              type: string
+                              example: "2023-04-18 13:03:00"
+                            endTime:
+                              type: string
+                              example: "2023-10-29 04:59:30"
+                            type:
+                              type: string
+                              example: VOUCHER
+                            priority:
+                              type: integer
+                              example: 1
+                              default: 0
+                            enabled:
+                              type: boolean
+                              example: true
+                              default: true
+                            intouchPoints:
+                              type: integer
+                              example: 100
+                              default: 0
+                            redemptionType:
+                              type: string
+                              example: INTOUCH_REWARD
+                            customFields:
+                              type: object
+                              properties: {}
+  /api_gateway/rewards/core/v1/promotion/{promotion Id}/brand/{brandId}:
+    get:
+      summary: Get catalog promotion details
+      operationId: get-catalog-promotion-details
+      parameters:
+        - name: promotionid
+          in: query
+          description: Unique ID of reward.
+          required: true
+          schema:
+            type: string
+        - name: brandId
+          in: query
+          description: Unique ID of the brand.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 11008,
+                            "message": "Catalog promotion fetched successfully."
+                        },
+                        "catalogPromotion": {
+                            "id": 8800,
+                            "name": "test1",
+                            "orgId": 100458,
+                            "isEnabled": true,
+                            "startTime": "2025-03-14 20:58:49",
+                            "startDateTime": "2025-03-14T20:58:49Z",
+                            "endTime": "2025-10-25 05:46:00",
+                            "endDateTime": "2025-10-25T05:46:00Z",
+                            "discountType": "ABSOLUTE",
+                            "discountValue": 1.00,
+                            "lastUpdatedOn": "2025-03-13 09:48:42",
+                            "lastUpdatedOnDateTime": "2025-03-13T09:48:42Z",
+                            "createdOn": "2025-03-13 09:48:42",
+                            "createdOnDateTime": "2025-03-13T09:48:42Z",
+                            "lastUpdatedBy": 75140757,
+                            "createdBy": 75140757,
+                            "languageSpecificInfo": [
+                                {
+                                    "languageCode": "en",
+                                    "name": "test1",
+                                    "description": "description",
+                                    "enabled": true,
+                                    "createdBy": 75140757,
+                                    "createdOn": "2025-03-13 09:48:42",
+                                    "createdOnDateTime": "2025-03-13T09:48:42Z",
+                                    "lastUpdatedBy": 75140757,
+                                    "lastUpdateOn": "2025-03-13 09:48:42",
+                                    "lastUpdateOnDateTime": "2025-03-13T09:48:42Z"
+                                }
+                            ],
+                            "customFields": {
+                                "A": "1",
+                                "CF1233": "1",
+                                "EnumCF2": "r1",
+                                "EnumCF1": "white"
+                            },
+                            "rewards": [
+                                {
+                                    "id": 8799,
+                                    "rewardId": 308795,
+                                    "promotionId": 8800,
+                                    "startTime": "2025-03-14 20:58:49",
+                                    "startDateTime": "2025-03-14T20:58:49Z",
+                                    "endTime": "2025-10-25 05:46:00",
+                                    "endDateTime": "2025-10-25T05:46:00Z",
+                                    "expired": false,
+                                    "started": false,
+                                    "intouchPointsPostDiscount": 99,
+                                    "configId": 3914
+                                }
+                            ]
+                        }
+                    }
+                        
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 11008
+                        default: 0
+                      message:
+                        type: string
+                        example: Catalog promotion fetched successfully.
+                  catalogPromotion:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 8800
+                        default: 0
+                      name:
+                        type: string
+                        example: test1
+                      orgId:
+                        type: integer
+                        example: 100458
+                        default: 0
+                      isEnabled:
+                        type: boolean
+                        example: true
+                        default: true
+                      startTime:
+                        type: string
+                        example: "2025-03-14 20:58:49"
+                      startDateTime:
+                        type: string
+                        example: "2025-03-14T20:58:49Z"
+                      endTime:
+                        type: string
+                        example: "2025-10-25 05:46:00"
+                      endDateTime:
+                        type: string
+                        example: "2025-10-25T05:46:00Z"
+                      discountType:
+                        type: string
+                        example: ABSOLUTE
+                      discountValue:
+                        type: integer
+                        example: 1
+                        default: 0
+                      lastUpdatedOn:
+                        type: string
+                        example: "2025-03-13 09:48:42"
+                      lastUpdatedOnDateTime:
+                        type: string
+                        example: "2025-03-13T09:48:42Z"
+                      createdOn:
+                        type: string
+                        example: "2025-03-13 09:48:42"
+                      createdOnDateTime:
+                        type: string
+                        example: "2025-03-13T09:48:42Z"
+                      lastUpdatedBy:
+                        type: integer
+                        example: 75140757
+                        default: 0
+                      createdBy:
+                        type: integer
+                        example: 75140757
+                        default: 0
+                      languageSpecificInfo:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            languageCode:
+                              type: string
+                              example: en
+                            name:
+                              type: string
+                              example: test1
+                            description:
+                              type: string
+                              example: description
+                            enabled:
+                              type: boolean
+                              example: true
+                              default: true
+                            createdBy:
+                              type: integer
+                              example: 75140757
+                              default: 0
+                            createdOn:
+                              type: string
+                              example: "2025-03-13 09:48:42"
+                            createdOnDateTime:
+                              type: string
+                              example: "2025-03-13T09:48:42Z"
+                            lastUpdatedBy:
+                              type: integer
+                              example: 75140757
+                              default: 0
+                            lastUpdateOn:
+                              type: string
+                              example: "2025-03-13 09:48:42"
+                            lastUpdateOnDateTime:
+                              type: string
+                              example: "2025-03-13T09:48:42Z"
+                      customFields:
+                        type: object
+                        properties:
+                          A:
+                            type: string
+                            example: "1"
+                          CF1233:
+                            type: string
+                            example: "1"
+                          EnumCF2:
+                            type: string
+                            example: r1
+                          EnumCF1:
+                            type: string
+                            example: white
+                      rewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 8799
+                              default: 0
+                            rewardId:
+                              type: integer
+                              example: 308795
+                              default: 0
+                            promotionId:
+                              type: integer
+                              example: 8800
+                              default: 0
+                            startTime:
+                              type: string
+                              example: "2025-03-14 20:58:49"
+                            startDateTime:
+                              type: string
+                              example: "2025-03-14T20:58:49Z"
+                            endTime:
+                              type: string
+                              example: "2025-10-25 05:46:00"
+                            endDateTime:
+                              type: string
+                              example: "2025-10-25T05:46:00Z"
+                            expired:
+                              type: boolean
+                              example: false
+                              default: true
+                            started:
+                              type: boolean
+                              example: false
+                              default: true
+                            intouchPointsPostDiscount:
+                              type: integer
+                              example: 99
+                              default: 0
+                            configId:
+                              type: integer
+                              example: 3914
+                              default: 0
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                "11007":
+                  value: |+
+                    {
+                       "status": {
+                           "success": false,
+                           "code": 11007,
+                           "message": "Catalog promotion not found."
+                       },
+                       "catalogPromotion": null
+                    }
+
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: false
+                        default: true
+                      code:
+                        type: integer
+                        example: 11007
+                        default: 0
+                      message:
+                        type: string
+                        example: Catalog promotion not found.
+                  catalogPromotion: {}
+  /api_gateway/rewards/core/v1/promotion/brand/{brand Id}:
+    get:
+      summary: Get list of Catalog promotions
+      operationId: get-list-of-catalog-promotions
+      parameters:
+        - name: BrandId
+          in: query
+          description: Unique ID of the brand.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 11008,
+                            "message": "Catalog promotion fetched successfully."
+                        },
+                        "catalogPromotions": [
+                            {
+                                "id": 1,
+                                "name": "P1- R-5165 P1- R-5165 upadted 2",
+                                "orgId": 100458,
+                                "isEnabled": false,
+                                "startTime": "2023-04-26 06:58:49",
+                                "startDateTime": "2023-04-26T06:58:49Z",
+                                "endTime": "2024-10-25 11:16:00",
+                                "endDateTime": "2024-10-25T11:16:00Z",
+                                "discountType": "ABSOLUTE",
+                                "discountValue": 1.00,
+                                "lastUpdatedOn": "2023-11-16 10:10:03",
+                                "lastUpdatedOnDateTime": "2023-11-16T10:10:03Z",
+                                "createdOn": "2023-04-25 13:59:28",
+                                "createdOnDateTime": "2023-11-16T10:10:03Z",
+                                "lastUpdatedBy": 75078478,
+                                "createdBy": 75078478,
+                                "languageSpecificInfo": null,
+                                "customFields": {
+                                    "A": "1",
+                                    "CF1233": "1",
+                                    "EnumCF2": "r1",
+                                    "EnumCF1": "white"
+                                }
+                            },
+                            {
+                                "id": 8800,
+                                "name": "test1",
+                                "orgId": 100458,
+                                "isEnabled": true,
+                                "startTime": "2025-03-14 20:58:49",
+                                "startDateTime": "2025-03-14T20:58:49Z",
+                                "endTime": "2025-10-25 05:46:00",
+                                "endDateTime": "2025-10-25T05:46:00Z",
+                                "discountType": "ABSOLUTE",
+                                "discountValue": 1.00,
+                                "lastUpdatedOn": "2025-03-13 09:48:42",
+                                "lastUpdatedOnDateTime": "2025-03-13T09:48:42Z",
+                                "createdOn": "2025-03-13 09:48:42",
+                                "createdOnDateTime": "2025-03-13T09:48:42Z",
+                                "lastUpdatedBy": 75140757,
+                                "createdBy": 75140757,
+                                "languageSpecificInfo": null,
+                                "customFields": {
+                                    "A": "1",
+                                    "CF1233": "1",
+                                    "EnumCF2": "r1",
+                                    "EnumCF1": "white"
+                                }
+                            }
+                        ]
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 11008
+                        default: 0
+                      message:
+                        type: string
+                        example: Catalog promotion fetched successfully.
+                  catalogPromotions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                          default: 0
+                        name:
+                          type: string
+                          example: P1- R-5165 P1- R-5165 upadted 2
+                        orgId:
+                          type: integer
+                          example: 100458
+                          default: 0
+                        isEnabled:
+                          type: boolean
+                          example: false
+                          default: true
+                        startTime:
+                          type: string
+                          example: "2023-04-26 06:58:49"
+                        startDateTime:
+                          type: string
+                          example: "2023-04-26T06:58:49Z"
+                        endTime:
+                          type: string
+                          example: "2024-10-25 11:16:00"
+                        endDateTime:
+                          type: string
+                          example: "2024-10-25T11:16:00Z"
+                        discountType:
+                          type: string
+                          example: ABSOLUTE
+                        discountValue:
+                          type: integer
+                          example: 1
+                          default: 0
+                        lastUpdatedOn:
+                          type: string
+                          example: "2023-11-16 10:10:03"
+                        lastUpdatedOnDateTime:
+                          type: string
+                          example: "2023-11-16T10:10:03Z"
+                        createdOn:
+                          type: string
+                          example: "2023-04-25 13:59:28"
+                        createdOnDateTime:
+                          type: string
+                          example: "2023-11-16T10:10:03Z"
+                        lastUpdatedBy:
+                          type: integer
+                          example: 75078478
+                          default: 0
+                        createdBy:
+                          type: integer
+                          example: 75078478
+                          default: 0
+                        languageSpecificInfo: {}
+                        customFields:
+                          type: object
+                          properties:
+                            A:
+                              type: string
+                              example: "1"
+                            CF1233:
+                              type: string
+                              example: "1"
+                            EnumCF2:
+                              type: string
+                              example: r1
+                            EnumCF1:
+                              type: string
+                              example: white
+  /api_gateway/rewards/core/v1/promotion/{promotion Id}/status/false/brand/{brand Id}:
+    put:
+      summary: Disable Catalog promotion
+      operationId: put-disable-catalog-promotion
+      parameters:
+        - name: promotionId
+          in: query
+          description: Unique ID of the promotion.
+          required: true
+          schema:
+            type: string
+        - name: brandId
+          in: query
+          description: Unique ID of the brand.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 11013,
+                            "message": "Catalog promotion is disabled."
+                        }
+                    }
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: true
+                            default: true
+                          code:
+                            type: integer
+                            example: 11011
+                            default: 0
+                          message:
+                            type: string
+                            example: Catalog promotion status updated successfully.
+                  - type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: true
+                            default: true
+                          code:
+                            type: integer
+                            example: 11013
+                            default: 0
+                          message:
+                            type: string
+                            example: Catalog promotion is disabled.
+  /api_gateway/rewards/core/v1/promotion/{promotionId}/brand/{brand Id}:
+    put:
+      summary: Update catalog promotion
+      operationId: put-update-catalog-promotion
+      parameters:
+        - in: path
+          name: brand Id
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: promotionId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: Sample request body
+                  default: >-
+                    {        "endTime": "2024-10-25T11:16:00Z",        "discountType": "ABSOLUTE",       
+                    "discountValue": 1.00,        "languageSpecificInfo": [            {                "languageCode":
+                    "en",                "name": "P1- R-5165 P1- R-5165 upadted 2.1",                "description":
+                    "description",                "enabled": true            }        ],    "rewardIds":    [       
+                    112295    ] }
+            examples:
+              Request Body:
+                value:
+                  endTime: "2024-10-25T11:16:00Z"
+                  discountType: ABSOLUTE
+                  discountValue: 1
+                  languageSpecificInfo:
+                    - languageCode: en
+                      name: P1- R-5165 P1- R-5165 upadted 2.1
+                      description: description
+                      enabled: true
+                  rewardIds:
+                    - 112295
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response:
+                  value:
+                    status:
+                      success: true
+                      code: 11021
+                      message: Catalog promotion updated successfully.
+                    catalogPromotion:
+                      id: 14862
+                    failedRewards: []
+                  summary: Sample response
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 11021
+                        default: 0
+                      message:
+                        type: string
+                        example: Catalog promotion updated successfully.
+                  catalogPromotion:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 8
+                        default: 0
+                  failedRewards:
+                    type: array
+        "500":
+          description: "500"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |+
+                    {
+                       "status": {
+                           "success": false,
+                           "code": 500,
+                           "message": "We are sorry, something gone wrong."
+                       }
+                    }
+
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: false
+                        default: true
+                      code:
+                        type: integer
+                        example: 500
+                        default: 0
+                      message:
+                        type: string
+                        example: We are sorry, something gone wrong.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

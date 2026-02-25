@@ -1,0 +1,783 @@
+openapi: 3.0.1
+info:
+  title: Customer Authentication - Multi-Factor APIs
+  description: MFA token, OTP, and password flow endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /auth/v1/mfa/token/generate:
+    post:
+      summary: Generate MFA token
+      description: Generates MFA token for devices.
+      operationId: generate-mfa-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - deviceId
+                - brand
+                - authorizedToken
+              properties:
+                identifierType:
+                  type: string
+                  description: Identifier used for MFA token generation.
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME
+                    - EXTERNALID
+                identifierValue:
+                  type: string
+                  description: Value of the identifier.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer generates the token.
+                brand:
+                  type: string
+                  description: Name of the brand or organisation that needs verification.
+                authorizedToken:
+                  type: string
+                  description: Authentication token from `/otp/validate\` of First factor.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        },
+                        "auth": {
+                            "token": "eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTY4OTA4MjIsImlhdCI6MTcxNjg4OTkyMiwicm9sIjoiVklFVyJ9.nL6iCjXIrfEb02uDnnJTyj0uPi8teQjAgnQPVU0_aqQ",
+                            "key": null
+                        },
+                        "user": {
+                            "appRegistered": false,
+                            "sessionId": "P-a2996f83-a72d-405c-aa23-0eed7a7dba1e",
+                            "role": "VIEW",
+                            "userRegisteredForPassword": false
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDE4Nzk1Nzc0NzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTY4OTA4MjIsImlhdCI6MTcxNjg4OTkyMiwicm9sIjoiVklFVyJ9.nL6iCjXIrfEb02uDnnJTyj0uPi8teQjAgnQPVU0_aqQ
+                      key: {}
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId:
+                        type: string
+                        example: P-a2996f83-a72d-405c-aa23-0eed7a7dba1e
+                      role:
+                        type: string
+                        example: VIEW
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: false
+                        default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+      security: []
+  /auth/v1/mfa/otp/generate:
+    post:
+      summary: Generate MFA OTP
+      description: Generates OTP for MFA flow.
+      operationId: generate-otp-mfa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - deviceId
+                - brand
+                - sessionId
+              properties:
+                identifierType:
+                  type: string
+                  description: Customer identifier used for MFA token generation.
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME
+                    - EXTERNALID
+                identifierValue:
+                  type: string
+                  description: Value of the identifier.
+                deviceId:
+                  type: string
+                  description: Device ID of the customer that receives OTP.
+                brand:
+                  type: string
+                  description: Name of the brand or organisation that needs verification.
+                sessionId:
+                  type: string
+                  description: Unique session ID created from `/mfa/token/generate` API.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/mfa/otp/validate:
+    post:
+      summary: Validate MFA OTP
+      description: Validates the OTP generated for the MFA flow.
+      operationId: validate-mfa-otp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - deviceId
+                - brand
+                - sessionId
+                - otp
+              properties:
+                identifierType:
+                  type: string
+                  description: Customer identifier used for MFA token generation.
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME
+                    - EXTERNALID
+                identifierValue:
+                  type: string
+                  description: Value of the identifier.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device where OTP is validated.
+                brand:
+                  type: string
+                  description: Name of the brand or organisation that needs verification.
+                sessionId:
+                  type: string
+                  description: Unique session ID created from `/mfa/token/generate` API.
+                otp:
+                  type: string
+                  description: OTP that needs validation.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/mfa/password/validate:
+    post:
+      summary: Validate password
+      description: Validate the entered password.
+      operationId: validate-mfa-password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - deviceId
+                - brand
+                - sessionId
+                - password
+                - identifierType
+                - identifierValue
+              properties:
+                deviceId:
+                  type: string
+                  description: >-
+                    Unique ID of the device used to validate the password. It should be the same device used to generate
+                    the token.
+                brand:
+                  type: string
+                  description: Name of the brand or organisation that needs verification.
+                sessionId:
+                  type: string
+                  description: Unique ID created from `/mfa/token/generate` API.
+                password:
+                  type: string
+                  description: Password that needs validation.
+                identifierType:
+                  type: string
+                  description: Type of identifier to identify the customer.
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME
+                    - EXTERNALID
+                identifierValue:
+                  type: string
+                  description: Value of the identifier.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        },
+                        "auth": {
+                            "token": "eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTY5NzgzNjEsImlhdCI6MTcxNjk3NzQ2MSwicm9sIjoiVVNFUiJ9.8_qJ7TFcGUQEbsvRHMQ8fosX9Vwn0UUkFLqtH5tOcQ4",
+                            "key": "eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsIm1mYSI6dHJ1ZSwiaWF0IjoxNzE2OTYyNTU3LCJyb2wiOiJBVVRIIn0.89CmFeLl_zfUBuv2Ea4eQIc3Wy8fJzlcRQad8UcqK-4"
+                        },
+                        "identifiers": {
+                            "identifierList": null
+                        },
+                        "user": {
+                            "appRegistered": false,
+                            "sessionId": null,
+                            "role": "USER",
+                            "userRegisteredForPassword": true
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTY5NzgzNjEsImlhdCI6MTcxNjk3NzQ2MSwicm9sIjoiVVNFUiJ9.8_qJ7TFcGUQEbsvRHMQ8fosX9Vwn0UUkFLqtH5tOcQ4
+                      key:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsIm1mYSI6dHJ1ZSwiaWF0IjoxNzE2OTYyNTU3LCJyb2wiOiJBVVRIIn0.89CmFeLl_zfUBuv2Ea4eQIc3Wy8fJzlcRQad8UcqK-4
+                  identifiers:
+                    type: object
+                    properties:
+                      identifierList: {}
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId: {}
+                      role:
+                        type: string
+                        example: USER
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: true
+                        default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/mfa/password/change:
+    post:
+      summary: Change password
+      description: API to change the password.
+      operationId: change-mfa-password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - deviceId
+                - password
+                - newPassword
+                - confirmPassword
+                - brand
+                - token
+                - identifierType
+                - identifierValue
+              properties:
+                deviceId:
+                  type: string
+                  description: >-
+                    Unique ID of the device used for password validation. It should be the same device used to generate
+                    the MFA token.
+                password:
+                  type: string
+                  description: Current password.
+                newPassword:
+                  type: string
+                  description: New password.
+                confirmPassword:
+                  type: string
+                  description: Re-enter the new password.
+                brand:
+                  type: string
+                  description: Name of the brand or organisation that needs verification.
+                token:
+                  type: string
+                  description: Token generated from `/mfa/password/validate` .
+                identifierType:
+                  type: string
+                  description: The type of identifier to identify the customer.
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME
+                    - EXTERNALID
+                identifierValue:
+                  type: string
+                  description: Value of the identifier.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/mfa/password/forget:
+    post:
+      summary: Forgot password
+      description: Generate new password when you forget your password.
+      operationId: mfa-forgot-password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - deviceId
+                - brand
+                - sessionId
+                - password
+                - confirmPassword
+                - identifierType
+                - identifierValue
+              properties:
+                deviceId:
+                  type: string
+                  description: >-
+                    Unique ID of the device used for password generation. It should be the same device used to generate
+                    the token.
+                brand:
+                  type: string
+                  description: Name of the brand or organisation that needs verification.
+                sessionId:
+                  type: string
+                  description: Unique ID created from `/mfa/token/generate` API.
+                password:
+                  type: string
+                  description: The new password.
+                confirmPassword:
+                  type: string
+                  description: Re-enter new password.
+                identifierType:
+                  type: string
+                  description: Type of identifier to identify the customer.
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME
+                    - EXTERNALID
+                identifierValue:
+                  type: string
+                  description: Value of the identifier.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/mfa/token/regenerate:
+    post:
+      summary: Regenerate token
+      description: MFA token regeneration.
+      operationId: regenerate-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - deviceId
+                - brand
+                - key
+                - identifierType
+                - identifierValue
+              properties:
+                deviceId:
+                  type: string
+                  description: Unique ID of the device used for token regeneration.
+                brand:
+                  type: string
+                  description: Name of the brand or organisation that needs verification.
+                key:
+                  type: string
+                  description: Key generated from the password or OTP validate response.
+                identifierType:
+                  type: string
+                  description: Type of identifier to identify the customer.
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME
+                    - EXTERNALID
+                identifierValue:
+                  type: string
+                  description: Value of the identifier.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        },
+                        "auth": {
+                            "token": "eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTcwNjE0NjUsImlhdCI6MTcxNzA2MDU2NSwicm9sIjoiVVNFUiJ9.rmKqmOQyYYtEPs422G0xZ-EUFpak5i0jdrx9W4YVxJQ",
+                            "key": null
+                        },
+                        "user": {
+                            "appRegistered": false,
+                            "sessionId": null,
+                            "role": "USER",
+                            "userRegisteredForPassword": true
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDE4NzY3NDMxNzU0Il0sImRldiI6IjEyMzQiLCJvcmciOiJCVUtMIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiIxNzgwNzc2IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDQ1OHxidWtsLmluZC5zb2x1dGlvbiJdLCJleHAiOjE3MTcwNjE0NjUsImlhdCI6MTcxNzA2MDU2NSwicm9sIjoiVVNFUiJ9.rmKqmOQyYYtEPs422G0xZ-EUFpak5i0jdrx9W4YVxJQ
+                      key: {}
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId: {}
+                      role:
+                        type: string
+                        example: USER
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: true
+                        default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/mfa/token/expire:
+    delete:
+      summary: Delete token
+      description: Delete or expire token generated by MFA OTP or password validation APIs.
+      operationId: delete-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - brand
+                - deviceId
+                - token
+                - identifierType
+                - identifierValue
+              properties:
+                brand:
+                  type: string
+                  description: Brand or organisation for which the token is generated.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device that generated the MFA token.
+                token:
+                  type: string
+                  description: Token generated by `mfa/otp/validate`or`/mfa/password/validate`.
+                identifierType:
+                  type: string
+                  description: Type of identifier to identify the customer.
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME
+                    - EXTERNALID
+                identifierValue:
+                  type: string
+                  description: Value of the identifier.
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "Token expired successfully"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: Token expired successfully
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

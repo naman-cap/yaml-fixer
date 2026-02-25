@@ -1,0 +1,262 @@
+openapi: 3.0.1
+info:
+  title: Organization-Level Configuration for Rewards APIs
+  description: Organization-level reward catalog configuration
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /api_gateway/rewards/core/v1/brand/config:
+    post:
+      summary: Organisation Level Configuration for Rewards Catalog
+      operationId: organisation-level-configuration-for-rewards-catalog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: >-
+                    {     "configKeyName": "CONF_START_OF_THE_WEEK_FOR_ORG_RESTRICTION",     "configKeyValue":
+                    "SUNDAY",     "brandId": 47,     "label": "" }
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                To configure the start week for org restriction:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 3008,
+                            "message": "Org config updated successfully"
+                        },
+                        "configList": [
+                            {
+                                "configKeyName": "CONF_START_OF_THE_WEEK_FOR_ORG_RESTRICTION",
+                                "configKeyValue": "TUESDAY",
+                                "brandId": null,
+                                "label": "Add the start of the week for the org level restrictions, this will be applied to all org level restrictions with Week configurations"
+                            }
+                        ]
+                    }
+                To Enable Reward Expiry Notification:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 3008,
+                            "message": "Org config updated successfully"
+                        },
+                        "configList": [
+                            {
+                                "configKeyName": "CONF_SEND_REWARD_EXPIRY_NOTIFICATION_ENABLED",
+                                "configKeyValue": "true",
+                                "brandId": 1,
+                                "label": "Key to enable or disable the expiry notification for rewards. If enabled, the system will send expiry notification for rewards after setting the NUMBER_OF_DAYS_BEFORE_EXPIRY."
+                            }
+                        ]
+                    }
+                To set Reward Expiry TIme:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 3008,
+                            "message": "Org config updated successfully"
+                        },
+                        "configList": [
+                            {
+                                "configKeyName": "CONF_SEND_EXPIRY_NOTIFICATION_FOR_REWARD_TIME",
+                                "configKeyValue": "16:00",
+                                "brandId": 1,
+                                "label": "Key to set the time of the day to send the expiry notification for rewards."
+                            }
+                        ]
+                    }
+              schema:
+                oneOf:
+                  - title: To configure the start week for org restriction
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: true
+                            default: true
+                          code:
+                            type: integer
+                            example: 3008
+                            default: 0
+                          message:
+                            type: string
+                            example: Org config updated successfully
+                      configList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            configKeyName:
+                              type: string
+                              example: CONF_START_OF_THE_WEEK_FOR_ORG_RESTRICTION
+                            configKeyValue:
+                              type: string
+                              example: TUESDAY
+                            brandId: {}
+                            label:
+                              type: string
+                              example: >-
+                                Add the start of the week for the org level restrictions, this will be applied to all
+                                org level restrictions with Week configurations
+                  - title: To Enable Reward Expiry Notification
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: true
+                            default: true
+                          code:
+                            type: integer
+                            example: 3008
+                            default: 0
+                          message:
+                            type: string
+                            example: Org config updated successfully
+                      configList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            configKeyName:
+                              type: string
+                              example: CONF_SEND_REWARD_EXPIRY_NOTIFICATION_ENABLED
+                            configKeyValue:
+                              type: string
+                              example: "true"
+                            brandId:
+                              type: integer
+                              example: 1
+                              default: 0
+                            label:
+                              type: string
+                              example: >-
+                                Key to enable or disable the expiry notification for rewards. If enabled, the system
+                                will send expiry notification for rewards after setting the
+                                NUMBER_OF_DAYS_BEFORE_EXPIRY.
+                  - title: To set Reward Expiry TIme
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            example: true
+                            default: true
+                          code:
+                            type: integer
+                            example: 3008
+                            default: 0
+                          message:
+                            type: string
+                            example: Org config updated successfully
+                      configList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            configKeyName:
+                              type: string
+                              example: CONF_SEND_EXPIRY_NOTIFICATION_FOR_REWARD_TIME
+                            configKeyValue:
+                              type: string
+                              example: "16:00"
+                            brandId:
+                              type: integer
+                              example: 1
+                              default: 0
+                            label:
+                              type: string
+                              example: Key to set the time of the day to send the expiry notification for rewards.
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": false,
+                            "code": 3011,
+                            "message": "Brand or config key not found"
+                        },
+                        "configList": [
+                            {
+                                "configKeyName": "CONF_SN_ENABLED",
+                                "configKeyValue": "true",
+                                "brandId": 1,
+                                "label": null
+                            }
+                        ]
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: false
+                        default: true
+                      code:
+                        type: integer
+                        example: 3011
+                        default: 0
+                      message:
+                        type: string
+                        example: Brand or config key not found
+                  configList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        configKeyName:
+                          type: string
+                          example: CONF_SN_ENABLED
+                        configKeyValue:
+                          type: string
+                          example: "true"
+                        brandId:
+                          type: integer
+                          example: 1
+                          default: 0
+                        label: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []

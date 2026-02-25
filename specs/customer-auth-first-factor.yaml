@@ -1,0 +1,1758 @@
+openapi: 3.0.1
+info:
+  title: Customer Authentication - First Factor APIs
+  description: Token generation, OTP, and password authentication endpoints
+  version: 1.0.0
+servers:
+  - url: https://{host}/v1
+    variables:
+      host:
+        default: eu.api.capillarytech.com
+        description: API host
+paths:
+  /auth/v1/user/updateIdentifierValue:
+    post:
+      summary: Change identifier on Auth engine (COPY)
+      description: This API enables you to change identifier values in the Auth engine.
+      operationId: change-identifier-on-auth-engine
+      parameters:
+        - name: XCAP
+          in: header
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - brandName
+                - identifierType
+                - oldIdentifierValue*
+                - newIdentifierValue
+                - deviceId
+              properties:
+                brandName:
+                  type: string
+                  description: Organisation name.
+                identifierType:
+                  type: string
+                  description: Identifier type of the customer.
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                oldIdentifierValue*:
+                  type: string
+                  description: Old identifier value for the selected identifier type.
+                newIdentifierValue:
+                  type: string
+                  description: New identifier value for the selected identifier type.
+                deviceId:
+                  type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Invalid identifier type:
+                  value: >-
+                    Can not deserialize value of type com.capillary.solutions.auth.domain.IdentifierType from String
+                    "MOBIL": value not one of declared Enum instance names: [MOBILE, EMAIL, USERNAME, EXTERNALID]
+                     at [Source: org.glassfish.jersey.message.internal.ReaderInterceptorExecutor$UnCloseableInputStream@497779b5; line: 3, column: 21] (through reference chain: com.capillary.solutions.auth.request.ChangeIdentifierRequest["identifierType"])
+  /auth/v1/web/token/generate:
+    post:
+      summary: Generate Authentication Token
+      description: Generate authentication for web application.
+      operationId: generate-authentication-tokenapi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - password
+                - confirmPassword
+                - brand
+                - deviceId
+                - identifierValue
+              properties:
+                identifierType:
+                  type: string
+                  description: Identifier used for token generation
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME.
+                mobile:
+                  type: string
+                  description: >-
+                    Mobile number of the customer. Either mobile number or email ID is required to authenticate with
+                    username.
+                email:
+                  type: string
+                  description: >-
+                    Email ID of the customer. Either mobile number or email ID is required to authenticate with
+                    username.
+                password:
+                  type: string
+                  description: Password to login to the app.
+                confirmPassword:
+                  type: string
+                  description: Reenter the password.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has generated the token.
+                identifierValue:
+                  type: string
+                  description: Identifier value
+            examples:
+              Authenticate with mobile/email:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: "0495678923"
+                  deviceId: deviceid1
+                  brand: STANDARDAPP
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        },
+                        "auth": {
+                            "token": "eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ",
+                            "key": null
+                        },
+                        "user": {
+                            "appRegistered": false,
+                            "sessionId": "D-12c177af-dac7-4383-a0fb-6c09e148af8e",
+                            "role": "VIEW",
+                            "userRegisteredForPassword": false
+                        }
+                    }
+                Sample response for existing user:
+                  summary: Sample response for existing user
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTk5OTk5MyJdLCJkZXYiOiIxMjM0NTY3ODUiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc1OTgzOTMzNSwiaWF0IjoxNzU5ODM1NzM1LCJyb2wiOiJWSUVXIn0.8gRfA0CdBjYuSLtNJwREvmYqaAtk9C0Zm-b_-gUqPNQ
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: P-6ec5fcc9-2bca-4778-9672-4ee5097d8313
+                      role: VIEW
+                      userRegisteredForPassword: true
+                Sample response for first time user when password is enabled:
+                  summary: Sample response for first time user when password is enabled
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTk5OTk5MSJdLCJkZXYiOiIxMjM0NTY3ODUiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc1OTg0MTQxOSwiaWF0IjoxNzU5ODM3ODE5LCJyb2wiOiJWSUVXIn0.e1bltp_Tl7v4lBe0wRDH75NEPqmBcJBfZmFMdX9K-5s
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: P-4b9437d5-38fe-4252-9628-9960f9b221f8
+                      role: VIEW
+                      userRegisteredForPassword: false
+                For existing user using web app:
+                  summary: For existing user using web app
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiRU1BSUx8Y2FwdGVzdEBnbWFpbC5jb20iXSwiZGV2IjpudWxsLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc1OTgzODgyNSwiaWF0IjoxNzU5ODM4NzM1LCJyb2wiOiJWSUVXIn0.2r1IueohKRA5dUmcWL23Ue1dCbcRDCrTKmaZGdPKABU
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: P-a7f12cf8-8f64-4d74-87c1-644fdf67ef58
+                      role: VIEW
+                      userRegisteredForPassword: true
+                First time user when password is enabled and using web app:
+                  summary: First time user when password is enabled and using web app
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiRU1BSUx8Y2FwX3Rlc3R0b2tlbmdlbkBnbWFpbC5jb20iXSwiZGV2IjpudWxsLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc1OTgzOTM5MywiaWF0IjoxNzU5ODM5MzAzLCJyb2wiOiJWSUVXIn0.t38TrWnszJrlEo2E4Amq91O54VOe7CED-OOQkNjK80w
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: P-99bfa3b8-10bf-4f39-a705-333bd1ca10d1
+                      role: VIEW
+                      userRegisteredForPassword: false
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ
+                      key: {}
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId:
+                        type: string
+                        example: D-12c177af-dac7-4383-a0fb-6c09e148af8e
+                      role:
+                        type: string
+                        example: VIEW
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: false
+                        default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/web/otp/generate:
+    post:
+      summary: Generate OTP
+      description: This page provides you with information on Generate OTP API.
+      operationId: generate-otp-api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - brand
+                - deviceId
+                - sessionId
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                mobile:
+                  type: string
+                  description: >-
+                    Mobile number of the customer. Either mobile number or email ID is required to authenticate with
+                    username.
+                email:
+                  type: string
+                  description: >-
+                    Email ID of the customer. Either mobile number or email ID is required to authenticate with
+                    username.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has generated the token.
+                sessionId:
+                  type: string
+                  description: Session ID generated through the `v1/token/generate` API.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: "9988221100"
+                  deviceId: 32rtsdered
+                  brand: STANDARDAPP
+                  sessionId: D-502259d3-d4d6-4458-bc5f-b89d3d8e4c7b
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response using web application:
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                  summary: Sample response using web application
+                Sample response using mobile application:
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                  summary: Sample response using mobile application
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/web/otp/validate:
+    post:
+      summary: Validate OTP
+      description: Validates the OTP generated through the `/otp/generate` API.
+      operationId: validate-otp-api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - deviceId
+                - sessionId
+                - otp
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has generated the token.
+                sessionId:
+                  type: string
+                  description: Session ID generated through the `v1/token/generate` API.
+                otp:
+                  type: string
+                  description: Validation code received by the customer.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: "9940000000"
+                  deviceId: deviceid1
+                  brand: standardapp
+                  sessionId: D-502259d3-d4d6-4458-bc5f-b89d3d8e4c7b
+                  otp: "276889"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response using mobile application:
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTk5OTk5MyJdLCJkZXYiOiIxMjM0NTY3ODUiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiI0MDQ4NjQ3IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc2MDAxNzA4MCwiaWF0IjoxNzYwMDEzNDgwLCJyb2wiOiJVU0VSIn0.8cNCH_T63gDOE4BP9QoRT96eOs-qYlUVpO5MrVJwJPo
+                      key: >-
+                        eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTk5OTk5MyJdLCJkZXYiOiIxMjM0NTY3ODUiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiI0MDQ4NjQ3IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlhdCI6MTc2MDAxMzQ4MCwicm9sIjoiQVVUSCJ9.YbMefn1HT8kkHb1r9hTRyAU-Uf3R-rNpJPlShFa0o4k
+                    user:
+                      appRegistered: false
+                      sessionId: null
+                      role: USER
+                      userRegisteredForPassword: true
+                  summary: Sample response using mobile application
+                Sample response using web application:
+                  summary: Sample response using web application
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiRU1BSUx8Y2FwdGVzdEBnbWFpbC5jb20iXSwiZGV2IjpudWxsLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiI0MDY4MjkxIiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc2MDAxMzg0MywiaWF0IjoxNzYwMDEzNzUzLCJyb2wiOiJVU0VSIn0.N7ocUUT5eBXE-rRIoJvRWmMIEN56CIr8_NXQYkUGYig
+                      key: null
+                    user: null
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds
+                      key:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId: {}
+                      role:
+                        type: string
+                        example: USER
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: false
+                        default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/web/password/validate:
+    post:
+      summary: Validate Password
+      description: >-
+        Validates the password of an existing user account and generates the access token and key. The token is valid
+        for 15 minutes by default. You can use the key to regenerate token.
+      operationId: validate-password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - deviceId
+                - sessionId
+                - password
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has generated the token.
+                sessionId:
+                  type: string
+                  description: Session ID generated through the `v1/token/generate` API.
+                password:
+                  type: string
+                  description: Account password to validate.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: USERNAME
+                  identifierValue: "9940000000"
+                  deviceId: deviceid1
+                  brand: KANMODEMO
+                  sessionId: D-c62d7326-e122-4186-8c72-e42f270b0cdf
+                  password: password
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response for mobile application:
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTkyMjMzMiJdLCJkZXYiOiJkZXZpY2VpZDEiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiI0NDEyNDU4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc2MDM1NjYyNSwiaWF0IjoxNzYwMzUzMDI1LCJyb2wiOiJVU0VSIn0.5fvUeAvhu7kOkhJRubZ0tiEyzEQJ4ARpwxV6EXuFt1I
+                      key: >-
+                        eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTkyMjMzMiJdLCJkZXYiOiJkZXZpY2VpZDEiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiI0NDEyNDU4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsIm1mYSI6ZmFsc2UsImlhdCI6MTc2MDM1MzAyNSwicm9sIjoiQVVUSCJ9.ArsBygaS9m5cgRihZYtLyorkuvSyIK0aMOVPnErHZKI
+                    identifiers:
+                      identifierList: null
+                    user:
+                      appRegistered: false
+                      sessionId: null
+                      role: USER
+                      userRegisteredForPassword: true
+                  summary: Sample response for mobile application
+                Sample response for web application:
+                  summary: Sample response for web application
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTkyMjMzMiJdLCJkZXYiOm51bGwsIm9yZyI6IkRPQ0RFTU8iLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0NDEyNDU4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc2MDM2NDE0MiwiaWF0IjoxNzYwMzUzMzQyLCJyb2wiOiJVU0VSIn0.Y_bFGVIrxlFLJGABIg-VSVE9ubyoin9XGFboPq44xys
+                      key: null
+                    identifiers:
+                      identifierList: null
+                    user:
+                      appRegistered: false
+                      sessionId: null
+                      role: USER
+                      userRegisteredForPassword: true
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds
+                      key:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId: {}
+                      role:
+                        type: string
+                        example: USER
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: true
+                        default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/web/token/regenerate:
+    post:
+      summary: Regenerate Authentication Token
+      description: >-
+        Generates authentication token using auth key or expired token generated in `otp/validate` API. By default, a
+        token is valid for 15 minutes. You can use this API only for orgs in which password based authentication is
+        enabled.
+      operationId: regenerate-authentication-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - expiredToken
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                expiredToken:
+                  type: string
+                  description: Unique key generated for the successful web OTP validation.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: "0495678923"
+                  brand: STANDARDAPP
+                  expiredToken: >-
+                    nhdbYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrHGsF
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response for mobile application:
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTkyMjMzMiJdLCJkZXYiOiJkZXZpY2VpZDEiLCJvcmciOiJET0NERU1PIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOiI0NDEyNDU4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc2MDM1NjY5MSwiaWF0IjoxNzYwMzUzMDkxLCJyb2wiOiJVU0VSIn0.hb_3vb2Txm-V3LOSFsB7WVdMA9zeYoTXC4xFSw5LVlc
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: null
+                      role: USER
+                      userRegisteredForPassword: true
+                  summary: Sample response for mobile application
+                Sample response for web application:
+                  summary: Sample response for web application
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                    auth:
+                      token: >-
+                        eyJpZHYiOlsiTU9CSUxFfDkxOTk5OTkyMjMzMiJdLCJkZXYiOm51bGwsIm9yZyI6IkRPQ0RFTU8iLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0NDEyNDU4IiwiaXNzIjoiQ0FQSUxMQVJZIFRFQ0hOT0xPR0lFUyIsImlzYyI6ImZhbHNlIiwib2djIjpbIjEwMDczN3xuZWVyYWouZG9jIl0sImV4cCI6MTc2MDM1MzUzMSwiaWF0IjoxNzYwMzUzNDQxLCJyb2wiOiJVU0VSIn0.STzPzVNrWx7MYdkJuwn7UkJN_2w6PLZOt2jW4RaZEJc
+                      key: null
+                    user:
+                      appRegistered: false
+                      sessionId: null
+                      role: USER
+                      userRegisteredForPassword: false
+              schema:
+                type: object
+                properties:
+                  identifierType:
+                    type: string
+                    example: MOBILE
+                  identifierValue:
+                    type: string
+                    example: "0495678923"
+                  brand:
+                    type: string
+                    example: STANDARDAPP
+                  expiredToken:
+                    type: string
+                    example: >-
+                      nhdbYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrHGsF
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/web/password/change:
+    post:
+      summary: Change Password
+      description: >-
+        Lets you modify the current password of a customer. This is applicable only for brands for which password is
+        enabled.
+      operationId: change-password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - deviceId
+                - password
+                - newPassword
+                - confirmPassword
+                - token
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device used for changing password. Applicable only for mobile app.
+                password:
+                  type: string
+                  description: Current password of the account.
+                newPassword:
+                  type: string
+                  description: New password of the account.
+                confirmPassword:
+                  type: string
+                  description: Reenter the new password.
+                token:
+                  type: string
+                  description: >-
+                    Unique token generated for the identifierType, identifierValue and for web application, and
+                    including deviceId for the mobile application.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: USERNAME
+                  identifierValue: "9940000000"
+                  deviceId: deviceid1
+                  brand: KANMODEMO
+                  password: password
+                  newPassword: password1
+                  confirmPassword: password1
+                  token: >-
+                    eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiLCJVU0VSTkFNRXw5OTQ1NTYwMjI0Il0sImRldiI6ImRldmljZWlkMSIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5Nzg0MzczMywiaWF0IjoxNTk3ODQwMTMzLCJyb2wiOiJWSUVXIn0.pKYy3FpZm82igqp5CRUku4WF8pT5JEp6mX3P48M2qvY
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response for mobile application:
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                  summary: Sample response for mobile application
+                Sample response for web application:
+                  summary: Sample response for web application
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/web/password/forget:
+    post:
+      summary: Forget Password
+      description: >-
+        Lets you set a new password if the customer has lost or forgot password. This is applicable only for brands for
+        which password is enabled. You need to first generate sessionId and then use it in password/forget. After
+        setting a new password, the customer customer needs to authenticate again - 
+
+
+        1. Generate token, 
+
+        2. Generate OTP, and 
+
+        3. Validate OTP.
+      operationId: forget-password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - sessionId
+                - password
+                - confirmPassword
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device used for changing password. Applicable only for mobile app.
+                sessionId:
+                  type: string
+                  description: Unique sessionId generated for the identifierType and deviceId combination.
+                password:
+                  type: string
+                  description: New password for the account.
+                confirmPassword:
+                  type: string
+                  description: Reenter the new password.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: USERNAME
+                  identifierValue: "9940000000"
+                  deviceId: deviceid1
+                  brand: KANMODEMO
+                  password: password1
+                  confirmPassword: password1
+                  sessionId: D-86c23a88-9062-473d-ab3a-9a27145bf321
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Sample response for mobile application:
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+                  summary: Sample response for mobile application
+                Sample response for web application:
+                  summary: Sample response for web application
+                  value:
+                    status:
+                      success: true
+                      code: 200
+                      message: SUCCESS
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/token/regenerate:
+    post:
+      summary: Regenerate Authentication Token
+      description: >-
+        Generates authentication token using auth key or expired token generated in `otp/validate` API. By default, a
+        token is valid for 15 minutes. You can use this API only for orgs in which password based authentication is
+        enabled.
+      operationId: regenerate-authentication-token-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - deviceId
+                - key
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has generated the token.
+                key:
+                  type: string
+                  description: Unique key generated for the successful mobile app OTP validation.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: "0495678923"
+                  deviceId: 32rtsdered
+                  brand: STANDARDAPP
+                  key: ""
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "identifierType":"MOBILE",
+                        "identifierValue":"0495678923",
+                        "brand": "STANDARDAPP", "expiredToken":"nhdbYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrHGsF"
+                    }
+              schema:
+                type: object
+                properties:
+                  identifierType:
+                    type: string
+                    example: MOBILE
+                  identifierValue:
+                    type: string
+                    example: "0495678923"
+                  brand:
+                    type: string
+                    example: STANDARDAPP
+                  expiredToken:
+                    type: string
+                    example: >-
+                      nhdbYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrHGsF
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/token/generate:
+    post:
+      summary: Generate Authentication Token
+      description: Generate authentication for mobile application.
+      operationId: generate-authentication-token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - password
+                - confirmPassword
+                - brand
+                - deviceId
+              properties:
+                identifierType:
+                  type: string
+                  description: Identifier used for token generation
+                  enum:
+                    - MOBILE
+                    - EMAIL
+                    - USERNAME.
+                mobile:
+                  type: string
+                  description: >-
+                    Mobile number of the customer. Either mobile number or email ID is required to authenticate with
+                    username.
+                email:
+                  type: string
+                  description: >-
+                    Email ID of the customer. Either mobile number or email ID is required to authenticate with
+                    username.
+                password:
+                  type: string
+                  description: Password to login to the app.
+                confirmPassword:
+                  type: string
+                  description: Reenter the password.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has generated the token.
+            examples:
+              Authenticate with mobile/email:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: "0495678923"
+                  deviceId: deviceid1
+                  brand: STANDARDAPP
+              Authenticate with username:
+                value:
+                  identifierType: USERNAME
+                  identifierValue: "9988221100"
+                  mobile: "9945560222"
+                  email: ""
+                  deviceId: deviceid1
+                  brand: STANDARDAPP
+                  password: password
+                  confirmPassword: password
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        },
+                        "auth": {
+                            "token": "eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ",
+                            "key": null
+                        },
+                        "user": {
+                            "appRegistered": false,
+                            "sessionId": "D-12c177af-dac7-4383-a0fb-6c09e148af8e",
+                            "role": "VIEW",
+                            "userRegisteredForPassword": false
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ
+                      key: {}
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId:
+                        type: string
+                        example: D-12c177af-dac7-4383-a0fb-6c09e148af8e
+                      role:
+                        type: string
+                        example: VIEW
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: false
+                        default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/otp/generate:
+    post:
+      summary: Generate OTP
+      description: >-
+        Issues OTP to the customer’s mobile number/email ID using the `sessionId` generated through the `token/generate`
+        API.
+
+
+        There is a limit in the number of OTPs a customer can generate in a day. If you wish to increase or decrease the
+        limit, contact the Platforms team.
+      operationId: generate-otp-1-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - brand
+                - deviceId
+                - sessionId
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                mobile:
+                  type: string
+                  description: >-
+                    Mobile number of the customer. Either mobile number or email ID is required to authenticate with
+                    username.
+                email:
+                  type: string
+                  description: >-
+                    Email ID of the customer. Either mobile number or email ID is required to authenticate with
+                    username.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has generated the token.
+                sessionId:
+                  type: string
+                  description: Session ID generated through the `v1/token/generate` API.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: "9940000000"
+                  deviceId: 32rtsdered
+                  brand: STANDARDAPP
+                  sessionId: D-502259d3-d4d6-4458-bc5f-b89d3d8e4c7b
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/otp/validate:
+    post:
+      summary: Validate OTP
+      description: Validates the OTP generated through the `/otp/generate` API. Applicable for mobile app.
+      operationId: validate-otp-2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - deviceId
+                - sessionId
+                - otp
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has generated the token.
+                sessionId:
+                  type: string
+                  description: Session ID generated through the `v1/token/generate` API.
+                otp:
+                  type: string
+                  description: Validation code received by the customer.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: MOBILE
+                  identifierValue: "9940000000"
+                  deviceId: deviceid1
+                  brand: standardapp
+                  sessionId: D-502259d3-d4d6-4458-bc5f-b89d3d8e4c7b
+                  otp: "276889"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        },
+                        "auth": {
+                            "token": "eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds",
+                            "key": "eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE"
+                        },
+                        "user": {
+                            "appRegistered": false,
+                            "sessionId": null,
+                            "role": "USER",
+                            "userRegisteredForPassword": false
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds
+                      key:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId: {}
+                      role:
+                        type: string
+                        example: USER
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: false
+                        default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/password/validate:
+    post:
+      summary: Validate Password
+      description: >-
+        Validates the password of an existing user account and generates the access token and key. The token is valid
+        for 15 minutes by default. You can use the key to regenerate token.
+      operationId: validate-password-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - deviceId
+                - sessionId
+                - password
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device from which the customer has generated the token.
+                sessionId:
+                  type: string
+                  description: Session ID generated through the `v1/token/generate` API.
+                password:
+                  type: string
+                  description: Account password to validate.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: USERNAME
+                  identifierValue: "9940000000"
+                  deviceId: deviceid1
+                  brand: KANMODEMO
+                  sessionId: D-c62d7326-e122-4186-8c72-e42f270b0cdf
+                  password: password
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        },
+                        "auth": {
+                            "token": "eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds",
+                            "key": "eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE"
+                        },
+                        "user": {
+                            "appRegistered": false,
+                            "sessionId": null,
+                            "role": "USER",
+                            "userRegisteredForPassword": true
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+                  auth:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds
+                      key:
+                        type: string
+                        example: >-
+                          eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE
+                  user:
+                    type: object
+                    properties:
+                      appRegistered:
+                        type: boolean
+                        example: false
+                        default: true
+                      sessionId: {}
+                      role:
+                        type: string
+                        example: USER
+                      userRegisteredForPassword:
+                        type: boolean
+                        example: true
+                        default: true
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/password/change:
+    post:
+      summary: Change Password
+      description: >-
+        Lets you modify the current password of a customer. This is applicable only for brands for which password is
+        enabled.
+      operationId: change-password-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - deviceId
+                - password
+                - newPassword
+                - confirmPassword
+                - token
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device used for changing password. Applicable only for mobile app.
+                password:
+                  type: string
+                  description: Current password of the account.
+                newPassword:
+                  type: string
+                  description: New password of the account.
+                confirmPassword:
+                  type: string
+                  description: Reenter the new password.
+                token:
+                  type: string
+                  description: >-
+                    Unique token generated for the identifierType, identifierValue and for web application, and
+                    including deviceId for the mobile application.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: USERNAME
+                  identifierValue: "9940000000"
+                  deviceId: deviceid1
+                  brand: KANMODEMO
+                  password: password
+                  newPassword: password1
+                  confirmPassword: password1
+                  token: >-
+                    eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiLCJVU0VSTkFNRXw5OTQ1NTYwMjI0Il0sImRldiI6ImRldmljZWlkMSIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5Nzg0MzczMywiaWF0IjoxNTk3ODQwMTMzLCJyb2wiOiJWSUVXIn0.pKYy3FpZm82igqp5CRUku4WF8pT5JEp6mX3P48M2qvY
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+  /auth/v1/password/forget:
+    post:
+      summary: Forget Password
+      description: >-
+        Lets you set a new password if the customer has lost or forgot password. This is applicable only for brands for
+        which password is enabled. You need to first generate sessionId and then use it in password/forget. After
+        setting a new password, the customer customer needs to authenticate again - 
+
+
+        1. Generate token, 
+
+        2. Generate OTP, and 
+
+        3. Validate OTP.
+      operationId: forget-password-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - identifierType
+                - identifierValue
+                - brand
+                - deviceId
+                - sessionId
+                - password
+                - confirmPassword
+              properties:
+                identifierType:
+                  type: string
+                  description: "Identifier used for token generation. Values: MOBILE, EMAIL, USERNAME."
+                identifierValue:
+                  type: string
+                  description: Value of the specified identifierType.
+                brand:
+                  type: string
+                  description: Name of the brand/org for which authentication needs to be verified.
+                deviceId:
+                  type: string
+                  description: Unique ID of the device used for changing password. Applicable only for mobile app.
+                sessionId:
+                  type: string
+                  description: Unique sessionId generated for the identifierType and deviceId combination.
+                password:
+                  type: string
+                  description: New password for the account.
+                confirmPassword:
+                  type: string
+                  description: Reenter the new password.
+            examples:
+              Sample POST Body:
+                value:
+                  identifierType: USERNAME
+                  identifierValue: "9940000000"
+                  deviceId: deviceid1
+                  brand: KANMODEMO
+                  password: password1
+                  confirmPassword: password1
+                  sessionId: D-86c23a88-9062-473d-ab3a-9a27145bf321
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                        "status": {
+                            "success": true,
+                            "code": 200,
+                            "message": "SUCCESS"
+                        }
+                    }
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+                        default: true
+                      code:
+                        type: integer
+                        example: 200
+                        default: 0
+                      message:
+                        type: string
+                        example: SUCCESS
+        "400":
+          description: "400"
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{}"
+              schema:
+                type: object
+                properties: {}
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauthToken:
+      type: apiKey
+      in: header
+      name: X-CAP-API-OAUTH-TOKEN
+security:
+  - basicAuth: []
